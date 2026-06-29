@@ -51,20 +51,14 @@ To create interactive controls for submitting information, render the [built-in 
 
 ### Handle form submission with an event handler {/*handle-form-submission-with-an-event-handler*/}
 
-Pass a function to the `onSubmit` event handler to run code when the form is submitted. By default, the browser sends the form data to the current URL and refreshes the page, so call [`e.preventDefault()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault) to override that behavior.
+Pass a function to the `onSubmit` event handler to run code when the form is submitted. By default, the browser sends the form data to the current URL and refreshes the page. Call [`e.preventDefault()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault) in your handler to override that behavior. Read the submitted data with [`new FormData(e.target)`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
 
-This example reads the submitted values with [`new FormData(e.target)`](https://developer.mozilla.org/en-US/docs/Web/API/FormData), which collects every field by its `name`. This keeps the inputs [uncontrolled](/reference/react-dom/components/input#reading-the-input-values-when-submitting-a-form). If you instead [control an input with state](/reference/react-dom/components/input#controlling-an-input-with-a-state-variable), read from that state on submit rather than from `FormData`.
 
 <Sandpack>
 
 ```js src/App.js
 export default function Search() {
   function handleSubmit(e) {
-    // Prevent the default browser behavior
-    // of reloading the page and resetting the form
-    e.preventDefault();
-
-    // Read the form data
     const form = e.target;
     const formData = new FormData(form);
     const query = formData.get("query");
@@ -111,6 +105,54 @@ export default function Search() {
 
 </Sandpack>
 
+
+### Handle form submission with a Server Function {/*handle-form-submission-with-a-server-function*/}
+
+Render a `<form>` with an input and submit button. Pass a Server Function (a function marked with [`'use server'`](/reference/rsc/use-server)) to the `action` prop of form to run the function when the form is submitted.
+
+Passing a Server Function to `<form action>` allow users to submit forms without JavaScript enabled or before the code has loaded. This is beneficial to users who have a slow connection, device, or have JavaScript disabled and is similar to the way forms work when a URL is passed to the `action` prop.
+
+You can use hidden form fields to provide data to the `<form>`'s action. The Server Function will be called with the hidden form field data as an instance of [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
+
+```jsx
+import { updateCart } from './lib.js';
+
+function AddToCart({productId}) {
+  async function addToCart(formData) {
+    'use server'
+    const productId = formData.get('productId')
+    await updateCart(productId)
+  }
+  return (
+    <form action={addToCart}>
+        <input type="hidden" name="productId" value={productId} />
+        <button type="submit">Add to Cart</button>
+    </form>
+
+  );
+}
+```
+
+In lieu of using hidden form fields to provide data to the `<form>`'s action, you can call the <CodeStep step={1}>`bind`</CodeStep> method to supply it with extra arguments. This will bind a new argument (<CodeStep step={2}>`productId`</CodeStep>) to the function in addition to the <CodeStep step={3}>`formData`</CodeStep> that is passed as an argument to the function.
+
+```jsx [[1, 8, "bind"], [2,8, "productId"], [2,4, "productId"], [3,4, "formData"]]
+import { updateCart } from './lib.js';
+
+function AddToCart({productId}) {
+  async function addToCart(productId, formData) {
+    "use server";
+    await updateCart(productId)
+  }
+  const addProductToCart = addToCart.bind(null, productId);
+  return (
+    <form action={addProductToCart}>
+      <button type="submit">Add to Cart</button>
+    </form>
+  );
+}
+```
+
+When `<form>` is rendered by a [Server Component](/reference/rsc/use-client), and a [Server Function](/reference/rsc/server-functions) is passed to the `<form>`'s `action` prop, the form is [progressively enhanced](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement).
 ### Preserve form values after submission {/*preserve-form-values-after-submission*/}
 
 The browser clears a form's input state on submit. A URL `action` follows this same behavior. React does the same when `action` is a function, so your form works consistently before and after JavaScript loads.
@@ -190,53 +232,6 @@ Return the original `FormData` object rather than a new one so React can restore
 
 </DeepDive>
 
-### Handle form submission with a Server Function {/*handle-form-submission-with-a-server-function*/}
-
-Render a `<form>` with an input and submit button. Pass a Server Function (a function marked with [`'use server'`](/reference/rsc/use-server)) to the `action` prop of form to run the function when the form is submitted.
-
-Passing a Server Function to `<form action>` allow users to submit forms without JavaScript enabled or before the code has loaded. This is beneficial to users who have a slow connection, device, or have JavaScript disabled and is similar to the way forms work when a URL is passed to the `action` prop.
-
-You can use hidden form fields to provide data to the `<form>`'s action. The Server Function will be called with the hidden form field data as an instance of [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
-
-```jsx
-import { updateCart } from './lib.js';
-
-function AddToCart({productId}) {
-  async function addToCart(formData) {
-    'use server'
-    const productId = formData.get('productId')
-    await updateCart(productId)
-  }
-  return (
-    <form action={addToCart}>
-        <input type="hidden" name="productId" value={productId} />
-        <button type="submit">Add to Cart</button>
-    </form>
-
-  );
-}
-```
-
-In lieu of using hidden form fields to provide data to the `<form>`'s action, you can call the <CodeStep step={1}>`bind`</CodeStep> method to supply it with extra arguments. This will bind a new argument (<CodeStep step={2}>`productId`</CodeStep>) to the function in addition to the <CodeStep step={3}>`formData`</CodeStep> that is passed as an argument to the function.
-
-```jsx [[1, 8, "bind"], [2,8, "productId"], [2,4, "productId"], [3,4, "formData"]]
-import { updateCart } from './lib.js';
-
-function AddToCart({productId}) {
-  async function addToCart(productId, formData) {
-    "use server";
-    await updateCart(productId)
-  }
-  const addProductToCart = addToCart.bind(null, productId);
-  return (
-    <form action={addProductToCart}>
-      <button type="submit">Add to Cart</button>
-    </form>
-  );
-}
-```
-
-When `<form>` is rendered by a [Server Component](/reference/rsc/use-client), and a [Server Function](/reference/rsc/server-functions) is passed to the `<form>`'s `action` prop, the form is [progressively enhanced](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement).
 
 ### Display a pending state during form submission {/*display-a-pending-state-during-form-submission*/}
 To display a pending state when a form is being submitted, you can call the `useFormStatus` Hook in a component rendered in a `<form>` and read the `pending` property returned.

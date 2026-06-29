@@ -60,6 +60,9 @@ export function useTocHighlight() {
     }
 
     function throttledUpdateActiveLink() {
+      if ((window as any).__isAutoScrolling) {
+        return;
+      }
       if (timeoutRef.current === null) {
         timeoutRef.current = window.setTimeout(() => {
           timeoutRef.current = null;

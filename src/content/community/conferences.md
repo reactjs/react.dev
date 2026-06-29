@@ -20,6 +20,11 @@ April 14-17,  2026. In-person in London
 
 [Website](https://india.cityjsconf.org/) - [Twitter](https://x.com/cityjsconf) - [Bluesky](https://bsky.app/profile/cityjsconf.bsky.social)
 
+### Render(ATL) 2026 🍑 {/*renderatl-2026-*/}
+August 12 - 13, 2026. Atlanta, GA, USA
+
+[Website](https://renderatl.com) - [Discord](https://www.renderatl.com/discord) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/) - [LinkedIn](https://www.linkedin.com/company/renderatl) 
+
 ### ZurichJS Conf 2026 {/*zurichjs-conf-2026*/}
 September 10-11,  2026. In-person in Zurich, Switzerland
 

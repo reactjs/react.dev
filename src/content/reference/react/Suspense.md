@@ -407,12 +407,13 @@ async function getAlbums() {
 
 .panel {
   flex: 1;
-  padding: 0 15px;
-  border: 1px solid #eee;
-  border-radius: 8px;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  padding: 10px;
 }
 
 .panel h2 {
+  margin-top: 0;
   font-size: 1rem;
 }
 ```

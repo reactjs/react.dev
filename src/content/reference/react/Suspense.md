@@ -32,6 +32,7 @@ title: <Suspense>
 - Suspense does not detect when data is fetched inside an Effect or event handler. It only activates for the [resources listed below.](#what-activates-a-suspense-boundary)
 - React does not preserve any state for renders that got suspended before they were able to mount for the first time. When the component has loaded, React will retry rendering the suspended tree from scratch.
 - If Suspense was displaying content for the tree, but then it suspended again, the `fallback` will be shown again unless the update causing it was caused by [`startTransition`](/reference/react/startTransition) or [`useDeferredValue`](/reference/react/useDeferredValue).
+- Once React shows a `fallback`, it keeps it visible for at least ~300ms, revealing any boundaries that resolve within that window together to reduce flicker during [streaming server rendering](/reference/react-dom/server). A boundary whose content is ready before its `fallback` is committed skips the `fallback` entirely.
 - If React needs to hide the already visible content because it suspended again, it will clean up [layout Effects](/reference/react/useLayoutEffect) in the content tree. When the content is ready to be shown again, React will fire the layout Effects again. This ensures that Effects measuring the DOM layout don't try to do this while the content is hidden.
 - React includes under-the-hood optimizations like *Streaming Server Rendering* and *Selective Hydration* that are integrated with Suspense. Read [an architectural overview](https://github.com/reactwg/react-18/discussions/37) and watch [a technical talk](https://www.youtube.com/watch?v=pj5N-Khihgc) to learn more.
 
@@ -208,7 +209,7 @@ async function getAlbums() {
 
 ### What activates a Suspense boundary {/*what-activates-a-suspense-boundary*/}
 
-A Suspense boundary displays its `fallback` while its content is loading, and it can also wait on other resources before revealing that content. The following activate a boundary:
+A Suspense boundary waits for its content to be ready before revealing it. Any of the following blocks a boundary's content from being revealed:
 
 - Lazy-loading component code with [`lazy`](/reference/react/lazy).
 - Reading a Promise with [`use`](/reference/react/use), including data streamed from [Server Components](/reference/rsc/server-components) and integrations from frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/).
@@ -222,9 +223,9 @@ A Suspense boundary displays its `fallback` while its content is loading, and it
 
 #### What is a Suspense-enabled framework? {/*what-is-a-suspense-enabled-framework*/}
 
-A *Suspense-enabled framework* integrates data fetching with Suspense, so that reading data in a component activates the nearest boundary. The exact way you load data in the `Albums` component above depends on your framework, and you'll find the details in its data fetching documentation.
+A *Suspense-enabled framework* reads data with [`use`](/reference/react/use) under the hood, so that reading data in a component activates the nearest boundary. The exact way you load data in the `Albums` component above depends on your framework, and you'll find the details in its data fetching documentation.
 
-Without a framework, you can read a Promise with [`use`](/reference/react/use) as long as the Promise is [cached so the same instance is reused across renders.](/reference/react/use#caching-promises-for-client-components)
+Without a framework, you can read a Promise with `use` directly, as long as the Promise is [cached so the same instance is reused across renders.](/reference/react/use#caching-promises-for-client-components)
 
 </Note>
 

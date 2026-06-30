@@ -24,12 +24,12 @@ Instead, every time you want to update an array, you'll want to pass a *new* arr
 
 Here is a reference table of common array operations. When dealing with arrays inside React state, you will need to avoid the methods in the left column, and instead prefer the methods in the right column:
 
-|           | avoid (mutates the array)           | prefer (returns a new array)                                        |
-| --------- | ----------------------------------- | ------------------------------------------------------------------- |
-| adding    | `push`, `unshift`                   | `concat`, `[...arr]` spread syntax ([example](#adding-to-an-array)) |
-| removing  | `pop`, `shift`, `splice`            | `filter`, `slice` ([example](#removing-from-an-array))              |
-| replacing | `splice`, `arr[i] = ...` assignment | `map` ([example](#replacing-items-in-an-array))                     |
-| sorting   | `reverse`, `sort`                   | copy the array first ([example](#making-other-changes-to-an-array)) |
+|           | avoid (mutates the array)           | prefer (returns a new array)                                                                  |
+| --------- | ----------------------------------- | --------------------------------------------------------------------------------------------- |
+| adding    | `push`, `unshift`                   | `concat`, `[...arr]` spread syntax ([example](#adding-to-an-array))                           |
+| removing  | `pop`, `shift`, `splice`            | `filter`, `slice` ([example](#removing-from-an-array))                                        |
+| replacing | `splice`, `arr[i] = ...` assignment | `map` ([example](#replacing-items-in-an-array))                                               |
+| sorting   | `reverse`, `sort`                   | `toReversed`, `toSorted`, copy the array first ([example](#making-other-changes-to-an-array)) |
 
 Alternatively, you can [use Immer](#write-concise-update-logic-with-immer) which lets you use methods from both columns.
 
@@ -442,6 +442,25 @@ export default function List() {
 </Sandpack>
 
 Here, you use the `[...list]` spread syntax to create a copy of the original array first. Now that you have a copy, you can use mutating methods like `nextList.reverse()` or `nextList.sort()`, or even assign individual items with `nextList[0] = "something"`.
+
+<Note>
+
+Since July 2023, you can now use the JavaScript methods [`toReversed()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toReversed) and [`toSorted()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toSorted), which behave exactly like their counterparts but always return a new ***shallow* copy** of the array.
+
+This makes the following code effectively the same:
+
+```js
+// Using the spread syntax
+const spreadList = [...list];
+spreadList.reverse();
+setList(spreadList);
+
+// Using the method directly
+const methodList = list.toReversed(); // or use toSorted()
+setList(methodList);
+```
+
+</Note>
 
 However, **even if you copy an array, you can't mutate existing items _inside_ of it directly.** This is because copying is shallow--the new array will contain the same items as the original one. So if you modify an object inside the copied array, you are mutating the existing state. For example, code like this is a problem.
 

@@ -229,6 +229,196 @@ Without a framework, you can read a Promise with `use` directly, as long as the 
 
 </Note>
 
+For example, both boundaries below are set up identically. The one on the left activates because its content reads a Promise with `use`, so it shows the `fallback` while loading. The one on the right fetches the same data inside an Effect, which Suspense can't detect, so its `fallback` never appears and the albums simply show up once the fetch resolves:
+
+<Sandpack>
+
+```js
+import { Suspense } from 'react';
+import Albums from './Albums.js';
+import EffectAlbums from './EffectAlbums.js';
+
+export default function App() {
+  return (
+    <div className="panels">
+      <section className="panel">
+        <h2>Reads a Promise with use</h2>
+        <Suspense fallback={<Loading />}>
+          <Albums artistId="the-beatles" />
+        </Suspense>
+      </section>
+      <section className="panel">
+        <h2>Fetches in an Effect</h2>
+        <Suspense fallback={<Loading />}>
+          <EffectAlbums artistId="the-beatles" />
+        </Suspense>
+      </section>
+    </div>
+  );
+}
+
+function Loading() {
+  return <p>🌀 Loading...</p>;
+}
+```
+
+```js src/Albums.js active
+import { use } from 'react';
+import { fetchData } from './data.js';
+
+export default function Albums({ artistId }) {
+  // Reading the Promise with `use` activates
+  // the Suspense boundary while it loads.
+  const albums = use(fetchData(`/${artistId}/albums`));
+  return (
+    <ul>
+      {albums.map(album => (
+        <li key={album.id}>
+          {album.title} ({album.year})
+        </li>
+      ))}
+    </ul>
+  );
+}
+```
+
+```js src/EffectAlbums.js
+import { useState, useEffect } from 'react';
+import { fetchData } from './data.js';
+
+export default function EffectAlbums({ artistId }) {
+  const [albums, setAlbums] = useState([]);
+
+  useEffect(() => {
+    let active = true;
+    fetchData(`/${artistId}/albums`).then(result => {
+      if (active) {
+        setAlbums(result);
+      }
+    });
+    return () => {
+      active = false;
+    };
+  }, [artistId]);
+
+  // Suspense can't see this fetch, so its fallback never
+  // shows. The list stays empty until the data arrives.
+  return (
+    <ul>
+      {albums.map(album => (
+        <li key={album.id}>
+          {album.title} ({album.year})
+        </li>
+      ))}
+    </ul>
+  );
+}
+```
+
+```js src/data.js hidden
+// Note: the way you would do data fetching depends on
+// the framework that you use together with Suspense.
+// Normally, the caching logic would be inside a framework.
+
+let cache = new Map();
+
+export function fetchData(url) {
+  if (!cache.has(url)) {
+    cache.set(url, getData(url));
+  }
+  return cache.get(url);
+}
+
+async function getData(url) {
+  if (url === '/the-beatles/albums') {
+    return await getAlbums();
+  } else {
+    throw Error('Not implemented');
+  }
+}
+
+async function getAlbums() {
+  // Add a fake delay to make waiting noticeable.
+  await new Promise(resolve => {
+    setTimeout(resolve, 3000);
+  });
+
+  return [{
+    id: 13,
+    title: 'Let It Be',
+    year: 1970
+  }, {
+    id: 12,
+    title: 'Abbey Road',
+    year: 1969
+  }, {
+    id: 11,
+    title: 'Yellow Submarine',
+    year: 1969
+  }, {
+    id: 10,
+    title: 'The Beatles',
+    year: 1968
+  }, {
+    id: 9,
+    title: 'Magical Mystery Tour',
+    year: 1967
+  }, {
+    id: 8,
+    title: 'Sgt. Pepper\'s Lonely Hearts Club Band',
+    year: 1967
+  }, {
+    id: 7,
+    title: 'Revolver',
+    year: 1966
+  }, {
+    id: 6,
+    title: 'Rubber Soul',
+    year: 1965
+  }, {
+    id: 5,
+    title: 'Help!',
+    year: 1965
+  }, {
+    id: 4,
+    title: 'Beatles For Sale',
+    year: 1964
+  }, {
+    id: 3,
+    title: 'A Hard Day\'s Night',
+    year: 1964
+  }, {
+    id: 2,
+    title: 'With The Beatles',
+    year: 1963
+  }, {
+    id: 1,
+    title: 'Please Please Me',
+    year: 1963
+  }];
+}
+```
+
+```css
+.panels {
+  display: flex;
+  gap: 20px;
+}
+
+.panel {
+  flex: 1;
+  padding: 0 15px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+}
+
+.panel h2 {
+  font-size: 1rem;
+}
+```
+
+</Sandpack>
+
 ---
 
 ### Revealing content together at once {/*revealing-content-together-at-once*/}

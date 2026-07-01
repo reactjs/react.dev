@@ -5,13 +5,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-/*
- * Copyright (c) Facebook, Inc. and its affiliates.
- */
+'use client';
 
 import {Page} from 'components/Layout/Page';
 import {MDXComponents} from 'components/MDX/MDXComponents';
 import sidebarLearn from '../sidebarLearn.json';
+import type {RouteItem} from 'components/Layout/getRouteMeta';
 
 const {Intro, MaxWidth, p: P, a: A} = MDXComponents;
 
@@ -19,17 +18,20 @@ export default function NotFound() {
   return (
     <Page
       toc={[]}
-      routeTree={sidebarLearn}
-      meta={{title: 'Something Went Wrong'}}>
+      meta={{title: 'Not Found'}}
+      routeTree={sidebarLearn as RouteItem}
+      section="unknown"
+      pathname="/404">
       <MaxWidth>
         <Intro>
-          <P>Something went very wrong.</P>
-          <P>Sorry about that.</P>
+          <P>This page doesn’t exist.</P>
           <P>
-            If you’d like, please{' '}
+            If this is a mistake{', '}
             <A href="https://github.com/reactjs/react.dev/issues/new">
-              report a bug.
+              let us know
             </A>
+            {', '}
+            and we will try to fix it!
           </P>
         </Intro>
       </MaxWidth>

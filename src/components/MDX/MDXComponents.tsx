@@ -9,6 +9,8 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
+'use client';
+
 import {Children, useContext, useMemo} from 'react';
 import * as React from 'react';
 import cn from 'classnames';
@@ -490,6 +492,8 @@ function Image(props: any) {
   return <img alt={alt} className="max-w-[calc(min(700px,100%))]" {...rest} />;
 }
 
+// Keep MDX_COMPONENT_NAMES in MDXComponentsList.ts in sync with the keys below.
+// That list is the server-safe source of truth used by compileMDX.
 export const MDXComponents = {
   p: P,
   strong: Strong,

@@ -21,7 +21,7 @@ import Image from 'next/image';
 import * as React from 'react';
 import cn from 'classnames';
 import NextLink from 'next/link';
-import {useRouter} from 'next/router';
+import {usePathname} from 'next/navigation';
 import {disableBodyScroll, enableBodyScroll} from 'body-scroll-lock';
 
 import {IconClose} from 'components/Icon/IconClose';
@@ -168,7 +168,7 @@ export default function TopNav({
   const [showSearch, setShowSearch] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const scrollParentRef = useRef<HTMLDivElement>(null);
-  const {asPath} = useRouter();
+  const asPath = usePathname() || '/';
 
   // HACK. Fix up the data structures instead.
   if ((routeTree as any).routes.length === 1) {

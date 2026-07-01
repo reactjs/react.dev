@@ -16,7 +16,6 @@ import {IconDeepDive} from '../Icon/IconDeepDive';
 import {IconCodeBlock} from '../Icon/IconCodeBlock';
 import {Button} from '../Button';
 import {H4} from './Heading';
-import {useRouter} from 'next/router';
 import {useEffect, useRef, useState} from 'react';
 
 interface ExpandableExampleProps {
@@ -35,8 +34,8 @@ function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
   const isExample = type === 'Example';
   const id = children[0].props.id;
 
-  const {asPath} = useRouter();
-  const shouldAutoExpand = id === asPath.split('#')[1];
+  const shouldAutoExpand =
+    typeof window !== 'undefined' && id === window.location.hash.slice(1);
   const queuedExpandRef = useRef<boolean>(shouldAutoExpand);
   const [isExpanded, setIsExpanded] = useState(false);
 

@@ -15,7 +15,7 @@ import {H1} from './MDX/Heading';
 import type {RouteTag, RouteItem} from './Layout/getRouteMeta';
 import * as React from 'react';
 import {useState, useEffect} from 'react';
-import {useRouter} from 'next/router';
+import {usePathname} from 'next/navigation';
 import {IconCanary} from './Icon/IconCanary';
 import {IconExperimental} from './Icon/IconExperimental';
 import {IconCopy} from './Icon/IconCopy';
@@ -32,7 +32,7 @@ interface PageHeadingProps {
 }
 
 function CopyAsMarkdownButton() {
-  const {asPath} = useRouter();
+  const pathname = usePathname() || '/';
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
@@ -42,7 +42,7 @@ function CopyAsMarkdownButton() {
   }, [copied]);
 
   async function fetchPageBlob() {
-    const cleanPath = asPath.split(/[?#]/)[0];
+    const cleanPath = pathname.split(/[?#]/)[0];
     const res = await fetch(cleanPath + '.md');
     if (!res.ok) throw new Error('Failed to fetch');
     const text = await res.text();

@@ -237,7 +237,7 @@ Starting in 19.2, React will batch reveals of server-rendered Suspense boundarie
 
 <Diagram name="19_2_batching_before" height={162} width={1270} alt="Diagram with three sections, with an arrow transitioning each section in between. The first section contains a page rectangle showing a glimmer loading state with faded bars. The second panel shows the top half of the page revealed and highlighted in blue. The third panel shows the entire the page revealed and highlighted in blue.">
 
-Previously, during streaming server-side rendering, suspense content would immediately replace fallbacks.
+Previously, during streaming server-side rendering, Suspense content would immediately replace fallbacks.
 
 </Diagram>
 

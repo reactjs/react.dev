@@ -215,7 +215,7 @@ A Suspense boundary waits for its content to be ready before revealing it. Any o
 - Reading a Promise with [`use`](/reference/react/use), including data streamed from [Server Components](/reference/rsc/server-components) and integrations from frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/).
 - Loading a stylesheet rendered with [`<link rel="stylesheet">` and a `precedence` prop.](/reference/react-dom/components/link#special-rendering-behavior) React blocks the boundary until the stylesheet loads, up to a timeout.
 - Loading fonts. React blocks a streamed boundary until [`document.fonts.ready`](https://developer.mozilla.org/en-US/docs/Web/API/FontFaceSet/ready) resolves, up to a timeout. Fonts also block a [`<ViewTransition>`](/reference/react/ViewTransition) update.
-- Streaming a large boundary's HTML during server rendering. React reveals the content as the HTML arrives.
+- Streaming a large boundary's HTML during server rendering. React [reveals the content as the HTML arrives.](/reference/react-dom/server/renderToReadableStream#streaming-more-content-as-it-loads)
 - Loading an image, where the `src` blocks the boundary until the image loads. This behavior is not enabled by default. When enabled, an `onLoad` handler opts an image out, and images in a [`<ViewTransition>`](/reference/react/ViewTransition) update opt in automatically.
 - <ExperimentalBadge /> Performing CPU-bound render work inside a `<Suspense>` boundary marked with the `defer` prop.
 

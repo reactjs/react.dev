@@ -60,7 +60,7 @@ function MyCart({initialState}) {
 * The `dispatchAction` function has a stable identity, so you will often see it omitted from Effect dependencies, but including it will not cause the Effect to fire. If the linter lets you omit a dependency without errors, it is safe to do. [Learn more about removing Effect dependencies.](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
 * When using the `permalink` option, ensure the same form component is rendered on the destination page (including the same `reducerAction` and `permalink`) so React knows how to pass the state through. Once the page becomes interactive, this parameter has no effect.
 * When using Server Functions, `initialState` needs to be [serializable](/reference/rsc/use-server#serializable-parameters-and-return-values) (values like plain objects, arrays, strings, and numbers).
-* If `dispatchAction` throws an error, React cancels all queued actions and shows the nearest [Error Boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary).
+* If `dispatchAction` throws an error, React cancels all queued Actions and shows the nearest [Error Boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary).
 * If there are multiple ongoing Actions, React batches them together. This is a limitation that may be removed in a future release.
 
 <Note>
@@ -269,7 +269,7 @@ Try clicking "Add Ticket" multiple times. Every time you click, a new `addToCart
 
 We have to wait for the previous result of `addToCartAction` in order to pass the `prevCount` to the next call to `addToCartAction`. That means React has to wait for the previous Action to finish before calling the next Action.
 
-You can typically solve this by [using with useOptimistic](/reference/react/useActionState#using-with-useoptimistic) but for more complex cases you may want to consider [cancelling queued actions](#cancelling-queued-actions) or not using `useActionState`.
+You can typically solve this by [using with useOptimistic](/reference/react/useActionState#using-with-useoptimistic) but for more complex cases you may want to consider [cancelling queued Actions](#cancelling-queued-actions) or not using `useActionState`.
 
 </DeepDive>
 
@@ -1423,7 +1423,7 @@ function action(prevState, formData) {
 
 ---
 
-### My actions are being skipped {/*actions-skipped*/}
+### My Actions are being skipped {/*actions-skipped*/}
 
 If you call `dispatchAction` multiple times and some of them don't run, it may be because an earlier `dispatchAction` call threw an error.
 
@@ -1526,7 +1526,7 @@ function MyComponent() {
 }
 ```
 
-Or pass `dispatchAction` to an Action prop, is call in a Transition:
+Or pass `dispatchAction` to an Action prop, which calls it in a Transition:
 
 ```js
 function MyComponent() {

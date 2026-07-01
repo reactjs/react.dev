@@ -472,7 +472,7 @@ function Albums() {
 }
 ```
 
-Instead, pass a Promise from a cache, a Suspense-enabled framework, or a Server Component:
+Instead, pass a Promise from a cache, a [Suspense-enabled framework](/reference/react/Suspense#what-is-a-suspense-enabled-framework), or a Server Component:
 
 ```js
 // ✅ fetchData reads the Promise from a cache.
@@ -538,7 +538,7 @@ The `fetchData` function returns the same Promise each time it's called with the
 
 <Note>
 
-The way you cache Promises depends on the framework you use with Suspense. Frameworks typically provide built-in caching mechanisms. If you don't use a framework, you can use a simple module-level cache like the one above, or a [Suspense-enabled data source](/reference/react/Suspense#displaying-a-fallback-while-content-is-loading).
+The way you cache Promises depends on the framework you use with Suspense. Frameworks typically provide built-in caching mechanisms. If you don't use a framework, you can use a simple module-level cache like the one above, or a [Suspense-enabled data source](/reference/react/Suspense#what-is-a-suspense-enabled-framework).
 
 </Note>
 

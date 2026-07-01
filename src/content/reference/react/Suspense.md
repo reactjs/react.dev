@@ -29,8 +29,10 @@ title: <Suspense>
 
 #### Caveats {/*caveats*/}
 
+- Suspense does not detect when data is fetched inside an Effect or event handler. It only activates for the [resources listed below.](#what-activates-a-suspense-boundary)
 - React does not preserve any state for renders that got suspended before they were able to mount for the first time. When the component has loaded, React will retry rendering the suspended tree from scratch.
 - If Suspense was displaying content for the tree, but then it suspended again, the `fallback` will be shown again unless the update causing it was caused by [`startTransition`](/reference/react/startTransition) or [`useDeferredValue`](/reference/react/useDeferredValue).
+- React reveals suspended content at most once every 300ms. When a boundary's content is ready, React waits until 300ms have passed since the last reveal before showing it, so that boundaries resolving within that window are [revealed together](/blog/2025/10/01/react-19-2#batching-suspense-boundaries-for-ssr) rather than one at a time.
 - If React needs to hide the already visible content because it suspended again, it will clean up [layout Effects](/reference/react/useLayoutEffect) in the content tree. When the content is ready to be shown again, React will fire the layout Effects again. This ensures that Effects measuring the DOM layout don't try to do this while the content is hidden.
 - React includes under-the-hood optimizations like *Streaming Server Rendering* and *Selective Hydration* that are integrated with Suspense. Read [an architectural overview](https://github.com/reactwg/react-18/discussions/37) and watch [a technical talk](https://www.youtube.com/watch?v=pj5N-Khihgc) to learn more.
 
@@ -203,21 +205,220 @@ async function getAlbums() {
 
 </Sandpack>
 
+---
+
+### What activates a Suspense boundary {/*what-activates-a-suspense-boundary*/}
+
+A Suspense boundary waits for its content to be ready before revealing it. Any of the following blocks a boundary's content from being revealed:
+
+- Lazy-loading component code with [`lazy`](/reference/react/lazy).
+- Reading a Promise with [`use`](/reference/react/use), including data streamed from [Server Components](/reference/rsc/server-components) and integrations from frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/).
+- Loading a stylesheet rendered with [`<link rel="stylesheet">` and a `precedence` prop.](/reference/react-dom/components/link#special-rendering-behavior) React blocks the boundary until the stylesheet loads, up to a timeout.
+- Loading fonts. React blocks a streamed boundary until [`document.fonts.ready`](https://developer.mozilla.org/en-US/docs/Web/API/FontFaceSet/ready) resolves, up to a timeout. Fonts also block a [`<ViewTransition>`](/reference/react/ViewTransition) update.
+- Streaming a large boundary's HTML during server rendering. React [reveals the content as the HTML arrives.](/reference/react-dom/server/renderToReadableStream#streaming-more-content-as-it-loads)
+- Loading an image, where the `src` blocks the boundary until the image loads. This behavior is not enabled by default. When enabled, an `onLoad` handler opts an image out, and images in a [`<ViewTransition>`](/reference/react/ViewTransition) update opt in automatically.
+- <ExperimentalBadge /> Performing CPU-bound render work inside a `<Suspense>` boundary marked with the `defer` prop.
+
 <Note>
 
-**Only Suspense-enabled data sources will activate the Suspense component.** They include:
+#### What is a Suspense-enabled framework? {/*what-is-a-suspense-enabled-framework*/}
 
-- Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming#streaming-with-suspense)
-- Lazy-loading component code with [`lazy`](/reference/react/lazy)
-- Reading the value of a cached Promise with [`use`](/reference/react/use)
+A *Suspense-enabled framework* reads data with [`use`](/reference/react/use) under the hood, so that reading data in a component activates the nearest boundary. The exact way you load data in the `Albums` component above depends on your framework, and you'll find the details in its data fetching documentation.
 
-Suspense **does not** detect when data is fetched inside an Effect or event handler.
-
-The exact way you would load data in the `Albums` component above depends on your framework. If you use a Suspense-enabled framework, you'll find the details in its data fetching documentation.
-
-Suspense-enabled data fetching without the use of an opinionated framework is not yet supported. The requirements for implementing a Suspense-enabled data source are unstable and undocumented. An official API for integrating data sources with Suspense will be released in a future version of React.
+Without a framework, you can read a Promise with `use` directly, as long as the Promise is [cached so the same instance is reused across renders.](/reference/react/use#caching-promises-for-client-components)
 
 </Note>
+
+For example, both boundaries below are set up identically. The one on the left activates because its content reads a Promise with `use`, so it shows the `fallback` while loading. The one on the right fetches the same data inside an Effect, which Suspense can't detect, so its `fallback` never appears and the albums simply show up once the fetch resolves:
+
+<Sandpack>
+
+```js
+import { Suspense } from 'react';
+import Albums from './Albums.js';
+import EffectAlbums from './EffectAlbums.js';
+
+export default function App() {
+  return (
+    <div className="panels">
+      <section className="panel">
+        <h2>Reads a Promise with use</h2>
+        <Suspense fallback={<Loading />}>
+          <Albums artistId="the-beatles" />
+        </Suspense>
+      </section>
+      <section className="panel">
+        <h2>Fetches in an Effect</h2>
+        <Suspense fallback={<Loading />}>
+          <EffectAlbums artistId="the-beatles" />
+        </Suspense>
+      </section>
+    </div>
+  );
+}
+
+function Loading() {
+  return <p>🌀 Loading...</p>;
+}
+```
+
+```js src/Albums.js active
+import { use } from 'react';
+import { fetchData } from './data.js';
+
+export default function Albums({ artistId }) {
+  // Reading the Promise with `use` activates
+  // the Suspense boundary while it loads.
+  const albums = use(fetchData(`/${artistId}/albums`));
+  return (
+    <ul>
+      {albums.map(album => (
+        <li key={album.id}>
+          {album.title} ({album.year})
+        </li>
+      ))}
+    </ul>
+  );
+}
+```
+
+```js src/EffectAlbums.js
+import { useState, useEffect } from 'react';
+import { fetchData } from './data.js';
+
+export default function EffectAlbums({ artistId }) {
+  const [albums, setAlbums] = useState([]);
+
+  useEffect(() => {
+    let active = true;
+    fetchData(`/${artistId}/albums`).then(result => {
+      if (active) {
+        setAlbums(result);
+      }
+    });
+    return () => {
+      active = false;
+    };
+  }, [artistId]);
+
+  // Suspense can't see this fetch, so its fallback never
+  // shows. The list stays empty until the data arrives.
+  return (
+    <ul>
+      {albums.map(album => (
+        <li key={album.id}>
+          {album.title} ({album.year})
+        </li>
+      ))}
+    </ul>
+  );
+}
+```
+
+```js src/data.js hidden
+// Note: the way you would do data fetching depends on
+// the framework that you use together with Suspense.
+// Normally, the caching logic would be inside a framework.
+
+let cache = new Map();
+
+export function fetchData(url) {
+  if (!cache.has(url)) {
+    cache.set(url, getData(url));
+  }
+  return cache.get(url);
+}
+
+async function getData(url) {
+  if (url === '/the-beatles/albums') {
+    return await getAlbums();
+  } else {
+    throw Error('Not implemented');
+  }
+}
+
+async function getAlbums() {
+  // Add a fake delay to make waiting noticeable.
+  await new Promise(resolve => {
+    setTimeout(resolve, 3000);
+  });
+
+  return [{
+    id: 13,
+    title: 'Let It Be',
+    year: 1970
+  }, {
+    id: 12,
+    title: 'Abbey Road',
+    year: 1969
+  }, {
+    id: 11,
+    title: 'Yellow Submarine',
+    year: 1969
+  }, {
+    id: 10,
+    title: 'The Beatles',
+    year: 1968
+  }, {
+    id: 9,
+    title: 'Magical Mystery Tour',
+    year: 1967
+  }, {
+    id: 8,
+    title: 'Sgt. Pepper\'s Lonely Hearts Club Band',
+    year: 1967
+  }, {
+    id: 7,
+    title: 'Revolver',
+    year: 1966
+  }, {
+    id: 6,
+    title: 'Rubber Soul',
+    year: 1965
+  }, {
+    id: 5,
+    title: 'Help!',
+    year: 1965
+  }, {
+    id: 4,
+    title: 'Beatles For Sale',
+    year: 1964
+  }, {
+    id: 3,
+    title: 'A Hard Day\'s Night',
+    year: 1964
+  }, {
+    id: 2,
+    title: 'With The Beatles',
+    year: 1963
+  }, {
+    id: 1,
+    title: 'Please Please Me',
+    year: 1963
+  }];
+}
+```
+
+```css
+.panels {
+  display: flex;
+  gap: 20px;
+}
+
+.panel {
+  flex: 1;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+.panel h2 {
+  margin-top: 0;
+  font-size: 1rem;
+}
+```
+
+</Sandpack>
 
 ---
 

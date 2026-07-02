@@ -214,7 +214,7 @@ A Suspense boundary waits for its content to be ready before revealing it. Any o
 - Lazy-loading component code with [`lazy`](/reference/react/lazy).
 - Reading a Promise with [`use`](/reference/react/use), including data streamed from [Server Components](/reference/rsc/server-components) and integrations from frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/).
 - Loading a stylesheet rendered with [`<link rel="stylesheet">` and a `precedence` prop.](/reference/react-dom/components/link#special-rendering-behavior) React blocks the boundary until the stylesheet loads, up to a timeout.
-- Loading fonts. React blocks a streamed boundary until [`document.fonts.ready`](https://developer.mozilla.org/en-US/docs/Web/API/FontFaceSet/ready) resolves, up to a timeout. Fonts also block a [`<ViewTransition>`](/reference/react/ViewTransition) update.
+- Loading fonts. When a boundary is revealed by streamed SSR content, React waits for [`document.fonts.ready`](https://developer.mozilla.org/en-US/docs/Web/API/FontFaceSet/ready) before showing it, up to a timeout, so text doesn't flash with a fallback font. Fonts also block a [`<ViewTransition>`](/reference/react/ViewTransition) update.
 - Streaming a large boundary's HTML during server rendering. React [reveals the content as the HTML arrives.](/reference/react-dom/server/renderToReadableStream#streaming-more-content-as-it-loads)
 - Loading an image, where the `src` blocks the boundary until the image loads. This behavior is not enabled by default. When enabled, an `onLoad` handler opts an image out, and images in a [`<ViewTransition>`](/reference/react/ViewTransition) update opt in automatically.
 - <ExperimentalBadge /> Performing CPU-bound render work inside a `<Suspense>` boundary marked with the `defer` prop.
@@ -229,60 +229,28 @@ Without a framework, you can read a Promise with `use` directly, as long as the 
 
 </Note>
 
-For example, both boundaries below are set up identically. The one on the left activates because its content reads a Promise with `use`, so it shows the `fallback` while loading. The one on the right fetches the same data inside an Effect, which Suspense can't detect, so its `fallback` never appears and the albums simply show up once the fetch resolves:
+Fetching data inside an Effect does not activate the boundary. Suspense can't detect the fetch, so the `fallback` never appears and the list stays empty until the data arrives:
 
 <Sandpack>
 
 ```js
 import { Suspense } from 'react';
-import Albums from './Albums.js';
 import EffectAlbums from './EffectAlbums.js';
 
 export default function App() {
   return (
-    <div className="panels">
-      <section className="panel">
-        <h2>Reads a Promise with use</h2>
-        <Suspense fallback={<Loading />}>
-          <Albums artistId="the-beatles" />
-        </Suspense>
-      </section>
-      <section className="panel">
-        <h2>Fetches in an Effect</h2>
-        <Suspense fallback={<Loading />}>
-          <EffectAlbums artistId="the-beatles" />
-        </Suspense>
-      </section>
-    </div>
+    <Suspense fallback={<Loading />}>
+      <EffectAlbums artistId="the-beatles" />
+    </Suspense>
   );
 }
 
 function Loading() {
-  return <p>🌀 Loading...</p>;
+  return <h2>🌀 Loading...</h2>;
 }
 ```
 
-```js src/Albums.js active
-import { use } from 'react';
-import { fetchData } from './data.js';
-
-export default function Albums({ artistId }) {
-  // Reading the Promise with `use` activates
-  // the Suspense boundary while it loads.
-  const albums = use(fetchData(`/${artistId}/albums`));
-  return (
-    <ul>
-      {albums.map(album => (
-        <li key={album.id}>
-          {album.title} ({album.year})
-        </li>
-      ))}
-    </ul>
-  );
-}
-```
-
-```js src/EffectAlbums.js
+```js src/EffectAlbums.js active
 import { useState, useEffect } from 'react';
 import { fetchData } from './data.js';
 
@@ -399,22 +367,81 @@ async function getAlbums() {
 }
 ```
 
-```css
-.panels {
-  display: flex;
-  gap: 20px;
+</Sandpack>
+
+During streaming server rendering, a boundary also activates as its HTML arrives. With any streaming SSR API, React sends the shell with the `fallback` first, then streams in each boundary's HTML and swaps out its `fallback` as that content arrives. This progressive reveal applies only to content streamed from the server, not to updates on the client:
+
+<Sandpack>
+
+```js src/App.js hidden
+```
+
+```html public/index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Streaming SSR</title>
+</head>
+<body>
+  <iframe id="container" style="width: 100%; height: 180px; border: 1px solid #aaa;"></iframe>
+</body>
+</html>
+```
+
+```js src/index.js
+import { flushReadableStreamToFrame } from './demo-helpers.js';
+import { Suspense, use } from 'react';
+import { renderToReadableStream } from 'react-dom/server';
+
+const { promise: posts, resolve: resolvePosts } =
+  Promise.withResolvers();
+
+function Posts() {
+  const text = use(posts);
+  return <p>{text}</p>;
 }
 
-.panel {
-  flex: 1;
-  border: 1px solid #aaa;
-  border-radius: 6px;
-  padding: 10px;
+function ProfilePage() {
+  return (
+    <html>
+      <body>
+        <h1>Alice</h1>
+        <p>Photographer and traveler.</p>
+        <Suspense fallback={<p>Loading posts...</p>}>
+          <Posts />
+        </Suspense>
+      </body>
+    </html>
+  );
 }
 
-.panel h2 {
-  margin-top: 0;
-  font-size: 1rem;
+async function main(frame) {
+  const stream = await renderToReadableStream(<ProfilePage />);
+
+  // The posts resolve after the shell has streamed, so React
+  // streams their HTML in and swaps out the fallback.
+  setTimeout(() => {
+    resolvePosts(
+      'Just got back from two weeks along the coast. The drive ' +
+      'was longer than expected, but every stop was worth it. ' +
+      'A full write-up and more photos are coming soon.'
+    );
+  }, 1500);
+
+  await flushReadableStreamToFrame(stream, frame);
+}
+
+main(document.getElementById('container'));
+```
+
+```js src/demo-helpers.js hidden
+export async function flushReadableStreamToFrame(readable, frame) {
+  const doc = frame.contentWindow.document;
+  const decoder = new TextDecoder();
+  for await (const chunk of readable) {
+    doc.write(decoder.decode(chunk));
+  }
 }
 ```
 

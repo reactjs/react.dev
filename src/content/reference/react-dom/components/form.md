@@ -51,7 +51,7 @@ To create interactive controls for submitting information, render the [built-in 
 
 ### Handling form submission with an event handler {/*handle-form-submission-with-an-event-handler*/}
 
-Pass a function to the `onSubmit` event handler to run code when the form is submitted. By default, the browser sends the form data to the current URL and refreshes the page. Call [`e.preventDefault()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault) in your handler to override that behavior. Read the submitted data with [`new FormData(e.target)`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
+Pass a function to the `onSubmit` event handler to run code when the form is submitted. By default, the browser sends the form data to the current URL and refreshes the page. Call [`e.preventDefault()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault) in your handler to override that behavior.
 
 
 <Sandpack>
@@ -84,7 +84,20 @@ Reading form data with `onSubmit` works in every version of React and gives you 
 
 ### Handling form submission with an action prop {/*handle-form-submission-with-an-action-prop*/}
 
-Pass a function to the `action` prop of form to run the function when the form is submitted. [`formData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) will be passed to the function as an argument so you can access the data submitted by the form. This differs from the conventional [HTML action](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action), which only accepts URLs. Unlike `onSubmit`, an `action` runs in a [Transition](/reference/react/useTransition) and calling `e.preventDefault()` isn't needed. After the `action` function succeeds, React resets all [uncontrolled](/reference/react-dom/components/input#reading-the-input-values-when-submitting-a-form) field elements in the form. To keep their values, see [Preserving form values after submission](#preserve-form-values-after-submission).
+Pass a function to the `action` prop of `<form>` to handle submission. When the form is submitted, React calls your function with a [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) object containing the field values.
+
+Give each input a `name` attribute so its value is included in `FormData`. You can use [uncontrolled](/reference/react-dom/components/input#reading-the-input-values-when-submitting-a-form) inputs instead of controlled `value`/`onChange` pairs, and you don't need an `onSubmit` handler or `e.preventDefault()`.
+
+This extends the [HTML `action` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action), which only accepts a URL, to also accept a function. Because the form stays a native HTML form, it can be submitted before JavaScript loads; with a [Server Function](/reference/rsc/server-functions), it works without JavaScript enabled.
+
+When you pass a function to `action`, React:
+
+* Runs the submission function in a [Transition](/reference/react/useTransition).
+* Tracks pending state so child components can read it with [`useFormStatus`](/reference/react-dom/hooks/useFormStatus).
+* Sends thrown errors to the nearest error boundary.
+* Works with [`useActionState`](/reference/react/useActionState) and [`useOptimistic`](/reference/react/useOptimistic) for form state and optimistic UI.
+
+After the function succeeds, React resets all [uncontrolled](/reference/react-dom/components/input#reading-the-input-values-when-submitting-a-form) field elements in the form. To keep their values, see [Preserving form values after submission](#preserve-form-values-after-submission).
 
 <Sandpack>
 

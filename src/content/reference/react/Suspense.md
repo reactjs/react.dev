@@ -223,7 +223,7 @@ A Suspense boundary waits for its content to be ready before revealing it. Any o
 
 #### What is a Suspense-enabled framework? {/*what-is-a-suspense-enabled-framework*/}
 
-A *Suspense-enabled framework* reads data with [`use`](/reference/react/use) under the hood, so that reading data in a component activates the nearest boundary. The exact way you load your data depends on your framework; you'll find the details in its documentation.
+A *Suspense-enabled framework* reads data with [`use`](/reference/react/use) under the hood, so that reading data in a component activates the nearest boundary. The exact way you load your data depends on your framework, and you'll find the details in its documentation.
 
 Without a framework, you can read a Promise with `use` directly, as long as the Promise is [cached so the same instance is reused across renders.](/reference/react/use#caching-promises-for-client-components)
 

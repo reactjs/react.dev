@@ -538,7 +538,7 @@ The `fetchData` function returns the same Promise each time it's called with the
 
 <Note>
 
-The way you cache Promises depends on the framework you use with Suspense. Frameworks typically provide built-in caching mechanisms. If you don't use a framework, you can use a simple module-level cache like the one above, or a [Suspense-enabled data source](/reference/react/Suspense#what-is-a-suspense-enabled-framework).
+The way you cache Promises depends on the framework you use with Suspense. Frameworks typically provide built-in caching mechanisms. If you don't use a framework, you can use a simple module-level cache like the one above, or a [Suspense-enabled data source](/reference/react/Suspense#what-activates-a-suspense-boundary).
 
 </Note>
 

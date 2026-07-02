@@ -43,13 +43,13 @@ To create interactive controls for submitting information, render the [built-in 
 #### Caveats {/*caveats*/}
 
 * When a function is passed to `action` or `formAction` the HTTP method will be POST regardless of the value of the `method` prop.
-* When a function is passed to `action` or `formAction`, React resets all [uncontrolled](/reference/react-dom/components/input#reading-the-input-values-when-submitting-a-form) field elements after the action succeeds. See [Preserve form values after submission](#preserve-form-values-after-submission).
+* When a function is passed to `action` or `formAction`, React resets all [uncontrolled](/reference/react-dom/components/input#reading-the-input-values-when-submitting-a-form) field elements after the action succeeds. See [Preserving form values after submission](#preserve-form-values-after-submission).
 
 ---
 
 ## Usage {/*usage*/}
 
-### Handle form submission with an event handler {/*handle-form-submission-with-an-event-handler*/}
+### Handling form submission with an event handler {/*handle-form-submission-with-an-event-handler*/}
 
 Pass a function to the `onSubmit` event handler to run code when the form is submitted. By default, the browser sends the form data to the current URL and refreshes the page. Call [`e.preventDefault()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault) in your handler to override that behavior. Read the submitted data with [`new FormData(e.target)`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
 
@@ -82,9 +82,9 @@ Reading form data with `onSubmit` works in every version of React and gives you 
 
 </Note>
 
-### Handle form submission with an action prop {/*handle-form-submission-with-an-action-prop*/}
+### Handling form submission with an action prop {/*handle-form-submission-with-an-action-prop*/}
 
-Pass a function to the `action` prop of form to run the function when the form is submitted. [`formData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) will be passed to the function as an argument so you can access the data submitted by the form. This differs from the conventional [HTML action](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action), which only accepts URLs. Unlike `onSubmit`, an `action` runs in a [Transition](/reference/react/useTransition) and calling `e.preventDefault()` isn't needed. After the `action` function succeeds, React resets all [uncontrolled](/reference/react-dom/components/input#reading-the-input-values-when-submitting-a-form) field elements in the form. To keep their values, see [Preserve form values after submission](#preserve-form-values-after-submission).
+Pass a function to the `action` prop of form to run the function when the form is submitted. [`formData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) will be passed to the function as an argument so you can access the data submitted by the form. This differs from the conventional [HTML action](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action), which only accepts URLs. Unlike `onSubmit`, an `action` runs in a [Transition](/reference/react/useTransition) and calling `e.preventDefault()` isn't needed. After the `action` function succeeds, React resets all [uncontrolled](/reference/react-dom/components/input#reading-the-input-values-when-submitting-a-form) field elements in the form. To keep their values, see [Preserving form values after submission](#preserve-form-values-after-submission).
 
 <Sandpack>
 
@@ -106,7 +106,7 @@ export default function Search() {
 </Sandpack>
 
 
-### Handle form submission with a Server Function {/*handle-form-submission-with-a-server-function*/}
+### Handling form submission with a Server Function {/*handle-form-submission-with-a-server-function*/}
 
 Render a `<form>` with an input and submit button. Pass a Server Function (a function marked with [`'use server'`](/reference/rsc/use-server)) to the `action` prop of form to run the function when the form is submitted.
 
@@ -153,7 +153,8 @@ function AddToCart({productId}) {
 ```
 
 When `<form>` is rendered by a [Server Component](/reference/rsc/use-client), and a [Server Function](/reference/rsc/server-functions) is passed to the `<form>`'s `action` prop, the form is [progressively enhanced](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement).
-### Preserve form values after submission {/*preserve-form-values-after-submission*/}
+
+### Preserving form values after submission {/*preserve-form-values-after-submission*/}
 
 The browser clears a form's input state on submit. A URL `action` follows this same behavior. React does the same when `action` is a function, so your form works consistently before and after JavaScript loads.
 
@@ -202,7 +203,7 @@ Because you call the action manually from `onSubmit`, [`useFormStatus`](/referen
 
 <DeepDive>
 
-#### Reset only some fields, or reset on the server {/*resetting-only-some-fields*/}
+#### Resetting only some fields, or resetting on the server {/*resetting-only-some-fields*/}
 
 The `onSubmit` approach keeps every uncontrolled field. When you need finer control, two other patterns are available:
 
@@ -233,7 +234,7 @@ Return the original `FormData` object rather than a new one so React can restore
 </DeepDive>
 
 
-### Display a pending state during form submission {/*display-a-pending-state-during-form-submission*/}
+### Displaying a pending state during form submission {/*display-a-pending-state-during-form-submission*/}
 To display a pending state when a form is being submitted, you can call the `useFormStatus` Hook in a component rendered in a `<form>` and read the `pending` property returned.
 
 Here, we use the `pending` property to indicate the form is submitting.
@@ -276,7 +277,7 @@ export async function submitForm(query) {
 
 To learn more about the `useFormStatus` Hook see the [reference documentation](/reference/react-dom/hooks/useFormStatus).
 
-### Optimistically update form data {/*optimistically-updating-form-data*/}
+### Optimistically updating form data {/*optimistically-updating-form-data*/}
 The `useOptimistic` Hook provides a way to optimistically update the user interface before a background operation, like a network request, completes. In the context of forms, this technique helps to make apps feel more responsive. When a user submits a form, instead of waiting for the server's response to reflect the changes, the interface is immediately updated with the expected outcome.
 
 For example, when a user types a message into the form and hits the "Send" button, the `useOptimistic` Hook allows the message to immediately appear in the list with a "Sending..." label, even before the message is actually sent to a server. This "optimistic" approach gives the impression of speed and responsiveness. The form then attempts to truly send the message in the background. Once the server confirms the message has been received, the "Sending..." label is removed.
@@ -344,7 +345,7 @@ export async function deliverMessage(message) {
 </Sandpack>
 To learn more about the `useOptimistic` Hook see the [reference documentation](/reference/react/useOptimistic).
 
-### Handle form submission errors {/*handling-form-submission-errors*/}
+### Handling form submission errors {/*handling-form-submission-errors*/}
 
 In some cases the function called by a `<form>`'s `action` prop throws an error. You can handle these errors by wrapping `<form>` in an Error Boundary. If the function called by a `<form>`'s `action` prop throws an error, the fallback for the error boundary will be displayed.
 
@@ -386,7 +387,7 @@ export default function Search() {
 
 </Sandpack>
 
-### Display a form submission error without JavaScript {/*display-a-form-submission-error-without-javascript*/}
+### Displaying a form submission error without JavaScript {/*display-a-form-submission-error-without-javascript*/}
 
 Displaying a form submission error message before the JavaScript bundle loads for progressive enhancement requires that:
 
@@ -444,7 +445,7 @@ export async function signUpNewUser(newEmail) {
 
 Learn more about updating state from a form action with the [`useActionState`](/reference/react/useActionState) docs
 
-### Handle multiple submission types {/*handling-multiple-submission-types*/}
+### Handling multiple submission types {/*handling-multiple-submission-types*/}
 
 A form can have more than one submit button, each running a different action. Set the `formAction` prop on a `<button>` to override the `<form>`'s `action` when that button submits the form.
 

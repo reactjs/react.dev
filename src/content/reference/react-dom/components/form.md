@@ -202,7 +202,7 @@ Because you call the action manually from `onSubmit`, [`useFormStatus`](/referen
 
 <DeepDive>
 
-#### Resetting only some fields, or resetting on the server {/*resetting-only-some-fields*/}
+#### Reset only some fields, or reset on the server {/*resetting-only-some-fields*/}
 
 The `onSubmit` approach keeps every uncontrolled field. When you need finer control, two other patterns are available:
 
@@ -276,7 +276,7 @@ export async function submitForm(query) {
 
 To learn more about the `useFormStatus` Hook see the [reference documentation](/reference/react-dom/hooks/useFormStatus).
 
-### Optimistically updating form data {/*optimistically-updating-form-data*/}
+### Optimistically update form data {/*optimistically-updating-form-data*/}
 The `useOptimistic` Hook provides a way to optimistically update the user interface before a background operation, like a network request, completes. In the context of forms, this technique helps to make apps feel more responsive. When a user submits a form, instead of waiting for the server's response to reflect the changes, the interface is immediately updated with the expected outcome.
 
 For example, when a user types a message into the form and hits the "Send" button, the `useOptimistic` Hook allows the message to immediately appear in the list with a "Sending..." label, even before the message is actually sent to a server. This "optimistic" approach gives the impression of speed and responsiveness. The form then attempts to truly send the message in the background. Once the server confirms the message has been received, the "Sending..." label is removed.
@@ -346,7 +346,7 @@ export async function deliverMessage(message) {
 [//]: # 'Uncomment the next line, and delete this line after the `useOptimistic` reference documentation page is published'
 [//]: # 'To learn more about the `useOptimistic` Hook see the [reference documentation](/reference/react/useOptimistic).'
 
-### Handling form submission errors {/*handling-form-submission-errors*/}
+### Handle form submission errors {/*handling-form-submission-errors*/}
 
 In some cases the function called by a `<form>`'s `action` prop throws an error. You can handle these errors by wrapping `<form>` in an Error Boundary. If the function called by a `<form>`'s `action` prop throws an error, the fallback for the error boundary will be displayed.
 
@@ -446,7 +446,7 @@ export async function signUpNewUser(newEmail) {
 
 Learn more about updating state from a form action with the [`useActionState`](/reference/react/useActionState) docs
 
-### Handling multiple submission types {/*handling-multiple-submission-types*/}
+### Handle multiple submission types {/*handling-multiple-submission-types*/}
 
 A form can have more than one submit button, each running a different action. Set the `formAction` prop on a `<button>` to override the `<form>`'s `action` when that button submits the form.
 

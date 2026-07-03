@@ -233,15 +233,43 @@ Fetching data inside an Effect does not activate the boundary. Suspense can't de
 
 <Sandpack>
 
-```js
+```js src/App.js hidden
+import { useState } from 'react';
+import ArtistPage from './ArtistPage.js';
+
+export default function App() {
+  const [show, setShow] = useState(false);
+  if (show) {
+    return (
+      <ArtistPage
+        artist={{
+          id: 'the-beatles',
+          name: 'The Beatles',
+        }}
+      />
+    );
+  } else {
+    return (
+      <button onClick={() => setShow(true)}>
+        Open The Beatles artist page
+      </button>
+    );
+  }
+}
+```
+
+```js src/ArtistPage.js active
 import { Suspense } from 'react';
 import EffectAlbums from './EffectAlbums.js';
 
-export default function App() {
+export default function ArtistPage({ artist }) {
   return (
-    <Suspense fallback={<Loading />}>
-      <EffectAlbums artistId="the-beatles" />
-    </Suspense>
+    <>
+      <h1>{artist.name}</h1>
+      <Suspense fallback={<Loading />}>
+        <EffectAlbums artistId={artist.id} />
+      </Suspense>
+    </>
   );
 }
 
@@ -250,7 +278,7 @@ function Loading() {
 }
 ```
 
-```js src/EffectAlbums.js active
+```js src/EffectAlbums.js
 import { useState, useEffect } from 'react';
 import { fetchData } from './data.js';
 

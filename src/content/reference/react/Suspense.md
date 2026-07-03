@@ -212,7 +212,8 @@ async function getAlbums() {
 A Suspense boundary waits for its content to be ready before revealing it. Any of the following blocks a boundary's content from being revealed:
 
 - Lazy-loading component code with [`lazy`](/reference/react/lazy).
-- Reading a Promise with [`use`](/reference/react/use), including data streamed from [Server Components](/reference/rsc/server-components) and integrations from frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/).
+- Reading a Promise with [`use`](/reference/react/use), including data streamed from [Server Components](/reference/rsc/server-components).
+- Data fetching through a [Suspense-enabled framework](#suspense-enabled-frameworks) like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/), which integrates its own data source with Suspense.
 - Loading a stylesheet rendered with [`<link rel="stylesheet">` and a `precedence` prop.](/reference/react-dom/components/link#special-rendering-behavior) React blocks the boundary until the stylesheet loads, up to a timeout.
 - Loading fonts. When a boundary is revealed by streamed SSR content, React waits for [`document.fonts.ready`](https://developer.mozilla.org/en-US/docs/Web/API/FontFaceSet/ready) before showing it, up to a timeout, so text doesn't flash with a fallback font. Fonts also block a [`<ViewTransition>`](/reference/react/ViewTransition) update.
 - Streaming a large boundary's HTML during server rendering. React reveals the content as the HTML arrives.
@@ -221,9 +222,9 @@ A Suspense boundary waits for its content to be ready before revealing it. Any o
 
 <Note>
 
-#### What is a Suspense-enabled framework? {/*what-is-a-suspense-enabled-framework*/}
+#### Suspense-enabled frameworks {/*suspense-enabled-frameworks*/}
 
-A *Suspense-enabled framework* reads data with [`use`](/reference/react/use) under the hood, so that reading data in a component activates the nearest boundary. The exact way you load your data depends on your framework, and you'll find the details in its documentation.
+A *Suspense-enabled framework* integrates its data fetching with Suspense, so that reading data in a component activates the nearest boundary. Some frameworks build on Server Components and [`use`](/reference/react/use), like Next.js, while others provide a custom integration, like Relay. The exact way you load your data depends on your framework, and you'll find the details in its documentation.
 
 Without a framework, you can read a Promise with `use` directly, as long as the Promise is [cached so the same instance is reused across renders.](/reference/react/use#caching-promises-for-client-components)
 

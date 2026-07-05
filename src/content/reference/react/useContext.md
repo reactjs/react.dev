@@ -4,7 +4,7 @@ title: useContext
 
 <Intro>
 
-`useContext` is a React Hook that lets you read and subscribe to [context](/learn/passing-data-deeply-with-context) from your component.
+`useContext` is a React Hook that lets you read and subscribe to [Context](/learn/passing-data-deeply-with-context) from your component.
 
 ```js
 const value = useContext(SomeContext)
@@ -20,7 +20,7 @@ const value = useContext(SomeContext)
 
 ### `useContext(SomeContext)` {/*usecontext*/}
 
-Call `useContext` at the top level of your component to read and subscribe to [context.](/learn/passing-data-deeply-with-context)
+Call `useContext` at the top level of your component to read and subscribe to [Context.](/learn/passing-data-deeply-with-context)
 
 ```js
 import { useContext } from 'react';
@@ -53,7 +53,7 @@ function MyComponent() {
 
 ### Passing data deeply into the tree {/*passing-data-deeply-into-the-tree*/}
 
-Call `useContext` at the top level of your component to read and subscribe to [context.](/learn/passing-data-deeply-with-context)
+Call `useContext` at the top level of your component to read and subscribe to [Context.](/learn/passing-data-deeply-with-context)
 
 ```js [[2, 4, "theme"], [1, 4, "ThemeContext"]]
 import { useContext } from 'react';
@@ -197,7 +197,7 @@ function MyPage() {
 
 Now any `Button` inside of the provider will receive the current `theme` value. If you call `setTheme` to update the `theme` value that you pass to the provider, all `Button` components will re-render with the new `'light'` value.
 
-<Recipes titleText="Examples of updating context" titleId="examples-basic">
+<Recipes titleText="Examples of updating Context" titleId="examples-basic">
 
 #### Updating a value via Context {/*updating-a-value-via-context*/}
 
@@ -1290,7 +1290,7 @@ export const LevelContext = createContext(0);
 
 ### Optimizing re-renders when passing objects and functions {/*optimizing-re-renders-when-passing-objects-and-functions*/}
 
-You can pass any values via context, including objects and functions.
+You can pass any values via Context, including objects and functions.
 
 ```js [[2, 10, "{ currentUser, login }"]]
 function MyApp() {
@@ -1309,7 +1309,7 @@ function MyApp() {
 }
 ```
 
-Here, the <CodeStep step={2}>context value</CodeStep> is a JavaScript object with two properties, one of which is a function. Whenever `MyApp` re-renders (for example, on a route update), this will be a *different* object pointing at a *different* function, so React will also have to re-render all components deep in the tree that call `useContext(AuthContext)`.
+Here, the <CodeStep step={2}>Context value</CodeStep> is a JavaScript object with two properties, one of which is a function. Whenever `MyApp` re-renders (for example, on a route update), this will be a *different* object pointing at a *different* function, so React will also have to re-render all components deep in the tree that call `useContext(AuthContext)`.
 
 In smaller apps, this is not a problem. However, there is no need to re-render them if the underlying data, like `currentUser`, has not changed. To help React take advantage of that fact, you may wrap the `login` function with [`useCallback`](/reference/react/useCallback) and wrap the object creation into [`useMemo`](/reference/react/useMemo). This is a performance optimization:
 

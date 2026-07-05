@@ -38,6 +38,30 @@ title: <Suspense>
 
 ---
 
+### What activates a Suspense boundary {/*what-activates-a-suspense-boundary*/}
+
+A Suspense boundary waits for its content to be ready before revealing it. Any of the following blocks a boundary's content from being revealed:
+
+- Lazy-loading component code with [`lazy`](/reference/react/lazy).
+- Reading a Promise with [`use`](/reference/react/use), including data streamed from [Server Components](/reference/rsc/server-components) or provided by a [Suspense-enabled framework](#suspense-enabled-frameworks).
+- Loading a stylesheet rendered with [`<link rel="stylesheet">` and a `precedence` prop.](/reference/react-dom/components/link#special-rendering-behavior) React blocks the boundary until the stylesheet loads, up to a timeout.
+- Loading fonts. When a boundary is revealed by streamed SSR content, React waits for [`document.fonts.ready`](https://developer.mozilla.org/en-US/docs/Web/API/FontFaceSet/ready) before showing it, up to a timeout, so text doesn't flash with a fallback font. Fonts also block a [`<ViewTransition>`](/reference/react/ViewTransition) update.
+- Streaming a large boundary's HTML during server rendering. React reveals the content as the HTML arrives.
+- Loading an image, where the `src` blocks the boundary until the image loads. This behavior is not enabled by default. When enabled, an `onLoad` handler opts an image out, and images in a [`<ViewTransition>`](/reference/react/ViewTransition) update opt in automatically.
+- <ExperimentalBadge /> Performing CPU-bound render work inside a `<Suspense>` boundary marked with the `defer` prop.
+
+<Note>
+
+#### Suspense-enabled frameworks {/*suspense-enabled-frameworks*/}
+
+A *Suspense-enabled framework* gives you a way to read data in your component that calls [`use`](/reference/react/use) under the hood, so reading that data activates the nearest boundary. The exact way you load your data depends on your framework, and you'll find the details in its documentation.
+
+Without a framework, you can read a Promise with `use` directly, as long as the Promise is [cached so the same instance is reused across renders.](/reference/react/use#caching-promises-for-client-components)
+
+</Note>
+
+---
+
 ## Usage {/*usage*/}
 
 ### Displaying a fallback while content is loading {/*displaying-a-fallback-while-content-is-loading*/}
@@ -205,32 +229,8 @@ async function getAlbums() {
 
 </Sandpack>
 
----
+By contrast, code that fetches data outside of `use`, such as inside an Effect, does not activate the boundary:
 
-### What activates a Suspense boundary {/*what-activates-a-suspense-boundary*/}
-
-A Suspense boundary waits for its content to be ready before revealing it. Any of the following blocks a boundary's content from being revealed:
-
-- Lazy-loading component code with [`lazy`](/reference/react/lazy).
-- Reading a Promise with [`use`](/reference/react/use), including data streamed from [Server Components](/reference/rsc/server-components).
-- Data fetching through a [Suspense-enabled framework](#suspense-enabled-frameworks) like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/), which integrates its own data source with Suspense.
-- Loading a stylesheet rendered with [`<link rel="stylesheet">` and a `precedence` prop.](/reference/react-dom/components/link#special-rendering-behavior) React blocks the boundary until the stylesheet loads, up to a timeout.
-- Loading fonts. When a boundary is revealed by streamed SSR content, React waits for [`document.fonts.ready`](https://developer.mozilla.org/en-US/docs/Web/API/FontFaceSet/ready) before showing it, up to a timeout, so text doesn't flash with a fallback font. Fonts also block a [`<ViewTransition>`](/reference/react/ViewTransition) update.
-- Streaming a large boundary's HTML during server rendering. React reveals the content as the HTML arrives.
-- Loading an image, where the `src` blocks the boundary until the image loads. This behavior is not enabled by default. When enabled, an `onLoad` handler opts an image out, and images in a [`<ViewTransition>`](/reference/react/ViewTransition) update opt in automatically.
-- <ExperimentalBadge /> Performing CPU-bound render work inside a `<Suspense>` boundary marked with the `defer` prop.
-
-<Note>
-
-#### Suspense-enabled frameworks {/*suspense-enabled-frameworks*/}
-
-A *Suspense-enabled framework* integrates its data fetching with Suspense, so that reading data in a component activates the nearest boundary. Some frameworks build on Server Components and [`use`](/reference/react/use), like Next.js, while others provide a custom integration, like Relay. The exact way you load your data depends on your framework, and you'll find the details in its documentation.
-
-Without a framework, you can read a Promise with `use` directly, as long as the Promise is [cached so the same instance is reused across renders.](/reference/react/use#caching-promises-for-client-components)
-
-</Note>
-
-Fetching data inside an Effect does not activate the boundary. Suspense can't detect the fetch, so the `fallback` never appears and the list stays empty until the data arrives:
 
 <Sandpack>
 

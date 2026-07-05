@@ -830,7 +830,9 @@ export const LevelContext = createContext(0);
 }
 ```
 
-</SandpackYou didn't do anything special for this to work. A `Section` specifies the Context for the tree inside it, so you can insert a `<Heading>` anywhere, and it will have the correct size. Try it in the sandbox above!
+</Sandpack>
+
+You didn't do anything special for this to work. A `Section` specifies the Context for the tree inside it, so you can insert a `<Heading>` anywhere, and it will have the correct size. Try it in the sandbox above!
 
 **Context lets you write components that "adapt to their surroundings" and display themselves differently depending on _where_ (or, in other words, _in which context_) they are being rendered.**
 

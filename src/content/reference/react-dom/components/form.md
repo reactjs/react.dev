@@ -84,20 +84,18 @@ Reading form data with `onSubmit` works in every version of React and gives you 
 
 ### Handling form submission with an action prop {/*handle-form-submission-with-an-action-prop*/}
 
-Pass a function to the `action` prop of `<form>` to handle submission. When the form is submitted, React calls your function with a [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) object containing the field values.
+Pass a function to the `action` prop to run it when the form is submitted. React calls the function with a [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) object containing the values of every input with a `name` attribute. This means your inputs can be [uncontrolled](/reference/react-dom/components/input#reading-the-input-values-when-submitting-a-form) - no need for `value`/`onChange` pairs, `onSubmit` handler, or `e.preventDefault()`.
 
-Give each input a `name` attribute so its value is included in `FormData`. You can use [uncontrolled](/reference/react-dom/components/input#reading-the-input-values-when-submitting-a-form) inputs instead of controlled `value`/`onChange` pairs, and you don't need an `onSubmit` handler or `e.preventDefault()`.
-
-This extends the [HTML `action` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action), which only accepts a URL, to also accept a function. Because the form stays a native HTML form, it can be submitted before JavaScript loads; with a [Server Function](/reference/rsc/server-functions), it works without JavaScript enabled.
+When the `action` prop is a [Server Function](/reference/rsc/server-functions), the form is progressively enhanced: submission works before JavaScript loads, and even with JavaScript disabled.
 
 When you pass a function to `action`, React:
 
-* Runs the submission function in a [Transition](/reference/react/useTransition).
-* Tracks pending state so child components can read it with [`useFormStatus`](/reference/react-dom/hooks/useFormStatus).
-* Sends thrown errors to the nearest error boundary.
-* Works with [`useActionState`](/reference/react/useActionState) and [`useOptimistic`](/reference/react/useOptimistic) for form state and optimistic UI.
+* Runs the function in a [Transition](/reference/react/useTransition), keeping the page responsive.
+* Makes the pending state available to child components via [`useFormStatus`](/reference/react-dom/hooks/useFormStatus).
+* Propagates any errors to the nearest error boundary.
+* Resets the form's uncontrolled fields when the function succeeds. To keep their values, see [Preserving form values after submission](#preserve-form-values-after-submission).
 
-After the function succeeds, React resets all [uncontrolled](/reference/react-dom/components/input#reading-the-input-values-when-submitting-a-form) field elements in the form. To keep their values, see [Preserving form values after submission](#preserve-form-values-after-submission).
+Because the action runs in a Transition, you can also use [`useActionState`](/reference/react/useActionState) to manage form state and [`useOptimistic`](/reference/react/useOptimistic) for optimistic UI.
 
 <Sandpack>
 

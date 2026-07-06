@@ -40,14 +40,14 @@ title: <Suspense>
 
 ### What activates a Suspense boundary {/*what-activates-a-suspense-boundary*/}
 
-A Suspense boundary waits for its content to be ready before revealing it. Any of the following blocks a boundary's content from being revealed:
+A Suspense boundary waits for its content to be ready before revealing it. Any of the following keeps a boundary from revealing its content:
 
 - Lazy-loading component code with [`lazy`](/reference/react/lazy).
-- Reading a Promise with [`use`](/reference/react/use), including data streamed from [Server Components](/reference/rsc/server-components) or provided by a [Suspense-enabled framework](#suspense-enabled-frameworks).
+- Reading a Promise with [`use`](/reference/react/use), including data streamed from [Server Components](/reference/rsc/server-components) or loaded through a [Suspense-enabled framework](#suspense-enabled-frameworks).
 - Loading a stylesheet rendered with [`<link rel="stylesheet">` and a `precedence` prop.](/reference/react-dom/components/link#special-rendering-behavior) React blocks the boundary until the stylesheet loads, up to a timeout.
-- Loading fonts. When a boundary is revealed by streamed SSR content, React waits for [`document.fonts.ready`](https://developer.mozilla.org/en-US/docs/Web/API/FontFaceSet/ready) before showing it, up to a timeout, so text doesn't flash with a fallback font. Fonts also block a [`<ViewTransition>`](/reference/react/ViewTransition) update.
+- Loading fonts. When streamed server-side rendering (SSR) content reveals a boundary, React waits for [`document.fonts.ready`](https://developer.mozilla.org/en-US/docs/Web/API/FontFaceSet/ready) before showing it, up to a timeout, so text doesn't flash with a fallback font. Fonts also block a [`<ViewTransition>`](/reference/react/ViewTransition) update.
 - Streaming a large boundary's HTML during server rendering. React reveals the content as the HTML arrives.
-- Loading an image, where the `src` blocks the boundary until the image loads. This behavior is not enabled by default. When enabled, an `onLoad` handler opts an image out, and images in a [`<ViewTransition>`](/reference/react/ViewTransition) update opt in automatically.
+- Loading an image, where the `src` blocks the boundary until the image loads. This doesn't happen by default, but a [`<ViewTransition>`](/reference/react/ViewTransition) update turns it on automatically for its images, and you can add an `onLoad` handler to opt a specific image out.
 - <ExperimentalBadge /> Performing CPU-bound render work inside a `<Suspense>` boundary marked with the `defer` prop.
 
 <Note>
@@ -231,7 +231,6 @@ async function getAlbums() {
 
 By contrast, code that fetches data outside of `use`, such as inside an Effect, does not activate the boundary:
 
-
 <Sandpack>
 
 ```js src/App.js hidden
@@ -398,7 +397,7 @@ async function getAlbums() {
 
 </Sandpack>
 
-During streaming server rendering, a boundary also activates as its HTML arrives. With any streaming SSR API, React sends the shell with the `fallback` first, then streams in each boundary's HTML and swaps out its `fallback` as that content arrives. This progressive reveal applies only to content streamed from the server, not to updates on the client:
+During streaming server rendering, a boundary also activates as its HTML arrives. With any streaming SSR API, React sends [the shell](/reference/react-dom/server/renderToPipeableStream#specifying-what-goes-into-the-shell) with the `fallback` first, then streams in each boundary's HTML and swaps out its `fallback` as that content arrives. This progressive reveal applies only to content the server streams, not to updates on the client:
 
 <Sandpack>
 

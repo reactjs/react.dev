@@ -167,11 +167,11 @@ When `<form>` is rendered by a [Server Component](/reference/rsc/use-client), an
 
 ### Preserving form values after submission {/*preserve-form-values-after-submission*/}
 
-The browser clears a form's input state on submit. A URL `action` follows this same behavior. React does the same when `action` is a function, so your form works consistently before and after JavaScript loads.
+By default, the browser clears a form's input state after submission. Forms with a URL `action` follow this behavior, and React mirrors it when `action` is a function-ensuring your form behaves consistently both before and after JavaScript loads.
 
-When you pass a function to `action` or `formAction`, React resets the form's [uncontrolled fields](/reference/react-dom/components/input#reading-the-input-values-when-submitting-a-form) after the action succeeds. The reset only applies to uncontrolled fields, so [inputs you control with state](/reference/react-dom/components/input#controlling-an-input-with-a-state-variable) are never cleared.
+When you pass a function to `action` or `formAction`, React resets the form's [uncontrolled fields](/reference/react-dom/components/input#reading-the-input-values-when-submitting-a-form) after the action succeeds. This reset only affects uncontrolled fields—[inputs controlled with state](/reference/react-dom/components/input#controlling-an-input-with-a-state-variable) are never cleared.
 
-To keep the values of uncontrolled fields, add an `onSubmit` handler that calls `e.preventDefault()` and runs the action inside a [Transition](/reference/react/useTransition). Keep the `action` prop on the form so it still works before JavaScript loads.
+To preserve the values of uncontrolled fields after submission, add an `onSubmit` handler that calls `e.preventDefault()` and runs the action inside a [Transition](/reference/react/useTransition). Keep the `action` prop on the form so it continues to work before JavaScript loads.
 
 <Sandpack>
 
@@ -210,8 +210,6 @@ export async function submitForm(formData) {
 
 </Sandpack>
 
-Because you call the action manually from `onSubmit`, [`useFormStatus`](/reference/react-dom/hooks/useFormStatus) won't report its pending state. Read `isPending` from the same [`useTransition`](/reference/react/useTransition) call instead.
-
 <DeepDive>
 
 #### Resetting only some fields, or resetting on the server {/*resetting-only-some-fields*/}
@@ -228,11 +226,12 @@ import { submitForm } from "./actions.js";
 
 function EditForm() {
   // The action returns { submitted: formData, error } on failure
-  const [state, formAction] = useActionState(submitForm, {});
-  const values = state.submitted ?? new FormData();
+  const [state, formAction] = useActionState(submitForm, {
+    error: '',
+  });
   return (
     <form action={formAction}>
-      <input name="title" defaultValue={values.get("title") ?? ""} />
+      <input name="title" defaultValue={state.submitted?.get("title") ?? ""} />
       {state.error && <p>{state.error}</p>}
       <button type="submit">Save</button>
     </form>

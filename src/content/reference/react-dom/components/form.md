@@ -472,7 +472,6 @@ export default function ArticleForm() {
     const content = payload.data.get('content');
     switch (payload.type) {
       case 'save':
-
         alert(`Your draft of '${content}' was saved!`);
         // Keep the submitted content as the current draft
         return payload.data;
@@ -481,23 +480,22 @@ export default function ArticleForm() {
         // reset the form
         return new FormData();
     }
-  });
+  }, new FormData());
 
   function publish(formData) {
     dispatchFormState({
       type: 'publish',
       data: formData
-    })
+    });
   }
 
   function save(formData) {
     dispatchFormState({
       type: 'save',
       data: formData
-    })
+    });
   }
 
-  // const savedContent = draft.get('content') || '';
   return (
     <form action={publish}>
       <textarea

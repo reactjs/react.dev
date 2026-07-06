@@ -461,40 +461,50 @@ A form can have more than one submit button, each running a different action. Se
 
 When a button without `formAction` submits the form, React calls the form's `action`. When a button with `formAction` submits the form, React calls that button's action instead. For example, the form below publishes an article by default, but its **Save draft** button stores the current content without publishing it.
 
-In this example the draft is held in state, so the saved content stays in the textarea after you submit it. In a real app you would persist the draft on the server. Pass a [Server Function](/reference/rsc/server-functions) (a function marked with [`'use server'`](/reference/rsc/use-server)) to `formAction` to save the draft from the server, optionally combined with [`useActionState`](/reference/react/useActionState) to track its pending state and result.
-
 <Sandpack>
 
 ```js src/App.js
-import { useState } from 'react';
+import { useActionState } from 'react';
 
 export default function ArticleForm() {
-  const [draft, setDraft] = useState(() => new FormData());
+  // Hold the saved draft in state so the textarea keeps its content after saving
+  const [formState, dispatchFormState] = useActionState((state, payload) => {
+    const content = payload.data.get('content');
+    switch (payload.type) {
+      case 'save':
+
+        alert(`Your draft of '${content}' was saved!`);
+        // Keep the submitted content as the current draft
+        return payload.data;
+      case 'publish':
+        alert(`'${content}' was published!`);
+        // reset the form
+        return new FormData();
+    }
+  });
 
   function publish(formData) {
-    const content = formData.get('content');
-    alert(`'${content}' was published!`);
-    // Clear the saved draft after publishing.
-    setDraft(new FormData());
+    dispatchFormState({
+      type: 'publish',
+      data: formData
+    })
   }
 
   function save(formData) {
-    const content = formData.get('content');
-    alert(`Your draft of '${content}' was saved!`);
-    // Keep the submitted content as the current draft.
-    setDraft(formData);
+    dispatchFormState({
+      type: 'save',
+      data: formData
+    })
   }
 
-  const savedContent = draft.get('content') || '';
+  // const savedContent = draft.get('content') || '';
   return (
     <form action={publish}>
       <textarea
-        // Changing the key resets the textarea to the saved draft.
-        key={`${savedContent}-content`}
         name="content"
         rows={4}
         cols={40}
-        defaultValue={savedContent}
+        defaultValue={formState?.get('content') || ""}
       />
       <br />
       <button type="submit" name="button" value="submit">Publish</button>
@@ -502,6 +512,7 @@ export default function ArticleForm() {
     </form>
   );
 }
+
 ```
 
 </Sandpack>

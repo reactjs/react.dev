@@ -95,7 +95,7 @@ When you pass a function to `action`, React:
 * Propagates any errors to the nearest error boundary.
 * Resets the form's uncontrolled fields when the function succeeds. To keep their values, see [Preserving form values after submission](#preserve-form-values-after-submission).
 
-Because the action runs in a Transition, you can also use [`useActionState`](/reference/react/useActionState) to manage form state and [`useOptimistic`](/reference/react/useOptimistic) for optimistic UI.
+Because the Action runs in a Transition, you can also use [`useFormStatus`](/reference/react-dom/hooks/useFormStatus) for submission status, [`useActionState`](/reference/react/useActionState) to manage form state, and [`useOptimistic`](/reference/react/useOptimistic) for optimistic UI.
 
 <Sandpack>
 

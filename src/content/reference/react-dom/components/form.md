@@ -169,9 +169,58 @@ When `<form>` is rendered by a [Server Component](/reference/rsc/use-client), an
 
 By default, the browser clears a form's input state after submission. Forms with a URL `action` follow this behavior, and React mirrors it when `action` is a function-ensuring your form behaves consistently both before and after JavaScript loads.
 
-When you pass a function to `action` or `formAction`, React resets the form's [uncontrolled fields](/reference/react-dom/components/input#reading-the-input-values-when-submitting-a-form) after the action succeeds. This reset only affects uncontrolled fields—[inputs controlled with state](/reference/react-dom/components/input#controlling-an-input-with-a-state-variable) are never cleared.
+When you pass a function to `action` or `formAction`, React resets the form's [uncontrolled fields](/reference/react-dom/components/input#reading-the-input-values-when-submitting-a-form) after the Action succeeds. This reset only affects uncontrolled fields—[inputs controlled with state](/reference/react-dom/components/input#controlling-an-input-with-a-state-variable) are never cleared.
 
-To preserve the values of uncontrolled fields after submission, add an `onSubmit` handler that calls `e.preventDefault()` and runs the action inside a [Transition](/reference/react/useTransition). Keep the `action` prop on the form so it continues to work before JavaScript loads.
+<Recipes titleText="Examples of preserving form values" titleId="examples-preserve-form-values">
+
+#### With `onSubmit` {/*with-onsubmit*/}
+
+Handle submission in an `onSubmit` handler and call `e.preventDefault()` to stop the browser from navigating and refreshing the page.
+
+<Sandpack>
+
+```js src/App.js
+import { useState } from "react";
+import { submitForm } from "./api.js";
+
+export default function EditForm() {
+  const [isPending, setIsPending] = useState(false);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    setIsPending(true);
+    try {
+      await submitForm(formData);
+    } finally {
+      setIsPending(false);
+    }
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input name="title" defaultValue="My draft" />
+      <button type="submit" disabled={isPending}>
+        {isPending ? "Saving..." : "Save"}
+      </button>
+    </form>
+  );
+}
+```
+
+```js src/api.js hidden
+export async function submitForm(formData) {
+  await new Promise((res) => setTimeout(res, 1000));
+}
+```
+
+</Sandpack>
+
+<Solution />
+
+#### With `onSubmit` and `useTransition` {/*with-onsubmit-and-usetransition*/}
+
+If you also pass a function to the `action` prop—for example, to support [progressive enhancement](/reference/rsc/server-functions)—add an `onSubmit` handler that calls `e.preventDefault()` and runs the Action inside a [Transition](/reference/react/useTransition).
 
 <Sandpack>
 
@@ -183,7 +232,7 @@ export default function EditForm() {
   const [isPending, startTransition] = useTransition();
 
   function handleSubmit(e) {
-    // Stop React from resetting the form after the action succeeds
+    // Stop React from resetting the form after the Action succeeds
     e.preventDefault();
     const formData = new FormData(e.target);
     startTransition(async () => {
@@ -210,15 +259,58 @@ export async function submitForm(formData) {
 
 </Sandpack>
 
+<Solution />
+
+#### With `useActionState` {/*with-useactionstate*/}
+
+Alternatively, pass the dispatcher from [`useActionState`](/reference/react/useActionState) to the `action` prop. Return the values you want to keep from your Action, and pass them to each field's `defaultValue`. React restores those values instead of clearing them.
+
+<Sandpack>
+
+```js src/App.js
+import { useActionState } from "react";
+import { submitForm } from "./api.js";
+
+export default function EditForm() {
+  const [state, dispatchAction, isPending] = useActionState(submitForm, {
+    title: "My draft",
+  });
+
+  return (
+    <form action={dispatchAction}>
+      <input name="title" defaultValue={state.title} />
+      <button type="submit" disabled={isPending}>
+        {isPending ? "Saving..." : "Save"}
+      </button>
+    </form>
+  );
+}
+```
+
+```js src/api.js hidden
+export async function submitForm(previousState, formData) {
+  await new Promise((res) => setTimeout(res, 1000));
+  return {
+    title: formData.get("title"),
+  };
+}
+```
+
+</Sandpack>
+
+<Solution />
+
+</Recipes>
+
 <DeepDive>
 
 #### Resetting only some fields, or resetting on the server {/*resetting-only-some-fields*/}
 
-The `onSubmit` approach keeps every uncontrolled field. When you need finer control, two other patterns are available:
+The `onSubmit` approach above keeps every uncontrolled field. When you need finer control, two other patterns are available:
 
-* **Reset from your own action API.** If you build an action-based API and still want the form to reset after the action runs, call the `requestFormReset` API from `react-dom` with the form element inside the Transition.
+* **Reset from your own Action API.** If you build an Action-based API and still want the form to reset after the Action runs, call the `requestFormReset` API from `react-dom` with the form element inside the Transition.
 
-* **Reset to server-provided values.** When an action validates input on the server, return the submitted `FormData` and pass it to each field's `defaultValue`. React restores those values instead of clearing them, and the form keeps working before JavaScript loads:
+* **Reset to server-provided values on validation failure.** The [`useActionState`](#with-useactionstate) example above preserves values after a successful submission. When an Action validates input on the server, you can return the submitted `FormData` and pass it to each field's `defaultValue`. React restores those values instead of clearing them, and the form keeps working before JavaScript loads:
 
 ```js
 import { useActionState } from "react";
@@ -405,7 +497,7 @@ Displaying a form submission error message before the JavaScript bundle loads fo
 1. the function passed to the `<form>`'s `action` prop be a [Server Function](/reference/rsc/server-functions)
 1. the `useActionState` Hook be used to display the error message
 
-`useActionState` takes two parameters: a [Server Function](/reference/rsc/server-functions) and an initial state. `useActionState` returns two values, a state variable and an action. The action returned by `useActionState` should be passed to the `action` prop of the form. The state variable returned by `useActionState` can be used to display an error message. The value returned by the Server Function passed to `useActionState` will be used to update the state variable.
+`useActionState` takes two parameters: a [Server Function](/reference/rsc/server-functions) and an initial state. `useActionState` returns two values, a state variable and an Action. The Action returned by `useActionState` should be passed to the `action` prop of the form. The state variable returned by `useActionState` can be used to display an error message. The value returned by the Server Function passed to `useActionState` will be used to update the state variable.
 
 <Sandpack>
 
@@ -453,7 +545,7 @@ export async function signUpNewUser(newEmail) {
 
 </Sandpack>
 
-Learn more about updating state from a form action with the [`useActionState`](/reference/react/useActionState) docs
+Learn more about updating state from a form Action with the [`useActionState`](/reference/react/useActionState) docs
 
 ### Handling multiple submission types {/*handling-multiple-submission-types*/}
 

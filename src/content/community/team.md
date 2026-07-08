@@ -60,7 +60,7 @@ React work is organized into working groups, each responsible for an area of the
 
 <TeamMember name="Kevin Gozali" permalink="kevin-gozali" photo="/images/team/gh-fkgozali.jpg" github="fkgozali" title="Engineer at Meta" group="React Native" />
 
-<TeamMember name="Khalef Hosany" permalink="khalef-hosany" photo="/images/team/placeholder.png" github="Khalef1" title="Engineer at Microsoft" group="React Native" />
+<TeamMember name="Khalef Hosany" permalink="khalef-hosany" photo="/images/team/gh-khalef1.jpg" github="Khalef1" title="Engineer at Microsoft" group="React Native" />
 
 <TeamMember name="Krzysztof Magiera" permalink="krzysztof-magiera" photo="/images/team/gh-kmagiera.jpg" github="kmagiera" title="Engineer at Software Mansion" group="React Native" />
 
@@ -84,7 +84,7 @@ React work is organized into working groups, each responsible for an area of the
 
 <TeamMember name="Riccardo Cipolleschi" permalink="riccardo-cipolleschi" photo="/images/team/gh-cipolleschi.png" github="cipolleschi" title="Engineer at Meta" group="Docs & Community, React Native" />
 
-<TeamMember name="Rob Hogan" permalink="rob-hogan" photo="/images/team/placeholder.png" github="rh389" title="Engineer at Meta" group="DevX" />
+<TeamMember name="Rob Hogan" permalink="rob-hogan" photo="/images/team/gh-rh389.jpg" github="rh389" title="Engineer at Meta" group="DevX" />
 
 <TeamMember name="Rubén Norte" permalink="ruben-norte" photo="/images/team/gh-rubennorte.jpg" github="rubennorte" title="Engineer at Meta" group="Fiber" />
 

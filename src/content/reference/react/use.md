@@ -1131,7 +1131,7 @@ A Server Component can also start a Promise without awaiting it and pass the Pro
 ```js
 // Server Component
 export default function App() {
-  // Not awaited: starts here, resolves on the client.
+  // Not awaited: starts on the server, streamed to the client.
   const messagePromise = fetchMessage();
   return <Message messagePromise={messagePromise} />;
 }
@@ -1149,9 +1149,9 @@ export function Message({ messagePromise }) {
 }
 ```
 
-Prefer `await` in a Server Component when possible, since it keeps the data fetching on the server. If a Server Component above already awaits the data, pass the resolved value down as a prop instead of creating a new Promise to call `use`.
+Prefer `await` in a Server Component when possible. If a Server Component above already awaits the data, pass the resolved value down as a prop instead of creating a new Promise to call `use`.
 
-You can also pass promise as a prop to a Client Component without awaiting it, and then read it with `use(promise)` to suspend deeper in the tree. This allows more of the surrounding UI to complete while the Promise is pending. A common case is interactive content like popovers and tooltips, where the data is needed only after a hover or click. Client Components can't `await`, so they rely on `use` to suspend on a Promise.
+Pass a Promise to a Client Component to suspend deeper in the tree, letting more of the surrounding UI render while the Promise is pending. A common case is interactive content like popovers and tooltips, where the data is only needed after a hover or click. Client Components can't `await`, so they read a Promise with `use`.
 
 In either case, wrap the component that reads the Promise in a Suspense boundary so React can show a fallback while the Promise is pending. See [Revealing content together at once](/reference/react/Suspense#revealing-content-together-at-once) for guidance on boundary placement.
 

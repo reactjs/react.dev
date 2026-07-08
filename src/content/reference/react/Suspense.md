@@ -44,7 +44,7 @@ A Suspense boundary waits for its content to be ready before revealing it. Any o
 
 - Lazy-loading component code with [`lazy`](/reference/react/lazy).
 - Reading a Promise with [`use`](/reference/react/use), including data streamed from [Server Components](/reference/rsc/server-components) or loaded through a [Suspense-enabled framework](#suspense-enabled-frameworks).
-- Loading a stylesheet rendered with [`<link rel="stylesheet">` and a `precedence` prop.](/reference/react-dom/components/link#special-rendering-behavior) React blocks the boundary until the stylesheet loads, up to a timeout.
+- Loading a stylesheet rendered with [`<link rel="stylesheet">` and a `precedence` prop.](/reference/react-dom/components/link#special-rendering-behavior) React blocks the boundary until the stylesheet loads, up to a timeout. [See an example below.](#waiting-for-a-stylesheet-to-load)
 - Waiting for a large boundary's HTML to arrive during streaming server rendering. Sending HTML takes time, so a boundary with enough content activates even when nothing in it suspends. React reveals the content as the HTML arrives.
 - Loading fonts. This doesn't happen by default, but a [`<ViewTransition>`](/reference/react/ViewTransition) update waits for new fonts to load, up to a timeout, so text doesn't flash with a fallback font. [See an example below.](#waiting-for-a-font-to-load)
 - Loading images. This doesn't happen by default, but a [`<ViewTransition>`](/reference/react/ViewTransition) update waits for its images to load, up to a timeout. Adding an `onLoad` handler opts a specific image out. [See an example below.](#waiting-for-an-image-to-load)
@@ -2251,6 +2251,181 @@ main {
 
 ---
 
+### Resetting Suspense boundaries on navigation {/*resetting-suspense-boundaries-on-navigation*/}
+
+During a Transition, React avoids hiding already revealed content. However, when you navigate to *different* content, such as another user's profile, you'll want the boundary to show the fallback instead of the previous content. You can express this with a `key`:
+
+```js
+<ProfilePage key={queryParams.id} />
+```
+
+With a different `key`, React treats the profiles as different components and resets the Suspense boundary during navigation. Suspense-integrated routers do this automatically.
+
+In the example below, the `key` resets the boundary when you switch profiles, so the fallback shows instead of the previous user's bio. Try removing the `key`: the previous bio stays visible while the next one loads:
+
+<Sandpack>
+
+```js
+import { Suspense, useState, startTransition } from 'react';
+import Bio from './Bio.js';
+import { fetchBio } from './data.js';
+
+export default function App() {
+  const [user, setUser] = useState(() => ({
+    id: 'alice',
+    bioPromise: fetchBio('alice'),
+  }));
+  function navigate(id) {
+    startTransition(() => {
+      setUser({ id, bioPromise: fetchBio(id) });
+    });
+  }
+  return (
+    <>
+      <button onClick={() => navigate('alice')}>
+        Alice
+      </button>
+      <button onClick={() => navigate('bob')}>
+        Bob
+      </button>
+      <Suspense key={user.id} fallback={<p>⌛ Loading profile...</p>}>
+        <Bio bioPromise={user.bioPromise} />
+      </Suspense>
+    </>
+  );
+}
+```
+
+```js src/Bio.js
+import { use } from 'react';
+
+export default function Bio({ bioPromise }) {
+  const bio = use(bioPromise);
+  return <p>{bio}</p>;
+}
+```
+
+```js src/data.js hidden
+// Note: the way you would do data fetching depends on
+// the framework that you use together with Suspense.
+// Normally, the caching logic would be inside a framework.
+
+export async function fetchBio(userId) {
+  // Add a fake delay to make waiting noticeable.
+  await new Promise(resolve => {
+    setTimeout(resolve, 1500);
+  });
+
+  return userId === 'alice'
+    ? 'Alice is a photographer and traveler.'
+    : 'Bob collects vintage synthesizers.';
+}
+```
+
+```css
+button {
+  margin-right: 8px;
+}
+```
+
+</Sandpack>
+
+---
+
+### Providing a fallback for server errors and client-only content {/*providing-a-fallback-for-server-errors-and-client-only-content*/}
+
+If you use one of the [streaming server rendering APIs](/reference/react-dom/server) (or a framework that relies on them), React will also use your `<Suspense>` boundaries to handle errors on the server. If a component throws an error on the server, React will not abort the server render. Instead, it will find the closest `<Suspense>` component above it and include its fallback (such as a spinner) into the generated server HTML. The user will see a spinner at first.
+
+On the client, React will attempt to render the same component again. If it errors on the client too, React will throw the error and display the closest [Error Boundary.](/reference/react/Component#static-getderivedstatefromerror) However, if it does not error on the client, React will not display the error to the user since the content was eventually displayed successfully.
+
+You can use this to opt out some components from rendering on the server. To do this, throw an error in the server environment and then wrap them in a `<Suspense>` boundary to replace their HTML with fallbacks:
+
+```js
+<Suspense fallback={<Loading />}>
+  <Chat />
+</Suspense>
+
+function Chat() {
+  if (typeof window === 'undefined') {
+    throw Error('Chat should only render on the client.');
+  }
+  // ...
+}
+```
+
+The server HTML will include the loading indicator. It will be replaced by the `Chat` component on the client.
+
+---
+
+### Waiting for a stylesheet to load {/*waiting-for-a-stylesheet-to-load*/}
+
+A stylesheet rendered with [`<link rel="stylesheet">` and a `precedence` prop](/reference/react-dom/components/link#special-rendering-behavior) blocks the boundary until the stylesheet loads, up to a timeout, so the content never appears unstyled.
+
+In the example below, the `Card` component renders a stylesheet with `precedence`. Press "Show card": React shows the fallback until the stylesheet has loaded, and then reveals the card with its styles applied:
+
+<Sandpack>
+
+```js
+import { Suspense, useState, startTransition } from 'react';
+
+const stylesheet =
+  'https://fonts.googleapis.com/css2?family=Caveat&display=block';
+
+function Card({ href }) {
+  return (
+    <>
+      <link rel="stylesheet" href={href} precedence="default" />
+      <div className="fancy-card">This card is styled by the stylesheet.</div>
+    </>
+  );
+}
+
+export default function App() {
+  const [href, setHref] = useState(null);
+  return (
+    <>
+      <button
+        onClick={() => {
+          startTransition(() => {
+            // Add a unique parameter so the stylesheet isn't
+            // cached, and every run shows the loading state.
+            setHref(stylesheet + '&t=' + Date.now());
+          });
+        }}>
+        Show card
+      </button>
+      {href && (
+        <Suspense fallback={<p>⌛ Loading styles...</p>}>
+          <Card href={href} />
+        </Suspense>
+      )}
+    </>
+  );
+}
+```
+
+```css
+#root {
+  min-height: 140px;
+}
+button {
+  margin-right: 8px;
+}
+.fancy-card {
+  margin-top: 1em;
+  padding: 20px;
+  border-radius: 8px;
+  color: white;
+  font-family: 'Caveat', cursive;
+  font-size: 24px;
+  background: linear-gradient(135deg, #087ea4, #2b3491);
+}
+```
+
+</Sandpack>
+
+---
+
 ### Animating from Suspense content {/*animating-from-suspense-content*/}
 
 <CanaryBadge /> Suspense composes with [`<ViewTransition>`](/reference/react/ViewTransition) to animate the swap from the fallback to the content. Wrap the boundary in a `<ViewTransition>`, and React treats the swap as an update, cross-fading between the fallback and the content by default:
@@ -2493,17 +2668,19 @@ Where you place the `<ViewTransition>` relative to the boundary determines wheth
 
 <CanaryBadge /> When a [`<ViewTransition>`](/reference/react/ViewTransition) animates a boundary's reveal, React also waits for new fonts the content introduces, up to a timeout, so the text doesn't flash with a fallback font. This doesn't happen by default outside a `<ViewTransition>`.
 
-In the example below, the `Quote` component suspends while its data loads. The browser only starts downloading a font when text first uses it, so rendering the quote starts the font download. React holds the animated reveal until the font has loaded:
+In the example below, the quote uses a new font. The browser only starts downloading a font when text first uses it, so rendering the quote starts the download. React holds the animated reveal until the font has loaded:
 
 <Sandpack>
 
 ```js
-import { ViewTransition, Suspense, use, useState, startTransition } from 'react';
-import { fetchQuote } from './data.js';
+import { ViewTransition, Suspense, useState, startTransition } from 'react';
 
 function Quote() {
-  const quote = use(fetchQuote());
-  return <p className="quote fancy">{quote}</p>;
+  return (
+    <p className="quote fancy">
+      The best way to predict the future is to invent it.
+    </p>
+  );
 }
 
 export default function App() {
@@ -2527,28 +2704,6 @@ export default function App() {
       )}
     </>
   );
-}
-```
-
-```js src/data.js hidden
-// Note: the way you would do data fetching depends on
-// the framework that you use together with Suspense.
-// Normally, the caching logic would be inside a framework.
-
-let cache = null;
-
-export function fetchQuote() {
-  if (!cache) {
-    cache = new Promise((resolve) => {
-      // Add a fake delay to make waiting noticeable.
-      setTimeout(() => {
-        resolve(
-          'The best way to predict the future is to invent it.'
-        );
-      }, 1500);
-    });
-  }
-  return cache;
 }
 ```
 
@@ -2590,25 +2745,23 @@ export function fetchQuote() {
 
 <CanaryBadge /> Images work the same way: when a [`<ViewTransition>`](/reference/react/ViewTransition) animates a boundary's reveal, React waits for visible images in the content to load before revealing the content, so the animation doesn't finish on a half-loaded image. This doesn't happen by default outside a `<ViewTransition>`. Adding an `onLoad` handler opts a specific image out, even inside a `<ViewTransition>`.
 
-In the example below, the `Scientist` component suspends while its data loads. When the data is ready, React holds the animated reveal until the portrait has loaded:
+In the example below, React holds the animated reveal until the portrait has loaded:
 
 <Sandpack>
 
 ```js
-import { ViewTransition, Suspense, use, useState, startTransition } from 'react';
-import { fetchScientist } from './data.js';
+import { ViewTransition, Suspense, useState, startTransition } from 'react';
 
 function Scientist() {
-  const scientist = use(fetchScientist());
   return (
     <div className="card">
       <img
-        src={scientist.imageUrl}
-        alt={scientist.name}
+        src="https://react.dev/images/docs/scientists/MK3eW3Am.jpg"
+        alt="Katherine Johnson"
         width={100}
         height={100}
       />
-      <p>{scientist.name}</p>
+      <p>Katherine Johnson</p>
     </div>
   );
 }
@@ -2634,29 +2787,6 @@ export default function App() {
       )}
     </>
   );
-}
-```
-
-```js src/data.js hidden
-// Note: the way you would do data fetching depends on
-// the framework that you use together with Suspense.
-// Normally, the caching logic would be inside a framework.
-
-let cache = null;
-
-export function fetchScientist() {
-  if (!cache) {
-    cache = new Promise((resolve) => {
-      // Add a fake delay to make waiting noticeable.
-      setTimeout(() => {
-        resolve({
-          name: 'Katherine Johnson',
-          imageUrl: 'https://react.dev/images/docs/scientists/MK3eW3Am.jpg',
-        });
-      }, 1500);
-    });
-  }
-  return cache;
 }
 ```
 
@@ -2686,45 +2816,6 @@ export function fetchScientist() {
 ```
 
 </Sandpack>
-
----
-
-### Resetting Suspense boundaries on navigation {/*resetting-suspense-boundaries-on-navigation*/}
-
-During a Transition, React will avoid hiding already revealed content. However, if you navigate to a route with different parameters, you might want to tell React it is *different* content. You can express this with a `key`:
-
-```js
-<ProfilePage key={queryParams.id} />
-```
-
-Imagine you're navigating within a user's profile page, and something suspends. If that update is wrapped in a Transition, it will not trigger the fallback for already visible content. That's the expected behavior.
-
-However, now imagine you're navigating between two different user profiles. In that case, it makes sense to show the fallback. For example, one user's timeline is *different content* from another user's timeline. By specifying a `key`, you ensure that React treats different users' profiles as different components, and resets the Suspense boundaries during navigation. Suspense-integrated routers should do this automatically.
-
----
-
-### Providing a fallback for server errors and client-only content {/*providing-a-fallback-for-server-errors-and-client-only-content*/}
-
-If you use one of the [streaming server rendering APIs](/reference/react-dom/server) (or a framework that relies on them), React will also use your `<Suspense>` boundaries to handle errors on the server. If a component throws an error on the server, React will not abort the server render. Instead, it will find the closest `<Suspense>` component above it and include its fallback (such as a spinner) into the generated server HTML. The user will see a spinner at first.
-
-On the client, React will attempt to render the same component again. If it errors on the client too, React will throw the error and display the closest [Error Boundary.](/reference/react/Component#static-getderivedstatefromerror) However, if it does not error on the client, React will not display the error to the user since the content was eventually displayed successfully.
-
-You can use this to opt out some components from rendering on the server. To do this, throw an error in the server environment and then wrap them in a `<Suspense>` boundary to replace their HTML with fallbacks:
-
-```js
-<Suspense fallback={<Loading />}>
-  <Chat />
-</Suspense>
-
-function Chat() {
-  if (typeof window === 'undefined') {
-    throw Error('Chat should only render on the client.');
-  }
-  // ...
-}
-```
-
-The server HTML will include the loading indicator. It will be replaced by the `Chat` component on the client.
 
 ---
 

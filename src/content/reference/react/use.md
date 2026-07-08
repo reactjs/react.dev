@@ -1113,7 +1113,7 @@ root.render(
 
 #### Should I resolve a Promise in a Server or Client Component? {/*resolve-promise-in-server-or-client-component*/}
 
-If you have a Promise, at some point you need to unwrap it to read its value. You unwrap it with `await` on the server, and with `use` on the client.
+If you have a Promise, at some point you need to unwrap it to read its value. You unwrap it with `await` in a Server Component, and with `use` in a Client Component.
 
 Usually, the simplest option is to `await` the Promise where you create it. The Server Component suspends until the data is ready, and everything below it waits too:
 
@@ -1154,6 +1154,7 @@ Or, in a separate file, a Client Component can unwrap the same Promise with `use
 ```js
 // Client Component
 'use client';
+
 import { use } from 'react';
 
 export function Message({ messagePromise }) {

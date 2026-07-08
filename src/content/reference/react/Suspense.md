@@ -46,7 +46,7 @@ A Suspense boundary waits for its content to be ready before revealing it. Any o
 - Reading a Promise with [`use`](/reference/react/use), including data streamed from [Server Components](/reference/rsc/server-components) or loaded through a [Suspense-enabled framework](#suspense-enabled-frameworks).
 - Loading a stylesheet rendered with [`<link rel="stylesheet">` and a `precedence` prop.](/reference/react-dom/components/link#special-rendering-behavior) React blocks the boundary until the stylesheet loads, up to a timeout.
 - Loading fonts. When streamed server-side rendering (SSR) content reveals a boundary, React waits for [`document.fonts.ready`](https://developer.mozilla.org/en-US/docs/Web/API/FontFaceSet/ready) before showing it, up to a timeout, so text doesn't flash with a fallback font. Fonts also block a [`<ViewTransition>`](/reference/react/ViewTransition) update.
-- Streaming a large boundary's HTML during server rendering. React reveals the content as the HTML arrives.
+- Waiting for a boundary's HTML to arrive during streaming server rendering. React reveals the content as the HTML arrives.
 - Loading an image, where the `src` blocks the boundary until the image loads. This doesn't happen by default, but a [`<ViewTransition>`](/reference/react/ViewTransition) update turns it on automatically for its images, and you can add an `onLoad` handler to opt a specific image out.
 - <ExperimentalBadge /> Performing CPU-bound render work inside a `<Suspense>` boundary marked with the `defer` prop.
 
@@ -54,7 +54,7 @@ A Suspense boundary waits for its content to be ready before revealing it. Any o
 
 #### Suspense-enabled frameworks {/*suspense-enabled-frameworks*/}
 
-A *Suspense-enabled framework* gives you a way to read data in your component that calls [`use`](/reference/react/use) under the hood, so reading that data activates the nearest boundary. The exact way you load your data depends on your framework, and you'll find the details in its documentation.
+A *Suspense-enabled framework* gives you a way to read data in your component in a way that activates the closest Suspense boundary. The exact way you load your data depends on your framework, and you'll find the details in its documentation. Under the hood, a Suspense-enabled framework maintains a cache of Promises and calls [`use`](/reference/react/use) to suspend on a Promise.
 
 Without a framework, you can read a Promise with `use` directly, as long as the Promise is [cached so the same instance is reused across renders.](/reference/react/use#caching-promises-for-client-components)
 
@@ -397,7 +397,7 @@ async function getAlbums() {
 
 </Sandpack>
 
-During streaming server rendering, a boundary also activates as its HTML arrives. With any streaming SSR API, React sends [the shell](/reference/react-dom/server/renderToPipeableStream#specifying-what-goes-into-the-shell) with the `fallback` first, then streams in each boundary's HTML and swaps out its `fallback` as that content arrives. This progressive reveal applies only to content the server streams, not to updates on the client:
+During streaming server rendering, a boundary also activates as its HTML arrives. With any streaming SSR API, React sends [the shell](/reference/react-dom/server/renderToPipeableStream#specifying-what-goes-into-the-shell) with the `fallback` first, then streams in each boundary's HTML and swaps out its `fallback` as that content arrives:
 
 <Sandpack>
 
@@ -468,8 +468,9 @@ export async function flushReadableStreamToFrame(readable, frame) {
   const doc = frame.contentWindow.document;
   const decoder = new TextDecoder();
   for await (const chunk of readable) {
-    doc.write(decoder.decode(chunk));
+    doc.write(decoder.decode(chunk, { stream: true }));
   }
+  doc.close();
 }
 ```
 

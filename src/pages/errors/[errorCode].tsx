@@ -13,6 +13,7 @@ import type {RouteItem} from 'components/Layout/getRouteMeta';
 import {GetStaticPaths, GetStaticProps, InferGetStaticPropsType} from 'next';
 import {ErrorDecoderContext} from 'components/ErrorDecoderContext';
 import compileMDX from 'utils/compileMDX';
+import fallbackErrorCodes from 'utils/errorCodesFallback.json';
 
 interface ErrorDecoderProps {
   errorCode: string | null;
@@ -95,14 +96,61 @@ function reviveNodeOnClient(parentPropertyName: unknown, val: any) {
  */
 let cachedErrorCodes: Record<string, string> | null = null;
 
+const ERROR_CODES_URL =
+  'https://raw.githubusercontent.com/facebook/react/main/scripts/error-codes/codes.json';
+
+/**
+ * Fetch and cache the error codes map from GitHub.
+ *
+ * The raw GitHub endpoint occasionally responds with a non-JSON body (e.g.
+ * `404: Not Found` or a rate-limit message). Calling `.json()` on those bodies
+ * throws and, since this runs during `getStaticProps`/`getStaticPaths`, fails
+ * the entire build. Validate the response and retry a few times so a transient
+ * hiccup doesn't break the build.
+ */
+async function fetchErrorCodes(): Promise<Record<string, string>> {
+  if (cachedErrorCodes) {
+    return cachedErrorCodes;
+  }
+
+  const maxAttempts = 3;
+  let lastError: unknown;
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    try {
+      const res = await fetch(ERROR_CODES_URL);
+      if (!res.ok) {
+        throw new Error(`Unexpected status ${res.status} fetching error codes`);
+      }
+      const text = await res.text();
+      const parsed = JSON.parse(text);
+      if (parsed == null || typeof parsed !== 'object') {
+        throw new Error('Error codes response was not a JSON object');
+      }
+      cachedErrorCodes = parsed as Record<string, string>;
+      return cachedErrorCodes;
+    } catch (error) {
+      lastError = error;
+      if (attempt < maxAttempts) {
+        await new Promise((resolve) => setTimeout(resolve, 500 * attempt));
+      }
+    }
+  }
+
+  // Network is unreachable or kept returning an invalid body. Fall back to the
+  // bundled snapshot so the build still succeeds instead of failing outright.
+  console.warn(
+    `Failed to fetch React error codes from ${ERROR_CODES_URL} after ${maxAttempts} attempts (${
+      lastError instanceof Error ? lastError.message : String(lastError)
+    }); using bundled fallback.`
+  );
+  cachedErrorCodes = fallbackErrorCodes as Record<string, string>;
+  return cachedErrorCodes;
+}
+
 export const getStaticProps: GetStaticProps<ErrorDecoderProps> = async ({
   params,
 }) => {
-  const errorCodes: {[key: string]: string} = (cachedErrorCodes ||= await (
-    await fetch(
-      'https://raw.githubusercontent.com/facebook/react/main/scripts/error-codes/codes.json'
-    )
-  ).json());
+  const errorCodes = await fetchErrorCodes();
 
   const code = typeof params?.errorCode === 'string' ? params?.errorCode : null;
   if (code && !errorCodes[code]) {
@@ -141,11 +189,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   /**
    * Fetch error codes from GitHub
    */
-  const errorCodes = (cachedErrorCodes ||= await (
-    await fetch(
-      'https://raw.githubusercontent.com/facebook/react/main/scripts/error-codes/codes.json'
-    )
-  ).json());
+  const errorCodes = await fetchErrorCodes();
 
   const paths = Object.keys(errorCodes).map((code) => ({
     params: {

@@ -47,7 +47,7 @@ A Suspense boundary waits for its content to be ready before revealing it. Any o
 - Loading a stylesheet rendered with [`<link rel="stylesheet">` and a `precedence` prop.](/reference/react-dom/components/link#special-rendering-behavior) React blocks the boundary until the stylesheet loads, up to a timeout. [See an example below.](#waiting-for-a-stylesheet-to-load)
 - Waiting for a large boundary's HTML to arrive during streaming server rendering. Sending HTML takes time, so a boundary with enough content activates even when nothing in it suspends. React reveals the content as the HTML arrives.
 - Loading fonts. This doesn't happen by default, but a [`<ViewTransition>`](/reference/react/ViewTransition) update waits for new fonts to load, up to a timeout, so text doesn't flash with a fallback font. [See an example below.](#waiting-for-a-font-to-load)
-- Loading images. This doesn't happen by default, but a [`<ViewTransition>`](/reference/react/ViewTransition) update waits for its images to load, up to a timeout. Adding an `onLoad` handler opts a specific image out. [See an example below.](#waiting-for-an-image-to-load)
+- Loading images. This doesn't happen by default, but during a [`<ViewTransition>`](/reference/react/ViewTransition) update, an image's `src` blocks the boundary until the image loads, up to a timeout. Adding an `onLoad` handler opts a specific image out. [See an example below.](#waiting-for-an-image-to-load)
 - <ExperimentalBadge /> Performing CPU-bound render work inside a `<Suspense>` boundary marked with the `defer` prop.
 
 <Note>
@@ -2261,16 +2261,33 @@ During a Transition, React avoids hiding already revealed content. However, when
 
 With a different `key`, React treats the profiles as different components and resets the Suspense boundary during navigation. Suspense-integrated routers do this automatically.
 
-In the example below, the `key` resets the boundary when you switch profiles, so the fallback shows instead of the previous user's bio. Try removing the `key`: the previous bio stays visible while the next one loads:
+In the example below, opening the profile page loads the first profile. Switching tabs navigates to a different profile, and the `key` resets the boundary, so the fallback shows instead of the previous user's bio. Try removing the `key`: the previous bio stays visible while the next one loads:
 
 <Sandpack>
 
-```js
+```js src/App.js hidden
+import { useState } from 'react';
+import ProfilePage from './ProfilePage.js';
+
+export default function App() {
+  const [show, setShow] = useState(false);
+  if (show) {
+    return <ProfilePage />;
+  }
+  return (
+    <button onClick={() => setShow(true)}>
+      Open profile page
+    </button>
+  );
+}
+```
+
+```js src/ProfilePage.js active
 import { Suspense, useState, startTransition } from 'react';
 import Bio from './Bio.js';
 import { fetchBio } from './data.js';
 
-export default function App() {
+export default function ProfilePage() {
   const [user, setUser] = useState(() => ({
     id: 'alice',
     bioPromise: fetchBio('alice'),
@@ -2668,37 +2685,50 @@ Where you place the `<ViewTransition>` relative to the boundary determines wheth
 
 <CanaryBadge /> When a [`<ViewTransition>`](/reference/react/ViewTransition) animates a boundary's reveal, React also waits for new fonts the content introduces, up to a timeout, so the text doesn't flash with a fallback font. This doesn't happen by default outside a `<ViewTransition>`.
 
-In the example below, the quote uses a new font. The browser only starts downloading a font when text first uses it, so rendering the quote starts the download. React holds the animated reveal until the font has loaded:
+In the example below, the `Quote` component suspends while its data loads. Rendering the quote starts its font download, so React keeps the fallback visible until the font has loaded, and the quote appears already in its font:
 
 <Sandpack>
 
 ```js
-import { ViewTransition, Suspense, useState, startTransition } from 'react';
+import { ViewTransition, Suspense, use, useState, startTransition } from 'react';
+import { fetchQuote } from './data.js';
 
-function Quote() {
+const fontUrl =
+  'https://raw.githubusercontent.com/google/fonts/main/ofl/caveat/Caveat%5Bwght%5D.ttf';
+
+function Quote({ fontSrc }) {
+  const quote = use(fetchQuote());
   return (
-    <p className="quote fancy">
-      The best way to predict the future is to invent it.
-    </p>
+    <>
+      <style href="fancy-font" precedence="default">
+        {`@font-face {
+          font-family: 'Fancy';
+          src: url(${fontSrc}) format('truetype');
+        }`}
+      </style>
+      <p className="quote fancy">{quote}</p>
+    </>
   );
 }
 
 export default function App() {
-  const [show, setShow] = useState(false);
+  const [fontSrc, setFontSrc] = useState(null);
   return (
     <>
       <button
         onClick={() => {
           startTransition(() => {
-            setShow(true);
+            // Add a unique parameter so the font isn't cached,
+            // and every run shows the font being waited on.
+            setFontSrc(fontUrl + '?t=' + Date.now());
           });
         }}>
         Show quote
       </button>
-      {show && (
+      {fontSrc && (
         <ViewTransition>
           <Suspense fallback={<p className="quote">⌛ Loading...</p>}>
-            <Quote />
+            <Quote fontSrc={fontSrc} />
           </Suspense>
         </ViewTransition>
       )}
@@ -2707,14 +2737,29 @@ export default function App() {
 }
 ```
 
-```css
-/* The browser doesn't download the font until
-   text first renders with this font family. */
-@font-face {
-  font-family: 'Fancy';
-  src: url(https://fonts.gstatic.com/s/caveat/v23/WnznHAc5bAfYB2QRah7pcpNvOx-pjfJ9eIipYT5Kmgq3s84t.woff2)
-    format('woff2');
+```js src/data.js hidden
+// Note: the way you would do data fetching depends on
+// the framework that you use together with Suspense.
+// Normally, the caching logic would be inside a framework.
+
+let cache = null;
+
+export function fetchQuote() {
+  if (!cache) {
+    cache = new Promise((resolve) => {
+      // Add a fake delay to make waiting noticeable.
+      setTimeout(() => {
+        resolve(
+          'The best way to predict the future is to invent it.'
+        );
+      }, 1500);
+    });
+  }
+  return cache;
 }
+```
+
+```css
 #root {
   min-height: 100px;
 }
@@ -2745,7 +2790,7 @@ export default function App() {
 
 <CanaryBadge /> Images work the same way: when a [`<ViewTransition>`](/reference/react/ViewTransition) animates a boundary's reveal, React waits for visible images in the content to load before revealing the content, so the animation doesn't finish on a half-loaded image. This doesn't happen by default outside a `<ViewTransition>`. Adding an `onLoad` handler opts a specific image out, even inside a `<ViewTransition>`.
 
-In the example below, React holds the animated reveal until the portrait has loaded:
+In the example below, the boundary shows its fallback until the portrait has loaded:
 
 <Sandpack>
 

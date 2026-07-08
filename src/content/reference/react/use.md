@@ -1113,47 +1113,59 @@ root.render(
 
 #### Should I resolve a Promise in a Server or Client Component? {/*resolve-promise-in-server-or-client-component*/}
 
-A Promise can be resolved with `await` in a Server Component, or passed as a prop to a Client Component and resolved there with `use`.
+If you have a Promise, at some point you need to unwrap it to read its value. You unwrap it with `await` in a Server Component, and with `use` in a Client Component.
 
-Using `await` in a Server Component suspends the Server Component itself, and the Client Component receives the resolved value as a prop:
+Usually, the simplest option is to `await` the Promise where you create it. The Server Component suspends until the data is ready, and everything below it waits too:
 
 ```js
 // Server Component
 export default async function App() {
-  // Will suspend the Server Component.
   const messageContent = await fetchMessage();
   return <Message messageContent={messageContent} />;
 }
 ```
 
-A Server Component can also start a Promise without awaiting it and pass the Promise to a Client Component. The Server Component returns immediately, and the Client Component suspends when it calls `use`:
+However, you don't have to unwrap it right away. You can pass the Promise down as a prop, and unwrap it deeper in the tree. The component that reads the Promise still suspends, but only that part of the tree waits for the data. Wrap that component in a [`<Suspense>`](/reference/react/Suspense) boundary to show a fallback while the rest of the page renders immediately.
+
+For example, a deeper Server Component can `await` the Promise it receives:
 
 ```js
+import { Suspense } from 'react';
+
 // Server Component
 export default function App() {
-  // Not awaited: starts here, resolves on the client.
   const messagePromise = fetchMessage();
-  return <Message messagePromise={messagePromise} />;
+  return (
+    <Suspense fallback={<p>⌛Downloading message...</p>}>
+      <Message messagePromise={messagePromise} />
+    </Suspense>
+  );
+}
+
+// Server Component
+async function Message({ messagePromise }) {
+  const messageContent = await messagePromise;
+  return <p>{messageContent}</p>;
 }
 ```
+
+Or, in a separate file, a Client Component can unwrap the same Promise with `use`:
 
 ```js
 // Client Component
 'use client';
+
 import { use } from 'react';
 
 export function Message({ messagePromise }) {
-  // Will suspend until the data is available.
   const messageContent = use(messagePromise);
   return <p>{messageContent}</p>;
 }
 ```
 
-Prefer `await` in a Server Component when possible, since it keeps the data fetching on the server. If a Server Component above already awaits the data, pass the resolved value down as a prop instead of creating a new Promise to call `use`.
+Passing the Promise down works the same way in both cases. Both suspend where the Promise is read, and both unblock the UI above. The only difference is that Client Components can't `await` during render, so they unwrap the Promise with `use` instead. A common case is interactive content like popovers and tooltips, where the data is only needed after a hover or click.
 
-You can also pass promise as a prop to a Client Component without awaiting it, and then read it with `use(promise)` to suspend deeper in the tree. This allows more of the surrounding UI to complete while the Promise is pending. A common case is interactive content like popovers and tooltips, where the data is needed only after a hover or click. Client Components can't `await`, so they rely on `use` to suspend on a Promise.
-
-In either case, wrap the component that reads the Promise in a Suspense boundary so React can show a fallback while the Promise is pending. See [Revealing content together at once](/reference/react/Suspense#revealing-content-together-at-once) for guidance on boundary placement.
+See [Revealing content together at once](/reference/react/Suspense#revealing-content-together-at-once) for guidance on where to place Suspense boundaries.
 
 </DeepDive>
 

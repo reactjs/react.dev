@@ -46,8 +46,8 @@ A Suspense boundary waits for its content to be ready before revealing it. Any o
 - Reading a Promise with [`use`](/reference/react/use), including data streamed from [Server Components](/reference/rsc/server-components) or loaded through a [Suspense-enabled framework](#suspense-enabled-frameworks).
 - Loading a stylesheet rendered with [`<link rel="stylesheet">` and a `precedence` prop.](/reference/react-dom/components/link#special-rendering-behavior) React blocks the boundary until the stylesheet loads, up to a timeout. [See an example below.](#waiting-for-a-stylesheet-to-load)
 - Waiting for a large boundary's HTML to arrive during streaming server rendering. Sending HTML takes time, so a boundary with enough content activates even when nothing in it suspends. React reveals the content as the HTML arrives.
-- Loading fonts. This doesn't happen by default, but a [`<ViewTransition>`](/reference/react/ViewTransition) update waits for new fonts to load, up to a timeout, so text doesn't flash with a fallback font. [See an example below.](#waiting-for-a-font-to-load)
-- Loading images. This doesn't happen by default, but during a [`<ViewTransition>`](/reference/react/ViewTransition) update, an image's `src` blocks the boundary until the image loads, up to a timeout. Adding an `onLoad` handler opts a specific image out. [See an example below.](#waiting-for-an-image-to-load)
+- <CanaryBadge /> Loading fonts. Suspense doesn't wait for fonts by default, but a [`<ViewTransition>`](/reference/react/ViewTransition) update waits for new fonts to load, up to a timeout, so text doesn't flash with a fallback font. [See an example below.](#waiting-for-a-font-to-load)
+- <CanaryBadge /> Loading images. Suspense doesn't wait for images by default, but during a [`<ViewTransition>`](/reference/react/ViewTransition) update, React blocks the boundary until the image loads, up to a timeout. Adding an `onLoad` handler opts a specific image out. [See an example below.](#waiting-for-an-image-to-load)
 - <ExperimentalBadge /> Performing CPU-bound render work inside a `<Suspense>` boundary marked with the `defer` prop.
 
 <Note>
@@ -437,7 +437,7 @@ function ProfilePage() {
       <body>
         <h1>Alice</h1>
         <p>Photographer and traveler.</p>
-        <Suspense fallback={<p>Loading posts...</p>}>
+        <Suspense fallback={<p>⌛ Loading posts...</p>}>
           <Posts />
         </Suspense>
       </body>
@@ -2259,9 +2259,9 @@ During a Transition, React avoids hiding already revealed content. However, when
 <ProfilePage key={queryParams.id} />
 ```
 
-With a different `key`, React treats the profiles as different components and resets the Suspense boundary during navigation. Suspense-integrated routers do this automatically.
+With a different `key`, React treats the profiles as different content and resets the Suspense boundary during navigation. The `key` can go on the boundary itself or on a component above it. Suspense-integrated routers should do this automatically.
 
-In the example below, opening the profile page loads the first profile. Switching tabs navigates to a different profile, and the `key` resets the boundary, so the fallback shows instead of the previous user's bio. Try removing the `key`: the previous bio stays visible while the next one loads:
+In the example below, opening the profile page loads the first profile. Pressing "Bob" navigates to a different profile, and the `key` resets the boundary, so the fallback shows instead of the previous user's bio. Try removing the `key`: the previous bio stays visible while the next one loads:
 
 <Sandpack>
 
@@ -2325,7 +2325,6 @@ export default function Bio({ bioPromise }) {
 ```js src/data.js hidden
 // Note: the way you would do data fetching depends on
 // the framework that you use together with Suspense.
-// Normally, the caching logic would be inside a framework.
 
 export async function fetchBio(userId) {
   // Add a fake delay to make waiting noticeable.
@@ -2376,7 +2375,7 @@ The server HTML will include the loading indicator. It will be replaced by the `
 
 ### Waiting for a stylesheet to load {/*waiting-for-a-stylesheet-to-load*/}
 
-A stylesheet rendered with [`<link rel="stylesheet">` and a `precedence` prop](/reference/react-dom/components/link#special-rendering-behavior) blocks the boundary until the stylesheet loads, up to a timeout, so the content never appears unstyled.
+A stylesheet rendered with [`<link rel="stylesheet">` and a `precedence` prop](/reference/react-dom/components/link#special-rendering-behavior) blocks the boundary until the stylesheet loads, up to a timeout, so the content doesn't appear unstyled.
 
 In the example below, the `Card` component renders a stylesheet with `precedence`. Press "Show card": React shows the fallback until the stylesheet has loaded, and then reveals the card with its styles applied:
 
@@ -2392,7 +2391,7 @@ function Card({ href }) {
   return (
     <>
       <link rel="stylesheet" href={href} precedence="default" />
-      <div className="fancy-card">This card is styled by the stylesheet.</div>
+      <div className="fancy-card">This card uses a font from the stylesheet.</div>
     </>
   );
 }
@@ -2683,7 +2682,7 @@ Where you place the `<ViewTransition>` relative to the boundary determines wheth
 
 ### Waiting for a font to load {/*waiting-for-a-font-to-load*/}
 
-<CanaryBadge /> When a [`<ViewTransition>`](/reference/react/ViewTransition) animates a boundary's reveal, React also waits for new fonts the content introduces, up to a timeout, so the text doesn't flash with a fallback font. This doesn't happen by default outside a `<ViewTransition>`.
+<CanaryBadge /> When a [`<ViewTransition>`](/reference/react/ViewTransition) animates a boundary's reveal, React also waits for new fonts the content introduces, up to a timeout, so the text doesn't flash with a fallback font. This only happens during a `<ViewTransition>` update.
 
 In the example below, the `Quote` component suspends while its data loads. Rendering the quote starts its font download, so React keeps the fallback visible until the font has loaded, and the quote appears already in its font:
 
@@ -2700,7 +2699,7 @@ function Quote({ fontSrc }) {
   const quote = use(fetchQuote());
   return (
     <>
-      <style href="fancy-font" precedence="default">
+      <style href={fontSrc} precedence="default">
         {`@font-face {
           font-family: 'Fancy';
           src: url(${fontSrc}) format('truetype');
@@ -2727,7 +2726,7 @@ export default function App() {
       </button>
       {fontSrc && (
         <ViewTransition>
-          <Suspense fallback={<p className="quote">⌛ Loading...</p>}>
+          <Suspense fallback={<p className="quote">⌛ Loading quote...</p>}>
             <Quote fontSrc={fontSrc} />
           </Suspense>
         </ViewTransition>
@@ -2788,7 +2787,7 @@ export function fetchQuote() {
 
 ### Waiting for an image to load {/*waiting-for-an-image-to-load*/}
 
-<CanaryBadge /> Images work the same way: when a [`<ViewTransition>`](/reference/react/ViewTransition) animates a boundary's reveal, React waits for visible images in the content to load before revealing the content, so the animation doesn't finish on a half-loaded image. This doesn't happen by default outside a `<ViewTransition>`. Adding an `onLoad` handler opts a specific image out, even inside a `<ViewTransition>`.
+<CanaryBadge /> Images work the same way: when a [`<ViewTransition>`](/reference/react/ViewTransition) animates a boundary's reveal, React waits for visible images to load, up to a timeout, so the animation doesn't start with a half-loaded image. This only happens during a `<ViewTransition>` update. Adding an `onLoad` handler opts a specific image out, even inside a `<ViewTransition>`.
 
 In the example below, the boundary shows its fallback until the portrait has loaded:
 
@@ -2797,36 +2796,35 @@ In the example below, the boundary shows its fallback until the portrait has loa
 ```js
 import { ViewTransition, Suspense, useState, startTransition } from 'react';
 
-function Scientist() {
+const imageUrl = 'https://react.dev/images/docs/scientists/MK3eW3Am.jpg';
+
+function Scientist({ src }) {
   return (
     <div className="card">
-      <img
-        src="https://react.dev/images/docs/scientists/MK3eW3Am.jpg"
-        alt="Katherine Johnson"
-        width={100}
-        height={100}
-      />
+      <img src={src} alt="Katherine Johnson" width={100} height={100} />
       <p>Katherine Johnson</p>
     </div>
   );
 }
 
 export default function App() {
-  const [show, setShow] = useState(false);
+  const [src, setSrc] = useState(null);
   return (
     <>
       <button
         onClick={() => {
           startTransition(() => {
-            setShow(true);
+            // Add a unique parameter so the image isn't cached,
+            // and every run shows the boundary waiting.
+            setSrc(imageUrl + '?t=' + Date.now());
           });
         }}>
         Show scientist
       </button>
-      {show && (
+      {src && (
         <ViewTransition>
-          <Suspense fallback={<p>⌛ Loading...</p>}>
-            <Scientist />
+          <Suspense fallback={<p>⌛ Loading image...</p>}>
+            <Scientist src={src} />
           </Suspense>
         </ViewTransition>
       )}

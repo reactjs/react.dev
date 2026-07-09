@@ -64,7 +64,7 @@ React work is organized into working groups, each responsible for an area of the
 
 <TeamMember name="Krzysztof Magiera" permalink="krzysztof-magiera" photo="/images/team/gh-kmagiera.jpg" github="kmagiera" title="Engineer at Software Mansion" group="React Native" />
 
-<TeamMember name="Lauren Tan" permalink="lauren-tan" photo="/images/team/lauren.jpg" github="poteto" twitter="potetotes" threads="potetotes" bsky="no.lol" title="Engineer at Meta" group="Compiler">
+<TeamMember name="Lauren Tan" permalink="lauren-tan" photo="/images/team/lauren.jpg" github="poteto" twitter="potetotes" threads="potetotes" bsky="no.lol" title="Engineer at Cursor" group="Compiler">
     Lauren's programming career peaked when she first discovered the `<marquee>` tag. She’s been chasing that high ever since. She studied Finance instead of CS in college, so she learned to code using Excel. Lauren enjoys dropping cheeky memes in chat, playing video games with her partner, learning Korean, and petting her dog Zelda.
 </TeamMember>
 

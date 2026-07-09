@@ -2431,7 +2431,6 @@ export default function VanillaCard() {
     const doc = ref.current.contentWindow.document;
     doc.open();
     doc.write(`
-      <link rel="stylesheet" href="${freshStylesheetUrl()}">
       <style>
         body { margin: 0; }
         .fancy-card {
@@ -2444,6 +2443,7 @@ export default function VanillaCard() {
         }
       </style>
       <div class="fancy-card">This card uses a font from the stylesheet.</div>
+      <link rel="stylesheet" href="${freshStylesheetUrl()}">
     `);
     doc.close();
   }
@@ -2823,7 +2823,7 @@ export default function VanillaQuote() {
 
 ```js src/font.js hidden
 // Add a unique parameter so the font isn't cached,
-// and every run shows the font being waited on.
+// and every run shows the loading state.
 export function freshFontUrl() {
   return (
     'https://raw.githubusercontent.com/google/fonts/main/ofl/caveat/Caveat%5Bwght%5D.ttf' +
@@ -2961,7 +2961,7 @@ export default function VanillaProfile() {
 
 ```js src/image.js hidden
 // Add a unique parameter so the image isn't cached,
-// and every run shows the boundary waiting.
+// and every run shows the loading state.
 export function freshImageUrl() {
   return 'https://react.dev/images/team/jack-pope.jpg?t=' + Date.now();
 }

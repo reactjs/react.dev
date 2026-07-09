@@ -159,7 +159,7 @@ See [How to Upgrade to React X.Y](/blog/YYYY/MM/DD/react-xy-upgrade-guide) for s
 
 ### React {/*react*/}
 
-* Add `useNewHook` for [purpose]. ([#12345](https://github.com/facebook/react/pull/12345) by [@contributor](https://github.com/contributor))
+* Add `useNewHook` for [purpose]. ([#12345](https://github.com/react/react/pull/12345) by [@contributor](https://github.com/contributor))
 
 ---
 
@@ -603,7 +603,7 @@ npm install react@latest react-dom@latest
 
 | Type | Pattern |
 |------|---------|
-| GitHub PR | `[#12345](https://github.com/facebook/react/pull/12345)` |
+| GitHub PR | `[#12345](https://github.com/react/react/pull/12345)` |
 | GitHub user | `[@username](https://github.com/username)` |
 | Twitter/X | `[@username](https://x.com/username)` |
 | Bluesky | `[Name](https://bsky.app/profile/handle)` |
@@ -623,8 +623,8 @@ For more information, see the docs for [`useActionState`](/reference/react/useAc
 ### Bullet Pattern
 
 ```markdown
-* Add `useTransition` for concurrent rendering. ([#10426](https://github.com/facebook/react/pull/10426) by [@acdlite](https://github.com/acdlite))
-* Fix `useReducer` observing incorrect props. ([#22445](https://github.com/facebook/react/pull/22445) by [@josephsavona](https://github.com/josephsavona))
+* Add `useTransition` for concurrent rendering. ([#10426](https://github.com/react/react/pull/10426) by [@acdlite](https://github.com/acdlite))
+* Fix `useReducer` observing incorrect props. ([#22445](https://github.com/react/react/pull/22445) by [@josephsavona](https://github.com/josephsavona))
 ```
 
 **Structure:** `Verb` + backticked API + description + `([#PR](url) by [@user](url))`

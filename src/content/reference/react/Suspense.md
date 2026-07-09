@@ -2375,7 +2375,7 @@ The server HTML will include the loading indicator. It will be replaced by the `
 
 ### Waiting for a stylesheet to load {/*waiting-for-a-stylesheet-to-load*/}
 
-A stylesheet rendered with [`<link rel="stylesheet">` and a `precedence` prop](/reference/react-dom/components/link#special-rendering-behavior) blocks the boundary until the stylesheet loads, up to a timeout, so the content doesn't appear unstyled.
+A stylesheet rendered with [`<link rel="stylesheet">` and a `precedence` prop](/reference/react-dom/components/link#special-rendering-behavior) blocks the Suspense boundary until the stylesheet loads, up to a timeout, so the content doesn't appear unstyled.
 
 In the example below, the `Card` component renders a stylesheet with `precedence`. Press "Show card": React shows the fallback until the stylesheet has loaded, and then reveals the card with its styles applied:
 
@@ -2383,9 +2383,7 @@ In the example below, the `Card` component renders a stylesheet with `precedence
 
 ```js
 import { Suspense, useState, startTransition } from 'react';
-
-const stylesheet =
-  'https://fonts.googleapis.com/css2?family=Caveat&display=block';
+import { freshStylesheetUrl } from './styles.js';
 
 function Card({ href }) {
   return (
@@ -2403,9 +2401,7 @@ export default function App() {
       <button
         onClick={() => {
           startTransition(() => {
-            // Add a unique parameter so the stylesheet isn't
-            // cached, and every run shows the loading state.
-            setHref(stylesheet + '&t=' + Date.now());
+            setHref(freshStylesheetUrl());
           });
         }}>
         Show card
@@ -2416,6 +2412,18 @@ export default function App() {
         </Suspense>
       )}
     </>
+  );
+}
+```
+
+```js src/styles.js hidden
+// Add a unique parameter so the stylesheet isn't cached,
+// and every run shows the loading state.
+export function freshStylesheetUrl() {
+  return (
+    'https://fonts.googleapis.com/css2?family=Caveat&display=block' +
+    '&t=' +
+    Date.now()
   );
 }
 ```
@@ -2432,7 +2440,7 @@ button {
   padding: 20px;
   border-radius: 8px;
   color: white;
-  font-family: 'Caveat', cursive;
+  font-family: 'Caveat', sans-serif;
   font-size: 24px;
   background: linear-gradient(135deg, #087ea4, #2b3491);
 }
@@ -2682,18 +2690,19 @@ Where you place the `<ViewTransition>` relative to the boundary determines wheth
 
 ### Waiting for a font to load {/*waiting-for-a-font-to-load*/}
 
-<CanaryBadge /> When a [`<ViewTransition>`](/reference/react/ViewTransition) animates a boundary's reveal, React also waits for new fonts the content introduces, up to a timeout, so the text doesn't flash with a fallback font. This only happens during a `<ViewTransition>` update.
+<CanaryBadge /> When a [`<ViewTransition>`](/reference/react/ViewTransition) animates a Suspense boundary's reveal, React also waits for new fonts the content introduces, up to a timeout, so the text doesn't flash with a fallback font. This only happens during a `<ViewTransition>` update.
 
-In the example below, the `Quote` component suspends while its data loads. Rendering the quote starts its font download, so React keeps the fallback visible until the font has loaded, and the quote appears already in its font:
+In the example below, the Suspense boundary is wrapped in a `<ViewTransition>`, and the `Quote` component suspends while its data loads. Rendering the quote starts its font download. React keeps the fallback visible until the font has loaded, so the quote appears already in its font.
+
+For comparison, the second button performs the same update with plain DOM, without React. Nothing waits for the font, so the text appears in a fallback font first and then switches:
 
 <Sandpack>
 
 ```js
 import { ViewTransition, Suspense, use, useState, startTransition } from 'react';
 import { fetchQuote } from './data.js';
-
-const fontUrl =
-  'https://raw.githubusercontent.com/google/fonts/main/ofl/caveat/Caveat%5Bwght%5D.ttf';
+import { freshFontUrl } from './font.js';
+import VanillaQuote from './VanillaQuote.js';
 
 function Quote({ fontSrc }) {
   const quote = use(fetchQuote());
@@ -2703,6 +2712,7 @@ function Quote({ fontSrc }) {
         {`@font-face {
           font-family: 'Fancy';
           src: url(${fontSrc}) format('truetype');
+          font-display: swap;
         }`}
       </style>
       <p className="quote fancy">{quote}</p>
@@ -2717,9 +2727,7 @@ export default function App() {
       <button
         onClick={() => {
           startTransition(() => {
-            // Add a unique parameter so the font isn't cached,
-            // and every run shows the font being waited on.
-            setFontSrc(fontUrl + '?t=' + Date.now());
+            setFontSrc(freshFontUrl());
           });
         }}>
         Show quote
@@ -2731,7 +2739,46 @@ export default function App() {
           </Suspense>
         </ViewTransition>
       )}
+      <hr />
+      <VanillaQuote />
     </>
+  );
+}
+```
+
+```js src/VanillaQuote.js
+import { useRef } from 'react';
+import { freshFontUrl } from './font.js';
+
+export default function VanillaQuote() {
+  const ref = useRef(null);
+  function show() {
+    const style = document.createElement('style');
+    style.textContent = `@font-face {
+      font-family: 'VanillaFancy';
+      src: url(${freshFontUrl()}) format('truetype');
+      font-display: swap;
+    }`;
+    document.head.appendChild(style);
+    ref.current.innerHTML = `<p class="quote vanilla-fancy">The best way to predict the future is to invent it.</p>`;
+  }
+  return (
+    <>
+      <button onClick={show}>Show quote (vanilla DOM)</button>
+      <div ref={ref} />
+    </>
+  );
+}
+```
+
+```js src/font.js hidden
+// Add a unique parameter so the font isn't cached,
+// and every run shows the font being waited on.
+export function freshFontUrl() {
+  return (
+    'https://raw.githubusercontent.com/google/fonts/main/ofl/caveat/Caveat%5Bwght%5D.ttf' +
+    '?t=' +
+    Date.now()
   );
 }
 ```
@@ -2751,7 +2798,7 @@ export function fetchQuote() {
         resolve(
           'The best way to predict the future is to invent it.'
         );
-      }, 1500);
+      }, 500);
     });
   }
   return cache;
@@ -2760,14 +2807,20 @@ export function fetchQuote() {
 
 ```css
 #root {
-  min-height: 100px;
+  min-height: 260px;
 }
 .quote {
   font-size: 20px;
   margin-top: 1em;
 }
 .fancy {
-  font-family: 'Fancy', cursive;
+  font-family: 'Fancy', sans-serif;
+}
+.vanilla-fancy {
+  font-family: 'VanillaFancy', sans-serif;
+}
+hr {
+  margin: 16px 0;
 }
 ```
 
@@ -2787,22 +2840,24 @@ export function fetchQuote() {
 
 ### Waiting for an image to load {/*waiting-for-an-image-to-load*/}
 
-<CanaryBadge /> Images work the same way: when a [`<ViewTransition>`](/reference/react/ViewTransition) animates a boundary's reveal, React waits for visible images to load, up to a timeout, so the animation doesn't start with a half-loaded image. This only happens during a `<ViewTransition>` update. Adding an `onLoad` handler opts a specific image out, even inside a `<ViewTransition>`.
+<CanaryBadge /> Images work the same way: when a [`<ViewTransition>`](/reference/react/ViewTransition) animates a Suspense boundary's reveal, React waits for visible images to load, up to a timeout, so the animation doesn't start with a half-loaded image. This only happens during a `<ViewTransition>` update. Adding an `onLoad` handler opts a specific image out, even inside a `<ViewTransition>`.
 
-In the example below, the boundary shows its fallback until the portrait has loaded:
+In the example below, the Suspense boundary is wrapped in a `<ViewTransition>` and shows its fallback until the portrait has loaded.
+
+For comparison, the second button performs the same update with plain DOM, without React. Nothing waits for the image, so the card appears immediately and the image pops in when it loads:
 
 <Sandpack>
 
 ```js
 import { ViewTransition, Suspense, useState, startTransition } from 'react';
+import { freshImageUrl } from './image.js';
+import VanillaProfile from './VanillaProfile.js';
 
-const imageUrl = 'https://react.dev/images/docs/scientists/MK3eW3Am.jpg';
-
-function Scientist({ src }) {
+function Profile({ src }) {
   return (
     <div className="card">
-      <img src={src} alt="Katherine Johnson" width={100} height={100} />
-      <p>Katherine Johnson</p>
+      <img src={src} alt="Jack Pope" width={100} height={100} />
+      <p>Jack Pope</p>
     </div>
   );
 }
@@ -2814,37 +2869,70 @@ export default function App() {
       <button
         onClick={() => {
           startTransition(() => {
-            // Add a unique parameter so the image isn't cached,
-            // and every run shows the boundary waiting.
-            setSrc(imageUrl + '?t=' + Date.now());
+            setSrc(freshImageUrl());
           });
         }}>
-        Show scientist
+        Show profile
       </button>
       {src && (
         <ViewTransition>
           <Suspense fallback={<p>⌛ Loading image...</p>}>
-            <Scientist src={src} />
+            <Profile src={src} />
           </Suspense>
         </ViewTransition>
       )}
+      <hr />
+      <VanillaProfile />
     </>
   );
 }
 ```
 
+```js src/VanillaProfile.js
+import { useRef } from 'react';
+import { freshImageUrl } from './image.js';
+
+export default function VanillaProfile() {
+  const ref = useRef(null);
+  function show() {
+    ref.current.innerHTML = `<div class="card">
+      <img src="${freshImageUrl()}" alt="Jack Pope" width="100" height="100" />
+      <p>Jack Pope</p>
+    </div>`;
+  }
+  return (
+    <>
+      <button onClick={show}>Show profile (vanilla DOM)</button>
+      <div ref={ref} />
+    </>
+  );
+}
+```
+
+```js src/image.js hidden
+// Add a unique parameter so the image isn't cached,
+// and every run shows the boundary waiting.
+export function freshImageUrl() {
+  return 'https://react.dev/images/team/jack-pope.jpg?t=' + Date.now();
+}
+```
+
 ```css
 #root {
-  min-height: 220px;
+  min-height: 440px;
 }
 .card {
   margin-top: 1em;
 }
 .card img {
   border-radius: 50%;
+  background: #dfe3e9;
 }
 .card p {
   font-weight: bold;
+}
+hr {
+  margin: 16px 0;
 }
 ```
 

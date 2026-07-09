@@ -28,7 +28,7 @@ React work is organized into working groups, each responsible for an area of the
 
 <TeamMember name="Nicola Corti" permalink="nicola-corti" photo="/images/team/gh-cortinico.jpg" github="cortinico" title="Engineer at Meta" group="React Native*, Docs & Community" />
 
-<TeamMember name="Rick Hanlon" permalink="rick-hanlon" photo="/images/team/rickhanlonii.jpg" github="rickhanlonii" twitter="rickhanlonii" threads="rickhanlonii" bsky="ricky.fm" title="Engineer at Meta" group="Docs & Community*, DOM, Fiber, Server, DevX">
+<TeamMember name="Rick Hanlon" permalink="rick-hanlon" photo="/images/team/rickhanlonii.jpg" github="rickhanlonii" twitter="rickyfm" threads="rickhanlonii" bsky="ricky.fm" title="Engineer at Meta" group="Docs & Community*, DOM, Fiber, Server, DevX">
     Ricky majored in theoretical math and somehow found himself on the React Native team for a couple years before joining the React team. When he's not programming you can find him snowboarding, biking, climbing, golfing, or closing GitHub issues that do not match the issue template.
 </TeamMember>
 
@@ -40,11 +40,11 @@ React work is organized into working groups, each responsible for an area of the
 
 <TeamMember name="Alex Hunt" permalink="alex-hunt" photo="/images/team/gh-huntie.jpg" github="huntie" title="Engineer at Meta" group="DevX, React Native" />
 
-<TeamMember name="Aurora Scharff" permalink="aurora-scharff" photo="/images/team/gh-aurorascharff.jpg" github="aurorascharff" title="Developer" group="Docs & Community" />
+<TeamMember name="Aurora Scharff" permalink="aurora-scharff" photo="/images/team/gh-aurorascharff.jpg" github="aurorascharff" title="Engineer at Vercel" group="Docs & Community" />
 
 <TeamMember name="Brent Vatne" permalink="brent-vatne" photo="/images/team/gh-brentvatne.jpg" github="brentvatne" title="Engineer at Expo" group="React Native" />
 
-<TeamMember name="Dan Abramov" permalink="dan-abramov" photo="/images/team/gaearon.jpg" github="gaearon" bsky="danabra.mov" title="Independent Engineer" group="Docs & Community">
+<TeamMember name="Dan Abramov" permalink="dan-abramov" photo="/images/team/gaearon.jpg" github="gaearon" bsky="danabra.mov" title="Engineer at Vercel" group="Docs & Community">
     Dan got into programming after he accidentally discovered Visual Basic inside Microsoft PowerPoint. He has found his true calling in turning [Sebastian](#sebastian-markbåge)'s tweets into long-form blog posts. Dan occasionally wins at Fortnite by hiding in a bush until the game ends.
 </TeamMember>
 

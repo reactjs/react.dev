@@ -26,6 +26,7 @@ title: <Suspense>
 #### Props {/*props*/}
 * `children`: The actual UI you intend to render. If `children` suspends while rendering, the Suspense boundary will switch to rendering `fallback`.
 * `fallback`: An alternate UI to render in place of the actual UI if it has not finished loading. Any valid React node is accepted, though in practice, a fallback is a lightweight placeholder view, such as a loading spinner or skeleton. Suspense will automatically switch to `fallback` when `children` suspends, and back to `children` when the data is ready. If `fallback` suspends while rendering, it will activate the closest parent Suspense boundary.
+* <ExperimentalBadge /> **optional** `defer`: A boolean. When `true`, React may show the `fallback` first and render or stream `children` later, even when nothing in them suspends. Use it for content that is expensive to render. Defaults to `false`.
 
 #### Caveats {/*caveats*/}
 
@@ -48,7 +49,7 @@ A Suspense boundary waits for its content to be ready before revealing it. Any o
 - Waiting for a large boundary's HTML to arrive during streaming server rendering. Sending HTML takes time, so a boundary with enough content activates even when nothing in it suspends. React reveals the content as the HTML arrives.
 - <CanaryBadge /> Loading fonts. Suspense doesn't wait for fonts by default, but a [`<ViewTransition>`](/reference/react/ViewTransition) update waits for new fonts to load, up to a timeout, so text doesn't flash with a fallback font. [See an example below.](#waiting-for-a-font-to-load)
 - <CanaryBadge /> Loading images. Suspense doesn't wait for images by default, but during a [`<ViewTransition>`](/reference/react/ViewTransition) update, React blocks the boundary until the image loads, up to a timeout. Adding an `onLoad` handler opts a specific image out. [See an example below.](#waiting-for-an-image-to-load)
-- <ExperimentalBadge /> Performing CPU-bound render work inside a `<Suspense>` boundary marked with the `defer` prop.
+- <ExperimentalBadge /> Performing CPU-bound render work inside a [`<Suspense defer>`](#props) boundary.
 
 <Note>
 
@@ -2379,7 +2380,7 @@ A stylesheet rendered with [`<link rel="stylesheet">` and a `precedence` prop](/
 
 In the example below, the `Card` component renders a stylesheet with `precedence`. Press "Show card": React shows the fallback until the stylesheet has loaded, and then reveals the card with its styles applied.
 
-For comparison, the second button performs the same update with plain DOM in a separate document, without React. Nothing waits for the stylesheet, so the card's text appears in a fallback font first and then switches:
+For comparison, the second button performs the same update without React, in a separate document. Nothing waits for the stylesheet, so the card's text appears in a fallback font first and then switches:
 
 <Sandpack>
 
@@ -2449,7 +2450,7 @@ export default function VanillaCard() {
   }
   return (
     <>
-      <button onClick={show}>Show card (vanilla DOM)</button>
+      <button onClick={show}>Show card (without React)</button>
       <iframe ref={ref} title="Vanilla card" className="vanilla-frame" />
     </>
   );
@@ -2740,11 +2741,11 @@ Where you place the `<ViewTransition>` relative to the boundary determines wheth
 
 ### <CanaryBadge /> Waiting for a font to load {/*waiting-for-a-font-to-load*/}
 
-When a [`<ViewTransition>`](/reference/react/ViewTransition) animates a Suspense boundary's reveal, React also waits for new fonts the content introduces, up to a timeout, so the text doesn't flash with a fallback font. This only happens during a `<ViewTransition>` update.
+When a [`<ViewTransition>`](/reference/react/ViewTransition) animates a Suspense boundary's reveal, React waits for new fonts the content introduces, up to a timeout, so the text doesn't flash with a fallback font. This only happens during a `<ViewTransition>` update.
 
 In the example below, the Suspense boundary is wrapped in a `<ViewTransition>`, and the `Quote` component suspends while its data loads. Rendering the quote starts its font download. React keeps the fallback visible until the font has loaded, so the quote appears already in its font.
 
-For comparison, the second button performs the same update with plain DOM, without React. Nothing waits for the font, so the text appears in a fallback font first and then switches:
+For comparison, the second button performs the same update without React. Nothing waits for the font, so the text appears in a fallback font first and then switches:
 
 <Sandpack>
 
@@ -2814,7 +2815,7 @@ export default function VanillaQuote() {
   }
   return (
     <>
-      <button onClick={show}>Show quote (vanilla DOM)</button>
+      <button onClick={show}>Show quote (without React)</button>
       <div ref={ref} />
     </>
   );
@@ -2890,11 +2891,11 @@ hr {
 
 ### <CanaryBadge /> Waiting for an image to load {/*waiting-for-an-image-to-load*/}
 
-Images work the same way: when a [`<ViewTransition>`](/reference/react/ViewTransition) animates a Suspense boundary's reveal, React waits for visible images to load, up to a timeout, so the animation doesn't start with a half-loaded image. This only happens during a `<ViewTransition>` update. Adding an `onLoad` handler opts a specific image out, even inside a `<ViewTransition>`.
+When a [`<ViewTransition>`](/reference/react/ViewTransition) animates a Suspense boundary's reveal, React waits for visible images to load, up to a timeout, so the animation doesn't start with a half-loaded image. This only happens during a `<ViewTransition>` update. Adding an `onLoad` handler opts a specific image out, even inside a `<ViewTransition>`.
 
 In the example below, the Suspense boundary is wrapped in a `<ViewTransition>` and shows a profile skeleton until the portrait has loaded.
 
-For comparison, the second button performs the same update with plain DOM, without React. Nothing waits for the image, so the card appears immediately and the image pops in when it loads:
+For comparison, the second button performs the same update without React. Nothing waits for the image, so the card appears immediately and the image pops in when it loads:
 
 <Sandpack>
 
@@ -2906,7 +2907,7 @@ import VanillaProfile from './VanillaProfile.js';
 function Profile({ src }) {
   return (
     <div className="card">
-      <img src={src} alt="Jack Pope" width={100} height={100} />
+      <img src={src} alt="Jack Pope" width={80} height={80} />
       <p>Jack Pope</p>
     </div>
   );
@@ -2955,13 +2956,13 @@ export default function VanillaProfile() {
   const ref = useRef(null);
   function show() {
     ref.current.innerHTML = `<div class="card">
-      <img src="${freshImageUrl()}" alt="Jack Pope" width="100" height="100" />
+      <img src="${freshImageUrl()}" alt="Jack Pope" width="80" height="80" />
       <p>Jack Pope</p>
     </div>`;
   }
   return (
     <>
-      <button onClick={show}>Show profile (vanilla DOM)</button>
+      <button onClick={show}>Show profile (without React)</button>
       <div ref={ref} />
     </>
   );
@@ -2978,7 +2979,7 @@ export function freshImageUrl() {
 
 ```css
 #root {
-  min-height: 440px;
+  min-height: 390px;
 }
 .card {
   margin-top: 1em;
@@ -2992,8 +2993,8 @@ export function freshImageUrl() {
   font-weight: bold;
 }
 .avatar-placeholder {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   background: #dfe3e9;
 }
@@ -3023,9 +3024,9 @@ hr {
 
 ### <CanaryBadge /> Coordinating fonts, images, and stylesheets {/*coordinating-fonts-images-and-stylesheets*/}
 
-All of these waits work together. In the example below, the `ProfileCard` component suspends while its data loads, and renders a stylesheet with `precedence`, text in a new font, and a portrait. React keeps the skeleton visible while the data and the stylesheet load. The `<ViewTransition>` reveal then waits for the font and the image, so the card appears complete.
+A Suspense boundary can wait for data, stylesheets, fonts, and images at once. Waiting for fonts and images only happens during a [`<ViewTransition>`](/reference/react/ViewTransition) update. In the example below, the `ProfileCard` component suspends while its data loads, and renders a stylesheet with `precedence`, text in a new font, and a portrait. React keeps the skeleton visible while the data and the stylesheet load. The `<ViewTransition>` reveal then waits for the font and the image, so the card appears complete.
 
-For comparison, the plain DOM version loads the same data and shows every resource arriving on its own schedule:
+For comparison, the version without React loads the same data and shows every resource arriving on its own schedule:
 
 <Sandpack>
 
@@ -3125,7 +3126,7 @@ export default function VanillaProfileCard() {
   }
   return (
     <>
-      <button onClick={show}>Show profile (vanilla DOM)</button>
+      <button onClick={show}>Show profile (without React)</button>
       <iframe ref={ref} title="Vanilla profile card" className="vanilla-frame" />
     </>
   );
@@ -3155,7 +3156,7 @@ export function freshImageUrl() {
 export async function fetchQuote() {
   // Add a fake delay to make waiting noticeable.
   await new Promise((resolve) => {
-    setTimeout(resolve, 2000);
+    setTimeout(resolve, 1000);
   });
   return 'The best way to predict the future is to invent it.';
 }

@@ -20,6 +20,13 @@ const CONTENT_DIR = path.join(ROOT, 'src', 'content');
 const OUT_DIR = path.join(ROOT, 'public', 'images', 'og');
 const CONCURRENCY = 8;
 
+const SECTION_LABELS = {
+  learn: 'Learn React',
+  reference: 'API Reference',
+  community: 'Community',
+  blog: 'Blog',
+};
+
 const bold = fs.readFileSync(
   path.join(ROOT, 'public', 'fonts', 'Optimistic_Display_W_Bd.ttf')
 );
@@ -32,7 +39,8 @@ function el(type, style, children) {
 }
 
 function card(title, pagePath) {
-  const footer = ('react.dev' + pagePath).toUpperCase();
+  const section = pagePath.split('/')[1] ?? '';
+  const label = SECTION_LABELS[section] ?? 'React';
   const logo = {
     type: 'svg',
     props: {
@@ -105,12 +113,11 @@ function card(title, pagePath) {
       el(
         'div',
         {
-          fontSize: 28,
+          fontSize: 32,
           fontFamily: 'Optimistic Display Medium',
           color: '#99a1b3',
-          letterSpacing: '0.08em',
         },
-        footer
+        label
       ),
     ]
   );
@@ -167,6 +174,9 @@ function collectPages(dir, out) {
         segments.pop();
       }
       const pagePath = '/' + segments.join('/');
+      if (pagePath === '/' || pagePath.startsWith('/errors')) {
+        continue;
+      }
       const {data} = matter(fs.readFileSync(full, 'utf8'));
       const title = data.title ?? sidebarTitles.get(pagePath);
       if (title) {

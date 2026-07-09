@@ -131,10 +131,14 @@ export function Page({
         isHomePage={isHomePage}
         image={
           // OG images are generated per page at build time by
-          // scripts/generateOgImages.mjs. Error pages have dynamic
-          // titles, so they keep the static section image.
-          isHomePage || !title || cleanedPath.startsWith('/errors')
-            ? `/images/og-` + section + '.png'
+          // scripts/generateOgImages.mjs. Pages without a generated
+          // card (home, errors, 404, 500) use the static section image.
+          isHomePage ||
+          !title ||
+          cleanedPath.startsWith('/errors') ||
+          cleanedPath === '/404' ||
+          cleanedPath === '/500'
+            ? `/images/og-${section ?? 'unknown'}.png`
             : `/images/og/${cleanedPath.slice(1).replace(/\//g, '-')}.png`
         }
         searchOrder={searchOrder}

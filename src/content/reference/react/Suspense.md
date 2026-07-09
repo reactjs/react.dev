@@ -2906,7 +2906,7 @@ import VanillaProfile from './VanillaProfile.js';
 function Profile({ src }) {
   return (
     <div className="card">
-      <img src={src} alt="Jack Pope" width={100} height={100} />
+      <img src={src} alt="Jack Pope" width={80} height={80} />
       <p>Jack Pope</p>
     </div>
   );
@@ -2955,7 +2955,7 @@ export default function VanillaProfile() {
   const ref = useRef(null);
   function show() {
     ref.current.innerHTML = `<div class="card">
-      <img src="${freshImageUrl()}" alt="Jack Pope" width="100" height="100" />
+      <img src="${freshImageUrl()}" alt="Jack Pope" width="80" height="80" />
       <p>Jack Pope</p>
     </div>`;
   }
@@ -2978,7 +2978,7 @@ export function freshImageUrl() {
 
 ```css
 #root {
-  min-height: 320px;
+  min-height: 390px;
 }
 .card {
   margin-top: 1em;
@@ -2992,8 +2992,8 @@ export function freshImageUrl() {
   font-weight: bold;
 }
 .avatar-placeholder {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   background: #dfe3e9;
 }

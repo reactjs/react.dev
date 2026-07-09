@@ -2380,7 +2380,7 @@ A stylesheet rendered with [`<link rel="stylesheet">` and a `precedence` prop](/
 
 In the example below, the `Card` component renders a stylesheet with `precedence`. Press "Show card": React shows the fallback until the stylesheet has loaded, and then reveals the card with its styles applied.
 
-For comparison, the second button performs the same update with plain DOM in a separate document, without React. Nothing waits for the stylesheet, so the card's text appears in a fallback font first and then switches:
+For comparison, the second button performs the same update without React, in a separate document. Nothing waits for the stylesheet, so the card's text appears in a fallback font first and then switches:
 
 <Sandpack>
 
@@ -2450,7 +2450,7 @@ export default function VanillaCard() {
   }
   return (
     <>
-      <button onClick={show}>Show card (vanilla DOM)</button>
+      <button onClick={show}>Show card (without React)</button>
       <iframe ref={ref} title="Vanilla card" className="vanilla-frame" />
     </>
   );
@@ -2745,7 +2745,7 @@ When a [`<ViewTransition>`](/reference/react/ViewTransition) animates a Suspense
 
 In the example below, the Suspense boundary is wrapped in a `<ViewTransition>`, and the `Quote` component suspends while its data loads. Rendering the quote starts its font download. React keeps the fallback visible until the font has loaded, so the quote appears already in its font.
 
-For comparison, the second button performs the same update with plain DOM, without React. Nothing waits for the font, so the text appears in a fallback font first and then switches:
+For comparison, the second button performs the same update without React. Nothing waits for the font, so the text appears in a fallback font first and then switches:
 
 <Sandpack>
 
@@ -2815,7 +2815,7 @@ export default function VanillaQuote() {
   }
   return (
     <>
-      <button onClick={show}>Show quote (vanilla DOM)</button>
+      <button onClick={show}>Show quote (without React)</button>
       <div ref={ref} />
     </>
   );
@@ -2895,7 +2895,7 @@ When a [`<ViewTransition>`](/reference/react/ViewTransition) animates a Suspense
 
 In the example below, the Suspense boundary is wrapped in a `<ViewTransition>` and shows a profile skeleton until the portrait has loaded.
 
-For comparison, the second button performs the same update with plain DOM, without React. Nothing waits for the image, so the card appears immediately and the image pops in when it loads:
+For comparison, the second button performs the same update without React. Nothing waits for the image, so the card appears immediately and the image pops in when it loads:
 
 <Sandpack>
 
@@ -2962,7 +2962,7 @@ export default function VanillaProfile() {
   }
   return (
     <>
-      <button onClick={show}>Show profile (vanilla DOM)</button>
+      <button onClick={show}>Show profile (without React)</button>
       <div ref={ref} />
     </>
   );
@@ -3026,7 +3026,7 @@ hr {
 
 A Suspense boundary can wait for data, stylesheets, fonts, and images at once. Waiting for fonts and images only happens during a [`<ViewTransition>`](/reference/react/ViewTransition) update. In the example below, the `ProfileCard` component suspends while its data loads, and renders a stylesheet with `precedence`, text in a new font, and a portrait. React keeps the skeleton visible while the data and the stylesheet load. The `<ViewTransition>` reveal then waits for the font and the image, so the card appears complete.
 
-For comparison, the plain DOM version loads the same data and shows every resource arriving on its own schedule:
+For comparison, the version without React loads the same data and shows every resource arriving on its own schedule:
 
 <Sandpack>
 
@@ -3126,7 +3126,7 @@ export default function VanillaProfileCard() {
   }
   return (
     <>
-      <button onClick={show}>Show profile (vanilla DOM)</button>
+      <button onClick={show}>Show profile (without React)</button>
       <iframe ref={ref} title="Vanilla profile card" className="vanilla-frame" />
     </>
   );

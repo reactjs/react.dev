@@ -100,8 +100,9 @@ function card(title, pagePath) {
       el(
         'div',
         {
-          marginTop: 'auto',
-          marginBottom: 'auto',
+          flexGrow: 1,
+          display: 'flex',
+          alignItems: 'center',
           fontSize: title.length > 24 ? 72 : 96,
           fontFamily: 'Optimistic Display Bold',
           color: '#f6f7f9',
@@ -113,7 +114,7 @@ function card(title, pagePath) {
       el(
         'div',
         {
-          fontSize: 32,
+          fontSize: 40,
           fontFamily: 'Optimistic Display Medium',
           color: '#99a1b3',
         },

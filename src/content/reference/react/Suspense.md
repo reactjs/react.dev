@@ -3023,7 +3023,7 @@ hr {
 
 ### <CanaryBadge /> Coordinating fonts, images, and stylesheets {/*coordinating-fonts-images-and-stylesheets*/}
 
-When a [`<ViewTransition>`](/reference/react/ViewTransition) animates a Suspense boundary's reveal, React can wait for data, stylesheets, fonts, and images at once. In the example below, the `ProfileCard` component suspends while its data loads, and renders a stylesheet with `precedence`, text in a new font, and a portrait. React keeps the skeleton visible while the data and the stylesheet load. The `<ViewTransition>` reveal then waits for the font and the image, so the card appears complete.
+A Suspense boundary waits for data and stylesheets on its own. When a [`<ViewTransition>`](/reference/react/ViewTransition) animates its reveal, React also waits for fonts and images, so everything appears at once. In the example below, the `ProfileCard` component suspends while its data loads, and renders a stylesheet with `precedence`, text in a new font, and a portrait. React keeps the skeleton visible while the data and the stylesheet load. The `<ViewTransition>` reveal then waits for the font and the image, so the card appears complete.
 
 For comparison, the plain DOM version loads the same data and shows every resource arriving on its own schedule:
 

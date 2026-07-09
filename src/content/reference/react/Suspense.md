@@ -3036,7 +3036,7 @@ import { freshStylesheetUrl, freshImageUrl } from './resources.js';
 import VanillaProfileCard from './VanillaProfileCard.js';
 
 function ProfileCard({ resources }) {
-  const quote = use(fetchQuote());
+  const quote = use(resources.quotePromise);
   return (
     <>
       <link rel="stylesheet" href={resources.stylesheet} precedence="default" />
@@ -3071,6 +3071,7 @@ export default function App() {
         onClick={() => {
           startTransition(() => {
             setResources({
+              quotePromise: fetchQuote(),
               stylesheet: freshStylesheetUrl(),
               image: freshImageUrl(),
             });
@@ -3150,22 +3151,13 @@ export function freshImageUrl() {
 ```js src/data.js hidden
 // Note: the way you would do data fetching depends on
 // the framework that you use together with Suspense.
-// Normally, the caching logic would be inside a framework.
 
-let cache = null;
-
-export function fetchQuote() {
-  if (!cache) {
-    cache = new Promise((resolve) => {
-      // Add a fake delay to make waiting noticeable.
-      setTimeout(() => {
-        resolve(
-          'The best way to predict the future is to invent it.'
-        );
-      }, 2000);
-    });
-  }
-  return cache;
+export async function fetchQuote() {
+  // Add a fake delay to make waiting noticeable.
+  await new Promise((resolve) => {
+    setTimeout(resolve, 2000);
+  });
+  return 'The best way to predict the future is to invent it.';
 }
 ```
 

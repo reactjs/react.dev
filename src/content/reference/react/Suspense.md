@@ -2500,9 +2500,9 @@ hr {
 
 ---
 
-### Animating from Suspense content {/*animating-from-suspense-content*/}
+### <CanaryBadge /> Animating from Suspense content {/*animating-from-suspense-content*/}
 
-<CanaryBadge /> Suspense composes with [`<ViewTransition>`](/reference/react/ViewTransition) to animate the swap from the fallback to the content. Wrap the boundary in a `<ViewTransition>`, and React treats the swap as an update, cross-fading between the fallback and the content by default:
+Suspense composes with [`<ViewTransition>`](/reference/react/ViewTransition) to animate the swap from the fallback to the content. Wrap the boundary in a `<ViewTransition>`, and React treats the swap as an update, cross-fading between the fallback and the content by default:
 
 <Sandpack>
 
@@ -2738,9 +2738,9 @@ Where you place the `<ViewTransition>` relative to the boundary determines wheth
 
 ---
 
-### Waiting for a font to load {/*waiting-for-a-font-to-load*/}
+### <CanaryBadge /> Waiting for a font to load {/*waiting-for-a-font-to-load*/}
 
-<CanaryBadge /> When a [`<ViewTransition>`](/reference/react/ViewTransition) animates a Suspense boundary's reveal, React also waits for new fonts the content introduces, up to a timeout, so the text doesn't flash with a fallback font. This only happens during a `<ViewTransition>` update.
+When a [`<ViewTransition>`](/reference/react/ViewTransition) animates a Suspense boundary's reveal, React also waits for new fonts the content introduces, up to a timeout, so the text doesn't flash with a fallback font. This only happens during a `<ViewTransition>` update.
 
 In the example below, the Suspense boundary is wrapped in a `<ViewTransition>`, and the `Quote` component suspends while its data loads. Rendering the quote starts its font download. React keeps the fallback visible until the font has loaded, so the quote appears already in its font.
 
@@ -2888,11 +2888,11 @@ hr {
 
 ---
 
-### Waiting for an image to load {/*waiting-for-an-image-to-load*/}
+### <CanaryBadge /> Waiting for an image to load {/*waiting-for-an-image-to-load*/}
 
-<CanaryBadge /> Images work the same way: when a [`<ViewTransition>`](/reference/react/ViewTransition) animates a Suspense boundary's reveal, React waits for visible images to load, up to a timeout, so the animation doesn't start with a half-loaded image. This only happens during a `<ViewTransition>` update. Adding an `onLoad` handler opts a specific image out, even inside a `<ViewTransition>`.
+Images work the same way: when a [`<ViewTransition>`](/reference/react/ViewTransition) animates a Suspense boundary's reveal, React waits for visible images to load, up to a timeout, so the animation doesn't start with a half-loaded image. This only happens during a `<ViewTransition>` update. Adding an `onLoad` handler opts a specific image out, even inside a `<ViewTransition>`.
 
-In the example below, the Suspense boundary is wrapped in a `<ViewTransition>` and shows its fallback until the portrait has loaded.
+In the example below, the Suspense boundary is wrapped in a `<ViewTransition>` and shows a profile skeleton until the portrait has loaded.
 
 For comparison, the second button performs the same update with plain DOM, without React. Nothing waits for the image, so the card appears immediately and the image pops in when it loads:
 
@@ -2912,6 +2912,15 @@ function Profile({ src }) {
   );
 }
 
+function ProfilePlaceholder() {
+  return (
+    <div className="card">
+      <div className="avatar-placeholder" />
+      <p className="name-placeholder">&nbsp;</p>
+    </div>
+  );
+}
+
 export default function App() {
   const [src, setSrc] = useState(null);
   return (
@@ -2926,7 +2935,7 @@ export default function App() {
       </button>
       {src && (
         <ViewTransition>
-          <Suspense fallback={<p>⌛ Loading image...</p>}>
+          <Suspense fallback={<ProfilePlaceholder />}>
             <Profile src={src} />
           </Suspense>
         </ViewTransition>
@@ -2975,14 +2984,243 @@ export function freshImageUrl() {
   margin-top: 1em;
 }
 .card img {
+  display: block;
   border-radius: 50%;
   background: #dfe3e9;
 }
 .card p {
   font-weight: bold;
 }
+.avatar-placeholder {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: #dfe3e9;
+}
+.name-placeholder {
+  width: 90px;
+  border-radius: 4px;
+  background: #dfe3e9;
+}
 hr {
   margin: 16px 0;
+}
+```
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "canary",
+    "react-dom": "canary",
+    "react-scripts": "latest"
+  }
+}
+```
+
+</Sandpack>
+
+---
+
+### <CanaryBadge /> Coordinating fonts, images, and stylesheets {/*coordinating-fonts-images-and-stylesheets*/}
+
+All of these waits work together. In the example below, the `ProfileCard` component suspends while its data loads, and renders a stylesheet with `precedence`, text in a new font, and a portrait. React keeps the skeleton visible while the data and the stylesheet load. The `<ViewTransition>` reveal then waits for the font and the image, so the card appears complete.
+
+For comparison, the plain DOM version loads the same data and shows every resource arriving on its own schedule:
+
+<Sandpack>
+
+```js
+import { ViewTransition, Suspense, use, useState, startTransition } from 'react';
+import { fetchQuote } from './data.js';
+import { freshStylesheetUrl, freshImageUrl } from './resources.js';
+import VanillaProfileCard from './VanillaProfileCard.js';
+
+function ProfileCard({ resources }) {
+  const quote = use(resources.quotePromise);
+  return (
+    <>
+      <link rel="stylesheet" href={resources.stylesheet} precedence="default" />
+      <div className="profile-card">
+        <img src={resources.image} alt="Jack Pope" width={80} height={80} />
+        <div>
+          <p className="name">Jack Pope</p>
+          <p className="bio">{quote}</p>
+        </div>
+      </div>
+    </>
+  );
+}
+
+function ProfileCardPlaceholder() {
+  return (
+    <div className="profile-card">
+      <div className="avatar-placeholder" />
+      <div>
+        <p className="name name-placeholder">&nbsp;</p>
+        <p className="bio bio-placeholder">&nbsp;</p>
+      </div>
+    </div>
+  );
+}
+
+export default function App() {
+  const [resources, setResources] = useState(null);
+  return (
+    <>
+      <button
+        onClick={() => {
+          startTransition(() => {
+            setResources({
+              quotePromise: fetchQuote(),
+              stylesheet: freshStylesheetUrl(),
+              image: freshImageUrl(),
+            });
+          });
+        }}>
+        Show profile
+      </button>
+      {resources && (
+        <ViewTransition>
+          <Suspense fallback={<ProfileCardPlaceholder />}>
+            <ProfileCard resources={resources} />
+          </Suspense>
+        </ViewTransition>
+      )}
+      <hr />
+      <VanillaProfileCard />
+    </>
+  );
+}
+```
+
+```js src/VanillaProfileCard.js
+import { useRef } from 'react';
+import { fetchQuote } from './data.js';
+import { freshStylesheetUrl, freshImageUrl } from './resources.js';
+
+export default function VanillaProfileCard() {
+  const ref = useRef(null);
+  async function show() {
+    const quote = await fetchQuote();
+    const doc = ref.current.contentWindow.document;
+    doc.open();
+    doc.write(`
+      <style>
+        body { margin: 0; font-family: sans-serif; }
+        .profile-card { display: flex; gap: 12px; align-items: center; }
+        .profile-card img { border-radius: 50%; background: #dfe3e9; }
+        .name { margin: 0 0 4px; font-family: 'Caveat', sans-serif; font-size: 22px; line-height: 28px; font-weight: bold; }
+        .bio { margin: 0; font-family: 'Caveat', sans-serif; font-size: 20px; line-height: 26px; }
+      </style>
+      <div class="profile-card">
+        <img src="${freshImageUrl()}" alt="Jack Pope" width="80" height="80" />
+        <div>
+          <p class="name">Jack Pope</p>
+          <p class="bio">${quote}</p>
+        </div>
+      </div>
+      <link rel="stylesheet" href="${freshStylesheetUrl()}">
+    `);
+    doc.close();
+  }
+  return (
+    <>
+      <button onClick={show}>Show profile (vanilla DOM)</button>
+      <iframe ref={ref} title="Vanilla profile card" className="vanilla-frame" />
+    </>
+  );
+}
+```
+
+```js src/resources.js hidden
+// Add a unique parameter so the resources aren't cached,
+// and every run shows the loading state.
+export function freshStylesheetUrl() {
+  return (
+    'https://fonts.googleapis.com/css2?family=Caveat&display=swap' +
+    '&t=' +
+    Date.now()
+  );
+}
+
+export function freshImageUrl() {
+  return 'https://react.dev/images/team/jack-pope.jpg?t=' + Date.now();
+}
+```
+
+```js src/data.js hidden
+// Note: the way you would do data fetching depends on
+// the framework that you use together with Suspense.
+
+export async function fetchQuote() {
+  // Add a fake delay to make waiting noticeable.
+  await new Promise((resolve) => {
+    setTimeout(resolve, 2000);
+  });
+  return 'The best way to predict the future is to invent it.';
+}
+```
+
+```css
+#root {
+  min-height: 320px;
+}
+button {
+  margin-right: 8px;
+}
+hr {
+  margin: 16px 0;
+}
+.profile-card {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 1em;
+}
+.profile-card img {
+  border-radius: 50%;
+  background: #dfe3e9;
+}
+.name {
+  margin: 0 0 4px;
+  font-family: 'Caveat', sans-serif;
+  font-size: 22px;
+  line-height: 28px;
+  font-weight: bold;
+}
+.bio {
+  margin: 0;
+  font-family: 'Caveat', sans-serif;
+  font-size: 20px;
+  line-height: 26px;
+}
+.profile-card img {
+  display: block;
+}
+.avatar-placeholder {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #dfe3e9;
+}
+.name-placeholder,
+.bio-placeholder {
+  border-radius: 4px;
+  background: #dfe3e9;
+  color: transparent;
+}
+.name-placeholder {
+  width: 90px;
+}
+.bio-placeholder {
+  width: 220px;
+}
+.vanilla-frame {
+  display: block;
+  margin-top: 1em;
+  border: none;
+  width: 100%;
+  height: 110px;
 }
 ```
 

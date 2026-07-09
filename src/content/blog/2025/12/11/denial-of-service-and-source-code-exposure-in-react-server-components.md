@@ -98,7 +98,7 @@ If you are using React Native in a monorepo, you should update _only_ the impact
 
 This is required to mitigate the security advisories, but you do not need to update `react` and `react-dom` so this will not cause the version mismatch error in React Native.
 
-See [this issue](https://github.com/facebook/react-native/issues/54772#issuecomment-3617929832) for more information.
+See [this issue](https://github.com/react/react-native/issues/54772#issuecomment-3617929832) for more information.
 
 ---
 

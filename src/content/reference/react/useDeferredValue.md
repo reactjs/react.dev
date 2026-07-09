@@ -86,11 +86,7 @@ During updates, the <CodeStep step={2}>deferred value</CodeStep> will "lag behin
 
 <Note>
 
-This example assumes you use a Suspense-enabled data source:
-
-- Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/app/getting-started/fetching-data#with-suspense)
-- Lazy-loading component code with [`lazy`](/reference/react/lazy)
-- Reading the value of a Promise with [`use`](/reference/react/use)
+This example assumes you use a data source that [activates a Suspense boundary](/reference/react/Suspense#what-activates-a-suspense-boundary), such as a Promise you read with [`use`](/reference/react/use).
 
 [Learn more about Suspense and its limitations.](/reference/react/Suspense)
 
@@ -706,6 +702,8 @@ export default SlowList;
 ```css
 .items {
   padding: 0;
+  max-height: 300px;
+  overflow: auto;
 }
 
 .item {
@@ -783,6 +781,8 @@ export default SlowList;
 ```css
 .items {
   padding: 0;
+  max-height: 300px;
+  overflow: auto;
 }
 
 .item {

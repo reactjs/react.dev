@@ -54,16 +54,31 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 - [React 19 Deep Dive: Coordinating HTML](https://www.youtube.com/watch?v=IBBN-s77YSI)
 
 **Releases**
-- [v19.2.1 (December, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1922-dec-11-2025)
-- [v19.2.1 (December, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1921-dec-3-2025)
-- [v19.2.0 (October, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1920-october-1st-2025)
-- [v19.1.3 (December, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1913-dec-11-2025)
-- [v19.1.2 (December, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1912-dec-3-2025)
-- [v19.1.1 (July, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1911-july-28-2025)
-- [v19.1.0 (March, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1910-march-28-2025)
-- [v19.0.2 (December, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1902-dec-11-2025)
-- [v19.0.1 (December, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1901-dec-3-2025)
-- [v19.0.0 (December, 2024)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1900-december-5-2024)
+- [v19.2.7 (June, 2026)](https://github.com/react/react/blob/main/CHANGELOG.md#1927-june-1-2026)
+- [v19.2.6 (May, 2026)](https://github.com/react/react/blob/main/CHANGELOG.md#1926-may-6-2026)
+- [v19.2.5 (March, 2026)](https://github.com/react/react/blob/main/CHANGELOG.md#1925-march-18-2026)
+- [v19.2.4 (January, 2026)](https://github.com/react/react/blob/main/CHANGELOG.md#1924-jan-26-2026)
+- [v19.2.3 (December, 2025)](https://github.com/react/react/blob/main/CHANGELOG.md#1923-dec-11-2025)
+- [v19.2.2 (December, 2025)](https://github.com/react/react/blob/main/CHANGELOG.md#1922-dec-11-2025)
+- [v19.2.1 (December, 2025)](https://github.com/react/react/blob/main/CHANGELOG.md#1921-dec-3-2025)
+- [v19.2.0 (October, 2025)](https://github.com/react/react/blob/main/CHANGELOG.md#1920-october-1st-2025)
+- [v19.1.8 (June, 2026)](https://github.com/react/react/blob/main/CHANGELOG.md#1918-june-1-2026)
+- [v19.1.7 (May, 2026)](https://github.com/react/react/blob/main/CHANGELOG.md#1917-may-6-2026)
+- [v19.1.6 (March, 2026)](https://github.com/react/react/blob/main/CHANGELOG.md#1916-march-18-2026)
+- [v19.1.5 (January, 2026)](https://github.com/react/react/blob/main/CHANGELOG.md#1915-jan-26-2026)
+- [v19.1.4 (December, 2025)](https://github.com/react/react/blob/main/CHANGELOG.md#1914-dec-11-2025)
+- [v19.1.3 (December, 2025)](https://github.com/react/react/blob/main/CHANGELOG.md#1913-dec-11-2025)
+- [v19.1.2 (December, 2025)](https://github.com/react/react/blob/main/CHANGELOG.md#1912-dec-3-2025)
+- [v19.1.1 (July, 2025)](https://github.com/react/react/blob/main/CHANGELOG.md#1911-july-28-2025)
+- [v19.1.0 (March, 2025)](https://github.com/react/react/blob/main/CHANGELOG.md#1910-march-28-2025)
+- [v19.0.7 (June, 2026)](https://github.com/react/react/blob/main/CHANGELOG.md#1907-june-1-2026)
+- [v19.0.6 (May, 2026)](https://github.com/react/react/blob/main/CHANGELOG.md#1906-may-6-2026)
+- [v19.0.5 (March, 2026)](https://github.com/react/react/blob/main/CHANGELOG.md#1905-march-18-2026)
+- [v19.0.4 (January, 2026)](https://github.com/react/react/blob/main/CHANGELOG.md#1904-jan-26-2026)
+- [v19.0.3 (December, 2025)](https://github.com/react/react/blob/main/CHANGELOG.md#1903-dec-11-2025)
+- [v19.0.2 (December, 2025)](https://github.com/react/react/blob/main/CHANGELOG.md#1902-dec-11-2025)
+- [v19.0.1 (December, 2025)](https://github.com/react/react/blob/main/CHANGELOG.md#1901-dec-3-2025)
+- [v19.0.0 (December, 2024)](https://github.com/react/react/blob/main/CHANGELOG.md#1900-december-5-2024)
 
 ### React 18 {/*react-18*/}
 
@@ -83,11 +98,11 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 - [React 18 for External Store Libraries](https://www.youtube.com/watch?v=oPfSC5bQPR8)
 
 **Releases**
-- [v18.3.1 (April, 2024)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1831-april-26-2024)
-- [v18.3.0 (April, 2024)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1830-april-25-2024)
-- [v18.2.0 (June, 2022)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1820-june-14-2022)
-- [v18.1.0 (April, 2022)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1810-april-26-2022)
-- [v18.0.0 (March 2022)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1800-march-29-2022)
+- [v18.3.1 (April, 2024)](https://github.com/react/react/blob/main/CHANGELOG.md#1831-april-26-2024)
+- [v18.3.0 (April, 2024)](https://github.com/react/react/blob/main/CHANGELOG.md#1830-april-25-2024)
+- [v18.2.0 (June, 2022)](https://github.com/react/react/blob/main/CHANGELOG.md#1820-june-14-2022)
+- [v18.1.0 (April, 2022)](https://github.com/react/react/blob/main/CHANGELOG.md#1810-april-26-2022)
+- [v18.0.0 (March 2022)](https://github.com/react/react/blob/main/CHANGELOG.md#1800-march-29-2022)
 
 ### React 17 {/*react-17*/}
 
@@ -97,9 +112,9 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 - [React v17.0 Release Candidate: No New Features](https://legacy.reactjs.org/blog/2020/08/10/react-v17-rc.html)
 
 **Releases**
-- [v17.0.2 (March 2021)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1702-march-22-2021)
-- [v17.0.1 (October 2020)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1701-october-22-2020)
-- [v17.0.0 (October 2020)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1700-october-20-2020)
+- [v17.0.2 (March 2021)](https://github.com/react/react/blob/main/CHANGELOG.md#1702-march-22-2021)
+- [v17.0.1 (October 2020)](https://github.com/react/react/blob/main/CHANGELOG.md#1701-october-22-2020)
+- [v17.0.0 (October 2020)](https://github.com/react/react/blob/main/CHANGELOG.md#1700-october-20-2020)
 
 ### React 16 {/*react-16*/}
 
@@ -117,44 +132,44 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 - [React v16.13.0](https://legacy.reactjs.org/blog/2020/02/26/react-v16.13.0.html)
 
 **Releases**
-- [v16.14.0 (October 2020)](https://github.com/facebook/react/blob/main/CHANGELOG.md#16140-october-14-2020)
-- [v16.13.1 (March 2020)](https://github.com/facebook/react/blob/main/CHANGELOG.md#16131-march-19-2020)
-- [v16.13.0 (February 2020)](https://github.com/facebook/react/blob/main/CHANGELOG.md#16130-february-26-2020)
-- [v16.12.0 (November 2019)](https://github.com/facebook/react/blob/main/CHANGELOG.md#16120-november-14-2019)
-- [v16.11.0 (October 2019)](https://github.com/facebook/react/blob/main/CHANGELOG.md#16110-october-22-2019)
-- [v16.10.2 (October 2019)](https://github.com/facebook/react/blob/main/CHANGELOG.md#16102-october-3-2019)
-- [v16.10.1 (September 2019)](https://github.com/facebook/react/blob/main/CHANGELOG.md#16101-september-28-2019)
-- [v16.10.0 (September 2019)](https://github.com/facebook/react/blob/main/CHANGELOG.md#16100-september-27-2019)
-- [v16.9.0 (August 2019)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1690-august-8-2019)
-- [v16.8.6 (March 2019)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1686-march-27-2019)
-- [v16.8.5 (March 2019)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1685-march-22-2019)
-- [v16.8.4 (March 2019)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1684-march-5-2019)
-- [v16.8.3 (February 2019)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1683-february-21-2019)
-- [v16.8.2 (February 2019)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1682-february-14-2019)
-- [v16.8.1 (February 2019)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1681-february-6-2019)
-- [v16.8.0 (February 2019)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1680-february-6-2019)
-- [v16.7.0 (December 2018)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1670-december-19-2018)
-- [v16.6.3 (November 2018)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1663-november-12-2018)
-- [v16.6.2 (November 2018)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1662-november-12-2018)
-- [v16.6.1 (November 2018)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1661-november-6-2018)
-- [v16.6.0 (October 2018)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1660-october-23-2018)
-- [v16.5.2 (September 2018)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1652-september-18-2018)
-- [v16.5.1 (September 2018)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1651-september-13-2018)
-- [v16.5.0 (September 2018)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1650-september-5-2018)
-- [v16.4.2 (August 2018)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1642-august-1-2018)
-- [v16.4.1 (June 2018)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1641-june-13-2018)
-- [v16.4.0 (May 2018)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1640-may-23-2018)
-- [v16.3.3 (August 2018)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1633-august-1-2018)
-- [v16.3.2 (April 2018)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1632-april-16-2018)
-- [v16.3.1 (April 2018)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1631-april-3-2018)
-- [v16.3.0 (March 2018)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1630-march-29-2018)
-- [v16.2.1 (August 2018)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1621-august-1-2018)
-- [v16.2.0 (November 2017)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1620-november-28-2017)
-- [v16.1.2 (August 2018)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1612-august-1-2018)
-- [v16.1.1 (November 2017)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1611-november-13-2017)
-- [v16.1.0 (November 2017)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1610-november-9-2017)
-- [v16.0.1 (August 2018)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1601-august-1-2018)
-- [v16.0 (September 2017)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1600-september-26-2017)
+- [v16.14.0 (October 2020)](https://github.com/react/react/blob/main/CHANGELOG.md#16140-october-14-2020)
+- [v16.13.1 (March 2020)](https://github.com/react/react/blob/main/CHANGELOG.md#16131-march-19-2020)
+- [v16.13.0 (February 2020)](https://github.com/react/react/blob/main/CHANGELOG.md#16130-february-26-2020)
+- [v16.12.0 (November 2019)](https://github.com/react/react/blob/main/CHANGELOG.md#16120-november-14-2019)
+- [v16.11.0 (October 2019)](https://github.com/react/react/blob/main/CHANGELOG.md#16110-october-22-2019)
+- [v16.10.2 (October 2019)](https://github.com/react/react/blob/main/CHANGELOG.md#16102-october-3-2019)
+- [v16.10.1 (September 2019)](https://github.com/react/react/blob/main/CHANGELOG.md#16101-september-28-2019)
+- [v16.10.0 (September 2019)](https://github.com/react/react/blob/main/CHANGELOG.md#16100-september-27-2019)
+- [v16.9.0 (August 2019)](https://github.com/react/react/blob/main/CHANGELOG.md#1690-august-8-2019)
+- [v16.8.6 (March 2019)](https://github.com/react/react/blob/main/CHANGELOG.md#1686-march-27-2019)
+- [v16.8.5 (March 2019)](https://github.com/react/react/blob/main/CHANGELOG.md#1685-march-22-2019)
+- [v16.8.4 (March 2019)](https://github.com/react/react/blob/main/CHANGELOG.md#1684-march-5-2019)
+- [v16.8.3 (February 2019)](https://github.com/react/react/blob/main/CHANGELOG.md#1683-february-21-2019)
+- [v16.8.2 (February 2019)](https://github.com/react/react/blob/main/CHANGELOG.md#1682-february-14-2019)
+- [v16.8.1 (February 2019)](https://github.com/react/react/blob/main/CHANGELOG.md#1681-february-6-2019)
+- [v16.8.0 (February 2019)](https://github.com/react/react/blob/main/CHANGELOG.md#1680-february-6-2019)
+- [v16.7.0 (December 2018)](https://github.com/react/react/blob/main/CHANGELOG.md#1670-december-19-2018)
+- [v16.6.3 (November 2018)](https://github.com/react/react/blob/main/CHANGELOG.md#1663-november-12-2018)
+- [v16.6.2 (November 2018)](https://github.com/react/react/blob/main/CHANGELOG.md#1662-november-12-2018)
+- [v16.6.1 (November 2018)](https://github.com/react/react/blob/main/CHANGELOG.md#1661-november-6-2018)
+- [v16.6.0 (October 2018)](https://github.com/react/react/blob/main/CHANGELOG.md#1660-october-23-2018)
+- [v16.5.2 (September 2018)](https://github.com/react/react/blob/main/CHANGELOG.md#1652-september-18-2018)
+- [v16.5.1 (September 2018)](https://github.com/react/react/blob/main/CHANGELOG.md#1651-september-13-2018)
+- [v16.5.0 (September 2018)](https://github.com/react/react/blob/main/CHANGELOG.md#1650-september-5-2018)
+- [v16.4.2 (August 2018)](https://github.com/react/react/blob/main/CHANGELOG.md#1642-august-1-2018)
+- [v16.4.1 (June 2018)](https://github.com/react/react/blob/main/CHANGELOG.md#1641-june-13-2018)
+- [v16.4.0 (May 2018)](https://github.com/react/react/blob/main/CHANGELOG.md#1640-may-23-2018)
+- [v16.3.3 (August 2018)](https://github.com/react/react/blob/main/CHANGELOG.md#1633-august-1-2018)
+- [v16.3.2 (April 2018)](https://github.com/react/react/blob/main/CHANGELOG.md#1632-april-16-2018)
+- [v16.3.1 (April 2018)](https://github.com/react/react/blob/main/CHANGELOG.md#1631-april-3-2018)
+- [v16.3.0 (March 2018)](https://github.com/react/react/blob/main/CHANGELOG.md#1630-march-29-2018)
+- [v16.2.1 (August 2018)](https://github.com/react/react/blob/main/CHANGELOG.md#1621-august-1-2018)
+- [v16.2.0 (November 2017)](https://github.com/react/react/blob/main/CHANGELOG.md#1620-november-28-2017)
+- [v16.1.2 (August 2018)](https://github.com/react/react/blob/main/CHANGELOG.md#1612-august-1-2018)
+- [v16.1.1 (November 2017)](https://github.com/react/react/blob/main/CHANGELOG.md#1611-november-13-2017)
+- [v16.1.0 (November 2017)](https://github.com/react/react/blob/main/CHANGELOG.md#1610-november-9-2017)
+- [v16.0.1 (August 2018)](https://github.com/react/react/blob/main/CHANGELOG.md#1601-august-1-2018)
+- [v16.0 (September 2017)](https://github.com/react/react/blob/main/CHANGELOG.md#1600-september-26-2017)
 
 ### React 15 {/*react-15*/}
 
@@ -172,27 +187,27 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 - [React v15.6.2](https://legacy.reactjs.org/blog/2017/09/25/react-v15.6.2.html)
 
 **Releases**
-- [v15.7.0 (October 2017)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1570-october-14-2020)
-- [v15.6.2 (September 2017)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1562-september-25-2017)
-- [v15.6.1 (June 2017)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1561-june-14-2017)
-- [v15.6.0 (June 2017)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1560-june-13-2017)
-- [v15.5.4 (April 2017)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1554-april-11-2017)
-- [v15.5.3 (April 2017)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1553-april-7-2017)
-- [v15.5.2 (April 2017)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1552-april-7-2017)
-- [v15.5.1 (April 2017)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1551-april-7-2017)
-- [v15.5.0 (April 2017)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1550-april-7-2017)
-- [v15.4.2 (January 2016)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1542-january-6-2017)
-- [v15.4.1 (November 2016)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1541-november-22-2016)
-- [v15.4.0 (November 2016)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1540-november-16-2016)
-- [v15.3.2 (September 2016)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1532-september-19-2016)
-- [v15.3.1 (August 2016)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1531-august-19-2016)
-- [v15.3.0 (July 2016)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1530-july-29-2016)
-- [v15.2.1 (July 2016)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1521-july-8-2016)
-- [v15.2.0 (July 2016)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1520-july-1-2016)
-- [v15.1.0 (May 2016)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1510-may-20-2016)
-- [v15.0.2 (April 2016)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1502-april-29-2016)
-- [v15.0.1 (April 2016)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1501-april-8-2016)
-- [v15.0.0 (April 2016)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1500-april-7-2016)
+- [v15.7.0 (October 2017)](https://github.com/react/react/blob/main/CHANGELOG.md#1570-october-14-2020)
+- [v15.6.2 (September 2017)](https://github.com/react/react/blob/main/CHANGELOG.md#1562-september-25-2017)
+- [v15.6.1 (June 2017)](https://github.com/react/react/blob/main/CHANGELOG.md#1561-june-14-2017)
+- [v15.6.0 (June 2017)](https://github.com/react/react/blob/main/CHANGELOG.md#1560-june-13-2017)
+- [v15.5.4 (April 2017)](https://github.com/react/react/blob/main/CHANGELOG.md#1554-april-11-2017)
+- [v15.5.3 (April 2017)](https://github.com/react/react/blob/main/CHANGELOG.md#1553-april-7-2017)
+- [v15.5.2 (April 2017)](https://github.com/react/react/blob/main/CHANGELOG.md#1552-april-7-2017)
+- [v15.5.1 (April 2017)](https://github.com/react/react/blob/main/CHANGELOG.md#1551-april-7-2017)
+- [v15.5.0 (April 2017)](https://github.com/react/react/blob/main/CHANGELOG.md#1550-april-7-2017)
+- [v15.4.2 (January 2016)](https://github.com/react/react/blob/main/CHANGELOG.md#1542-january-6-2017)
+- [v15.4.1 (November 2016)](https://github.com/react/react/blob/main/CHANGELOG.md#1541-november-22-2016)
+- [v15.4.0 (November 2016)](https://github.com/react/react/blob/main/CHANGELOG.md#1540-november-16-2016)
+- [v15.3.2 (September 2016)](https://github.com/react/react/blob/main/CHANGELOG.md#1532-september-19-2016)
+- [v15.3.1 (August 2016)](https://github.com/react/react/blob/main/CHANGELOG.md#1531-august-19-2016)
+- [v15.3.0 (July 2016)](https://github.com/react/react/blob/main/CHANGELOG.md#1530-july-29-2016)
+- [v15.2.1 (July 2016)](https://github.com/react/react/blob/main/CHANGELOG.md#1521-july-8-2016)
+- [v15.2.0 (July 2016)](https://github.com/react/react/blob/main/CHANGELOG.md#1520-july-1-2016)
+- [v15.1.0 (May 2016)](https://github.com/react/react/blob/main/CHANGELOG.md#1510-may-20-2016)
+- [v15.0.2 (April 2016)](https://github.com/react/react/blob/main/CHANGELOG.md#1502-april-29-2016)
+- [v15.0.1 (April 2016)](https://github.com/react/react/blob/main/CHANGELOG.md#1501-april-8-2016)
+- [v15.0.0 (April 2016)](https://github.com/react/react/blob/main/CHANGELOG.md#1500-april-7-2016)
 
 ### React 0.14 {/*react-14*/}
 
@@ -209,16 +224,16 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 - [React v0.14.8](https://legacy.reactjs.org/blog/2016/03/29/react-v0.14.8.html)
 
 **Releases**
-- [v0.14.10 (October 2020)](https://github.com/facebook/react/blob/main/CHANGELOG.md#01410-october-14-2020)
-- [v0.14.8 (March 2016)](https://github.com/facebook/react/blob/main/CHANGELOG.md#0148-march-29-2016)
-- [v0.14.7 (January 2016)](https://github.com/facebook/react/blob/main/CHANGELOG.md#0147-january-28-2016)
-- [v0.14.6 (January 2016)](https://github.com/facebook/react/blob/main/CHANGELOG.md#0146-january-6-2016)
-- [v0.14.5 (December 2015)](https://github.com/facebook/react/blob/main/CHANGELOG.md#0145-december-29-2015)
-- [v0.14.4 (December 2015)](https://github.com/facebook/react/blob/main/CHANGELOG.md#0144-december-29-2015)
-- [v0.14.3 (November 2015)](https://github.com/facebook/react/blob/main/CHANGELOG.md#0143-november-18-2015)
-- [v0.14.2 (November 2015)](https://github.com/facebook/react/blob/main/CHANGELOG.md#0142-november-2-2015)
-- [v0.14.1 (October 2015)](https://github.com/facebook/react/blob/main/CHANGELOG.md#0141-october-28-2015)
-- [v0.14.0 (October 2015)](https://github.com/facebook/react/blob/main/CHANGELOG.md#0140-october-7-2015)
+- [v0.14.10 (October 2020)](https://github.com/react/react/blob/main/CHANGELOG.md#01410-october-14-2020)
+- [v0.14.8 (March 2016)](https://github.com/react/react/blob/main/CHANGELOG.md#0148-march-29-2016)
+- [v0.14.7 (January 2016)](https://github.com/react/react/blob/main/CHANGELOG.md#0147-january-28-2016)
+- [v0.14.6 (January 2016)](https://github.com/react/react/blob/main/CHANGELOG.md#0146-january-6-2016)
+- [v0.14.5 (December 2015)](https://github.com/react/react/blob/main/CHANGELOG.md#0145-december-29-2015)
+- [v0.14.4 (December 2015)](https://github.com/react/react/blob/main/CHANGELOG.md#0144-december-29-2015)
+- [v0.14.3 (November 2015)](https://github.com/react/react/blob/main/CHANGELOG.md#0143-november-18-2015)
+- [v0.14.2 (November 2015)](https://github.com/react/react/blob/main/CHANGELOG.md#0142-november-2-2015)
+- [v0.14.1 (October 2015)](https://github.com/react/react/blob/main/CHANGELOG.md#0141-october-28-2015)
+- [v0.14.0 (October 2015)](https://github.com/react/react/blob/main/CHANGELOG.md#0140-october-7-2015)
 
 ### React 0.13 {/*react-13*/}
 
@@ -236,10 +251,10 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 - [React v0.13.3](https://legacy.reactjs.org/blog/2015/05/08/react-v0.13.3.html)
 
 **Releases**
-- [v0.13.3 (May 2015)](https://github.com/facebook/react/blob/main/CHANGELOG.md#0133-may-8-2015)
-- [v0.13.2 (April 2015)](https://github.com/facebook/react/blob/main/CHANGELOG.md#0132-april-18-2015)
-- [v0.13.1 (March 2015)](https://github.com/facebook/react/blob/main/CHANGELOG.md#0131-march-16-2015)
-- [v0.13.0 (March 2015)](https://github.com/facebook/react/blob/main/CHANGELOG.md#0130-march-10-2015)
+- [v0.13.3 (May 2015)](https://github.com/react/react/blob/main/CHANGELOG.md#0133-may-8-2015)
+- [v0.13.2 (April 2015)](https://github.com/react/react/blob/main/CHANGELOG.md#0132-april-18-2015)
+- [v0.13.1 (March 2015)](https://github.com/react/react/blob/main/CHANGELOG.md#0131-march-16-2015)
+- [v0.13.0 (March 2015)](https://github.com/react/react/blob/main/CHANGELOG.md#0130-march-10-2015)
 
 ### React 0.12 {/*react-12*/}
 
@@ -250,9 +265,9 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 - [React v0.12.2](https://legacy.reactjs.org/blog/2014/12/18/react-v0.12.2.html)
 
 **Releases**
-- [v0.12.2 (December 2014)](https://github.com/facebook/react/blob/main/CHANGELOG.md#0122-december-18-2014)
-- [v0.12.1 (November 2014)](https://github.com/facebook/react/blob/main/CHANGELOG.md#0121-november-18-2014)
-- [v0.12.0 (October 2014)](https://github.com/facebook/react/blob/main/CHANGELOG.md#0120-october-28-2014)
+- [v0.12.2 (December 2014)](https://github.com/react/react/blob/main/CHANGELOG.md#0122-december-18-2014)
+- [v0.12.1 (November 2014)](https://github.com/react/react/blob/main/CHANGELOG.md#0121-november-18-2014)
+- [v0.12.0 (October 2014)](https://github.com/react/react/blob/main/CHANGELOG.md#0120-october-28-2014)
 
 ### React 0.11 {/*react-11*/}
 
@@ -266,9 +281,9 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 - [Introducing the JSX Specificaion](https://legacy.reactjs.org/blog/2014/09/03/introducing-the-jsx-specification.html)
 
 **Releases**
-- [v0.11.2 (September 2014)](https://github.com/facebook/react/blob/main/CHANGELOG.md#0112-september-16-2014)
-- [v0.11.1 (July 2014)](https://github.com/facebook/react/blob/main/CHANGELOG.md#0111-july-24-2014)
-- [v0.11.0 (July 2014)](https://github.com/facebook/react/blob/main/CHANGELOG.md#0110-july-17-2014)
+- [v0.11.2 (September 2014)](https://github.com/react/react/blob/main/CHANGELOG.md#0112-september-16-2014)
+- [v0.11.1 (July 2014)](https://github.com/react/react/blob/main/CHANGELOG.md#0111-july-24-2014)
+- [v0.11.0 (July 2014)](https://github.com/react/react/blob/main/CHANGELOG.md#0110-july-17-2014)
 
 ### React 0.10 and below {/*react-10-and-below*/}
 
@@ -286,25 +301,25 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 - [React v0.4.0](https://legacy.reactjs.org/blog/2013/07/17/react-v0-4-0.html)
 - [New in React v0.4: Prop Validation and Default Values](https://legacy.reactjs.org/blog/2013/07/11/react-v0-4-prop-validation-and-default-values.html)
 - [New in React v0.4: Autobind by Default](https://legacy.reactjs.org/blog/2013/07/02/react-v0-4-autobind-by-default.html)
-- [React v0.3.3](https://legacy.reactjs.org/blog/2013/07/02/react-v0-4-autobind-by-default.html)
+- [React v0.3.3](https://legacy.reactjs.org/blog/2013/06/21/react-v0-3-3.html)
 
 **Releases**
-- [v0.10.0 (March 2014)](https://github.com/facebook/react/blob/main/CHANGELOG.md#0100-march-21-2014)
-- [v0.9.0 (February 2014)](https://github.com/facebook/react/blob/main/CHANGELOG.md#090-february-20-2014)
-- [v0.8.0 (December 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#080-december-19-2013)
-- [v0.5.2 (December 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#052-042-december-18-2013)
-- [v0.5.1 (October 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#051-october-29-2013)
-- [v0.5.0 (October 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#050-october-16-2013)
-- [v0.4.1 (July 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#041-july-26-2013)
-- [v0.4.0 (July 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#040-july-17-2013)
-- [v0.3.3 (June 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#033-june-20-2013)
-- [v0.3.2 (May 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#032-may-31-2013)
-- [v0.3.1 (May 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#031-may-30-2013)
-- [v0.3.0 (May 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#031-may-30-2013)
+- [v0.10.0 (March 2014)](https://github.com/react/react/blob/main/CHANGELOG.md#0100-march-21-2014)
+- [v0.9.0 (February 2014)](https://github.com/react/react/blob/main/CHANGELOG.md#090-february-20-2014)
+- [v0.8.0 (December 2013)](https://github.com/react/react/blob/main/CHANGELOG.md#080-december-19-2013)
+- [v0.5.2 (December 2013)](https://github.com/react/react/blob/main/CHANGELOG.md#052-042-december-18-2013)
+- [v0.5.1 (October 2013)](https://github.com/react/react/blob/main/CHANGELOG.md#051-october-29-2013)
+- [v0.5.0 (October 2013)](https://github.com/react/react/blob/main/CHANGELOG.md#050-october-16-2013)
+- [v0.4.1 (July 2013)](https://github.com/react/react/blob/main/CHANGELOG.md#041-july-26-2013)
+- [v0.4.0 (July 2013)](https://github.com/react/react/blob/main/CHANGELOG.md#040-july-17-2013)
+- [v0.3.3 (June 2013)](https://github.com/react/react/blob/main/CHANGELOG.md#033-june-20-2013)
+- [v0.3.2 (May 2013)](https://github.com/react/react/blob/main/CHANGELOG.md#032-may-31-2013)
+- [v0.3.1 (May 2013)](https://github.com/react/react/blob/main/CHANGELOG.md#031-may-30-2013)
+- [v0.3.0 (May 2013)](https://github.com/react/react/blob/main/CHANGELOG.md#030-may-29-2013)
 
 ### Initial Commit {/*initial-commit*/}
 
-React was open-sourced on May 29, 2013. The initial commit is: [`75897c`: Initial public release](https://github.com/facebook/react/commit/75897c2dcd1dd3a6ca46284dd37e13d22b4b16b4)
+React was open-sourced on May 29, 2013. The initial commit is: [`75897c`: Initial public release](https://github.com/react/react/commit/75897c2dcd1dd3a6ca46284dd37e13d22b4b16b4)
 
 See the first blog post: [Why did we build React?](https://legacy.reactjs.org/blog/2013/06/05/why-react.html)
 

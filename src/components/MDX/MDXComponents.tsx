@@ -38,7 +38,7 @@ import YouWillLearnCard from './YouWillLearnCard';
 import {Challenges, Hint, Solution} from './Challenges';
 import {IconNavArrow} from '../Icon/IconNavArrow';
 import ButtonLink from 'components/ButtonLink';
-import {TocContext} from './TocContext';
+import {TocContext, IsInTocContext} from './TocContext';
 import type {Toc, TocItem} from './TocContext';
 import {TeamMember} from './TeamMember';
 import {LanguagesContext} from './LanguagesContext';
@@ -124,33 +124,57 @@ const RSC = ({children}: {children: React.ReactNode}) => (
   <ExpandableCallout type="rsc">{children}</ExpandableCallout>
 );
 
-const CanaryBadge = ({title}: {title: string}) => (
-  <span
-    title={title}
-    className={
-      'text-base font-display px-1 py-0.5 font-bold bg-gray-10 dark:bg-gray-60 text-gray-60 dark:text-gray-10 rounded'
-    }>
-    <IconCanary
-      size="s"
-      className={'inline me-1 mb-0.5 text-sm text-gray-60 dark:text-gray-10'}
-    />
-    Canary only
-  </span>
-);
+const CanaryBadge = ({title}: {title: string}) => {
+  const isInToc = useContext(IsInTocContext);
+  if (isInToc) {
+    return (
+      <IconCanary
+        size="s"
+        title={title}
+        className="inline me-1 mb-0.5 text-gray-60 dark:text-gray-10"
+      />
+    );
+  }
+  return (
+    <span
+      title={title}
+      className={
+        'text-base font-display px-1 py-0.5 font-bold bg-gray-10 dark:bg-gray-60 text-gray-60 dark:text-gray-10 rounded'
+      }>
+      <IconCanary
+        size="s"
+        className={'inline me-1 mb-0.5 text-sm text-gray-60 dark:text-gray-10'}
+      />
+      Canary only
+    </span>
+  );
+};
 
-const ExperimentalBadge = ({title}: {title: string}) => (
-  <span
-    title={title}
-    className={
-      'text-base font-display px-1 py-0.5 font-bold bg-gray-10 dark:bg-gray-60 text-gray-60 dark:text-gray-10 rounded'
-    }>
-    <IconExperimental
-      size="s"
-      className={'inline me-1 mb-0.5 text-sm text-gray-60 dark:text-gray-10'}
-    />
-    Experimental only
-  </span>
-);
+const ExperimentalBadge = ({title}: {title: string}) => {
+  const isInToc = useContext(IsInTocContext);
+  if (isInToc) {
+    return (
+      <IconExperimental
+        size="s"
+        title={title}
+        className="inline me-1 mb-0.5 text-gray-60 dark:text-gray-10"
+      />
+    );
+  }
+  return (
+    <span
+      title={title}
+      className={
+        'text-base font-display px-1 py-0.5 font-bold bg-gray-10 dark:bg-gray-60 text-gray-60 dark:text-gray-10 rounded'
+      }>
+      <IconExperimental
+        size="s"
+        className={'inline me-1 mb-0.5 text-sm text-gray-60 dark:text-gray-10'}
+      />
+      Experimental only
+    </span>
+  );
+};
 
 const NextMajorBadge = ({title}: {title: string}) => (
   <span
@@ -424,7 +448,11 @@ function InlineToc() {
   if (root.children.length < 2) {
     return null;
   }
-  return <InlineTocItem items={root.children} />;
+  return (
+    <IsInTocContext.Provider value={true}>
+      <InlineTocItem items={root.children} />
+    </IsInTocContext.Provider>
+  );
 }
 
 function InlineTocItem({items}: {items: Array<NestedTocNode>}) {

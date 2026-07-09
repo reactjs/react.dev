@@ -46,8 +46,8 @@ module.exports = {
       'inner-border-dark': 'inset 0 0 0 1px rgba(255, 255, 255, 0.08)',
       'outer-border': '0 0 0 1px rgba(0, 0, 0, 0.1)',
       'outer-border-dark': '0 0 0 1px rgba(255, 255, 255, 0.1)',
-      'secondary-button-stroke': 'inset 0 0 0 1px #D9DBE3',
-      'secondary-button-stroke-dark': 'inset 0 0 0 1px #404756',
+      'secondary-button-stroke': 'inset 0 0 0 1px #BCC1CD',
+      'secondary-button-stroke-dark': 'inset 0 0 0 1px #4E5769',
       none: 'none',
     },
     extend: {

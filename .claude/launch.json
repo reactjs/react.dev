@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "reactdev",
+      "runtimeExecutable": "yarn",
+      "runtimeArgs": ["next", "dev", "--webpack", "-p", "3939"],
+      "port": 3939
+    }
+  ]
+}

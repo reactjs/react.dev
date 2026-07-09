@@ -237,13 +237,13 @@ Starting in 19.2, React will batch reveals of server-rendered Suspense boundarie
 
 <Diagram name="19_2_batching_before" height={162} width={1270} alt="Diagram with three sections, with an arrow transitioning each section in between. The first section contains a page rectangle showing a glimmer loading state with faded bars. The second panel shows the top half of the page revealed and highlighted in blue. The third panel shows the entire the page revealed and highlighted in blue.">
 
-Previously, during streaming server-side rendering, suspense content would immediately replace fallbacks.
+Previously, during streaming server-side rendering, Suspense content would immediately replace fallbacks.
 
 </Diagram>
 
 <Diagram name="19_2_batching_after" height={162} width={1270} alt="Diagram with three sections, with an arrow transitioning each section in between. The first section contains a page rectangle showing a glimmer loading state with faded bars. The second panel shows the same page. The third panel shows the entire the page revealed and highlighted in blue.">
 
-In React 19.2, suspense boundaries are batched for a small amount of time, to allow revealing more content together.
+In React 19.2, Suspense boundaries are batched for a small amount of time, to allow revealing more content together.
 
 </Diagram>
 
@@ -323,7 +323,7 @@ Notable bug fixes
 - `react`: Fix infinite useDeferredValue loop in popstate event [#32821](https://github.com/facebook/react/pull/32821)
 - `react`: Fix a bug when an initial value was passed to useDeferredValue [#34376](https://github.com/facebook/react/pull/34376)
 - `react`: Fix a crash when submitting forms with Client Actions [#33055](https://github.com/facebook/react/pull/33055)
-- `react`: Hide/unhide the content of dehydrated suspense boundaries if they resuspend [#32900](https://github.com/facebook/react/pull/32900)
+- `react`: Hide/unhide the content of dehydrated Suspense boundaries if they resuspend [#32900](https://github.com/facebook/react/pull/32900)
 - `react`: Avoid stack overflow on wide trees during Hot Reload [#34145](https://github.com/facebook/react/pull/34145)
 - `react`: Improve component stacks in various places [#33629](https://github.com/facebook/react/pull/33629), [#33724](https://github.com/facebook/react/pull/33724), [#32735](https://github.com/facebook/react/pull/32735), [#33723](https://github.com/facebook/react/pull/33723)
 - `react`: Fix a bug with React.use inside React.lazy-ed Component [#33941](https://github.com/facebook/react/pull/33941)

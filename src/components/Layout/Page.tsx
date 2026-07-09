@@ -130,11 +130,12 @@ export function Page({
         titleForTitleTag={meta.titleForTitleTag}
         isHomePage={isHomePage}
         image={
-          isHomePage || !title
+          // OG images are generated per page at build time by
+          // scripts/generateOgImages.mjs. Error pages have dynamic
+          // titles, so they keep the static section image.
+          isHomePage || !title || cleanedPath.startsWith('/errors')
             ? `/images/og-` + section + '.png'
-            : `/api/og?title=${encodeURIComponent(
-                title
-              )}&path=${encodeURIComponent(cleanedPath)}`
+            : `/images/og/${cleanedPath.slice(1).replace(/\//g, '-')}.png`
         }
         searchOrder={searchOrder}
       />

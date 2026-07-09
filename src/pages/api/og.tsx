@@ -5,34 +5,30 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import fs from 'fs';
+import path from 'path';
 import {ImageResponse} from 'next/og';
-import type {NextRequest} from 'next/server';
+import type {NextApiRequest, NextApiResponse} from 'next';
 
-export const config = {
-  runtime: 'edge',
-};
+// Satori can't read woff2, so the site fonts are also vendored as
+// TTF in public/fonts (converted from the woff2 files there).
+const fontsDir = path.join(process.cwd(), 'public', 'fonts');
+const bold = fs.readFileSync(
+  path.join(fontsDir, 'Optimistic_Display_W_Bd.ttf')
+);
+const medium = fs.readFileSync(
+  path.join(fontsDir, 'Optimistic_Display_W_Md.ttf')
+);
 
-const SECTION_LABELS: Record<string, string> = {
-  learn: 'Learn React',
-  reference: 'API Reference',
-  community: 'Community',
-  blog: 'Blog',
-};
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  const title = String(req.query.title ?? 'react.dev').slice(0, 80);
+  const pagePath = String(req.query.path ?? '').slice(0, 120);
+  const footer = ('react.dev' + pagePath).toUpperCase();
 
-// Satori doesn't support woff2, so the site fonts can't be reused here.
-// Source Code Pro matches the code-styled titles used across the docs.
-const fontPromise = fetch(
-  'https://raw.githubusercontent.com/adobe-fonts/source-code-pro/release/TTF/SourceCodePro-Semibold.ttf'
-).then((res) => res.arrayBuffer());
-
-export default async function handler(request: NextRequest) {
-  const {searchParams} = new URL(request.url);
-  const title = searchParams.get('title')?.slice(0, 80) ?? 'react.dev';
-  const section = searchParams.get('section') ?? '';
-  const label = SECTION_LABELS[section] ?? 'react.dev';
-  const fontData = await fontPromise;
-
-  return new ImageResponse(
+  const image = new ImageResponse(
     (
       <div
         style={{
@@ -40,9 +36,10 @@ export default async function handler(request: NextRequest) {
           height: '100%',
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'center',
-          padding: '80px',
+          padding: '72px 80px',
           backgroundColor: '#23272f',
+          backgroundImage:
+            'radial-gradient(circle at 25% 30%, #343a46 0%, #23272f 55%)',
         }}>
         <div
           style={{
@@ -50,32 +47,29 @@ export default async function handler(request: NextRequest) {
             alignItems: 'center',
             gap: '20px',
           }}>
-          <svg
-            width="72"
-            height="72"
-            viewBox="-11.5 -10.23 23 20.46"
-            fill="none">
-            <circle cx="0" cy="0" r="2.05" fill="#58c4dc" />
+          <svg width="80" height="72" viewBox="-10.5 -9.45 21 18.9" fill="none">
+            <circle cx="0" cy="0" r="2" fill="#58c4dc" />
             <g stroke="#58c4dc" strokeWidth="1" fill="none">
-              <ellipse rx="11" ry="4.2" />
-              <ellipse rx="11" ry="4.2" transform="rotate(60)" />
-              <ellipse rx="11" ry="4.2" transform="rotate(120)" />
+              <ellipse rx="10" ry="4.5" />
+              <ellipse rx="10" ry="4.5" transform="rotate(60)" />
+              <ellipse rx="10" ry="4.5" transform="rotate(120)" />
             </g>
           </svg>
           <div
             style={{
-              fontSize: 36,
-              color: '#99a1b3',
-              textTransform: 'uppercase',
-              letterSpacing: '0.1em',
+              fontSize: 48,
+              fontFamily: 'Optimistic Display Bold',
+              color: '#f6f7f9',
             }}>
-            {label}
+            React
           </div>
         </div>
         <div
           style={{
-            marginTop: 48,
-            fontSize: title.length > 24 ? 64 : 96,
+            marginTop: 'auto',
+            marginBottom: 'auto',
+            fontSize: title.length > 24 ? 72 : 96,
+            fontFamily: 'Optimistic Display Bold',
             color: '#f6f7f9',
             lineHeight: 1.1,
             wordBreak: 'break-word',
@@ -84,11 +78,12 @@ export default async function handler(request: NextRequest) {
         </div>
         <div
           style={{
-            marginTop: 'auto',
-            fontSize: 32,
+            fontSize: 28,
+            fontFamily: 'Optimistic Display Medium',
             color: '#99a1b3',
+            letterSpacing: '0.08em',
           }}>
-          react.dev
+          {footer}
         </div>
       </div>
     ),
@@ -97,12 +92,23 @@ export default async function handler(request: NextRequest) {
       height: 630,
       fonts: [
         {
-          name: 'Source Code Pro',
-          data: fontData,
+          name: 'Optimistic Display Bold',
+          data: bold,
           style: 'normal',
-          weight: 600,
+          weight: 700,
+        },
+        {
+          name: 'Optimistic Display Medium',
+          data: medium,
+          style: 'normal',
+          weight: 500,
         },
       ],
     }
   );
+
+  const buffer = Buffer.from(await image.arrayBuffer());
+  res.setHeader('Content-Type', 'image/png');
+  res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+  res.end(buffer);
 }

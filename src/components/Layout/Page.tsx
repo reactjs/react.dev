@@ -134,7 +134,7 @@ export function Page({
             ? `/images/og-` + section + '.png'
             : `/api/og?title=${encodeURIComponent(
                 title
-              )}&section=${encodeURIComponent(section)}`
+              )}&path=${encodeURIComponent(cleanedPath)}`
         }
         searchOrder={searchOrder}
       />

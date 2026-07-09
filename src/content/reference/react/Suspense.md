@@ -3156,7 +3156,7 @@ export function freshImageUrl() {
 export async function fetchQuote() {
   // Add a fake delay to make waiting noticeable.
   await new Promise((resolve) => {
-    setTimeout(resolve, 2000);
+    setTimeout(resolve, 1000);
   });
   return 'The best way to predict the future is to invent it.';
 }

@@ -46,9 +46,17 @@ export function buildPageMetadata({
 
   const siteDomain = getDomain(siteConfig.languageCode);
   const canonicalUrl = `https://${siteDomain}${pathname}`;
-  const ogImage = `https://${siteDomain}/images/og-${
-    section === 'unknown' ? 'default' : section
-  }.png`;
+  // OG images are generated per page at build time by
+  // scripts/generateOgImages.mjs. Pages without a generated card
+  // (home, errors) fall back to the static section image.
+  const ogImage =
+    isHomePage || !title || pathname.startsWith('/errors')
+      ? `https://${siteDomain}/images/og-${
+          section === 'unknown' ? 'default' : section
+        }.png`
+      : `https://${siteDomain}/images/og/${pathname
+          .slice(1)
+          .replace(/\//g, '-')}.png`;
 
   const languages: Record<string, string> = {
     'x-default': canonicalUrl.replace(siteDomain, getDomain('en')),

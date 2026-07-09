@@ -114,7 +114,9 @@ React work is organized into working groups, each responsible for an area of the
     Jason abandoned embedded C for a career in front-end engineering and never looked back. Armed with esoteric CSS knowledge and a passion for beautiful UI, Jason joined Facebook in 2010, where he now feels privileged to have seen JavaScript development come of age. Though he may not understand how `for...of` loops work, he loves getting to work with brilliant people on projects that enable amazing UX.
 </TeamMember>
 
-<TeamMember name="Jimmy Lai" permalink="jimmy-lai" photo="/images/team/jimmy-lai.jpg" github="feedthejim" title="Engineering Director, Next.js at Vercel" />
+<TeamMember name="Jimmy Lai" permalink="jimmy-lai" photo="/images/team/jimmy-lai.jpg" github="feedthejim" title="Engineering Director, Next.js at Vercel">
+    Like many others, Jimmy started programming with the hopes of being able to work in the gaming industry. Fast forward a few years, he somehow decided that React and Javascript were pretty fun and that helping other developers build fast experiences was a more interesting life goal. After starting his career at Meta, working on product infrastructure and (briefly) on React Native, Jimmy now works at Vercel, where he helps his team build Next.js. He sadly does not get much time for video games anymore.
+</TeamMember>
 
 <TeamMember name="Seth Webster" permalink="seth-webster" photo="/images/team/seth.jpg" github="sethwebster" twitter="sethwebster" threads="sethwebster" personal="sethwebster.com" title="Executive Director, React Foundation, Chief Developer Evangelist at Expo">
     Seth started programming as a kid growing up in Tucson, AZ. After school, he was bitten by the music bug and was a touring musician for about 10 years before returning to *work*, starting with Intuit. In his spare time, he loves [taking pictures](https://www.sethwebster.com) and flying for animal rescues in the northeastern United States.

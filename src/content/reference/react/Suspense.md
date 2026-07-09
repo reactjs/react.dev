@@ -2978,7 +2978,7 @@ export function freshImageUrl() {
 
 ```css
 #root {
-  min-height: 440px;
+  min-height: 320px;
 }
 .card {
   margin-top: 1em;
@@ -3025,7 +3025,7 @@ hr {
 
 All of these waits work together. In the example below, the `ProfileCard` component suspends while its data loads, and renders a stylesheet with `precedence`, text in a new font, and a portrait. React keeps the skeleton visible while the data and the stylesheet load. The `<ViewTransition>` reveal then waits for the font and the image, so the card appears complete.
 
-For comparison, the plain DOM version loads the same data and shows every resource arriving on its own schedule:
+For comparison, the second button performs the same update with plain DOM, without React. It loads the same data first, and then each resource pops in as it arrives:
 
 <Sandpack>
 
@@ -3155,7 +3155,7 @@ export function freshImageUrl() {
 export async function fetchQuote() {
   // Add a fake delay to make waiting noticeable.
   await new Promise((resolve) => {
-    setTimeout(resolve, 2000);
+    setTimeout(resolve, 300);
   });
   return 'The best way to predict the future is to invent it.';
 }

@@ -2377,13 +2377,16 @@ The server HTML will include the loading indicator. It will be replaced by the `
 
 A stylesheet rendered with [`<link rel="stylesheet">` and a `precedence` prop](/reference/react-dom/components/link#special-rendering-behavior) blocks the Suspense boundary until the stylesheet loads, up to a timeout, so the content doesn't appear unstyled.
 
-In the example below, the `Card` component renders a stylesheet with `precedence`. Press "Show card": React shows the fallback until the stylesheet has loaded, and then reveals the card with its styles applied:
+In the example below, the `Card` component renders a stylesheet with `precedence`. Press "Show card": React shows the fallback until the stylesheet has loaded, and then reveals the card with its styles applied.
+
+For comparison, the second button performs the same update with plain DOM in a separate document, without React. Nothing waits for the stylesheet, so the card's text appears in a fallback font first and then switches:
 
 <Sandpack>
 
 ```js
 import { Suspense, useState, startTransition } from 'react';
 import { freshStylesheetUrl } from './styles.js';
+import VanillaCard from './VanillaCard.js';
 
 function Card({ href }) {
   return (
@@ -2411,6 +2414,43 @@ export default function App() {
           <Card href={href} />
         </Suspense>
       )}
+      <hr />
+      <VanillaCard />
+    </>
+  );
+}
+```
+
+```js src/VanillaCard.js
+import { useRef } from 'react';
+import { freshStylesheetUrl } from './styles.js';
+
+export default function VanillaCard() {
+  const ref = useRef(null);
+  function show() {
+    const doc = ref.current.contentWindow.document;
+    doc.open();
+    doc.write(`
+      <link rel="stylesheet" href="${freshStylesheetUrl()}">
+      <style>
+        body { margin: 0; }
+        .fancy-card {
+          padding: 20px;
+          border-radius: 8px;
+          color: white;
+          font-family: 'Caveat', sans-serif;
+          font-size: 24px;
+          background: linear-gradient(135deg, #087ea4, #2b3491);
+        }
+      </style>
+      <div class="fancy-card">This card uses a font from the stylesheet.</div>
+    `);
+    doc.close();
+  }
+  return (
+    <>
+      <button onClick={show}>Show card (vanilla DOM)</button>
+      <iframe ref={ref} title="Vanilla card" className="vanilla-frame" />
     </>
   );
 }
@@ -2421,7 +2461,7 @@ export default function App() {
 // and every run shows the loading state.
 export function freshStylesheetUrl() {
   return (
-    'https://fonts.googleapis.com/css2?family=Caveat&display=block' +
+    'https://fonts.googleapis.com/css2?family=Caveat&display=swap' +
     '&t=' +
     Date.now()
   );
@@ -2430,10 +2470,13 @@ export function freshStylesheetUrl() {
 
 ```css
 #root {
-  min-height: 140px;
+  min-height: 300px;
 }
 button {
   margin-right: 8px;
+}
+hr {
+  margin: 16px 0;
 }
 .fancy-card {
   margin-top: 1em;
@@ -2443,6 +2486,13 @@ button {
   font-family: 'Caveat', sans-serif;
   font-size: 24px;
   background: linear-gradient(135deg, #087ea4, #2b3491);
+}
+.vanilla-frame {
+  display: block;
+  margin-top: 1em;
+  border: none;
+  width: 100%;
+  height: 90px;
 }
 ```
 

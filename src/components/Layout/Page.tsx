@@ -129,7 +129,13 @@ export function Page({
         title={title}
         titleForTitleTag={meta.titleForTitleTag}
         isHomePage={isHomePage}
-        image={`/images/og-` + section + '.png'}
+        image={
+          isHomePage || !title
+            ? `/images/og-` + section + '.png'
+            : `/api/og?title=${encodeURIComponent(
+                title
+              )}&section=${encodeURIComponent(section)}`
+        }
         searchOrder={searchOrder}
       />
       {(isHomePage || isBlogIndex) && (

@@ -51,7 +51,7 @@ To create interactive controls for submitting information, render the [built-in 
 
 ### Handling form submission with an event handler {/*handle-form-submission-with-an-event-handler*/}
 
-Pass a function to the `onSubmit` event handler to run code when the form is submitted. By default, the browser sends the form data to the current URL and refreshes the page. Call [`e.preventDefault()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault) in your handler to override that behavior.
+Pass a function to the `onSubmit` event handler to run code when the form is submitted. By default, the browser sends the form data to the current URL and refreshes the page. Calling [`e.preventDefault()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault) in the event handler overrides this behavior.
 
 
 <Sandpack>
@@ -59,6 +59,8 @@ Pass a function to the `onSubmit` event handler to run code when the form is sub
 ```js src/App.js
 export default function Search() {
   function handleSubmit(e) {
+    // Prevent the browser from reloading the page
+    e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
     const query = formData.get("query");
@@ -378,7 +380,7 @@ Learn more about updating state from a form Action with the [`useActionState`](/
 
 ### Preserving form values after submission {/*preserve-form-values-after-submission*/}
 
-By default, the browser clears a form's input state after submission. Forms with a URL `action` follow this behavior, and React mirrors it when `action` is a function-ensuring your form behaves consistently both before and after JavaScript loads.
+By default, the browser clears a form's input state after submission. Forms with a URL `action` follow this behavior, and React mirrors it when `action` is a function, ensuring your form behaves consistently both before and after JavaScript loads.
 
 When you pass a function to `action` or `formAction`, React resets the form's [uncontrolled fields](/reference/react-dom/components/input#reading-the-input-values-when-submitting-a-form) after the Action succeeds. This reset only affects uncontrolled fields—[inputs controlled with state](/reference/react-dom/components/input#controlling-an-input-with-a-state-variable) are never cleared.
 
@@ -425,7 +427,8 @@ export async function submitForm(previousState, formData) {
 
 #### `onSubmit` and `action` {/*with-onsubmit-and-usetransition*/}
 
-Adding an `onSubmit` handler that calls `e.preventDefault()` will run instead of the `action` prop.
+Calling `e.preventDefault()` in an `onSubmit` handler prevents the `action` prop from running. Without `e.preventDefault()`, both the `action` prop and the `onSubmit` handler will run.
+
 
 <Sandpack>
 

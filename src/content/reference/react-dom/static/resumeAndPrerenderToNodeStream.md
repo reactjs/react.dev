@@ -24,7 +24,7 @@ This API is specific to Node.js. Environments with [Web Streams,](https://develo
 
 ## Reference {/*reference*/}
 
-### `resumeAndPrerenderToNodeStream(reactNode, postponedState, options?)` {/*resumeandprerendertolnodestream*/}
+### `resumeAndPrerenderToNodeStream(reactNode, postponedState, options?)` {/*resumeandprerendertonodestream*/}
 
 Call `resumeAndPrerenderToNodeStream` to continue a prerendered React tree to a static HTML string.
 
@@ -81,4 +81,3 @@ The static `resumeAndPrerenderToNodeStream` API is used for static server-side g
 
 `resumeAndPrerenderToNodeStream` behaves similarly to [`prerender`](/reference/react-dom/static/prerender) but can be used to continue a previously started prerendering process that was aborted.
 For more information about resuming a prerendered tree, see the [resume documentation](/reference/react-dom/server/resume#resuming-a-prerender).
-

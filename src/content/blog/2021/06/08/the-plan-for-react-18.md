@@ -19,9 +19,9 @@ The React team is excited to share a few updates:
 
 These updates are primarily aimed at maintainers of third-party libraries. If you’re learning, teaching, or using React to build user-facing applications, you can safely ignore this post. But you are welcome to follow the discussions in the React 18 Working Group if you're curious!
 
----
-
 </Intro>
+
+---
 
 ## What’s coming in React 18 {/*whats-coming-in-react-18*/}
 

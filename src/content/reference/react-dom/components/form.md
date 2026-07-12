@@ -109,6 +109,51 @@ export default function Search() {
 
 </Sandpack>
 
+### Keep form values after submission {/*keep-form-values-after-submission*/}
+
+When a function is passed to the `action` prop, React resets all uncontrolled field elements in the form after the action succeeds.
+
+If you want to preserve the current form values after submission, use `onSubmit` instead of `action`. You can prevent the default form submission behavior and call your action manually inside a Transition.
+
+<Sandpack>
+
+```js src/App.js
+import { useTransition } from "react";
+
+export default function Search() {
+  const [isPending, startTransition] = useTransition();
+
+  async function search(formData) {
+    const query = formData.get("query");
+    alert(`You searched for '${query}'`);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+
+    startTransition(() => {
+      search(formData);
+    });
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input name="query" />
+      <button type="submit" disabled={isPending}>
+        Search
+      </button>
+    </form>
+  );
+}
+```
+
+</Sandpack>
+
+Using `onSubmit` preserves the browser's default behavior of leaving form values unchanged after submission while still allowing the submission logic to run in a Transition.
+
+
 ### Handle form submission with a Server Function {/*handle-form-submission-with-a-server-function*/}
 
 Render a `<form>` with an input and submit button. Pass a Server Function (a function marked with [`'use server'`](/reference/rsc/use-server)) to the `action` prop of form to run the function when the form is submitted.

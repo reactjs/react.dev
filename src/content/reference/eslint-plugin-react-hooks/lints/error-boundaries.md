@@ -32,7 +32,7 @@ function Parent() {
 Examples of correct code for this rule:
 
 ```js
-// ✅ Using error boundary
+// ✅ Using Error Boundary
 function Parent() {
   return (
     <ErrorBoundary>

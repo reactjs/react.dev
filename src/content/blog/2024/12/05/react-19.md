@@ -756,7 +756,7 @@ The above error occurred in the Throws component:
 {'  '}at Throws
 {'  '}at ErrorBoundary
 {'  '}at App{'\n'}
-React will try to recreate this component tree from scratch using the error boundary you provided, ErrorBoundary.
+React will try to recreate this component tree from scratch using the Error Boundary you provided, ErrorBoundary.
 
 </ConsoleLogLine>
 
@@ -776,7 +776,7 @@ The above error occurred in the Throws component:
 {'  '}at Throws
 {'  '}at ErrorBoundary
 {'  '}at App{'\n'}
-React will try to recreate this component tree from scratch using the error boundary you provided, ErrorBoundary.
+React will try to recreate this component tree from scratch using the Error Boundary you provided, ErrorBoundary.
 {'  '}at ErrorBoundary
 {'  '}at App
 

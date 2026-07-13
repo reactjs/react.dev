@@ -63,6 +63,12 @@ This might remind you of a waiter taking an order at the restaurant. A waiter do
 
 This lets you update multiple state variables--even from multiple components--without triggering too many [re-renders.](/learn/render-and-commit#re-renders-when-state-updates) But this also means that the UI won't be updated until _after_ your event handler, and any code in it, completes. This behavior, also known as **batching,** makes your React app run much faster. It also avoids dealing with confusing "half-finished" renders where only some of the variables have been updated.
 
+<Note>
+
+Batching refers to how React groups multiple state updates into a single re-render, and does not affect the behavior of individual state setters.
+
+</Note>
+
 **React does not batch across *multiple* intentional events like clicks**--each click is handled separately. Rest assured that React only does batching when it's generally safe to do. This ensures that, for example, if the first button click disables a form, the second click would not submit it again.
 
 ## Updating the same state multiple times before the next render {/*updating-the-same-state-multiple-times-before-the-next-render*/}

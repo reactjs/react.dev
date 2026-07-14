@@ -113,10 +113,11 @@ export default function TodoList() {
 
 ### Where to use curly braces {/*where-to-use-curly-braces*/}
 
-You can only use curly braces in two ways inside JSX:
+You can only use curly braces in three ways inside JSX:
 
 1. **As text** directly inside a JSX tag: `<h1>{name}'s To Do List</h1>` works, but `<{tag}>Gregorio Y. Zara's To Do List</{tag}>`  will not.
 2. **As attributes** immediately following the `=` sign: `src={avatar}` will read the `avatar` variable, but `src="{avatar}"` will pass the string `"{avatar}"`.
+3. **As a way to spread an object's properties** across a component's attributes: Using `{...props}` inside a JSX tag, like `<img {...props} />`, assigns each key-value pair of the `props` object to an attribute of the `img` tag. This lets us pass multiple attributes to the component without explicitly specifying each one. More on that in the [next chapter](/learn/passing-props-to-a-component#forwarding-props-with-the-jsx-spread-syntax)!
 
 ## Using "double curlies": CSS and other objects in JSX {/*using-double-curlies-css-and-other-objects-in-jsx*/}
 

@@ -402,7 +402,7 @@ export default function TopNav({
         {isMenuOpen && (
           <div
             ref={scrollParentRef}
-            className="overflow-y-scroll isolate no-bg-scrollbar lg:w-[342px] grow bg-wash dark:bg-wash-dark">
+            className="overflow-y-scroll isolate no-bg-scrollbar lg:w-80 grow bg-wash dark:bg-wash-dark">
             <aside
               className={cn(
                 `lg:grow lg:flex flex-col w-full pb-8 lg:pb-0 lg:max-w-custom-xs z-40`,

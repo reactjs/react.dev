@@ -29,13 +29,17 @@ To create a portal, call `createPortal`, passing some JSX, and the DOM node wher
 ```js
 import { createPortal } from 'react-dom';
 
+const portalNode = document.createElement('div')
+portalNode.id = 'portal'
+document.appendChild(portalNode)
+
 // ...
 
 <div>
   <p>This child is placed in the parent div.</p>
   {createPortal(
-    <p>This child is placed in the document body.</p>,
-    document.body
+    <p>This child is placed at the end of document body in a portal-specific DOM node.</p>,
+    portalNode
   )}
 </div>
 ```
@@ -70,16 +74,20 @@ A portal only changes the physical placement of the DOM node. In every other way
 
 To create a portal, render the result of `createPortal` with <CodeStep step={1}>some JSX</CodeStep> and the <CodeStep step={2}>DOM node where it should go</CodeStep>:
 
-```js [[1, 8, "<p>This child is placed in the document body.</p>"], [2, 9, "document.body"]]
+```js [[1, 11, "<p>This child is placed at the end of document body.</p>"], [2, 12, "portalNode"]]
 import { createPortal } from 'react-dom';
+
+const portalNode = document.createElement('div')
+portalNode.id = 'portal'
+document.appendChild(portalNode)
 
 function MyComponent() {
   return (
     <div style={{ border: '2px solid black' }}>
       <p>This child is placed in the parent div.</p>
       {createPortal(
-        <p>This child is placed in the document body.</p>,
-        document.body
+        <p>This child is placed at the end of document body.</p>,
+        portalNode
       )}
     </div>
   );
@@ -88,20 +96,24 @@ function MyComponent() {
 
 React will put the DOM nodes for <CodeStep step={1}>the JSX you passed</CodeStep> inside of the <CodeStep step={2}>DOM node you provided</CodeStep>.
 
-Without a portal, the second `<p>` would be placed inside the parent `<div>`, but the portal "teleported" it into the [`document.body`:](https://developer.mozilla.org/en-US/docs/Web/API/Document/body)
+Without a portal, the second `<p>` would be placed inside the parent `<div>`, but the portal "teleported" it into the end of [`document.body`:](https://developer.mozilla.org/en-US/docs/Web/API/Document/body) in a portal-specific node.
 
 <Sandpack>
 
 ```js
 import { createPortal } from 'react-dom';
 
+const portalNode = document.createElement('div')
+portalNode.id = 'portal'
+document.appendChild(portalNode)
+
 export default function MyComponent() {
   return (
     <div style={{ border: '2px solid black' }}>
       <p>This child is placed in the parent div.</p>
       {createPortal(
-        <p>This child is placed in the document body.</p>,
-        document.body
+        <p>This child is placed at the end of document body.</p>,
+        portalNode
       )}
     </div>
   );
@@ -179,6 +191,10 @@ import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import ModalContent from './ModalContent.js';
 
+const portalNode = document.createElement('div')
+portalNode.id = 'portal'
+document.appendChild(portalNode)
+
 export default function PortalExample() {
   const [showModal, setShowModal] = useState(false);
   return (
@@ -188,7 +204,7 @@ export default function PortalExample() {
       </button>
       {showModal && createPortal(
         <ModalContent onClose={() => setShowModal(false)} />,
-        document.body
+        portalNode
       )}
     </>
   );

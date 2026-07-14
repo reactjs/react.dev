@@ -82,6 +82,11 @@ function Form() {
 ```
 
 It doesn't matter how many layers of components there are between the provider and the `Button`. When a `Button` *anywhere* inside of `Form` calls `useContext(ThemeContext)`, it will receive `"dark"` as the value.
+<Note>
+
+[`use(context)`](/reference/react/use) is preferred over `useContext` when you need to access context inside conditionals (like if) or loops (like for), as it is more flexible than `useContext`.
+
+</Note>
 
 <Pitfall>
 

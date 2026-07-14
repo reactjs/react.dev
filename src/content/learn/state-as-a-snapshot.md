@@ -73,7 +73,7 @@ Let's take a closer look at the relationship between state and rendering.
 
 ["Rendering"](/learn/render-and-commit#step-2-react-renders-your-components) means that React is calling your component, which is a function. The JSX you return from that function is like a snapshot of the UI in time. Its props, event handlers, and local variables were all calculated **using its state at the time of the render.**
 
-Unlike a photograph or a movie frame, the UI "snapshot" you return is interactive. It includes logic like event handlers that specify what happens in response to inputs. React updates the screen to match this snapshot and connects the event handlers. As a result, pressing a button will trigger the click handler from your JSX.
+Unlike a photograph or a movie frame, the UI "snapshot" your component returns is interactive. It includes logic like event handlers that specify what happens in response to inputs. React updates the screen to match this snapshot and connects the event handlers. As a result, pressing a button will trigger the click handler from your JSX.
 
 When React re-renders a component:
 
@@ -87,7 +87,7 @@ When React re-renders a component:
     <Illustration caption="Updating the DOM tree" src="/images/docs/illustrations/i_render3.png" />
 </IllustrationBlock>
 
-As a component's memory, state is not like a regular variable that disappears after your function returns. State actually "lives" in React itself--as if on a shelf!--outside of your function. When React calls your component, it gives you a snapshot of the state for that particular render. Your component returns a snapshot of the UI with a fresh set of props and event handlers in its JSX, all calculated **using the state values from that render!**
+As a component's memory, state is not like a regular variable that disappears after your function returns. State actually "lives" in React itself--as if on a shelf!--outside of your function. Once your component is invoked by React, it receives a snapshot of the state for that particular render. Your component returns a snapshot of the UI with a fresh set of props and event handlers in its JSX, all calculated **using the state values from that render!**
 
 <IllustrationBlock sequential>
   <Illustration caption="You tell React to update the state" src="/images/docs/illustrations/i_state-snapshot1.png" />

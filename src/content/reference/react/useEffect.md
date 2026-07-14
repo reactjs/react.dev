@@ -644,15 +644,15 @@ This example is identical to one of the [earlier examples,](#examples-connecting
 <Sandpack>
 
 ```js
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { useWindowListener } from './useWindowListener.js';
 
 export default function App() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
-  useWindowListener('pointermove', (e) => {
-    setPosition({ x: e.clientX, y: e.clientY });
-  });
+  const handlePointerMove = useCallback(e => setPosition({ x: e.clientX, y: e.clientY }), []);
+
+  useWindowListener('pointermove', handlePointerMove);
 
   return (
     <div style={{

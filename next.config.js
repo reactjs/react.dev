@@ -19,6 +19,14 @@ const nextConfig = {
     scrollRestoration: true,
     reactCompiler: true,
   },
+  async headers() {
+    return [
+      {
+        source: '/:path((?!llms.txt).*)',
+        headers: [{key: 'Vary', value: 'Accept'}],
+      },
+    ];
+  },
   async rewrites() {
     return {
       beforeFiles: [

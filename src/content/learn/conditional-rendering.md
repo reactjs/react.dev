@@ -310,7 +310,7 @@ export default function PackingList() {
 
 </Sandpack>
 
-A [JavaScript && expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND) returns the value of its right side (in our case, the checkmark) if the left side (our condition) is `true`. But if the condition is `false`, the whole expression becomes `false`. React considers `false` as a "hole" in the JSX tree, just like `null` or `undefined`, and doesn't render anything in its place.
+A [JavaScript && expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND) returns the value of its right-hand side (in this case, the checkmark) when the left-hand side (the condition) is true. If the condition is false, the entire expression evaluates to false. React ignores false, null, and undefined when rendering JSX, so nothing is rendered in their place.
 
 
 <Pitfall>

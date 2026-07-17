@@ -10,32 +10,16 @@
  */
 
 import cx from 'classnames';
-import {startTransition, useOptimistic} from 'react';
 import {useTocHighlight} from './useTocHighlight';
 import {IsInTocContext} from '../MDX/TocContext';
 import type {Toc} from '../MDX/TocContext';
 
-function waitForScrollEnd(): Promise<void> {
-  return new Promise((resolve) => {
-    let settled = false;
-    const finish = () => {
-      if (settled) return;
-      settled = true;
-      window.removeEventListener('scrollend', finish);
-      resolve();
-    };
-    window.addEventListener('scrollend', finish, {once: true});
-    setTimeout(finish, 1000);
-  });
-}
-
 export function Toc({headings}: {headings: Toc}) {
   const {currentIndex} = useTocHighlight();
-  const [optimisticIndex, setOptimisticIndex] = useOptimistic(currentIndex);
   // TODO: We currently have a mismatch between the headings in the document
   // and the headings we find in MarkdownPage (i.e. we don't find Recap or Challenges).
   // Select the max TOC item we have here for now, but remove this after the fix.
-  const selectedIndex = Math.min(optimisticIndex, headings.length - 1);
+  const selectedIndex = Math.min(currentIndex, headings.length - 1);
   return (
     <nav role="navigation" className="pt-20 sticky top-0 end-0">
       {headings.length > 0 && (
@@ -75,13 +59,7 @@ export function Toc({headings}: {headings: Toc}) {
                           : 'text-secondary dark:text-secondary-dark',
                         'block hover:text-link dark:hover:text-link-dark leading-normal py-2'
                       )}
-                      href={h.url}
-                      onClick={() => {
-                        startTransition(async () => {
-                          setOptimisticIndex(i);
-                          await waitForScrollEnd();
-                        });
-                      }}>
+                      href={h.url}>
                       {h.text}
                     </a>
                   </li>

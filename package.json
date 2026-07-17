@@ -112,11 +112,6 @@
   "engines": {
     "node": ">=20.9.0"
   },
-  "nextBundleAnalysis": {
-    "budget": null,
-    "budgetPercentIncreaseRed": 10,
-    "showDetails": true
-  },
   "lint-staged": {
     "*.{js,ts,jsx,tsx,css}": "yarn prettier",
     "src/**/*.md": "yarn fix-headings"

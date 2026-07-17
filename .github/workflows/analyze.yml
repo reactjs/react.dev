@@ -48,10 +48,12 @@ jobs:
         # npm scripts by forcing `--webpack`.
         run: ./node_modules/.bin/next build --webpack
 
-      # Here's the first place where next-bundle-analysis' own script is used
-      # This step pulls the raw bundle stats for the current bundle
+      # Measure the current build's bundle sizes (App Router-aware).
+      # See scripts/analyzeBundle.mjs — reads build-manifest.json + .next/static
+      # and sums gzipped sizes, since nextjs-bundle-analysis only understands the
+      # Pages Router and reports 0 B for the App Router.
       - name: Analyze bundle
-        run: npx -p nextjs-bundle-analysis@0.5.0 report
+        run: node scripts/analyzeBundle.mjs report
 
       - name: Upload bundle
         uses: actions/upload-artifact@v4
@@ -68,22 +70,12 @@ jobs:
           name: bundle_analysis.json
           path: .next/analyze/base/bundle
 
-      # And here's the second place - this runs after we have both the current and
-      # base branch bundle stats, and will compare them to determine what changed.
-      # There are two configurable arguments that come from package.json:
-      #
-      # - budget: optional, set a budget (bytes) against which size changes are measured
-      #           it's set to 350kb here by default, as informed by the following piece:
-      #           https://infrequently.org/2021/03/the-performance-inequality-gap/
-      #
-      # - red-status-percentage: sets the percent size increase where you get a red
-      #                          status indicator, defaults to 20%
-      #
-      # Either of these arguments can be changed or removed by editing the `nextBundleAnalysis`
-      # entry in your package.json file.
+      # Compare the current build against the base-branch stats downloaded above
+      # and write the Markdown comment body. Degrades gracefully when the base
+      # branch has no stats yet (or still has the old format).
       - name: Compare with base branch bundle
         if: success() && github.event.number
-        run: ls -laR .next/analyze/base && npx -p nextjs-bundle-analysis compare
+        run: node scripts/analyzeBundle.mjs compare
 
       - name: Upload analysis comment
         uses: actions/upload-artifact@v4

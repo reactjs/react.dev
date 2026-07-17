@@ -31,16 +31,18 @@ export function NotFoundContent({
           </div>
           <div className="px-5 sm:px-12">
             <div className="max-w-7xl mx-auto">
-              <Intro>
-                <p>This page doesn’t exist.</p>
-                <p>
-                  If this is a mistake,{' '}
-                  <Link href="https://github.com/reactjs/react.dev/issues/new">
-                    let us know
-                  </Link>
-                  , and we will try to fix it!
-                </p>
-              </Intro>
+              <div className="max-w-4xl ms-0 2xl:mx-auto">
+                <Intro>
+                  <p>This page doesn’t exist.</p>
+                  <p>
+                    If this is a mistake,{' '}
+                    <Link href="https://github.com/reactjs/react.dev/issues/new">
+                      let us know
+                    </Link>
+                    , and we will try to fix it!
+                  </p>
+                </Intro>
+              </div>
             </div>
           </div>
         </div>

@@ -10,6 +10,7 @@
 import PageHeading from 'components/PageHeading';
 import Intro from 'components/MDX/Intro';
 import Link from 'components/MDX/Link';
+import {Footer} from './Footer';
 import {getRouteMeta} from './getRouteMeta';
 import type {RouteItem} from './getRouteMeta';
 
@@ -44,6 +45,14 @@ export function NotFoundContent({
           </div>
         </div>
       </article>
+      <div className="self-stretch w-full">
+        <div className="w-full px-5 pt-10 mx-auto sm:px-12 md:px-12 md:pt-12 lg:pt-10">
+          <hr className="mx-auto max-w-7xl border-border dark:border-border-dark" />
+        </div>
+        <div className="py-12 px-5 sm:px-12 md:px-12 sm:py-12 md:py-16 lg:py-14">
+          <Footer />
+        </div>
+      </div>
     </main>
   );
 }

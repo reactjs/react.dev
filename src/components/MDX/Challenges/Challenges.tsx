@@ -104,9 +104,7 @@ export function Challenges({
       const initIndex = challenges.findIndex(
         (challenge) =>
           challenge.id ===
-          (typeof window !== 'undefined'
-            ? window.location.hash.slice(1)
-            : '')
+          (typeof window !== 'undefined' ? window.location.hash.slice(1) : '')
       );
       if (initIndex === -1) {
         queuedScrollRef.current = undefined;

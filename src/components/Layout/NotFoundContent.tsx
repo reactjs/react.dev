@@ -7,29 +7,40 @@
 
 'use client';
 
-import {MDXComponents} from 'components/MDX/MDXComponents';
+import PageHeading from 'components/PageHeading';
+import Intro from 'components/MDX/Intro';
+import Link from 'components/MDX/Link';
+import {getRouteMeta} from './getRouteMeta';
+import type {RouteItem} from './getRouteMeta';
 
-const {Intro, MaxWidth, p: P, a: A} = MDXComponents;
-
-export function NotFoundContent() {
+export function NotFoundContent({
+  routeTree,
+  sectionPath,
+}: {
+  routeTree: RouteItem;
+  sectionPath: string;
+}) {
+  const {breadcrumbs} = getRouteMeta(sectionPath, routeTree);
   return (
     <main className="min-w-0 isolate">
       <article className="font-normal break-words text-primary dark:text-primary-dark">
-        <div className="px-5 sm:px-12">
-          <div className="max-w-7xl mx-auto">
-            <MaxWidth>
+        <div className="ps-0">
+          <div>
+            <PageHeading title="Not Found" breadcrumbs={breadcrumbs} />
+          </div>
+          <div className="px-5 sm:px-12">
+            <div className="max-w-7xl mx-auto">
               <Intro>
-                <P>This page doesn’t exist.</P>
-                <P>
-                  If this is a mistake{', '}
-                  <A href="https://github.com/reactjs/react.dev/issues/new">
+                <p>This page doesn’t exist.</p>
+                <p>
+                  If this is a mistake,{' '}
+                  <Link href="https://github.com/reactjs/react.dev/issues/new">
                     let us know
-                  </A>
-                  {', '}
-                  and we will try to fix it!
-                </P>
+                  </Link>
+                  , and we will try to fix it!
+                </p>
               </Intro>
-            </MaxWidth>
+            </div>
           </div>
         </div>
       </article>

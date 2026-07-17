@@ -7586,10 +7586,10 @@ raw-loader@^4.0.2:
     loader-utils "^2.0.0"
     schema-utils "^3.0.0"
 
-react-collapsed@4.0.4:
-  version "4.0.4"
-  resolved "https://registry.npmjs.org/react-collapsed/-/react-collapsed-4.0.4.tgz"
-  integrity sha512-8avvmnQxDYTgGZYVP9+3Z7doomxVEBoCkukpTmUHEIrAYvELZ5jNNfYCt/hCpHB6GmQbzZoDmnDupjsnQVgcCQ==
+react-collapsed@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/react-collapsed/-/react-collapsed-4.2.0.tgz#330613bd604e1d8b66832d931efb2b226925cbc0"
+  integrity sha512-8rQuV3wGTjBI4M1WzD5DpqCBRliHNDKEEFeC6tAQEVrRDic46xBOtySgMGjVVacIobEaMf7AiYlI5APCZIZtkg==
   dependencies:
     tiny-warning "^1.0.3"
 

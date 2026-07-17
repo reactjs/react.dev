@@ -40,7 +40,7 @@
     "parse-numeric-range": "^1.2.0",
     "raw-loader": "^4.0.2",
     "react": "19.2.7",
-    "react-collapsed": "4.0.4",
+    "react-collapsed": "^4.2.0",
     "react-dom": "19.2.7",
     "remark-frontmatter": "^4.0.1",
     "remark-gfm": "^3.0.1"

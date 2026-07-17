@@ -5,8 +5,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import sidebarReference from '../../sidebarReference.json';
 import {NotFoundContent} from 'components/Layout/NotFoundContent';
+import type {RouteItem} from 'components/Layout/getRouteMeta';
 
 export default function NotFound() {
-  return <NotFoundContent />;
+  return (
+    <NotFoundContent
+      routeTree={sidebarReference as RouteItem}
+      sectionPath="/reference"
+    />
+  );
 }

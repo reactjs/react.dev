@@ -5,8 +5,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import sidebarCommunity from '../../sidebarCommunity.json';
 import {NotFoundContent} from 'components/Layout/NotFoundContent';
+import type {RouteItem} from 'components/Layout/getRouteMeta';
 
 export default function NotFound() {
-  return <NotFoundContent />;
+  return (
+    <NotFoundContent
+      routeTree={sidebarCommunity as RouteItem}
+      sectionPath="/community"
+    />
+  );
 }

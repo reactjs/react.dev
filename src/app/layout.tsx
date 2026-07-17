@@ -199,7 +199,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
             id="ga-init"
             strategy="afterInteractive"
             dangerouslySetInnerHTML={{
-              __html: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', '${gaId}');`,
+              __html: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', '${gaId}', {send_page_view: false});`,
             }}
           />
         )}

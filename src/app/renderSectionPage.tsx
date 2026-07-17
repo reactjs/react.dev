@@ -12,6 +12,7 @@ import type {PageSection} from 'components/Layout/Page';
 import {readMarkdownPage} from 'lib/readMarkdownPage';
 import {buildPageMetadata} from 'lib/buildPageMetadata';
 import {DocsPage} from './DocsPage';
+import {DocsContent} from 'components/Layout/DocsContent';
 
 interface RenderArgs {
   /** Segments below `src/content/`, e.g. ['learn', 'state'] or ['warnings', 'foo']. */
@@ -20,14 +21,18 @@ interface RenderArgs {
   routeTree: RouteItem;
 }
 
+async function loadSection(segments: string[]) {
+  const data = await readMarkdownPage(segments);
+  if (!data) notFound();
+  return {data, pathname: '/' + segments.join('/')};
+}
+
 export async function renderSectionPage({
   segments,
   section,
   routeTree,
 }: RenderArgs) {
-  const data = await readMarkdownPage(segments);
-  if (!data) notFound();
-  const pathname = '/' + segments.join('/');
+  const {data, pathname} = await loadSection(segments);
   return (
     <DocsPage
       data={data}
@@ -36,6 +41,11 @@ export async function renderSectionPage({
       routeTree={routeTree}
     />
   );
+}
+
+export async function renderSectionContent({segments, routeTree}: RenderArgs) {
+  const {data, pathname} = await loadSection(segments);
+  return <DocsContent data={data} pathname={pathname} routeTree={routeTree} />;
 }
 
 export async function sectionPageMetadata({

@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {NotFoundContent} from '../NotFoundContent';
+import {NotFoundContent} from 'components/Layout/NotFoundContent';
 
 export default function NotFound() {
   return <NotFoundContent />;

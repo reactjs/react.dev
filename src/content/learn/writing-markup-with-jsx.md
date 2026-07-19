@@ -74,7 +74,7 @@ Suppose that you have some (perfectly valid) HTML:
   src="https://react.dev/images/docs/scientists/yXOvdOSs.jpg"
   alt="Hedy Lamarr"
   class="photo"
->
+/>
 <ul>
     <li>Invent new traffic lights
     <li>Rehearse a movie scene
@@ -106,7 +106,7 @@ export default function TodoList() {
       src="https://react.dev/images/docs/scientists/yXOvdOSs.jpg"
       alt="Hedy Lamarr"
       class="photo"
-    >
+    />
     <ul>
       <li>Invent new traffic lights
       <li>Rehearse a movie scene
@@ -145,7 +145,7 @@ For example, you can use a `<div>`:
     src="https://react.dev/images/docs/scientists/yXOvdOSs.jpg"
     alt="Hedy Lamarr"
     class="photo"
-  >
+  />
   <ul>
     ...
   </ul>
@@ -162,7 +162,7 @@ If you don't want to add an extra `<div>` to your markup, you can write `<>` and
     src="https://react.dev/images/docs/scientists/yXOvdOSs.jpg"
     alt="Hedy Lamarr"
     class="photo"
-  >
+  />
   <ul>
     ...
   </ul>

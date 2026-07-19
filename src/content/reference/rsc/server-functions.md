@@ -56,10 +56,12 @@ function EmptyNote() {
 
 When React renders the `EmptyNote` Server Component, it will create a reference to the `createNoteAction` function, and pass that reference to the `Button` Client Component. When the button is clicked, React will send a request to the server to execute the `createNoteAction` function with the reference provided:
 
-```js {4}
+```js {5}
 "use client";
 
 export default function Button({onClick}) {
+  console.log(onClick);
+  // {$$typeof: Symbol.for("react.server.reference"), $$id: 'createNoteAction'}
   return <button onClick={() => onClick()}>Create Empty Note</button>;
 }
 ```
@@ -183,7 +185,7 @@ function UpdateName() {
 }
 ```
 
-When the Form submission succeeds, React will automatically reset the uncontrolled fields in the form. Server Function forms can be submitted before the JavaScript bundle loads. You can add `useActionState` to access the pending state and last response.
+When the Form Action completes, React will automatically reset the uncontrolled fields in the form. Server Function forms can be submitted before the JavaScript bundle loads. You can add `useActionState` to access the pending state and last response.
 
 For more, see the docs for [Server Functions in Forms](/reference/rsc/use-server#server-functions-in-forms).
 
@@ -247,6 +249,6 @@ function UpdateName() {
 }
 ```
 
-When the <CodeStep step={2}>permalink</CodeStep> is provided to `useActionState`, the browser will navigate to the provided URL if the form is submitted before the JavaScript bundle loads. The same form component, including the same Server Function and permalink, must be rendered at the destination so React can pass the returned state to it.
+When the <CodeStep step={2}>permalink</CodeStep> is provided to `useActionState`, the browser will navigate to the provided URL if the form is submitted before the JavaScript bundle loads. At the destination, render `useActionState` with the same Server Function and permalink so React can pass the returned state to it.
 
 For more, see the docs for [`useActionState`](/reference/react/useActionState).

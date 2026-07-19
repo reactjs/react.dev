@@ -34,7 +34,7 @@ Server Functions can be created in Server Components and passed as props to Clie
 
 ## Usage {/*usage*/}
 
-### Creating a Server Function from a Server Component {/*creating-a-server-function-from-a-server-component*/}
+### Creating a Server Function in a Server Component {/*creating-a-server-function-from-a-server-component*/}
 
 Server Components can define Server Functions with the `"use server"` directive:
 
@@ -68,7 +68,7 @@ export default function Button({onClick}) {
 
 For more, see the docs for [`"use server"`](/reference/rsc/use-server).
 
-### Importing Server Functions from Client Components {/*importing-server-functions-from-client-components*/}
+### Importing a Server Function into a Client Component {/*importing-server-functions-from-client-components*/}
 
 Client Components can import Server Functions from files that use the `"use server"` directive:
 
@@ -94,7 +94,7 @@ function EmptyNote() {
 
 For more, see the docs for [`"use server"`](/reference/rsc/use-server).
 
-### Server Functions with Actions {/*server-functions-with-actions*/}
+### Calling a Server Function from an Action {/*server-functions-with-actions*/}
 
 Server Functions can be called from Actions on the client:
 
@@ -153,7 +153,7 @@ This allows you to access the `isPending` state of the Server Function by wrappi
 
 For more, see the docs for [Calling a Server Function outside of `<form>`](/reference/rsc/use-server#calling-a-server-function-outside-of-form).
 
-### Server Functions with Form Actions {/*using-server-functions-with-form-actions*/}
+### Using a Server Function as a Form Action {/*using-server-functions-with-form-actions*/}
 
 Server Functions work with the new Form features in React 19.
 

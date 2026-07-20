@@ -110,7 +110,7 @@ export async function updateName(name) {
 }
 ```
 
-```js [[1, 4, "updateName"], [1, 14, "updateName"], [2, 12, "submitAction"], [2, 25, "submitAction"]]
+```js [[1, 4, "updateName"], [1, 14, "updateName"], [2, 12, "submitAction"], [2, 26, "submitAction"]]
 "use client";
 
 import {useState, useTransition} from 'react';
@@ -125,6 +125,7 @@ function UpdateName() {
   function submitAction() {
     startTransition(async () => {
       const {error} = await updateName(name);
+      // State updates after an await aren't automatically Transitions, so wrap them
       startTransition(() => {
         setError(error);
         if (!error) {
@@ -185,11 +186,11 @@ function UpdateName() {
 }
 ```
 
-When the Form Action completes, React will automatically reset the uncontrolled fields in the form. Server Function forms can be submitted before the JavaScript bundle loads. You can add `useActionState` to access the pending state and last response.
+When the Form Action succeeds, React will automatically reset the form's uncontrolled fields. Server Function forms can be submitted before the JavaScript bundle loads. You can add `useActionState` to access the pending state and last response.
 
 For more, see the docs for [Server Functions in Forms](/reference/rsc/use-server#server-functions-in-forms).
 
-### Server Functions with `useActionState` {/*server-functions-with-use-action-state*/}
+### Calling a Server Function with `useActionState` {/*server-functions-with-use-action-state*/}
 
 You can call Server Functions with `useActionState` for the common case where you just need access to the action pending state and last returned response. The Server Function receives the previous state as its first argument and the submitted `FormData` as its second argument. Its return value becomes the next state:
 
@@ -228,7 +229,7 @@ When using `useActionState` with a Server Function, the form can be submitted be
 
 For more, see the docs for [`useActionState`](/reference/react/useActionState).
 
-### Progressive enhancement with `useActionState` {/*progressive-enhancement-with-useactionstate*/}
+### Supporting progressive enhancement with `useActionState` {/*progressive-enhancement-with-useactionstate*/}
 
 Server Functions also support progressive enhancement with the third argument of `useActionState`.
 

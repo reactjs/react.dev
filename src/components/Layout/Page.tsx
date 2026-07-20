@@ -9,27 +9,39 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
+'use client';
+
 import {Suspense} from 'react';
 import * as React from 'react';
-import {useRouter} from 'next/router';
+import dynamic from 'next/dynamic';
 import {SidebarNav} from './SidebarNav';
 import {Footer} from './Footer';
 import {Toc} from './Toc';
-// import SocialBanner from '../SocialBanner';
 import {DocsPageFooter} from 'components/DocsFooter';
-import {Seo} from 'components/Seo';
 import PageHeading from 'components/PageHeading';
 import {getRouteMeta} from './getRouteMeta';
 import {TocContext} from '../MDX/TocContext';
 import {Languages, LanguagesContext} from '../MDX/LanguagesContext';
 import type {TocItem} from 'components/MDX/TocContext';
 import type {RouteItem} from 'components/Layout/getRouteMeta';
-import {HomeContent} from './HomeContent';
 import {TopNav} from './TopNav';
 import cn from 'classnames';
-import Head from 'next/head';
+
+// The homepage is a large, standalone bundle that only ever renders at `/`.
+// Load it lazily so every other route doesn't ship it. (~2.7k LOC.)
+const HomeContent = dynamic(() =>
+  import('./HomeContent').then((m) => m.HomeContent)
+);
 
 import(/* webpackPrefetch: true */ '../MDX/CodeBlock/CodeBlock');
+
+export type PageSection =
+  | 'learn'
+  | 'reference'
+  | 'community'
+  | 'blog'
+  | 'home'
+  | 'unknown';
 
 interface PageProps {
   children: React.ReactNode;
@@ -41,7 +53,9 @@ interface PageProps {
     version?: 'experimental' | 'canary';
     description?: string;
   };
-  section: 'learn' | 'reference' | 'community' | 'blog' | 'home' | 'unknown';
+  section: PageSection;
+  /** Cleaned pathname from the server, e.g. "/", "/learn/state". */
+  pathname: string;
   languages?: Languages | null;
 }
 
@@ -51,19 +65,18 @@ export function Page({
   routeTree,
   meta,
   section,
+  pathname,
   languages = null,
 }: PageProps) {
-  const {asPath} = useRouter();
-  const cleanedPath = asPath.split(/[\?\#]/)[0];
-  const {route, nextRoute, prevRoute, breadcrumbs, order} = getRouteMeta(
-    cleanedPath,
+  const {route, nextRoute, prevRoute, breadcrumbs} = getRouteMeta(
+    pathname,
     routeTree
   );
   const title = meta.title || route?.title || '';
   const version = meta.version;
   const description = meta.description || route?.description || '';
-  const isHomePage = cleanedPath === '/';
-  const isBlogIndex = cleanedPath === '/blog';
+  const isHomePage = section === 'home';
+  const isBlogIndex = section === 'blog' && pathname === '/blog';
 
   let content;
   if (isHomePage) {
@@ -118,42 +131,8 @@ export function Page({
     showSidebar = false;
   }
 
-  let searchOrder;
-  if (section === 'learn' || (section === 'blog' && !isBlogIndex)) {
-    searchOrder = order;
-  }
-
   return (
     <>
-      <Seo
-        title={title}
-        titleForTitleTag={meta.titleForTitleTag}
-        isHomePage={isHomePage}
-        image={
-          // OG images are generated per page at build time by
-          // scripts/generateOgImages.mjs. Pages without a generated
-          // card (home, errors, 404, 500) use the static section image.
-          isHomePage ||
-          !title ||
-          cleanedPath.startsWith('/errors') ||
-          cleanedPath === '/404' ||
-          cleanedPath === '/500'
-            ? `/images/og-${section ?? 'unknown'}.png`
-            : `/images/og/${cleanedPath.slice(1).replace(/\//g, '-')}.png`
-        }
-        searchOrder={searchOrder}
-      />
-      {(isHomePage || isBlogIndex) && (
-        <Head>
-          <link
-            rel="alternate"
-            type="application/rss+xml"
-            title="React Blog RSS Feed"
-            href="/rss.xml"
-          />
-        </Head>
-      )}
-      {/* <SocialBanner /> */}
       <TopNav
         section={section}
         routeTree={routeTree}
@@ -180,7 +159,7 @@ export function Page({
           <main className="min-w-0 isolate">
             <article
               className="font-normal break-words text-primary dark:text-primary-dark"
-              key={asPath}>
+              key={pathname}>
               {content}
             </article>
             <div
@@ -204,7 +183,7 @@ export function Page({
           </main>
         </Suspense>
         <div className="hidden -mt-16 lg:max-w-custom-xs 2xl:block">
-          {showToc && toc.length > 0 && <Toc headings={toc} key={asPath} />}
+          {showToc && toc.length > 0 && <Toc headings={toc} key={pathname} />}
         </div>
       </div>
     </>

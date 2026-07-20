@@ -53,10 +53,11 @@ const boldFont = opentype.parse(
 // leaves an orphaned letter on its own line, so instead shrink them just
 // enough to fit on a single line.
 function titleFontSize(title) {
-  if (/\s/.test(title.trim())) {
-    return title.length > 24 ? 72 : 96;
+  const trimmed = title.trim();
+  if (/\s/.test(trimmed)) {
+    return trimmed.length > 24 ? 72 : 96;
   }
-  const widthPerPx = boldFont.getAdvanceWidth(title, 1);
+  const widthPerPx = boldFont.getAdvanceWidth(trimmed, 1);
   const fit = Math.floor((TITLE_MAX_WIDTH - TITLE_SAFETY) / widthPerPx);
   return Math.max(TITLE_MIN_FONT, Math.min(TITLE_MAX_FONT, fit));
 }

@@ -103,10 +103,9 @@ function SubmitButton({ submitAction }) {
 
 #### Caveats {/*starttransition-caveats*/}
 
-* `useTransition` is a Hook, so it can only be called inside components or custom Hooks. If you need to start a Transition somewhere else (for example, from a data library), call the standalone [`startTransition`](/reference/react/startTransition) instead.
+* `useTransition` is a Hook, so it can only be called inside components or custom Hooks. If you need to start a Transition somewhere else (for example, from a data library), call the standalone     [`startTransition`](/reference/react/startTransition) instead.
 
-* A state update is marked as a Transition only if its setter runs inside `startTransition`, directly or through a callback. If you only have the updated value from a prop or custom Hook, use 
-[`useDeferredValue`](/reference/react/useDeferredValue) instead.
+* A state update is marked as a Transition only if its setter runs inside `startTransition`, directly or through a callback. If you only have the updated value from a prop or custom Hook, use [`useDeferredValue`](/reference/react/useDeferredValue) instead.
 
 * The function you pass to `startTransition` is called immediately, marking all state updates that happen while it executes as Transitions. If you try to perform state updates in a `setTimeout`, for example, they won't be marked as Transitions.
 

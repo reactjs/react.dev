@@ -14,6 +14,7 @@ import path from 'path';
 import satori from 'satori';
 import {Resvg} from '@resvg/resvg-js';
 import matter from 'gray-matter';
+import opentype from '@shuding/opentype.js';
 
 const ROOT = process.cwd();
 const CONTENT_DIR = path.join(ROOT, 'src', 'content');
@@ -33,6 +34,32 @@ const bold = fs.readFileSync(
 const medium = fs.readFileSync(
   path.join(ROOT, 'public', 'fonts', 'Optimistic_Display_W_Md.ttf')
 );
+
+// Title area width: card width minus the horizontal padding (80px per side).
+const TITLE_MAX_WIDTH = 1200 - 80 * 2;
+const TITLE_MAX_FONT = 96;
+const TITLE_MIN_FONT = 56;
+// Small margin so borderline titles don't wrap and orphan a single trailing
+// character (e.g. the "p" in "renderToStaticMarkup", which is 1px too wide
+// to fit on one line at 96px).
+const TITLE_SAFETY = 8;
+
+const boldFont = opentype.parse(
+  bold.buffer.slice(bold.byteOffset, bold.byteOffset + bold.byteLength)
+);
+
+// Multi-word titles wrap cleanly at spaces, so a length bucket is fine for
+// them. Single-word titles (most API names) can only break mid-word, which
+// leaves an orphaned letter on its own line, so instead shrink them just
+// enough to fit on a single line.
+function titleFontSize(title) {
+  if (/\s/.test(title.trim())) {
+    return title.length > 24 ? 72 : 96;
+  }
+  const widthPerPx = boldFont.getAdvanceWidth(title, 1);
+  const fit = Math.floor((TITLE_MAX_WIDTH - TITLE_SAFETY) / widthPerPx);
+  return Math.max(TITLE_MIN_FONT, Math.min(TITLE_MAX_FONT, fit));
+}
 
 function el(type, style, children) {
   return {type, props: {style, children}};
@@ -103,7 +130,7 @@ function card(title, pagePath) {
           flexGrow: 1,
           display: 'flex',
           alignItems: 'center',
-          fontSize: title.length > 24 ? 72 : 96,
+          fontSize: titleFontSize(title),
           fontFamily: 'Optimistic Display Bold',
           color: '#f6f7f9',
           lineHeight: 1.1,

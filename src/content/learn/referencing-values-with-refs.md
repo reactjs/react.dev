@@ -655,6 +655,39 @@ export default function Chat() {
 
 </Sandpack>
 
+If you don't need the input to be controlled (e.g., no live validation or display elsewhere), you can skip state entirely and read the DOM value directly via a ref.
+
+<Sandpack>
+
+```js
+import { useRef } from 'react';
+
+export default function Chat() {
+  const inputRef = useRef(null);
+
+  function handleSend() {
+    setTimeout(() => {
+      alert('Sending: ' + inputRef.current.value);
+    }, 3000);
+  }
+
+  return (
+    <>
+      <input
+        ref={inputRef}
+      />
+      <button
+        onClick={handleSend}>
+        Send
+      </button>
+    </>
+  );
+}
+```
+
+</Sandpack>
+
+
 </Solution>
 
 </Challenges>

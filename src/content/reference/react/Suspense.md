@@ -79,6 +79,12 @@ React will display your <CodeStep step={1}>loading fallback</CodeStep> until all
 
 In the example below, the `Albums` component *suspends* while fetching the list of albums. Until it's ready to render, React switches the closest Suspense boundary above to show the fallback--your `Loading` component. Then, when the data loads, React hides the `Loading` fallback and renders the `Albums` component with data.
 
+<Pitfall>
+
+Do not use a module-level cache like the one in `data.js` below in server environments such as Next.js. Module-level state persists across requests and can leak data between users. Use your framework's built-in caching, [`cache`](/reference/react/cache) in Server Components, or scope caches per request (for example, with a Context and `useRef`).
+
+</Pitfall>
+
 <Sandpack>
 
 ```js src/App.js hidden
@@ -148,6 +154,8 @@ export default function Albums({ artistId }) {
 // Note: the way you would do data fetching depends on
 // the framework that you use together with Suspense.
 // Normally, the caching logic would be inside a framework.
+// This module-level cache is only suitable for this client-only demo.
+// Do not copy it into server environments.
 
 let cache = new Map();
 
@@ -598,6 +606,8 @@ export default function Albums({ artistId }) {
 // Note: the way you would do data fetching depends on
 // the framework that you use together with Suspense.
 // Normally, the caching logic would be inside a framework.
+// This module-level cache is only suitable for this client-only demo.
+// Do not copy it into server environments.
 
 let cache = new Map();
 
@@ -860,6 +870,8 @@ export default function Albums({ artistId }) {
 // Note: the way you would do data fetching depends on
 // the framework that you use together with Suspense.
 // Normally, the caching logic would be inside a framework.
+// This module-level cache is only suitable for this client-only demo.
+// Do not copy it into server environments.
 
 let cache = new Map();
 
@@ -1044,6 +1056,8 @@ export default function SearchResults({ query }) {
 // Note: the way you would do data fetching depends on
 // the framework that you use together with Suspense.
 // Normally, the caching logic would be inside a framework.
+// This module-level cache is only suitable for this client-only demo.
+// Do not copy it into server environments.
 
 let cache = new Map();
 
@@ -1228,6 +1242,8 @@ export default function SearchResults({ query }) {
 // Note: the way you would do data fetching depends on
 // the framework that you use together with Suspense.
 // Normally, the caching logic would be inside a framework.
+// This module-level cache is only suitable for this client-only demo.
+// Do not copy it into server environments.
 
 let cache = new Map();
 
@@ -1487,6 +1503,8 @@ export default function Panel({ children }) {
 // Note: the way you would do data fetching depends on
 // the framework that you use together with Suspense.
 // Normally, the caching logic would be inside a framework.
+// This module-level cache is only suitable for this client-only demo.
+// Do not copy it into server environments.
 
 let cache = new Map();
 
@@ -1799,6 +1817,8 @@ export default function Panel({ children }) {
 // Note: the way you would do data fetching depends on
 // the framework that you use together with Suspense.
 // Normally, the caching logic would be inside a framework.
+// This module-level cache is only suitable for this client-only demo.
+// Do not copy it into server environments.
 
 let cache = new Map();
 
@@ -2110,6 +2130,8 @@ export default function Panel({ children }) {
 // Note: the way you would do data fetching depends on
 // the framework that you use together with Suspense.
 // Normally, the caching logic would be inside a framework.
+// This module-level cache is only suitable for this client-only demo.
+// Do not copy it into server environments.
 
 let cache = new Map();
 

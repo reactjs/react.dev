@@ -52,7 +52,7 @@ React work is organized into working groups, each responsible for an area of the
     Hendrik’s journey in tech started in the late 90s when he built his first websites with Netscape Communicator. After earning a diploma in computer science and working at digital agencies, he built a React Server Components bundler and library, paving the way to his role on the Next.js team. Outside of work, he enjoys cycling and tinkering in his workshop.
 </TeamMember>
 
-<TeamMember name="Jordan Eldredge" permalink="jordan-eldredge" photo="/images/team/gh-captbaritone.jpg" github="captbaritone" title="Engineer at Meta" group="Server" />
+<TeamMember name="Jordan Eldredge" permalink="jordan-eldredge" photo="/images/team/gh-captbaritone.jpg" github="captbaritone" personal="jordaneldredge.com" bsky="capt.dev" title="Engineer at Meta" group="Server" />
 
 <TeamMember name="Josh Story" permalink="josh-story" photo="/images/team/josh.jpg" github="gnoff" bsky="storyhb.com" title="Engineer at Vercel" group="DOM, Fiber, Server">
     Josh majored in Mathematics and discovered programming while in college. His first professional developer job was to program insurance rate calculations in Microsoft Excel, the paragon of Reactive Programming which must be why he now works on React. In between that time Josh has been an IC, Manager, and Executive at a few startups. outside of work he likes to push his limits with cooking.

@@ -733,6 +733,11 @@ export default function ContactTab() {
 ```
 
 ```css
+.items {
+  max-height: 1200px;
+  overflow-y: auto;
+}
+
 button { margin-right: 10px }
 b { display: inline-block; margin-right: 10px; }
 .pending { color: #777; }
@@ -892,6 +897,11 @@ export default function ContactTab() {
 ```
 
 ```css
+.items {
+  max-height: 1200px;
+  overflow-y: auto;
+}
+
 button { margin-right: 10px }
 b { display: inline-block; margin-right: 10px; }
 .pending { color: #777; }
@@ -1054,6 +1064,11 @@ async function getPosts() {
 ```
 
 ```css
+.items {
+  max-height: 1200px;
+  overflow-y: auto;
+}
+
 button { margin-right: 10px }
 b { display: inline-block; margin-right: 10px; }
 .pending { color: #777; }
@@ -1218,6 +1233,11 @@ async function getPosts() {
 ```
 
 ```css
+.items {
+  max-height: 1200px;
+  overflow-y: auto;
+}
+
 button { margin-right: 10px }
 b { display: inline-block; margin-right: 10px; }
 .pending { color: #777; }

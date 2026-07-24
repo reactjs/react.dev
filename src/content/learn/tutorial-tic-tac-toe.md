@@ -32,9 +32,9 @@ You can see what it will look like when you're finished here:
 ```js src/App.js
 import { useState } from 'react';
 
-function Square({ value, onSquareClick }) {
+function Square({ value, index }) {
   return (
-    <button className="square" onClick={onSquareClick}>
+    <button className="square" data-index={index}>
       {value}
     </button>
   );
@@ -65,20 +65,15 @@ function Board({ xIsNext, squares, onPlay }) {
   return (
     <>
       <div className="status">{status}</div>
-      <div className="board-row">
-        <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
-        <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
-        <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
-      </div>
-      <div className="board-row">
-        <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
-        <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
-        <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
-      </div>
-      <div className="board-row">
-        <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
-        <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
-        <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
+      <div className="board" onClick={(e) => {
+        const target = e.target;
+        if (target.tagName === 'BUTTON') {
+          handleClick(target.dataset.index);
+        }
+      }}>
+        {squares.map((value, i) => (
+          <Square key={i} value={value} index={i} />
+        ))}
       </div>
     </>
   );
@@ -161,22 +156,19 @@ body {
 .square {
   background: #fff;
   border: 1px solid #999;
-  float: left;
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
   height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
   padding: 0;
   text-align: center;
   width: 34px;
 }
 
-.board-row:after {
-  clear: both;
-  content: '';
-  display: table;
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  width: fit-content;
 }
 
 .status {
@@ -226,22 +218,19 @@ body {
 .square {
   background: #fff;
   border: 1px solid #999;
-  float: left;
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
   height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
   padding: 0;
   text-align: center;
   width: 34px;
 }
 
-.board-row:after {
-  clear: both;
-  content: '';
-  display: table;
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  width: fit-content;
 }
 
 .status {
@@ -469,22 +458,19 @@ body {
 .square {
   background: #fff;
   border: 1px solid #999;
-  float: left;
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
   height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
   padding: 0;
   text-align: center;
   width: 34px;
 }
 
-.board-row:after {
-  clear: both;
-  content: '';
-  display: table;
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  width: fit-content;
 }
 
 .status {
@@ -669,22 +655,19 @@ body {
 .square {
   background: #fff;
   border: 1px solid #999;
-  float: left;
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
   height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
   padding: 0;
   text-align: center;
   width: 34px;
 }
 
-.board-row:after {
-  clear: both;
-  content: '';
-  display: table;
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  width: fit-content;
 }
 
 .status {
@@ -864,22 +847,19 @@ body {
 .square {
   background: #fff;
   border: 1px solid #999;
-  float: left;
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
   height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
   padding: 0;
   text-align: center;
   width: 34px;
 }
 
-.board-row:after {
-  clear: both;
-  content: '';
-  display: table;
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  width: fit-content;
 }
 
 .status {
@@ -1034,22 +1014,19 @@ body {
 .square {
   background: #fff;
   border: 1px solid #999;
-  float: left;
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
   height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
   padding: 0;
   text-align: center;
   width: 34px;
 }
 
-.board-row:after {
-  clear: both;
-  content: '';
-  display: table;
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  width: fit-content;
 }
 
 .status {
@@ -1232,9 +1209,9 @@ This is what your code should look like:
 ```js src/App.js
 import { useState } from 'react';
 
-function Square({ value, onSquareClick }) {
+function Square({ value, index }) {
   return (
-    <button className="square" onClick={onSquareClick}>
+    <button className="square" data-index={index}>
       {value}
     </button>
   );
@@ -1244,6 +1221,9 @@ export default function Board() {
   const [squares, setSquares] = useState(Array(9).fill(null));
 
   function handleClick(i) {
+    if (squares[i]) {
+      return;
+    }
     const nextSquares = squares.slice();
     nextSquares[i] = 'X';
     setSquares(nextSquares);
@@ -1251,20 +1231,15 @@ export default function Board() {
 
   return (
     <>
-      <div className="board-row">
-        <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
-        <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
-        <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
-      </div>
-      <div className="board-row">
-        <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
-        <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
-        <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
-      </div>
-      <div className="board-row">
-        <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
-        <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
-        <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
+      <div className="board" onClick={(e) => {
+        const target = e.target;
+        if (target.tagName === 'BUTTON') {
+          handleClick(target.dataset.index);
+        }
+      }}>
+        {squares.map((value, i) => (
+          <Square key={i} value={value} index={i} />
+        ))}
       </div>
     </>
   );
@@ -1285,22 +1260,19 @@ body {
 .square {
   background: #fff;
   border: 1px solid #999;
-  float: left;
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
   height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
   padding: 0;
   text-align: center;
   width: 34px;
 }
 
-.board-row:after {
-  clear: both;
-  content: '';
-  display: table;
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  width: fit-content;
 }
 
 .status {
@@ -1426,9 +1398,9 @@ Now you can only add `X`'s or `O`'s to empty squares! Here is what your code sho
 ```js src/App.js
 import { useState } from 'react';
 
-function Square({value, onSquareClick}) {
+function Square({value, index}) {
   return (
-    <button className="square" onClick={onSquareClick}>
+    <button className="square" data-index={index}>
       {value}
     </button>
   );
@@ -1454,20 +1426,15 @@ export default function Board() {
 
   return (
     <>
-      <div className="board-row">
-        <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
-        <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
-        <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
-      </div>
-      <div className="board-row">
-        <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
-        <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
-        <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
-      </div>
-      <div className="board-row">
-        <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
-        <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
-        <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
+      <div className="board" onClick={(e) => {
+        const target = e.target;
+        if (target.tagName === 'BUTTON') {
+          handleClick(target.dataset.index);
+        }
+      }}>
+        {squares.map((value, i) => (
+          <Square key={i} value={value} index={i} />
+        ))}
       </div>
     </>
   );
@@ -1488,22 +1455,19 @@ body {
 .square {
   background: #fff;
   border: 1px solid #999;
-  float: left;
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
   height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
   padding: 0;
   text-align: center;
   width: 34px;
 }
 
-.board-row:after {
-  clear: both;
-  content: '';
-  display: table;
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  width: fit-content;
 }
 
 .status {
@@ -1598,9 +1562,9 @@ Congratulations! You now have a working tic-tac-toe game. And you've just learne
 ```js src/App.js
 import { useState } from 'react';
 
-function Square({value, onSquareClick}) {
+function Square({value, index}) {
   return (
-    <button className="square" onClick={onSquareClick}>
+    <button className="square" data-index={index}>
       {value}
     </button>
   );
@@ -1635,20 +1599,15 @@ export default function Board() {
   return (
     <>
       <div className="status">{status}</div>
-      <div className="board-row">
-        <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
-        <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
-        <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
-      </div>
-      <div className="board-row">
-        <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
-        <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
-        <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
-      </div>
-      <div className="board-row">
-        <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
-        <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
-        <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
+      <div className="board" onClick={(e) => {
+        const target = e.target;
+        if (target.tagName === 'BUTTON') {
+          handleClick(target.dataset.index);
+        }
+      }}>
+        {squares.map((value, i) => (
+          <Square key={i} value={value} index={i} />
+        ))}
       </div>
     </>
   );
@@ -1689,22 +1648,19 @@ body {
 .square {
   background: #fff;
   border: 1px solid #999;
-  float: left;
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
   height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
   padding: 0;
   text-align: center;
   width: 34px;
 }
 
-.board-row:after {
-  clear: both;
-  content: '';
-  display: table;
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  width: fit-content;
 }
 
 .status {
@@ -1876,9 +1832,9 @@ At this point, you've moved the state to live in the `Game` component, and the U
 ```js src/App.js
 import { useState } from 'react';
 
-function Square({ value, onSquareClick }) {
+function Square({ value, index }) {
   return (
-    <button className="square" onClick={onSquareClick}>
+    <button className="square" data-index={index}>
       {value}
     </button>
   );
@@ -1909,20 +1865,15 @@ function Board({ xIsNext, squares, onPlay }) {
   return (
     <>
       <div className="status">{status}</div>
-      <div className="board-row">
-        <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
-        <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
-        <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
-      </div>
-      <div className="board-row">
-        <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
-        <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
-        <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
-      </div>
-      <div className="board-row">
-        <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
-        <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
-        <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
+      <div className="board" onClick={(e) => {
+        const target = e.target;
+        if (target.tagName === 'BUTTON') {
+          handleClick(target.dataset.index);
+        }
+      }}>
+        {squares.map((value, i) => (
+          <Square key={i} value={value} index={i} />
+        ))}
       </div>
     </>
   );
@@ -1985,22 +1936,19 @@ body {
 .square {
   background: #fff;
   border: 1px solid #999;
-  float: left;
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
   height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
   padding: 0;
   text-align: center;
   width: 34px;
 }
 
-.board-row:after {
-  clear: both;
-  content: '';
-  display: table;
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  width: fit-content;
 }
 
 .status {
@@ -2087,9 +2035,9 @@ You'll fix this error in the next section.
 ```js src/App.js
 import { useState } from 'react';
 
-function Square({ value, onSquareClick }) {
+function Square({ value, index }) {
   return (
-    <button className="square" onClick={onSquareClick}>
+    <button className="square" data-index={index}>
       {value}
     </button>
   );
@@ -2120,20 +2068,15 @@ function Board({ xIsNext, squares, onPlay }) {
   return (
     <>
       <div className="status">{status}</div>
-      <div className="board-row">
-        <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
-        <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
-        <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
-      </div>
-      <div className="board-row">
-        <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
-        <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
-        <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
-      </div>
-      <div className="board-row">
-        <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
-        <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
-        <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
+      <div className="board" onClick={(e) => {
+        const target = e.target;
+        if (target.tagName === 'BUTTON') {
+          handleClick(target.dataset.index);
+        }
+      }}>
+        {squares.map((value, i) => (
+          <Square key={i} value={value} index={i} />
+        ))}
       </div>
     </>
   );
@@ -2214,22 +2157,19 @@ body {
 .square {
   background: #fff;
   border: 1px solid #999;
-  float: left;
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
   height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
   padding: 0;
   text-align: center;
   width: 34px;
 }
 
-.board-row:after {
-  clear: both;
-  content: '';
-  display: table;
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  width: fit-content;
 }
 
 .status {
@@ -2315,9 +2255,9 @@ const moves = history.map((squares, move) => {
 ```js src/App.js
 import { useState } from 'react';
 
-function Square({ value, onSquareClick }) {
+function Square({ value, index }) {
   return (
-    <button className="square" onClick={onSquareClick}>
+    <button className="square" data-index={index}>
       {value}
     </button>
   );
@@ -2348,20 +2288,15 @@ function Board({ xIsNext, squares, onPlay }) {
   return (
     <>
       <div className="status">{status}</div>
-      <div className="board-row">
-        <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
-        <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
-        <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
-      </div>
-      <div className="board-row">
-        <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
-        <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
-        <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
-      </div>
-      <div className="board-row">
-        <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
-        <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
-        <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
+      <div className="board" onClick={(e) => {
+        const target = e.target;
+        if (target.tagName === 'BUTTON') {
+          handleClick(target.dataset.index);
+        }
+      }}>
+        {squares.map((value, i) => (
+          <Square key={i} value={value} index={i} />
+        ))}
       </div>
     </>
   );
@@ -2443,22 +2378,19 @@ body {
 .square {
   background: #fff;
   border: 1px solid #999;
-  float: left;
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
   height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
   padding: 0;
   text-align: center;
   width: 34px;
 }
 
-.board-row:after {
-  clear: both;
-  content: '';
-  display: table;
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  width: fit-content;
 }
 
 .status {
@@ -2536,9 +2468,9 @@ If you click on any step in the game's history, the tic-tac-toe board should imm
 ```js src/App.js
 import { useState } from 'react';
 
-function Square({value, onSquareClick}) {
+function Square({value, index}) {
   return (
-    <button className="square" onClick={onSquareClick}>
+    <button className="square" data-index={index}>
       {value}
     </button>
   );
@@ -2569,20 +2501,15 @@ function Board({ xIsNext, squares, onPlay }) {
   return (
     <>
       <div className="status">{status}</div>
-      <div className="board-row">
-        <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
-        <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
-        <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
-      </div>
-      <div className="board-row">
-        <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
-        <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
-        <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
-      </div>
-      <div className="board-row">
-        <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
-        <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
-        <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
+      <div className="board" onClick={(e) => {
+        const target = e.target;
+        if (target.tagName === 'BUTTON') {
+          handleClick(target.dataset.index);
+        }
+      }}>
+        {squares.map((value, i) => (
+          <Square key={i} value={value} index={i} />
+        ))}
       </div>
     </>
   );
@@ -2667,22 +2594,19 @@ body {
 .square {
   background: #fff;
   border: 1px solid #999;
-  float: left;
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
   height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
   padding: 0;
   text-align: center;
   width: 34px;
 }
 
-.board-row:after {
-  clear: both;
-  content: '';
-  display: table;
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  width: fit-content;
 }
 
 .status {
@@ -2746,9 +2670,9 @@ Check out the final result here:
 ```js src/App.js
 import { useState } from 'react';
 
-function Square({ value, onSquareClick }) {
+function Square({ value, index }) {
   return (
-    <button className="square" onClick={onSquareClick}>
+    <button className="square" data-index={index}>
       {value}
     </button>
   );
@@ -2779,20 +2703,15 @@ function Board({ xIsNext, squares, onPlay }) {
   return (
     <>
       <div className="status">{status}</div>
-      <div className="board-row">
-        <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
-        <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
-        <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
-      </div>
-      <div className="board-row">
-        <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
-        <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
-        <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
-      </div>
-      <div className="board-row">
-        <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
-        <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
-        <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
+      <div className="board" onClick={(e) => {
+        const target = e.target;
+        if (target.tagName === 'BUTTON') {
+          handleClick(target.dataset.index);
+        }
+      }}>
+        {squares.map((value, i) => (
+          <Square key={i} value={value} index={i} />
+        ))}
       </div>
     </>
   );
@@ -2875,22 +2794,19 @@ body {
 .square {
   background: #fff;
   border: 1px solid #999;
-  float: left;
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
   height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
   padding: 0;
   text-align: center;
   width: 34px;
 }
 
-.board-row:after {
-  clear: both;
-  content: '';
-  display: table;
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  width: fit-content;
 }
 
 .status {

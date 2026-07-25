@@ -113,7 +113,7 @@ export function TeamMember({
                   aria-label={`${name} on Twitter`}
                   href={`https://twitter.com/${twitter}`}
                   className="hover:text-primary hover:underline dark:text-primary-dark flex flex-row items-center">
-                  <IconTwitter className="pe-1" aria-hidden="true"/>
+                  <IconTwitter className="pe-1" aria-hidden="true" />
                   {twitter}
                 </ExternalLink>
               </div>
@@ -124,7 +124,7 @@ export function TeamMember({
                   aria-label={`${name} on Threads`}
                   href={`https://threads.net/${threads}`}
                   className="hover:text-primary hover:underline dark:text-primary-dark flex flex-row items-center">
-                  <IconThreads className="pe-1" aria-hidden="true"/>
+                  <IconThreads className="pe-1" aria-hidden="true" />
                   {threads}
                 </ExternalLink>
               </div>
@@ -135,7 +135,7 @@ export function TeamMember({
                   aria-label={`${name} on Bluesky`}
                   href={`https://bsky.app/profile/${bsky}`}
                   className="hover:text-primary hover:underline dark:text-primary-dark flex flex-row items-center">
-                  <IconBsky className="pe-1" aria-hidden="true"/>
+                  <IconBsky className="pe-1" aria-hidden="true" />
                   {bsky}
                 </ExternalLink>
               </div>
@@ -146,7 +146,7 @@ export function TeamMember({
                   aria-label={`${name} on GitHub`}
                   href={`https://github.com/${github}`}
                   className="hover:text-primary hover:underline dark:text-primary-dark flex flex-row items-center">
-                  <IconGitHub className="pe-1" aria-hidden="true"/> {github}
+                  <IconGitHub className="pe-1" aria-hidden="true" /> {github}
                 </ExternalLink>
               </div>
             )}
@@ -155,7 +155,7 @@ export function TeamMember({
                 aria-label={`${name}'s Personal Site`}
                 href={`https://${personal}`}
                 className="hover:text-primary hover:underline dark:text-primary-dark flex flex-row items-center">
-                <IconLink className="pe-1" aria-hidden="true"/> {personal}
+                <IconLink className="pe-1" aria-hidden="true" /> {personal}
               </ExternalLink>
             )}
           </div>

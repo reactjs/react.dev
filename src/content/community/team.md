@@ -26,7 +26,7 @@ React work is organized into working groups, each responsible for an area of the
 
 <TeamMember name="Moti Zilberman" permalink="moti-zilberman" photo="/images/team/gh-motiz88.jpg" github="motiz88" title="Engineer at Meta" group="DevX*" />
 
-<TeamMember name="Nicola Corti" permalink="nicola-corti" photo="/images/team/gh-cortinico.jpg" github="cortinico" title="Engineer at Meta" group="React Native*, Docs & Community" />
+<TeamMember name="Nicola Corti" permalink="nicola-corti" photo="/images/team/gh-cortinico.jpg" github="cortinico" twitter="cortinico" title="Engineer at Meta" group="React Native*, Docs & Community" />
 
 <TeamMember name="Rick Hanlon" permalink="rick-hanlon" photo="/images/team/rickhanlonii.jpg" github="rickhanlonii" twitter="rickyfm" threads="rickhanlonii" bsky="ricky.fm" title="Engineer at Meta" group="Docs & Community*, DOM, Fiber, Server, DevX">
     Ricky majored in theoretical math and somehow found himself on the React Native team for a couple years before joining the React team. When he's not programming you can find him snowboarding, biking, climbing, golfing, or closing GitHub issues that do not match the issue template.
@@ -38,7 +38,7 @@ React work is organized into working groups, each responsible for an area of the
 
 ## Working Group members {/*working-group-members*/}
 
-<TeamMember name="Alex Hunt" permalink="alex-hunt" photo="/images/team/gh-huntie.jpg" github="huntie" title="Engineer at Meta" group="DevX, React Native" />
+<TeamMember name="Alex Hunt" permalink="alex-hunt" photo="/images/team/gh-huntie.jpg" github="huntie" twitter="huntie" title="Engineer at Meta" group="DevX, React Native" />
 
 <TeamMember name="Aurora Scharff" permalink="aurora-scharff" photo="/images/team/gh-aurorascharff.jpg" github="aurorascharff" title="Engineer at Vercel" group="Docs & Community" />
 
@@ -82,11 +82,11 @@ React work is organized into working groups, each responsible for an area of the
 
 <TeamMember name="Pieter De Baets" permalink="pieter-de-baets" photo="/images/team/gh-javache.jpg" github="javache" title="Engineer at Meta" group="Compiler, Fiber, React Native" />
 
-<TeamMember name="Riccardo Cipolleschi" permalink="riccardo-cipolleschi" photo="/images/team/gh-cipolleschi.png" github="cipolleschi" title="Engineer at Meta" group="Docs & Community, React Native" />
+<TeamMember name="Riccardo Cipolleschi" permalink="riccardo-cipolleschi" photo="/images/team/gh-cipolleschi.png" github="cipolleschi" twitter="CipolleschiR" title="Engineer at Meta" group="Docs & Community, React Native" />
 
-<TeamMember name="Rob Hogan" permalink="rob-hogan" photo="/images/team/gh-rh389.jpg" github="rh389" title="Engineer at Meta" group="DevX" />
+<TeamMember name="Rob Hogan" permalink="rob-hogan" photo="/images/team/gh-robhogan.jpg" github="robhogan" twitter="robjhogan" title="Engineer at Meta" group="DevX" />
 
-<TeamMember name="Rubén Norte" permalink="ruben-norte" photo="/images/team/gh-rubennorte.jpg" github="rubennorte" title="Engineer at Meta" group="Fiber" />
+<TeamMember name="Rubén Norte" permalink="ruben-norte" photo="/images/team/gh-rubennorte.jpg" github="rubennorte" title="Engineer at Meta" group="Fiber, React Native" />
 
 <TeamMember name="Ruslan Lesiutin" permalink="ruslan-lesiutin" photo="/images/team/lesiutin.jpg" github="hoxyq" twitter="ruslanlesiutin" threads="lesiutin" title="Engineer at Meta" group="DOM, DevX">
     Ruslan's introduction to UI programming started when he was a kid by manually editing HTML templates for his custom gaming forums. Somehow, he ended up majoring in Computer Science. He enjoys music, games, and memes. Mostly memes.

@@ -162,7 +162,7 @@ export function Page({
       <div
         className={cn(
           hasColumns &&
-            'grid grid-cols-only-content lg:grid-cols-sidebar-content 2xl:grid-cols-sidebar-content-toc'
+            'grid grid-cols-only-content lg:grid-cols-sidebar-content xl:grid-cols-sidebar-content-toc'
         )}>
         {showSidebar && (
           <div className="lg:-mt-16 z-10">
@@ -203,7 +203,7 @@ export function Page({
             </div>
           </main>
         </Suspense>
-        <div className="hidden -mt-16 lg:max-w-custom-xs 2xl:block">
+        <div className="hidden -mt-16 lg:max-w-custom-xs xl:block">
           {showToc && toc.length > 0 && <Toc headings={toc} key={asPath} />}
         </div>
       </div>

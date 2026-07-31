@@ -2353,7 +2353,7 @@ button {
 
 If you use one of the [streaming server rendering APIs](/reference/react-dom/server) (or a framework that relies on them), React will also use your `<Suspense>` boundaries to handle errors on the server. If a component throws an error on the server, React will not abort the server render. Instead, it will find the closest `<Suspense>` component above it and include its fallback (such as a spinner) into the generated server HTML. The user will see a spinner at first.
 
-On the client, React will attempt to render the same component again. If it errors on the client too, React will throw the error and display the closest [Error Boundary.](/reference/react/Component#static-getderivedstatefromerror) However, if it does not error on the client, React will not display the error to the user since the content was eventually displayed successfully.
+On the client, React will attempt to render the same component again. If it errors on the client too, React will throw the error and display the closest [Error Boundary.](/reference/react/Component#static-getderivedstatefromerror) However, if it does not error on the client, React will not display the error in the UI, since the content was eventually displayed successfully. Note that the error thrown on the server is still reported: React calls the [`onRecoverableError`](/reference/react-dom/client/hydrateRoot#parameters) callback and logs a [recoverable error](/errors/419) to the console.
 
 You can use this to opt out some components from rendering on the server. To do this, throw an error in the server environment and then wrap them in a `<Suspense>` boundary to replace their HTML with fallbacks:
 
@@ -2371,6 +2371,12 @@ function Chat() {
 ```
 
 The server HTML will include the loading indicator. It will be replaced by the `Chat` component on the client.
+
+<Note>
+
+Even though the fallback is successfully replaced on the client, React still treats the error thrown on the server as a [recoverable error](/errors/419): it calls [`onRecoverableError`](/reference/react-dom/client/hydrateRoot#parameters) and logs the error to the console. There is no built-in way to mark an error as an intentional opt-out, so if you use this technique, throw a specific, recognizable error and filter it out in your `onRecoverableError` handler to avoid noise in your error reporting.
+
+</Note>
 
 ---
 

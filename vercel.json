@@ -175,6 +175,11 @@
       "permanent": false
     },
     {
+      "source": "/warnings/conditional-use-of-use",
+      "destination": "/reference/react/use#conditional-use",
+      "permanent": false
+    },
+    {
       "source": "/reference/react/directives",
       "destination": "/reference/rsc/directives",
       "permanent": true

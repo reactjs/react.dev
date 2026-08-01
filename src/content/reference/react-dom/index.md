@@ -41,6 +41,14 @@ The `react-dom` package provides two additional entry points:
 
 ---
 
+## Legacy APIs {/*legacy-apis*/}
+
+These APIs are exported for compatibility with legacy roots created with `ReactDOM.render` in React 18 and earlier. They are not recommended for newly written code.
+
+* `unstable_batchedUpdates` lets you batch updates that happen outside React event handlers in legacy roots. In React 18+ with `createRoot`, React batches updates automatically, so `unstable_batchedUpdates` is a no-op.
+
+---
+
 ## Removed APIs {/*removed-apis*/}
 
 These APIs were removed in React 19:

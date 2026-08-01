@@ -155,5 +155,5 @@ If you await a Promise, React will display duration of that Promise. To see all 
 
 Different colors are used to indicate the duration of the component render. The darker the color, the longer the duration.
 
-The Server Components track group will always contain a "Primary" track. If React is able to render Server Components concurrently, it will display addititional "Parallel" tracks.
+The Server Components track group will always contain a "Primary" track. If React is able to render Server Components concurrently, it will display additional "Parallel" tracks.
 If more than 8 Server Components are rendered concurrently, React will associate them with the last "Parallel" track instead of adding more tracks.

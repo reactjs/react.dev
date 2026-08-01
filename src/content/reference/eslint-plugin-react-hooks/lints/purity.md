@@ -53,6 +53,41 @@ function Component() {
 
 ## Troubleshooting {/*troubleshooting*/}
 
+### I need to show random content {/*random-content*/}
+
+Calling `Math.random()` during render makes your component impure:
+
+```js {expectedErrors: {'react-compiler': [7]}}
+const messages = ['a', 'b', 'c'];
+
+// ❌ Wrong: Random message changes every render
+function RandomMessage() {
+  return (
+    <div>
+      Random message: {messages[Math.floor(messages.length * Math.random())]}
+    </div>
+  );
+}
+```
+
+Instead, move the impure function into an effect:
+
+```js
+const messages = ['a', 'b', 'c'];
+
+function RandomMessage() {
+  const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    setMessage(messages[Math.floor(messages.length * Math.random())]);
+  }, []);
+
+  if (message === '') return;
+
+  return <div>Random message: {message}</div>;
+}
+```
+
 ### I need to show the current time {/*current-time*/}
 
 Calling `Date.now()` during render makes your component impure:
@@ -68,7 +103,7 @@ Instead, [move the impure function outside of render](/reference/rules/component
 
 ```js
 function Clock() {
-  const [time, setTime] = useState(() => Date.now());
+  const [time, setTime] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -77,6 +112,8 @@ function Clock() {
 
     return () => clearInterval(interval);
   }, []);
+
+  if (time === 0) return;
 
   return <div>Current time: {time}</div>;
 }

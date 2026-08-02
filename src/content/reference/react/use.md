@@ -4,7 +4,7 @@ title: use
 
 <Intro>
 
-`use` is a React API that lets you read the value of a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](/learn/passing-data-deeply-with-context).
+`use` is a React API that lets you read the value of a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [Context](/learn/passing-data-deeply-with-context).
 
 ```js
 const value = use(resource);
@@ -20,7 +20,7 @@ const value = use(resource);
 
 ### `use(context)` {/*use-context*/}
 
-Call `use` with a [context](/learn/passing-data-deeply-with-context) to read its value. Unlike [`useContext`](/reference/react/useContext), `use` can be called within loops and conditional statements like `if`.
+Call `use` with a [Context](/learn/passing-data-deeply-with-context) to read its value. Unlike [`useContext`](/reference/react/useContext), `use` can be called within loops and conditional statements like `if`.
 
 ```js
 import { use } from 'react';
@@ -34,16 +34,16 @@ function Button() {
 
 #### Parameters {/*context-parameters*/}
 
-* `context`: A [context](/learn/passing-data-deeply-with-context) created with [`createContext`](/reference/react/createContext).
+* `context`: A [Context](/learn/passing-data-deeply-with-context) created with [`createContext`](/reference/react/createContext).
 
 #### Returns {/*context-returns*/}
 
-The context value for the passed context, determined by the closest context provider above the calling component. If there is no provider, the returned value is the `defaultValue` passed to [`createContext`](/reference/react/createContext).
+The Context value for the passed Context, determined by the closest Context provider above the calling component. If there is no provider, the returned value is the `defaultValue` passed to [`createContext`](/reference/react/createContext).
 
 #### Caveats {/*context-caveats*/}
 
 * `use` must be called inside a Component or a Hook.
-* Reading context with `use` is not supported in [Server Components](/reference/rsc/server-components).
+* Reading Context with `use` is not supported in [Server Components](/reference/rsc/server-components).
 
 ---
 
@@ -82,9 +82,9 @@ The resolved value of the Promise.
 
 ## Usage (Context) {/*usage-context*/}
 
-### Reading context with `use` {/*reading-context-with-use*/}
+### Reading Context with `use` {/*reading-context-with-use*/}
 
-When a [context](/learn/passing-data-deeply-with-context) is passed to `use`, it works similarly to [`useContext`](/reference/react/useContext). While `useContext` must be called at the top level of your component, `use` can be called inside conditionals like `if` and loops like `for`.
+When a [Context](/learn/passing-data-deeply-with-context) is passed to `use`, it works similarly to [`useContext`](/reference/react/useContext). While `useContext` must be called at the top level of your component, `use` can be called inside conditionals like `if` and loops like `for`.
 
 ```js [[2, 4, "theme"], [1, 4, "ThemeContext"]]
 import { use } from 'react';
@@ -94,9 +94,9 @@ function Button() {
   // ...
 ```
 
-`use` returns the <CodeStep step={2}>context value</CodeStep> for the <CodeStep step={1}>context</CodeStep> you passed. To determine the context value, React searches the component tree and finds **the closest context provider above** for that particular context.
+`use` returns the <CodeStep step={2}>Context value</CodeStep> for the <CodeStep step={1}>Context</CodeStep> you passed. To determine the Context value, React searches the component tree and finds **the closest Context provider above** for that particular Context.
 
-To pass context to a `Button`, wrap it or one of its parent components into the corresponding context provider.
+To pass Context to a `Button`, wrap it or one of its parent components into the corresponding Context provider.
 
 ```js [[1, 3, "ThemeContext"], [2, 3, "\\"dark\\""], [1, 5, "ThemeContext"]]
 function MyPage() {
@@ -130,7 +130,7 @@ function HorizontalRule({ show }) {
 
 <Pitfall>
 
-Like `useContext`, `use(context)` always looks for the closest context provider *above* the component that calls it. It searches upwards and **does not** consider context providers in the component from which you're calling `use(context)`.
+Like `useContext`, `use(context)` always looks for the closest Context provider *above* the component that calls it. It searches upwards and **does not** consider Context providers in the component from which you're calling `use(context)`.
 
 </Pitfall>
 
@@ -221,9 +221,9 @@ function Button({ show, children }) {
 
 </Sandpack>
 
-### Reading a Promise from context {/*reading-a-promise-from-context*/}
+### Reading a Promise from Context {/*reading-a-promise-from-context*/}
 
-To share asynchronous data without prop drilling, set a Promise as a context value, then read it with `use(context)` and resolve it with `use(promise)`:
+To share asynchronous data without prop drilling, set a Promise as a Context value, then read it with `use(context)` and resolve it with `use(promise)`:
 
 ```js
 import { use } from 'react';
@@ -236,13 +236,13 @@ function Profile() {
 }
 ```
 
-Reading the value requires two `use` calls because the context value itself isn't awaited. See [Before you use context](/learn/passing-data-deeply-with-context#before-you-use-context) for alternatives to consider before reaching for context.
+Reading the value requires two `use` calls because the Context value itself isn't awaited. See [Before you use Context](/learn/passing-data-deeply-with-context#before-you-use-context) for alternatives to consider before reaching for Context.
 
 Wrap the components that read the Promise in a [Suspense](/reference/react/Suspense) boundary so only that subtree suspends while the Promise is pending. See [Usage (Promises)](#usage-promises) below for more on reading Promises with `use`.
 
 <Pitfall>
 
-When this pattern is used with [Server Components](/reference/rsc/server-components), refetching the Promise requires refetching the Server Component that sets the Promise in context. Avoid setting the Promise in context high in the tree, since that would refetch large parts of the app unnecessarily.
+When this pattern is used with [Server Components](/reference/rsc/server-components), refetching the Promise requires refetching the Server Component that sets the Promise in Context. Avoid setting the Promise in Context high in the tree, since that would refetch large parts of the app unnecessarily.
 
 </Pitfall>
 

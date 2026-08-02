@@ -50,9 +50,9 @@ Only the `render` method is required, other methods are optional.
 
 ### `context` {/*context*/}
 
-The [context](/learn/passing-data-deeply-with-context) of a class component is available as `this.context`. It is only available if you specify *which* context you want to receive using [`static contextType`](#static-contexttype).
+The [Context](/learn/passing-data-deeply-with-context) of a class component is available as `this.context`. It is only available if you specify *which* Context you want to receive using [`static contextType`](#static-contexttype).
 
-A class component can only read one context at a time.
+A class component can only read one Context at a time.
 
 ```js {2,5}
 class Button extends Component {
@@ -565,7 +565,7 @@ class Greeting extends Component {
 
 React may call `render` at any moment, so you shouldn't assume that it runs at a particular time. Usually, the `render` method should return a piece of [JSX](/learn/writing-markup-with-jsx), but a few [other return types](#render-returns) (like strings) are supported. To calculate the returned JSX, the `render` method can read [`this.props`](#props), [`this.state`](#state), and [`this.context`](#context).
 
-You should write the `render` method as a pure function, meaning that it should return the same result if props, state, and context are the same. It also shouldn't contain side effects (like setting up subscriptions) or interact with the browser APIs. Side effects should happen either in event handlers or methods like [`componentDidMount`.](#componentdidmount)
+You should write the `render` method as a pure function, meaning that it should return the same result if props, state, and Context are the same. It also shouldn't contain side effects (like setting up subscriptions) or interact with the browser APIs. Side effects should happen either in event handlers or methods like [`componentDidMount`.](#componentdidmount)
 
 #### Parameters {/*render-parameters*/}
 
@@ -714,7 +714,7 @@ React calls `shouldComponentUpdate` before rendering when new props or state are
 
 - `nextProps`: The next props that the component is about to render with. Compare `nextProps` to [`this.props`](#props) to determine what changed.
 - `nextState`: The next state that the component is about to render with. Compare `nextState` to [`this.state`](#props) to determine what changed.
-- `nextContext`: The next context that the component is about to render with. Compare `nextContext` to [`this.context`](#context) to determine what changed. Only available if you specify [`static contextType`](#static-contexttype).
+- `nextContext`: The next Context that the component is about to render with. Compare `nextContext` to [`this.context`](#context) to determine what changed. Only available if you specify [`static contextType`](#static-contexttype).
 
 #### Returns {/*shouldcomponentupdate-returns*/}
 
@@ -789,7 +789,7 @@ If you define `UNSAFE_componentWillReceiveProps`, React will call it when the co
 #### Parameters {/*unsafe_componentwillreceiveprops-parameters*/}
 
 - `nextProps`: The next props that the component is about to receive from its parent component. Compare `nextProps` to [`this.props`](#props) to determine what changed.
-- `nextContext`: The next context that the component is about to receive from the closest provider. Compare `nextContext` to [`this.context`](#context) to determine what changed. Only available if you specify [`static contextType`](#static-contexttype).
+- `nextContext`: The next Context that the component is about to receive from the closest provider. Compare `nextContext` to [`this.context`](#context) to determine what changed. Only available if you specify [`static contextType`](#static-contexttype).
 
 #### Returns {/*unsafe_componentwillreceiveprops-returns*/}
 
@@ -856,7 +856,7 @@ There is no direct equivalent to `UNSAFE_componentWillUpdate` in function compon
 
 ### `static contextType` {/*static-contexttype*/}
 
-If you want to read [`this.context`](#context-instance-field) from your class component, you must specify which context it needs to read. The context you specify as the `static contextType` must be a value previously created by [`createContext`.](/reference/react/createContext)
+If you want to read [`this.context`](#context-instance-field) from your class component, you must specify which Context it needs to read. The Context you specify as the `static contextType` must be a value previously created by [`createContext`.](/reference/react/createContext)
 
 ```js {2}
 class Button extends Component {
@@ -1773,9 +1773,9 @@ If your component does not synchronize with any external systems, [you might not
 
 ---
 
-### Migrating a component with context from a class to a function {/*migrating-a-component-with-context-from-a-class-to-a-function*/}
+### Migrating a component with Context from a class to a function {/*migrating-a-component-with-context-from-a-class-to-a-function*/}
 
-In this example, the `Panel` and `Button` class components read [context](/learn/passing-data-deeply-with-context) from [`this.context`:](#context)
+In this example, the `Panel` and `Button` class components read [Context](/learn/passing-data-deeply-with-context) from [`this.context`:](#context)
 
 <Sandpack>
 

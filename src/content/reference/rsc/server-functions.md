@@ -6,7 +6,7 @@ title: Server Functions
 
 Server Functions are for use in [React Server Components](/reference/rsc/server-components).
 
-**Note:** Until September 2024, we referred to all Server Functions as "Server Actions". If a Server Function is passed to an action prop or called from inside an action then it is a Server Action, but not all Server Functions are Server Actions. The naming in this documentation has been updated to reflect that Server Functions can be used for multiple purposes.
+**Note:** Until September 2024, we referred to all Server Functions as "Server Actions". If a Server Function is passed to an action prop or called from inside an Action, then it is a Server Action, but not all Server Functions are Server Actions. The naming in this documentation has been updated to reflect that Server Functions can be used for multiple purposes.
 
 </RSC>
 
@@ -176,7 +176,7 @@ For more, see the docs for [Server Functions in Forms](/reference/rsc/use-server
 
 ### Server Functions with `useActionState` {/*server-functions-with-use-action-state*/}
 
-You can call Server Functions with `useActionState` for the common case where you just need access to the action pending state and last returned response:
+You can call Server Functions with `useActionState` for the common case where you just need access to the pending state for the Action and the last returned response:
 
 ```js [[1, 3, "updateName"], [1, 6, "updateName"], [2, 6, "submitAction"], [2, 9, "submitAction"]]
 "use client";

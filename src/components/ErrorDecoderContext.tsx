@@ -5,10 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-// Error Decoder requires reading pregenerated error message from getStaticProps,
-// but MDX component doesn't support props. So we use React Context to populate
-// the value without prop-drilling.
-// TODO: Replace with React.cache + React.use when migrating to Next.js App Router
+// Error Decoder needs the resolved error message in the MDX subtree but MDX
+// components can't receive props. We use a React Context populated by the
+// route's server component to avoid prop-drilling through the MDX renderer.
 
 import {createContext, useContext} from 'react';
 

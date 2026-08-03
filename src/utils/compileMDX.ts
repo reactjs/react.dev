@@ -6,24 +6,29 @@
  */
 
 import {LanguageItem} from 'components/MDX/LanguagesContext';
-import {MDXComponents} from 'components/MDX/MDXComponents';
+import {MDX_COMPONENT_NAMES} from 'components/MDX/MDXComponentsList';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~ IMPORTANT: BUMP THIS IF YOU CHANGE ANY CODE BELOW ~~~
-const DISK_CACHE_BREAKER = 11;
+const DISK_CACHE_BREAKER = 12;
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 export default async function compileMDX(
   mdx: string,
   path: string | string[],
   params: {[key: string]: any}
-): Promise<{content: string; toc: string; meta: any}> {
+): Promise<{
+  content: string;
+  toc: string;
+  meta: any;
+  languages: Array<LanguageItem> | null;
+}> {
   const fs = require('fs');
   const {
     prepareMDX,
     PREPARE_MDX_CACHE_BREAKER,
   } = require('../utils/prepareMDX');
-  const mdxComponentNames = Object.keys(MDXComponents);
+  const mdxComponentNames = MDX_COMPONENT_NAMES;
 
   // See if we have a cached output first.
   const {FileStore, stableHash} = require('metro-cache');

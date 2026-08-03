@@ -697,11 +697,11 @@ Read **[Extracting State Logic into a Reducer](/learn/extracting-state-logic-int
 
 </LearnMore>
 
-## Passing data deeply with context {/*passing-data-deeply-with-context*/}
+## Passing data deeply with Context {/*passing-data-deeply-with-context*/}
 
 Usually, you will pass information from a parent component to a child component via props. But passing props can become inconvenient if you need to pass some prop through many components, or if many components need the same information. Context lets the parent component make some information available to any component in the tree below it—no matter how deep it is—without passing it explicitly through props.
 
-Here, the `Heading` component determines its heading level by "asking" the closest `Section` for its level. Each `Section` tracks its own level by asking the parent `Section` and adding one to it. Every `Section` provides information to all components below it without passing props--it does that through context.
+Here, the `Heading` component determines its heading level by "asking" the closest `Section` for its level. Each `Section` tracks its own level by asking the parent `Section` and adding one to it. Every `Section` provides information to all components below it without passing props--it does that through Context.
 
 <Sandpack>
 
@@ -795,15 +795,15 @@ export const LevelContext = createContext(0);
 
 <LearnMore path="/learn/passing-data-deeply-with-context">
 
-Read **[Passing Data Deeply with Context](/learn/passing-data-deeply-with-context)** to learn about using context as an alternative to passing props.
+Read **[Passing Data Deeply with Context](/learn/passing-data-deeply-with-context)** to learn about using Context as an alternative to passing props.
 
 </LearnMore>
 
-## Scaling up with reducer and context {/*scaling-up-with-reducer-and-context*/}
+## Scaling up with reducer and Context {/*scaling-up-with-reducer-and-context*/}
 
-Reducers let you consolidate a component’s state update logic. Context lets you pass information deep down to other components. You can combine reducers and context together to manage state of a complex screen.
+Reducers let you consolidate a component’s state update logic. Context lets you pass information deep down to other components. You can combine reducers and Context together to manage state of a complex screen.
 
-With this approach, a parent component with complex state manages it with a reducer. Other components anywhere deep in the tree can read its state via context. They can also dispatch actions to update that state.
+With this approach, a parent component with complex state manages it with a reducer. Other components anywhere deep in the tree can read its state via Context. They can also dispatch actions to update that state.
 
 <Sandpack>
 

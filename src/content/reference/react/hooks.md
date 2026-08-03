@@ -31,7 +31,7 @@ function ImageGallery() {
 
 *Context* lets a component [receive information from distant parents without passing it as props.](/learn/passing-props-to-a-component) For example, your app's top-level component can pass the current UI theme to all components below, no matter how deep.
 
-* [`useContext`](/reference/react/useContext) reads and subscribes to a context.
+* [`useContext`](/reference/react/useContext) reads and subscribes to a Context.
 
 ```js
 function Button() {

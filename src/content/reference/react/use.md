@@ -82,7 +82,7 @@ The resolved value of the Promise.
 
 ## Usage (Context) {/*usage-context*/}
 
-### Reading context with `use` {/*reading-context-with-use*/}
+### Reading Context with `use` {/*reading-context-with-use*/}
 
 When a [context](/learn/passing-data-deeply-with-context) is passed to `use`, it works similarly to [`useContext`](/reference/react/useContext). While `useContext` must be called at the top level of your component, `use` can be called inside conditionals like `if` and loops like `for`.
 
@@ -94,9 +94,9 @@ function Button() {
   // ...
 ```
 
-`use` returns the <CodeStep step={2}>context value</CodeStep> for the <CodeStep step={1}>context</CodeStep> you passed. To determine the context value, React searches the component tree and finds **the closest context provider above** for that particular context.
+`use` returns the <CodeStep step={2}>Context value</CodeStep> for the <CodeStep step={1}>Context</CodeStep> you passed. To determine the Context value, React searches the component tree and finds **the closest Context provider above** for that particular Context.
 
-To pass context to a `Button`, wrap it or one of its parent components into the corresponding context provider.
+To pass Context to a `Button`, wrap it or one of its parent components into the corresponding Context provider.
 
 ```js [[1, 3, "ThemeContext"], [2, 3, "\\"dark\\""], [1, 5, "ThemeContext"]]
 function MyPage() {
@@ -130,7 +130,7 @@ function HorizontalRule({ show }) {
 
 <Pitfall>
 
-Like `useContext`, `use(context)` always looks for the closest context provider *above* the component that calls it. It searches upwards and **does not** consider context providers in the component from which you're calling `use(context)`.
+Like `useContext`, `use(context)` always looks for the closest Context provider *above* the component that calls it. It searches upwards and **does not** consider Context providers in the component from which you're calling `use(context)`.
 
 </Pitfall>
 
@@ -236,7 +236,7 @@ function Profile() {
 }
 ```
 
-Reading the value requires two `use` calls because the context value itself isn't awaited. See [Before you use context](/learn/passing-data-deeply-with-context#before-you-use-context) for alternatives to consider before reaching for context.
+Reading the value requires two `use` calls because the context value itself isn't awaited. See [Before you use Context](/learn/passing-data-deeply-with-context#before-you-use-context) for alternatives to consider before reaching for Context.
 
 Wrap the components that read the Promise in a [Suspense](/reference/react/Suspense) boundary so only that subtree suspends while the Promise is pending. See [Usage (Promises)](#usage-promises) below for more on reading Promises with `use`.
 

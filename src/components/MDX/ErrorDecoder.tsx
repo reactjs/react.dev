@@ -8,6 +8,7 @@
 import {useEffect, useState} from 'react';
 import {useErrorDecoderParams} from '../ErrorDecoderContext';
 import cn from 'classnames';
+import {IconError} from '../Icon/IconError';
 
 function replaceArgs(
   msg: string,
@@ -108,12 +109,48 @@ export default function ErrorDecoder() {
   }, [errorCode, hasParams, errorMessage]);
 
   return (
-    <code
+    <div
       className={cn(
-        'whitespace-pre-line block bg-red-100 text-red-600 py-4 px-6 mt-5 rounded-lg',
+        'console-block mb-4 text-secondary bg-wash dark:bg-wash-dark rounded-lg mt-5',
         isReady ? 'opacity-100' : 'opacity-0'
-      )}>
-      <b>{message}</b>
-    </code>
+      )}
+      translate="no"
+      dir="ltr">
+      <div className="flex w-full rounded-t-lg bg-gray-200 dark:bg-gray-80">
+        <div className="px-4 py-2 border-gray-300 dark:border-gray-90 border-r">
+          <div
+            className="bg-gray-300 dark:bg-gray-70"
+            style={{width: '15px', height: '17px'}}
+          />
+        </div>
+        <div className="flex text-sm px-4">
+          <div className="border-b-2 border-gray-300 dark:border-gray-90 text-tertiary dark:text-tertiary-dark">
+            Console
+          </div>
+          <div className="px-4 py-2 flex">
+            <div
+              className="me-2 bg-gray-300 dark:bg-gray-70"
+              style={{width: '60px', height: '17px'}}
+            />
+            <div
+              className="me-2 hidden md:block bg-gray-300 dark:bg-gray-70"
+              style={{width: '60px', height: '17px'}}
+            />
+            <div
+              className="hidden md:block bg-gray-300 dark:bg-gray-70"
+              style={{width: '60px', height: '17px'}}
+            />
+          </div>
+        </div>
+      </div>
+      <div className="grid grid-cols-1 divide-y divide-gray-300 dark:divide-gray-70 text-base">
+        <div className="ps-4 pe-2 pt-1 pb-2 grid grid-cols-[18px_auto] font-mono rounded-b-md bg-red-30 text-red-50 dark:text-red-30 bg-opacity-5">
+          <IconError className="self-start mt-1.5 text-[.7rem] w-6" />
+          <div className="px-2 pt-1 whitespace-break-spaces text-code leading-tight">
+            {message}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

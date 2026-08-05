@@ -42,7 +42,7 @@ To create interactive controls for submitting information, render the [built-in 
   * If you pass a function to `action`, React runs it in a [Transition](/reference/react/useTransition) following [the Action prop pattern](/reference/react/useTransition#exposing-action-props-from-components).
   * The function may be async. React calls it with a single argument containing the [form data](https://developer.mozilla.org/en-US/docs/Web/API/FormData) of the submitted form.
   * A `formAction` prop on a `<button>`, `<input type="submit">`, or `<input type="image">` overrides this `action`.
-* [`method`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#method): A string. Specifies the [HTTP method](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) (`get` or `post`). Defaults to `get`. Ignored when `action` is a function—see [Caveats](#caveats).
+* [`method`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#method): A string. Specifies the [HTTP method](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) (`get` or `post`). Defaults to `get`. Ignored when `action` is a function.
 * `onSubmit`: An [`Event` handler](/reference/react-dom/components/common#event-handler) function. Fires when the form is submitted. If you also pass a function to `action`, both run unless you call `e.preventDefault()`. See [Handling form submission with an event handler](#handle-form-submission-with-an-event-handler).
 
 #### Caveats {/*caveats*/}
@@ -67,7 +67,7 @@ export default function Search() {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
-    const query = formData.get("query");
+    const query = formData.get('query');
     alert(`You searched for '${query}'`);
   }
 
@@ -92,7 +92,7 @@ Reading form data with `onSubmit` works in every version of React and gives you 
 
 ### Handling form submission with an action prop {/*handle-form-submission-with-an-action-prop*/}
 
-Pass a function to the `action` prop to run it when the form is submitted. React calls the function with a [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) object containing the values of every input with a `name` attribute. Your inputs can be [uncontrolled](/reference/react-dom/components/input#reading-the-input-values-when-submitting-a-form)—you don't need `value`/`onChange` pairs, an `onSubmit` handler, or `e.preventDefault()`.
+Pass a function to the `action` prop to run it when the form is submitted. React calls the function with a [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) object containing the values of every input with a `name` attribute. Your inputs can be [uncontrolled](/reference/react-dom/components/input#reading-the-input-values-when-submitting-a-form)-you don't need `value`/`onChange` pairs, an `onSubmit` handler, or `e.preventDefault()`.
 
 When you pass a function to `action`, React:
 
@@ -108,7 +108,7 @@ Because the Action runs in a Transition, you can also use [`useActionState`](/re
 ```js src/App.js
 export default function Search() {
   function search(formData) {
-    const query = formData.get("query");
+    const query = formData.get('query');
     alert(`You searched for '${query}'`);
   }
   return (
@@ -169,7 +169,6 @@ function AddToCart({productId}) {
 }
 ```
 
-When `<form>` is rendered by a [Server Component](/reference/rsc/use-client), and a [Server Function](/reference/rsc/server-functions) is passed to the `<form>`'s `action` prop, the form is [progressively enhanced](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement).
 ---
 
 ### Displaying a pending state during form submission {/*display-a-pending-state-during-form-submission*/}
@@ -395,7 +394,7 @@ To learn more about updating state from a form Action, see the [`useActionState`
 
 By default, the browser clears a form's input state after submission. Forms with a URL `action` follow this behavior, and React mirrors it when `action` is a function so the form behaves consistently before and after JavaScript loads.
 
-When you pass a function to `action` or `formAction`, React resets the form's [uncontrolled fields](/reference/react-dom/components/input#reading-the-input-values-when-submitting-a-form) after the Action succeeds. This reset only affects uncontrolled fields-[inputs controlled with state](/reference/react-dom/components/input#controlling-an-input-with-a-state-variable) are never cleared.
+When you pass a function to `action` or `formAction`, React resets the form's [uncontrolled fields](/reference/react-dom/components/input#reading-the-input-values-when-submitting-a-form) after the Action succeeds. This reset only affects uncontrolled fields-[inputs controlled with state](/reference/react-dom/components/input#controlling-an-input-with-a-state-variable) are not cleared.
 
 <Recipes titleText="Examples of preserving form values" titleId="examples-preserve-form-values">
 

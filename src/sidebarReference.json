@@ -257,6 +257,10 @@
           "path": "/reference/react-dom/flushSync"
         },
         {
+          "title": "requestFormReset",
+          "path": "/reference/react-dom/requestFormReset"
+        },
+        {
           "title": "preconnect",
           "path": "/reference/react-dom/preconnect"
         },

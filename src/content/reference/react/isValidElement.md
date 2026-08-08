@@ -47,7 +47,7 @@ console.log(isValidElement({ age: 42 })); // false
 
 #### Caveats {/*caveats*/}
 
-* **Only [JSX tags](/learn/writing-markup-with-jsx) and objects returned by [`createElement`](/reference/react/createElement) are considered to be React elements.** For example, even though a number like `42` is a valid React *node* (and can be returned from a component), it is not a valid React element. Arrays and portals created with [`createPortal`](/reference/react-dom/createPortal) are also *not* considered to be React elements.
+* **Only [JSX tags](/learn/writing-markup-with-jsx) and objects returned by [`createElement`](/reference/react/createElement) are considered to be React elements.** For example, even though a number like `42` is a valid React *node* (and can be returned from a component), it is not a valid React element. Arrays and Portals created with [`createPortal`](/reference/react-dom/createPortal) are also *not* considered to be React elements.
 
 ---
 
@@ -109,7 +109,7 @@ function MyComponent() {
 A React node can be:
 
 - A React element created like `<div />` or `createElement('div')`
-- A portal created with [`createPortal`](/reference/react-dom/createPortal)
+- A Portal created with [`createPortal`](/reference/react-dom/createPortal)
 - A string
 - A number
 - `true`, `false`, `null`, or `undefined` (which are not displayed)

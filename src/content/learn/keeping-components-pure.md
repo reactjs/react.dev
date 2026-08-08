@@ -246,11 +246,12 @@ Rendering is a *calculation*, it shouldn't try to "do" things. Can you express t
 ```js src/Clock.js active
 export default function Clock({ time }) {
   const hours = time.getHours();
-  if (hours >= 0 && hours <= 6) {
-    document.getElementById('time').className = 'night';
-  } else {
-    document.getElementById('time').className = 'day';
+  const timeElement = document.getElementById('time');
+
+  if (timeElement) {
+    timeElement.className = hours >= 0 && hours <= 6 ? 'night' : 'day';
   }
+
   return (
     <h1 id="time">
       {time.toLocaleTimeString()}

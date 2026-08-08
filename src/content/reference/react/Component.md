@@ -655,7 +655,7 @@ You don't have to do this, but it's handy if you want to update state multiple t
   * If you pass an object as `nextState`, it will be shallowly merged into `this.state`.
   * If you pass a function as `nextState`, it will be treated as an _updater function_. It must be pure, should take the pending state and props as arguments, and should return the object to be shallowly merged into `this.state`. React will put your updater function in a queue and re-render your component. During the next render, React will calculate the next state by applying all of the queued updaters to the previous state.
 
-* **optional** `callback`: If specified, React will call the `callback` you've provided after the update is committed.
+* **optional** `callback`: If specified, React will call the `callback` you've provided after the update is committed. React automatically binds the `this` keyword inside the callback to the current component.
 
 #### Returns {/*setstate-returns*/}
 

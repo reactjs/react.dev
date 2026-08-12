@@ -10,12 +10,12 @@
  */
 
 import {Children, cloneElement} from 'react';
-import NextLink from 'next/link';
+import Link from 'next/link';
 import cn from 'classnames';
 
 import {ExternalLink} from 'components/ExternalLink';
 
-function Link({
+function MDXLink({
   href,
   className,
   children,
@@ -42,18 +42,13 @@ function Link({
         <ExternalLink href={href} className={cn(classes, className)} {...props}>
           {modifiedChildren}
         </ExternalLink>
-      ) : href.startsWith('#') ? (
-        // eslint-disable-next-line jsx-a11y/anchor-has-content
-        <a className={cn(classes, className)} href={href} {...props}>
-          {modifiedChildren}
-        </a>
       ) : (
-        <NextLink href={href} className={cn(classes, className)} {...props}>
+        <Link href={href} className={cn(classes, className)} {...props}>
           {modifiedChildren}
-        </NextLink>
+        </Link>
       )}
     </>
   );
 }
 
-export default Link;
+export default MDXLink;

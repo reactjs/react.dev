@@ -105,7 +105,7 @@ useEffect(() => {
 }, [roomId]);
 ```
 
-Since `onConnected` is an <CodeStep step={1}>Effect Event</CodeStep>, `muted` and `onConnect` are not in the Effect dependencies.
+Since `onConnected` is an <CodeStep step={1}>Effect Event</CodeStep>, `muted` and `onConnected` are not in the Effect dependencies.
 
 <Pitfall>
 

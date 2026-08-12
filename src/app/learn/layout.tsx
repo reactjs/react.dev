@@ -28,7 +28,7 @@ export default function LearnLayout({children}: {children: React.ReactNode}) {
             <SidebarNav routeTree={routeTree} breadcrumbs={breadcrumbs} />
           </div>
         </div>
-        {children}
+        <React.Fragment key={pathname}>{children}</React.Fragment>
       </div>
     </>
   );

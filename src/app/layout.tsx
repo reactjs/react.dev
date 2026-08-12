@@ -161,7 +161,10 @@ const FONT_PRELOADS = [
 export default function RootLayout({children}: {children: React.ReactNode}) {
   const gaId = process.env.NEXT_PUBLIC_GA_TRACKING_ID;
   return (
-    <html lang={siteConfig.languageCode} dir={siteConfig.isRTL ? 'rtl' : 'ltr'}>
+    <html
+      lang={siteConfig.languageCode}
+      dir={siteConfig.isRTL ? 'rtl' : 'ltr'}
+      suppressHydrationWarning>
       <head>
         <script
           id="theme-init"

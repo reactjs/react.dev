@@ -47,6 +47,8 @@ The documentation is divided into several sections with a different tone and pur
 1. If possible, test any visual changes in all latest versions of common browsers, on both desktop and mobile.
 2. Run `yarn check-all`. (This will run Prettier, ESLint and validate types.)
 
+> **💡 Tip:** Before submitting your PR, make sure your changes follow the [React documentation style guide](https://github.com/reactjs/react.dev/blob/main/CONTRIBUTING.md) and all automated checks pass.
+
 ### Push it
 
 1. `git add -A && git commit -m "My message"` (replacing `My message` with a commit message, such as `Fix header logo on Android`) to stage and commit your changes

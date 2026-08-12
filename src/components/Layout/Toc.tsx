@@ -10,6 +10,7 @@
  */
 
 import cx from 'classnames';
+import Link from 'next/link';
 import {useTocHighlight} from './useTocHighlight';
 import {IsInTocContext} from '../MDX/TocContext';
 import type {Toc} from '../MDX/TocContext';
@@ -52,7 +53,7 @@ export function Toc({headings}: {headings: Toc}) {
                         hidden: h.depth && h.depth > 3,
                       }
                     )}>
-                    <a
+                    <Link
                       className={cx(
                         selectedIndex === i
                           ? 'text-link dark:text-link-dark font-bold'
@@ -61,7 +62,7 @@ export function Toc({headings}: {headings: Toc}) {
                       )}
                       href={h.url}>
                       {h.text}
-                    </a>
+                    </Link>
                   </li>
                 );
               })}

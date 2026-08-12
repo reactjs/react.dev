@@ -7,7 +7,6 @@
 
 'use client';
 
-import {Suspense} from 'react';
 import * as React from 'react';
 import {Footer} from './Footer';
 import {Toc} from './Toc';
@@ -42,48 +41,45 @@ export function DocsContent({
 
   return (
     <>
-      {/* No fallback UI so need to be careful not to suspend directly inside. */}
-      <Suspense fallback={null}>
-        <main className="min-w-0 isolate">
-          <article
-            className="font-normal break-words text-primary dark:text-primary-dark"
-            key={pathname}>
-            <div className="ps-0">
-              <div>
-                <PageHeading
-                  title={title}
-                  version={version}
-                  description={description}
-                  tags={route?.tags}
-                  breadcrumbs={breadcrumbs}
-                />
-              </div>
-              <div className="px-5 sm:px-12">
-                <div className="max-w-7xl mx-auto">
-                  <TocContext value={parsedToc}>
-                    <LanguagesContext value={data.languages}>
-                      {parsedContent}
-                    </LanguagesContext>
-                  </TocContext>
-                </div>
-                <DocsPageFooter
-                  route={route}
-                  nextRoute={nextRoute}
-                  prevRoute={prevRoute}
-                />
-              </div>
+      <main className="min-w-0 isolate">
+        <article
+          className="font-normal break-words text-primary dark:text-primary-dark"
+          key={pathname}>
+          <div className="ps-0">
+            <div>
+              <PageHeading
+                title={title}
+                version={version}
+                description={description}
+                tags={route?.tags}
+                breadcrumbs={breadcrumbs}
+              />
             </div>
-          </article>
-          <div className="self-stretch w-full">
-            <div className="w-full px-5 pt-10 mx-auto sm:px-12 md:px-12 md:pt-12 lg:pt-10">
-              <hr className="mx-auto max-w-7xl border-border dark:border-border-dark" />
-            </div>
-            <div className="py-12 px-5 sm:px-12 md:px-12 sm:py-12 md:py-16 lg:py-14">
-              <Footer />
+            <div className="px-5 sm:px-12">
+              <div className="max-w-7xl mx-auto">
+                <TocContext value={parsedToc}>
+                  <LanguagesContext value={data.languages}>
+                    {parsedContent}
+                  </LanguagesContext>
+                </TocContext>
+              </div>
+              <DocsPageFooter
+                route={route}
+                nextRoute={nextRoute}
+                prevRoute={prevRoute}
+              />
             </div>
           </div>
-        </main>
-      </Suspense>
+        </article>
+        <div className="self-stretch w-full">
+          <div className="w-full px-5 pt-10 mx-auto sm:px-12 md:px-12 md:pt-12 lg:pt-10">
+            <hr className="mx-auto max-w-7xl border-border dark:border-border-dark" />
+          </div>
+          <div className="py-12 px-5 sm:px-12 md:px-12 sm:py-12 md:py-16 lg:py-14">
+            <Footer />
+          </div>
+        </div>
+      </main>
       <div className="hidden -mt-16 lg:max-w-custom-xs 2xl:block">
         {parsedToc.length > 0 && <Toc headings={parsedToc} key={pathname} />}
       </div>

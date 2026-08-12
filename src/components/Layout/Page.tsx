@@ -11,7 +11,6 @@
 
 'use client';
 
-import {Suspense} from 'react';
 import * as React from 'react';
 import dynamic from 'next/dynamic';
 import {SidebarNav} from './SidebarNav';
@@ -154,34 +153,31 @@ export function Page({
             </div>
           </div>
         )}
-        {/* No fallback UI so need to be careful not to suspend directly inside. */}
-        <Suspense fallback={null}>
-          <main className="min-w-0 isolate">
-            <article
-              className="font-normal break-words text-primary dark:text-primary-dark"
-              key={pathname}>
-              {content}
-            </article>
+        <main className="min-w-0 isolate">
+          <article
+            className="font-normal break-words text-primary dark:text-primary-dark"
+            key={pathname}>
+            {content}
+          </article>
+          <div
+            className={cn(
+              'self-stretch w-full',
+              isHomePage && 'bg-wash dark:bg-gray-95 mt-[-1px]'
+            )}>
+            {!isHomePage && (
+              <div className="w-full px-5 pt-10 mx-auto sm:px-12 md:px-12 md:pt-12 lg:pt-10">
+                <hr className="mx-auto max-w-7xl border-border dark:border-border-dark" />
+              </div>
+            )}
             <div
               className={cn(
-                'self-stretch w-full',
-                isHomePage && 'bg-wash dark:bg-gray-95 mt-[-1px]'
+                'py-12 px-5 sm:px-12 md:px-12 sm:py-12 md:py-16 lg:py-14',
+                isHomePage && 'lg:pt-0'
               )}>
-              {!isHomePage && (
-                <div className="w-full px-5 pt-10 mx-auto sm:px-12 md:px-12 md:pt-12 lg:pt-10">
-                  <hr className="mx-auto max-w-7xl border-border dark:border-border-dark" />
-                </div>
-              )}
-              <div
-                className={cn(
-                  'py-12 px-5 sm:px-12 md:px-12 sm:py-12 md:py-16 lg:py-14',
-                  isHomePage && 'lg:pt-0'
-                )}>
-                <Footer />
-              </div>
+              <Footer />
             </div>
-          </main>
-        </Suspense>
+          </div>
+        </main>
         <div className="hidden -mt-16 lg:max-w-custom-xs 2xl:block">
           {showToc && toc.length > 0 && <Toc headings={toc} key={pathname} />}
         </div>

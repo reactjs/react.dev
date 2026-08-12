@@ -18,7 +18,7 @@ title: Your First Component
 
 ## Components: UI building blocks {/*components-ui-building-blocks*/}
 
-On the Web, HTML lets us create rich structured documents with its built-in set of tags like `<h1>` and `<li>`:
+On the Web, HTML allows us create rich, structured documents with its built-in set of tags like `<h1>` and `<li>`:
 
 ```html
 <article>

@@ -163,6 +163,10 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html lang={siteConfig.languageCode} dir={siteConfig.isRTL ? 'rtl' : 'ltr'}>
       <head>
+        <script
+          id="theme-init"
+          dangerouslySetInnerHTML={{__html: themeScript}}
+        />
         {/* RSS autodiscovery */}
         <link
           rel="alternate"
@@ -205,11 +209,6 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
         )}
       </head>
       <body className="font-text font-medium antialiased text-lg bg-wash dark:bg-wash-dark text-secondary dark:text-secondary-dark leading-base">
-        <Script
-          id="theme-init"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{__html: themeScript}}
-        />
         <ScrollRestoration />
         <AnalyticsTracker />
         {children}

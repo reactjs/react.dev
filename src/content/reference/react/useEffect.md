@@ -1598,7 +1598,7 @@ function ChatRoom({ roomId }) {
 
   useEffect(() => {
     const options = createOptions(); // It's used inside the Effect
-    const connection = createConnection();
+    const connection = createConnection(options);
     connection.connect();
     return () => connection.disconnect();
   }, [createOptions]); // 🚩 As a result, these dependencies are always different on a commit

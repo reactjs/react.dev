@@ -9,10 +9,7 @@ import type {Metadata} from 'next';
 import sidebarReference from '../../../sidebarReference.json';
 import type {RouteItem} from 'components/Layout/getRouteMeta';
 import {collectSectionPaths} from 'lib/collectPaths';
-import {
-  renderSectionContent,
-  sectionPageMetadata,
-} from '../../renderSectionPage';
+import {SectionContent, sectionPageMetadata} from '../../SectionPage';
 
 interface PageProps {
   params: Promise<{slug?: string[]}>;
@@ -33,9 +30,10 @@ export async function generateMetadata({params}: PageProps): Promise<Metadata> {
 
 export default async function ReferencePage({params}: PageProps) {
   const {slug} = await params;
-  return renderSectionContent({
-    section: 'reference',
-    segments: ['reference', ...(slug ?? [])],
-    routeTree: sidebarReference as RouteItem,
-  });
+  return (
+    <SectionContent
+      segments={['reference', ...(slug ?? [])]}
+      routeTree={sidebarReference as RouteItem}
+    />
+  );
 }

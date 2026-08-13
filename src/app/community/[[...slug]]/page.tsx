@@ -9,10 +9,7 @@ import type {Metadata} from 'next';
 import sidebarCommunity from '../../../sidebarCommunity.json';
 import type {RouteItem} from 'components/Layout/getRouteMeta';
 import {collectSectionPaths} from 'lib/collectPaths';
-import {
-  renderSectionContent,
-  sectionPageMetadata,
-} from '../../renderSectionPage';
+import {SectionContent, sectionPageMetadata} from '../../SectionPage';
 
 interface PageProps {
   params: Promise<{slug?: string[]}>;
@@ -33,9 +30,10 @@ export async function generateMetadata({params}: PageProps): Promise<Metadata> {
 
 export default async function CommunityPage({params}: PageProps) {
   const {slug} = await params;
-  return renderSectionContent({
-    section: 'community',
-    segments: ['community', ...(slug ?? [])],
-    routeTree: sidebarCommunity as RouteItem,
-  });
+  return (
+    <SectionContent
+      segments={['community', ...(slug ?? [])]}
+      routeTree={sidebarCommunity as RouteItem}
+    />
+  );
 }

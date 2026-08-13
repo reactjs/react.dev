@@ -9,7 +9,7 @@ import type {Metadata} from 'next';
 import sidebarBlog from '../../../sidebarBlog.json';
 import type {RouteItem} from 'components/Layout/getRouteMeta';
 import {collectSectionPaths} from 'lib/collectPaths';
-import {renderSectionPage, sectionPageMetadata} from '../../renderSectionPage';
+import {SectionPage, sectionPageMetadata} from '../../SectionPage';
 
 interface PageProps {
   params: Promise<{slug?: string[]}>;
@@ -31,9 +31,11 @@ export async function generateMetadata({params}: PageProps): Promise<Metadata> {
 
 export default async function BlogPage({params}: PageProps) {
   const {slug} = await params;
-  return renderSectionPage({
-    section: 'blog',
-    segments: ['blog', ...(slug ?? [])],
-    routeTree: sidebarBlog as RouteItem,
-  });
+  return (
+    <SectionPage
+      section="blog"
+      segments={['blog', ...(slug ?? [])]}
+      routeTree={sidebarBlog as RouteItem}
+    />
+  );
 }

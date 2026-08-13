@@ -9,10 +9,7 @@ import type {Metadata} from 'next';
 import sidebarLearn from '../../../sidebarLearn.json';
 import type {RouteItem} from 'components/Layout/getRouteMeta';
 import {collectSectionPaths} from 'lib/collectPaths';
-import {
-  renderSectionContent,
-  sectionPageMetadata,
-} from '../../renderSectionPage';
+import {SectionContent, sectionPageMetadata} from '../../SectionPage';
 
 interface PageProps {
   params: Promise<{slug?: string[]}>;
@@ -34,9 +31,10 @@ export async function generateMetadata({params}: PageProps): Promise<Metadata> {
 
 export default async function LearnPage({params}: PageProps) {
   const {slug} = await params;
-  return renderSectionContent({
-    section: 'learn',
-    segments: ['learn', ...(slug ?? [])],
-    routeTree: sidebarLearn as RouteItem,
-  });
+  return (
+    <SectionContent
+      segments={['learn', ...(slug ?? [])]}
+      routeTree={sidebarLearn as RouteItem}
+    />
+  );
 }

@@ -8,16 +8,18 @@
 import type {Metadata} from 'next';
 import sidebarHome from '../../sidebarHome.json';
 import type {RouteItem} from 'components/Layout/getRouteMeta';
-import {renderSectionPage, sectionPageMetadata} from '../renderSectionPage';
+import {SectionPage, sectionPageMetadata} from '../SectionPage';
 
 export async function generateMetadata(): Promise<Metadata> {
   return sectionPageMetadata({section: 'unknown', segments: ['versions']});
 }
 
 export default async function VersionsPage() {
-  return renderSectionPage({
-    section: 'unknown',
-    segments: ['versions'],
-    routeTree: sidebarHome as RouteItem,
-  });
+  return (
+    <SectionPage
+      section="unknown"
+      segments={['versions']}
+      routeTree={sidebarHome as RouteItem}
+    />
+  );
 }

@@ -1477,21 +1477,48 @@ export default function TravelPlan() {
 
   function handleComplete(parentId, childId) {
     updatePlan(draft => {
-      // Remove from the parent place's child IDs.
+      // remove child id from parent
       const parent = draft[parentId];
-      parent.childIds = parent.childIds
-        .filter(id => id !== childId);
+      if (parent) {
+        parent.childIds = parent.childIds.filter(id => id !== childId);
+      }
 
-      // Forget this place and all its subtree.
-      deleteAllChildren(childId);
+      // recursively delete subtree
       function deleteAllChildren(id) {
         const place = draft[id];
+        if (!place) return;
         place.childIds.forEach(deleteAllChildren);
         delete draft[id];
       }
+      deleteAllChildren(childId);
+
+      // If parent became empty (and isn't root), delete it and cascade upward.
+      function tryDeleteEmptyParent(pId) {
+      const p = draft[pId];
+      if (!p) return;
+
+      if (p.childIds.length === 0 && pId !== 0) {
+        // find the grandparent that references pId
+        const grandParent = Object.values(draft).find(x => x.childIds?.includes(pId));
+        const grandParentId = grandParent?.id;
+
+        // If we found a grandparent, remove the reference to pId from it
+        if (grandParent) {
+          grandParent.childIds = grandParent.childIds.filter(cid => cid !== pId);
+        }
+
+        // delete this now-empty parent
+        delete draft[pId];
+
+        // if a grandparent exists, try deleting it too (recursive cascade)
+        if (grandParentId !== undefined) {
+          tryDeleteEmptyParent(grandParentId);
+        }
+      }
+    }
+      tryDeleteEmptyParent(parentId);
     });
   }
-
   const root = plan[0];
   const planetIds = root.childIds;
   return (

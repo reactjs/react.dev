@@ -1276,7 +1276,7 @@ Error boundaries do not catch errors for:
 
 - Event handlers [(learn more)](/learn/responding-to-events)
 - [Server side rendering](/reference/react-dom/server)
-- Errors thrown in the error boundary itself (rather than its children)
+- Errors thrown in the Error Boundary itself (rather than its children)
 - Asynchronous code (e.g. `setTimeout` or `requestAnimationFrame` callbacks); an exception is the usage of the [`startTransition`](/reference/react/useTransition#starttransition) function returned by the [`useTransition`](/reference/react/useTransition) Hook. Errors thrown inside the transition function are caught by error boundaries [(learn more)](/reference/react/useTransition#displaying-an-error-to-users-with-error-boundary)
 
 </Note>

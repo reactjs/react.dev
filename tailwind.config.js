@@ -102,7 +102,8 @@ module.exports = {
         base: '15px',
         sm: '13px',
         xs: '11px',
-        code: 'calc(1em - 20%)',
+        code: 'calc(1em - 10%)',
+        'sandpack-code': 'calc(1em - 20%)',
       },
       animation: {
         marquee: 'marquee 40s linear infinite',

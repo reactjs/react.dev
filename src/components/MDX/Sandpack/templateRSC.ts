@@ -113,8 +113,8 @@ initClient();
         version: '0.0.0',
         main: '/src/index.js',
         dependencies: {
-          react: '19.2.4',
-          'react-dom': '19.2.4',
+          react: '19.2.8',
+          'react-dom': '19.2.8',
         },
       },
       null,

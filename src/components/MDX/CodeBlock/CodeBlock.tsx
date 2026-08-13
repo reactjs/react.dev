@@ -187,18 +187,21 @@ const CodeBlock = function CodeBlock({
     }
   }
   if (currentDecorator) {
+    // eslint-disable-next-line react-hooks/immutability
     lineOutput.push(
       <span key={'end/d'} className={currentDecorator}>
         {buffer}
       </span>
     );
   } else if (currentToken) {
+    // eslint-disable-next-line react-hooks/immutability
     lineOutput.push(
       <span key={'end/t'} className={currentToken}>
         {buffer}
       </span>
     );
   } else {
+    // eslint-disable-next-line react-hooks/immutability
     lineOutput.push(buffer);
   }
   finalOutput.push(

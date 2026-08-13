@@ -27,6 +27,8 @@ export function ExpandableExampleClient({
 
   useEffect(() => {
     if (id === window.location.hash.slice(1)) {
+      // The URL fragment is only available after this component mounts.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsExpanded(true);
     }
   }, [id]);

@@ -164,11 +164,12 @@ export default function TopNav({
   routeTree: RouteItem;
   section: 'learn' | 'reference' | 'community' | 'blog' | 'home' | 'unknown';
 }) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const asPath = usePathname() || '/';
+  const [openMenuPath, setOpenMenuPath] = useState<string | null>(null);
   const [showSearch, setShowSearch] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const scrollParentRef = useRef<HTMLDivElement>(null);
-  const asPath = usePathname() || '/';
+  const isMenuOpen = openMenuPath === asPath;
   const {breadcrumbs} = getRouteMeta(asPath, routeTree);
 
   // HACK. Fix up the data structures instead.
@@ -187,11 +188,6 @@ export default function TopNav({
     }
   }, [isMenuOpen]);
 
-  // Close the overlay on any navigation.
-  useEffect(() => {
-    setIsMenuOpen(false);
-  }, [asPath]);
-
   // Also close the overlay if the window gets resized past mobile layout.
   // (This is also important because we don't want to keep the body locked!)
   useEffect(() => {
@@ -199,7 +195,7 @@ export default function TopNav({
 
     function closeIfNeeded() {
       if (!media.matches) {
-        setIsMenuOpen(false);
+        setOpenMenuPath(null);
       }
     }
 
@@ -261,7 +257,7 @@ export default function TopNav({
               <button
                 type="button"
                 aria-label="Menu"
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                onClick={() => setOpenMenuPath(isMenuOpen ? null : asPath)}
                 className={cn(
                   'active:scale-95 transition-transform flex lg:hidden w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link',
                   {

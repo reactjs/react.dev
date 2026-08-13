@@ -66,6 +66,8 @@ export function Challenges({
       if (initIndex === -1) {
         queuedScrollRef.current = undefined;
       } else if (initIndex !== activeIndex) {
+        // The URL fragment selects the initially visible challenge after mount.
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setActiveIndex(initIndex);
       }
     }

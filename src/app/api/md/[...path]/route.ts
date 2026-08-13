@@ -9,7 +9,7 @@ import fs from 'fs';
 import path from 'path';
 import {NextResponse} from 'next/server';
 import {cacheLife} from 'next/cache';
-import {collectAllContentPaths} from 'lib/collectPaths';
+import {collectAllContentPaths, isContentPageAvailable} from 'lib/collectPaths';
 
 const FOOTER = `
 ---
@@ -39,6 +39,7 @@ async function readContentMarkdown(
   'use cache';
   cacheLife('max');
   if (!pathSegments || pathSegments.length === 0) return null;
+  if (!isContentPageAvailable(pathSegments)) return null;
 
   const filePath = pathSegments.join('/');
   // Block /index.md URLs - use /foo.md instead of /foo/index.md

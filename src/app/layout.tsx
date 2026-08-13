@@ -189,7 +189,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
           <link
             key={file}
             rel="preload"
-            href={`https://react.dev/fonts/${file}`}
+            href={`/fonts/${file}`}
             as="font"
             type="font/woff2"
             crossOrigin="anonymous"

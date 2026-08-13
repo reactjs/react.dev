@@ -9,6 +9,7 @@ import 'server-only';
 import fs from 'fs/promises';
 import path from 'path';
 import {cacheLife} from 'next/cache';
+import {isContentPageAvailable} from './collectPaths';
 import compileMDX from 'utils/compileMDX';
 import type {CompiledMDX} from 'utils/compileMDX';
 
@@ -33,6 +34,7 @@ export async function readMarkdownPage(
 ): Promise<PageData | null> {
   'use cache';
   cacheLife('max');
+  if (!isContentPageAvailable(segments)) return null;
   const routePath = segments.join('/') || 'index';
   let mdx: string | null = null;
   for (const candidate of [

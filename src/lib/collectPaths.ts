@@ -17,6 +17,13 @@ const stat = promisify(fs.stat);
 const ROOT = path.join(process.cwd(), 'src/content');
 const DEV_ONLY_PAGES = new Set(['learn/rsc-sandbox-test']);
 
+export function isContentPageAvailable(segments: string[]): boolean {
+  return (
+    process.env.NODE_ENV !== 'production' ||
+    !DEV_ONLY_PAGES.has(segments.join('/'))
+  );
+}
+
 async function getFiles(dir: string, base: string): Promise<string[]> {
   const subdirs = await readdir(dir);
   const files = await Promise.all(
@@ -54,10 +61,7 @@ export async function collectSectionPaths(
   const files = await getFiles(dir, dir);
   return files
     .map((file) => getSegments(file))
-    .filter((segments) => {
-      if (process.env.NODE_ENV !== 'production') return true;
-      return !DEV_ONLY_PAGES.has([section, ...segments].join('/'));
-    });
+    .filter((segments) => isContentPageAvailable([section, ...segments]));
 }
 
 /**
@@ -76,6 +80,7 @@ export async function collectAllContentPaths(): Promise<string[][]> {
       // Drop the root `index.md` (-> []); `/index.md` isn't a served URL and an
       // empty catch-all param can't be prerendered.
       .filter((segments) => segments.length > 0)
+      .filter(isContentPageAvailable)
   );
 }
 

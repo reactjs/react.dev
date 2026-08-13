@@ -12,6 +12,7 @@ import type {RouteItem} from 'components/Layout/getRouteMeta';
 import {readMarkdownPage} from 'lib/readMarkdownPage';
 import {buildPageMetadata} from 'lib/buildPageMetadata';
 import {DocsPage} from './DocsPage';
+import {HomeContent} from 'components/Layout/HomeContent';
 
 export async function generateMetadata(): Promise<Metadata> {
   const data = await readMarkdownPage([]);
@@ -27,7 +28,8 @@ export default async function HomePage() {
       data={data}
       pathname="/"
       section="home"
-      routeTree={sidebarHome as RouteItem}
-    />
+      routeTree={sidebarHome as RouteItem}>
+      <HomeContent />
+    </DocsPage>
   );
 }

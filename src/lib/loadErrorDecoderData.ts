@@ -11,13 +11,11 @@ import path from 'path';
 import {notFound} from 'next/navigation';
 import {cacheLife} from 'next/cache';
 import compileMDX from 'utils/compileMDX';
+import type {CompiledMDX} from 'utils/compileMDX';
 
-export interface ErrorDecoderData {
+export interface ErrorDecoderData extends CompiledMDX {
   errorCode: string | null;
   errorMessage: string | null;
-  content: string;
-  toc: string;
-  meta: any;
 }
 
 async function loadErrorCodes(): Promise<Record<string, string>> {
@@ -49,17 +47,12 @@ async function compileErrorDecoderData(
     mdx = fs.readFileSync(path.join(rootDir, 'generic.md'), 'utf8');
   }
 
-  const {content, toc, meta} = await compileMDX(mdx, targetPath, {
-    code,
-    errorCodes,
-  });
+  const compiled = await compileMDX(mdx);
 
   return {
+    ...compiled,
     errorCode: code,
     errorMessage: code ? errorCodes[code] : null,
-    content,
-    toc,
-    meta,
   };
 }
 

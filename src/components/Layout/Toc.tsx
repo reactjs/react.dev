@@ -5,6 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+'use client';
+
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
@@ -12,7 +14,6 @@
 import cx from 'classnames';
 import Link from 'next/link';
 import {useTocHighlight} from './useTocHighlight';
-import {IsInTocContext} from '../MDX/TocContext';
 import type {Toc} from '../MDX/TocContext';
 
 export function Toc({headings}: {headings: Toc}) {
@@ -34,39 +35,37 @@ export function Toc({headings}: {headings: Toc}) {
           overscrollBehavior: 'contain',
         }}>
         <ul className="space-y-2 pb-16">
-          <IsInTocContext.Provider value={true}>
-            {headings.length > 0 &&
-              headings.map((h, i) => {
-                if (!h.url && process.env.NODE_ENV === 'development') {
-                  console.error('Heading does not have URL');
-                }
-                return (
-                  <li
-                    key={`heading-${h.url}-${i}`}
+          {headings.length > 0 &&
+            headings.map((h, i) => {
+              if (!h.url && process.env.NODE_ENV === 'development') {
+                console.error('Heading does not have URL');
+              }
+              return (
+                <li
+                  key={`heading-${h.url}-${i}`}
+                  className={cx(
+                    'text-sm px-2 rounded-s-xl',
+                    selectedIndex === i
+                      ? 'bg-highlight dark:bg-highlight-dark'
+                      : null,
+                    {
+                      'ps-4': h?.depth === 3,
+                      hidden: h.depth && h.depth > 3,
+                    }
+                  )}>
+                  <Link
                     className={cx(
-                      'text-sm px-2 rounded-s-xl',
                       selectedIndex === i
-                        ? 'bg-highlight dark:bg-highlight-dark'
-                        : null,
-                      {
-                        'ps-4': h?.depth === 3,
-                        hidden: h.depth && h.depth > 3,
-                      }
-                    )}>
-                    <Link
-                      className={cx(
-                        selectedIndex === i
-                          ? 'text-link dark:text-link-dark font-bold'
-                          : 'text-secondary dark:text-secondary-dark',
-                        'block hover:text-link dark:hover:text-link-dark leading-normal py-2'
-                      )}
-                      href={h.url}>
-                      {h.text}
-                    </Link>
-                  </li>
-                );
-              })}
-          </IsInTocContext.Provider>
+                        ? 'text-link dark:text-link-dark font-bold'
+                        : 'text-secondary dark:text-secondary-dark',
+                      'block hover:text-link dark:hover:text-link-dark leading-normal py-2'
+                    )}
+                    href={h.url}>
+                    {h.text}
+                  </Link>
+                </li>
+              );
+            })}
         </ul>
       </div>
     </nav>

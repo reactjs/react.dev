@@ -5,23 +5,18 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-'use client';
-
-import * as React from 'react';
 import {Footer} from './Footer';
 import {Toc} from './Toc';
 import {DocsPageFooter} from 'components/DocsFooter';
 import PageHeading from 'components/PageHeading';
 import {getRouteMeta} from './getRouteMeta';
-import {useDeserializedMDX} from './useDeserializedMDX';
-import {TocContext} from '../MDX/TocContext';
-import {LanguagesContext} from '../MDX/LanguagesContext';
 import type {RouteItem} from './getRouteMeta';
 import type {PageData} from 'lib/readMarkdownPage';
+import {renderCompiledMDX} from 'utils/compileMDX';
 
 import(/* webpackPrefetch: true */ '../MDX/CodeBlock/CodeBlock');
 
-export function DocsContent({
+export async function DocsContent({
   data,
   pathname,
   routeTree,
@@ -30,7 +25,7 @@ export function DocsContent({
   pathname: string;
   routeTree: RouteItem;
 }) {
-  const {parsedContent, parsedToc} = useDeserializedMDX(data.content, data.toc);
+  const {content, toc} = await renderCompiledMDX(data);
   const {route, nextRoute, prevRoute, breadcrumbs} = getRouteMeta(
     pathname,
     routeTree
@@ -56,13 +51,7 @@ export function DocsContent({
               />
             </div>
             <div className="px-5 sm:px-12">
-              <div className="max-w-7xl mx-auto">
-                <TocContext value={parsedToc}>
-                  <LanguagesContext value={data.languages}>
-                    {parsedContent}
-                  </LanguagesContext>
-                </TocContext>
-              </div>
+              <div className="max-w-7xl mx-auto">{content}</div>
               <DocsPageFooter
                 route={route}
                 nextRoute={nextRoute}
@@ -81,7 +70,7 @@ export function DocsContent({
         </div>
       </main>
       <div className="hidden -mt-16 lg:max-w-custom-xs 2xl:block">
-        {parsedToc.length > 0 && <Toc headings={parsedToc} key={pathname} />}
+        {toc.length > 0 && <Toc headings={toc} key={pathname} />}
       </div>
     </>
   );

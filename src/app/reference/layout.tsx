@@ -5,13 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-'use client';
-
-import * as React from 'react';
-import {usePathname} from 'next/navigation';
 import {SidebarNav} from 'components/Layout/SidebarNav';
 import {TopNav} from 'components/Layout/TopNav';
-import {getRouteMeta} from 'components/Layout/getRouteMeta';
 import type {RouteItem} from 'components/Layout/getRouteMeta';
 import sidebarReference from '../../sidebarReference.json';
 
@@ -20,20 +15,14 @@ export default function ReferenceLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const pathname = usePathname() || '/';
   const routeTree = sidebarReference as RouteItem;
-  const {breadcrumbs} = getRouteMeta(pathname, routeTree);
   return (
     <>
-      <TopNav
-        section="reference"
-        routeTree={routeTree}
-        breadcrumbs={breadcrumbs}
-      />
+      <TopNav section="reference" routeTree={routeTree} />
       <div className="grid grid-cols-only-content lg:grid-cols-sidebar-content 2xl:grid-cols-sidebar-content-toc">
         <div className="lg:-mt-16 z-10">
           <div className="fixed top-0 py-0 shadow lg:pt-16 lg:sticky start-0 end-0 lg:shadow-none">
-            <SidebarNav routeTree={routeTree} breadcrumbs={breadcrumbs} />
+            <SidebarNav routeTree={routeTree} />
           </div>
         </div>
         {children}

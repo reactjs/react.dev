@@ -42,3 +42,29 @@ const shimCode = fs.readFileSync(shimPath, 'utf8');
 workerCode = shimCode + '\n' + workerCode;
 
 fs.writeFileSync(workerOutfile, workerCode);
+
+const publicSourceDir = path.resolve(root, 'public/sandpack-rsc');
+fs.rmSync(publicSourceDir, {recursive: true, force: true});
+fs.mkdirSync(publicSourceDir, {recursive: true});
+
+const publicSources = {
+  'webpack-shim.js': shimPath,
+  'rsc-client.js': path.resolve(sandboxBase, 'rsc-client.js'),
+  'react-refresh-init.js': path.resolve(
+    sandboxBase,
+    '__react_refresh_init__.js'
+  ),
+  'worker-bundle.js': workerOutfile,
+  'rsdw-client.js': path.resolve(
+    root,
+    'node_modules/react-server-dom-webpack/cjs/react-server-dom-webpack-client.browser.production.js'
+  ),
+  'react-refresh-runtime.js': path.resolve(
+    root,
+    'node_modules/next/dist/compiled/react-refresh/cjs/react-refresh-runtime.development.js'
+  ),
+};
+
+for (const [name, source] of Object.entries(publicSources)) {
+  fs.copyFileSync(source, path.resolve(publicSourceDir, name));
+}

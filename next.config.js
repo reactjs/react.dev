@@ -17,25 +17,27 @@ const nextConfig = {
   reactStrictMode: true,
   reactCompiler: true,
   cacheComponents: true,
+  outputFileTracingIncludes: {
+    '/*': ['./src/content/**/*.md'],
+  },
   serverExternalPackages: [
     '@babel/core',
     '@babel/plugin-transform-modules-commonjs',
     '@babel/preset-react',
     '@mdx-js/mdx',
-    'metro-cache',
     'gray-matter',
     'unist-util-visit',
     'remark-gfm',
     'remark-frontmatter',
   ],
-  // Next 16 defaults to Turbopack, but this project still relies on the custom
-  // `webpack()` config below (module aliases, IgnorePlugin, and Sandpack's
-  // `raw-loader` imports) which Turbopack can't run yet. The build scripts pass
-  // `--webpack` to force the webpack pipeline; this empty `turbopack` object
-  // silences the "webpack config without turbopack config" warning in the
-  // meantime.
-  // TODO: port the webpack customizations to Turbopack and drop `--webpack`.
-  turbopack: {},
+  turbopack: {
+    resolveAlias: {
+      'use-sync-external-store/shim': 'react',
+      esquery: 'esquery/dist/esquery.min.js',
+      raf: './src/utils/rafShim.js',
+      process: './src/utils/processShim.js',
+    },
+  },
   async rewrites() {
     return {
       beforeFiles: [

@@ -9,28 +9,17 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-'use client';
-
 import * as React from 'react';
-import dynamic from 'next/dynamic';
 import {SidebarNav} from './SidebarNav';
 import {Footer} from './Footer';
 import {Toc} from './Toc';
 import {DocsPageFooter} from 'components/DocsFooter';
 import PageHeading from 'components/PageHeading';
 import {getRouteMeta} from './getRouteMeta';
-import {TocContext} from '../MDX/TocContext';
-import {Languages, LanguagesContext} from '../MDX/LanguagesContext';
 import type {TocItem} from 'components/MDX/TocContext';
 import type {RouteItem} from 'components/Layout/getRouteMeta';
 import {TopNav} from './TopNav';
 import cn from 'classnames';
-
-// The homepage is a large, standalone bundle that only ever renders at `/`.
-// Load it lazily so every other route doesn't ship it. (~2.7k LOC.)
-const HomeContent = dynamic(() =>
-  import('./HomeContent').then((m) => m.HomeContent)
-);
 
 import(/* webpackPrefetch: true */ '../MDX/CodeBlock/CodeBlock');
 
@@ -55,7 +44,6 @@ interface PageProps {
   section: PageSection;
   /** Cleaned pathname from the server, e.g. "/", "/learn/state". */
   pathname: string;
-  languages?: Languages | null;
 }
 
 export function Page({
@@ -65,7 +53,6 @@ export function Page({
   meta,
   section,
   pathname,
-  languages = null,
 }: PageProps) {
   const {route, nextRoute, prevRoute, breadcrumbs} = getRouteMeta(
     pathname,
@@ -79,7 +66,7 @@ export function Page({
 
   let content;
   if (isHomePage) {
-    content = <HomeContent />;
+    content = children;
   } else {
     content = (
       <div className="ps-0">
@@ -101,9 +88,7 @@ export function Page({
               'max-w-7xl mx-auto',
               section === 'blog' && 'lg:flex lg:flex-col lg:items-center'
             )}>
-            <TocContext value={toc}>
-              <LanguagesContext value={languages}>{children}</LanguagesContext>
-            </TocContext>
+            {children}
           </div>
           {!isBlogIndex && (
             <DocsPageFooter
@@ -132,11 +117,7 @@ export function Page({
 
   return (
     <>
-      <TopNav
-        section={section}
-        routeTree={routeTree}
-        breadcrumbs={breadcrumbs}
-      />
+      <TopNav section={section} routeTree={routeTree} />
       <div
         className={cn(
           hasColumns &&
@@ -145,11 +126,7 @@ export function Page({
         {showSidebar && (
           <div className="lg:-mt-16 z-10">
             <div className="fixed top-0 py-0 shadow lg:pt-16 lg:sticky start-0 end-0 lg:shadow-none">
-              <SidebarNav
-                key={section}
-                routeTree={routeTree}
-                breadcrumbs={breadcrumbs}
-              />
+              <SidebarNav key={section} routeTree={routeTree} />
             </div>
           </div>
         )}

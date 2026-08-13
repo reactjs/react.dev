@@ -5,6 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+'use client';
+
 // Error Decoder needs the resolved error message in the MDX subtree but MDX
 // components can't receive props. We use a React Context populated by the
 // route's server component to avoid prop-drilling through the MDX renderer.

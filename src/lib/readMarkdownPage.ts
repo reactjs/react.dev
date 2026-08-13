@@ -10,13 +10,9 @@ import fs from 'fs/promises';
 import path from 'path';
 import {cacheLife} from 'next/cache';
 import compileMDX from 'utils/compileMDX';
+import type {CompiledMDX} from 'utils/compileMDX';
 
-export interface PageData {
-  content: string;
-  toc: string;
-  meta: any;
-  languages: any;
-}
+export type PageData = CompiledMDX;
 
 const ROOT = path.join(process.cwd(), 'src/content');
 
@@ -44,13 +40,23 @@ export async function readMarkdownPage(
     path.join(ROOT, routePath, 'index.md'),
   ]) {
     try {
-      mdx = await fs.readFile(candidate, 'utf8');
+      mdx = await fs.readFile(/* turbopackIgnore: true */ candidate, 'utf8');
       break;
     } catch {
       // Try next candidate.
     }
   }
   if (mdx == null) return null;
-  const {toc, content, meta, languages} = await compileMDX(mdx, routePath, {});
-  return {toc, content, meta, languages};
+  const compiled = await compileMDX(mdx);
+  if (routePath === 'index') {
+    compiled.toc = [];
+  }
+  if (routePath.endsWith('/translations')) {
+    compiled.languages = await (
+      await fetch(
+        'https://raw.githubusercontent.com/reactjs/translations.react.dev/main/langs/langs.json'
+      )
+    ).json();
+  }
+  return compiled;
 }

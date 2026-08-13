@@ -50,3 +50,6 @@ public/rss.xml
 
 # Generated OG images (scripts/generateOgImages.mjs)
 public/images/og/
+
+# Generated Sandpack RSC runtime sources (scripts/buildRscWorker.mjs)
+public/sandpack-rsc/

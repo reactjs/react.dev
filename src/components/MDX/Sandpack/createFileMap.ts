@@ -10,6 +10,7 @@
  */
 
 import type {SandpackFile} from '@codesandbox/sandpack-react/unstyled';
+import {isValidElement} from 'react';
 import type {PropsWithChildren, ReactElement, HTMLAttributes} from 'react';
 
 export const AppJSPath = `/src/App.js`;
@@ -79,19 +80,20 @@ function splitMeta(meta: string): string[] {
 export const createFileMap = (codeSnippets: any) => {
   return codeSnippets.reduce(
     (result: Record<string, SandpackFile>, codeSnippet: React.ReactElement) => {
-      if (
-        (codeSnippet.type as any).mdxName !== 'pre' &&
-        codeSnippet.type !== 'pre'
-      ) {
+      if (!isValidElement(codeSnippet)) {
         return result;
       }
-      const {props} = (
+      const code = (
         codeSnippet.props as PropsWithChildren<{
           children: ReactElement<
             HTMLAttributes<HTMLDivElement> & {meta?: string}
           >;
         }>
       ).children;
+      if (!isValidElement(code)) {
+        return result;
+      }
+      const {props} = code;
       let filePath; // path in the folder structure
       let fileHidden = false; // if the file is available as a tab
       let fileActive = false; // if the file tab is shown by default

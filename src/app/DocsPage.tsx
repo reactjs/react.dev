@@ -5,31 +5,36 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-'use client';
-
 import {Page, type PageSection} from 'components/Layout/Page';
-import {useDeserializedMDX} from 'components/Layout/useDeserializedMDX';
 import type {RouteItem} from 'components/Layout/getRouteMeta';
 import type {PageData} from 'lib/readMarkdownPage';
+import {renderCompiledMDX} from 'utils/compileMDX';
+import type {ReactNode} from 'react';
 
 interface DocsPageProps {
   data: PageData;
   pathname: string;
   section: PageSection;
   routeTree: RouteItem;
+  children?: ReactNode;
 }
 
-export function DocsPage({data, pathname, section, routeTree}: DocsPageProps) {
-  const {parsedContent, parsedToc} = useDeserializedMDX(data.content, data.toc);
+export async function DocsPage({
+  data,
+  pathname,
+  section,
+  routeTree,
+  children,
+}: DocsPageProps) {
+  const {content, toc} = await renderCompiledMDX(data);
   return (
     <Page
-      toc={parsedToc}
+      toc={toc}
       routeTree={routeTree}
       meta={data.meta}
       section={section}
-      pathname={pathname}
-      languages={data.languages}>
-      {parsedContent}
+      pathname={pathname}>
+      {children ?? content}
     </Page>
   );
 }

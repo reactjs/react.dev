@@ -50,7 +50,7 @@ async function readContentMarkdown(
   ];
   for (const fullPath of candidates) {
     try {
-      return fs.readFileSync(fullPath, 'utf8');
+      return fs.readFileSync(/* turbopackIgnore: true */ fullPath, 'utf8');
     } catch {
       // Try next candidate
     }

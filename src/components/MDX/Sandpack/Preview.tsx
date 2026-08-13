@@ -38,6 +38,25 @@ function useDebounced(value: any): any {
   return saved;
 }
 
+function suppressRedundantSrcNavigation(iframe: HTMLIFrameElement) {
+  const descriptor = Object.getOwnPropertyDescriptor(
+    HTMLIFrameElement.prototype,
+    'src'
+  );
+  if (!descriptor?.get) {
+    return () => {};
+  }
+
+  // Sandpack navigates with location.replace(), then assigns the same URL to
+  // iframe.src. The second navigation adds a child-frame browser history entry.
+  Object.defineProperty(iframe, 'src', {
+    configurable: true,
+    get: () => descriptor.get!.call(iframe),
+    set: () => {},
+  });
+  return () => delete (iframe as {src?: string}).src;
+}
+
 export function Preview({
   isExpanded,
   className,
@@ -99,10 +118,12 @@ export function Preview({
 
   useEffect(function createBundler() {
     const iframeElement = iframeRef.current!;
+    const restoreSrcNavigation = suppressRedundantSrcNavigation(iframeElement);
     registerBundler(iframeElement, clientId);
 
     return () => {
       unregisterBundler(clientId);
+      restoreSrcNavigation();
     };
   }, []);
 

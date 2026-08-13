@@ -9,7 +9,6 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {createContext} from 'react';
 import type {ReactNode} from 'react';
 
 export type TocItem = {
@@ -18,8 +17,3 @@ export type TocItem = {
   depth: number;
 };
 export type Toc = Array<TocItem>;
-
-export const TocContext = createContext<Toc>([]);
-
-// Lets badge components render compactly when inside the table of contents.
-export const IsInTocContext = createContext(false);

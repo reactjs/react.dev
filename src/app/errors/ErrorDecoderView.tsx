@@ -5,22 +5,23 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-'use client';
-
 import {Page} from 'components/Layout/Page';
-import {useDeserializedMDX} from 'components/Layout/useDeserializedMDX';
 import {ErrorDecoderContext} from 'components/ErrorDecoderContext';
 import sidebarLearn from '../../sidebarLearn.json';
 import type {RouteItem} from 'components/Layout/getRouteMeta';
 import type {ErrorDecoderData} from 'lib/loadErrorDecoderData';
+import {renderCompiledMDX} from 'utils/compileMDX';
 
 interface ErrorDecoderViewProps {
   data: ErrorDecoderData;
   pathname: string;
 }
 
-export function ErrorDecoderView({data, pathname}: ErrorDecoderViewProps) {
-  const {parsedContent} = useDeserializedMDX(data.content, data.toc);
+export async function ErrorDecoderView({
+  data,
+  pathname,
+}: ErrorDecoderViewProps) {
+  const {content} = await renderCompiledMDX(data);
   return (
     <ErrorDecoderContext
       value={{errorMessage: data.errorMessage, errorCode: data.errorCode}}>
@@ -34,7 +35,7 @@ export function ErrorDecoderView({data, pathname}: ErrorDecoderViewProps) {
         routeTree={sidebarLearn as RouteItem}
         section="unknown"
         pathname={pathname}>
-        <div>{parsedContent}</div>
+        <div>{content}</div>
       </Page>
     </ErrorDecoderContext>
   );

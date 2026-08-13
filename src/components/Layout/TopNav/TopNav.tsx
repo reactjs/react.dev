@@ -5,6 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+'use client';
+
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
@@ -30,7 +32,7 @@ import {IconSearch} from 'components/Icon/IconSearch';
 import {Search} from 'components/Search';
 import {Logo} from '../../Logo';
 import {SidebarRouteTree} from '../Sidebar';
-import type {RouteItem} from '../getRouteMeta';
+import {getRouteMeta, type RouteItem} from '../getRouteMeta';
 import {siteConfig} from 'siteConfig';
 import BrandMenu from './BrandMenu';
 
@@ -157,11 +159,9 @@ function Kbd(props: {children?: React.ReactNode; wide?: boolean}) {
 
 export default function TopNav({
   routeTree,
-  breadcrumbs,
   section,
 }: {
   routeTree: RouteItem;
-  breadcrumbs: RouteItem[];
   section: 'learn' | 'reference' | 'community' | 'blog' | 'home' | 'unknown';
 }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -169,6 +169,7 @@ export default function TopNav({
   const [isScrolled, setIsScrolled] = useState(false);
   const scrollParentRef = useRef<HTMLDivElement>(null);
   const asPath = usePathname() || '/';
+  const {breadcrumbs} = getRouteMeta(asPath, routeTree);
 
   // HACK. Fix up the data structures instead.
   if ((routeTree as any).routes.length === 1) {

@@ -264,7 +264,7 @@ If you prefer more verbose code, another common convention is to repeat the full
 
 * Setting state does not change the variable in the existing render, but it requests a new render.
 * React processes state updates after event handlers have finished running. This is called batching.
-* To update some state multiple times in one event, you can use `setNumber(n => n + 1)` updater function.
+* To update some state multiple times in one event, you can use an updater function like `setNumber(n => n + 1)`.
 
 </Recap>
 

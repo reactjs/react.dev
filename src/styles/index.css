@@ -755,3 +755,11 @@ ol.mdx-illustration-block {
 .uwu .uwu-hidden {
   display: none;
 }
+
+iframe[src^="https://www.youtube.com/embed/"]
+{
+  width: 100% !important;
+  aspect-ratio: 16 / 9 !important;
+  height: auto !important;
+  display: block !important;
+}

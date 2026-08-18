@@ -15,6 +15,9 @@ In addition to [Hooks](/reference/react/hooks) and [Components](/reference/react
 * [`memo`](/reference/react/memo) lets your component skip re-renders with same props. Used with [`useMemo`](/reference/react/useMemo) and [`useCallback`.](/reference/react/useCallback)
 * [`startTransition`](/reference/react/startTransition) lets you mark a state update as non-urgent. Similar to [`useTransition`.](/reference/react/useTransition)
 * [`act`](/reference/react/act) lets you wrap renders and interactions in tests to ensure updates have processed before making assertions.
+* [`cache`](/reference/react/cache) lets you cache the result of a data fetch or computation.
+* [`cacheSignal`](/reference/react/cacheSignal) lets you know when the `cache()` lifetime is over.
+* [`captureOwnerStack`](/reference/react/captureOwnerStack) reads the current Owner Stack in development and returns it as a string if available.
 
 ---
 

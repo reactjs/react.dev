@@ -319,7 +319,6 @@ export default function Messenger() {
     <div>
       <ContactList
         contacts={contacts}
-        selectedContact={to}
         onSelect={contact => setTo(contact)}
       />
       <Chat contact={to} />
@@ -336,7 +335,6 @@ const contacts = [
 
 ```js src/ContactList.js
 export default function ContactList({
-  selectedContact,
   contacts,
   onSelect
 }) {
@@ -414,7 +412,6 @@ export default function Messenger() {
     <div>
       <ContactList
         contacts={contacts}
-        selectedContact={to}
         onSelect={contact => setTo(contact)}
       />
       <Chat key={to.email} contact={to} />
@@ -431,7 +428,6 @@ const contacts = [
 
 ```js src/ContactList.js
 export default function ContactList({
-  selectedContact,
   contacts,
   onSelect
 }) {

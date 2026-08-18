@@ -31,7 +31,7 @@ Like browsers and mobile platforms, React also uses tree structures to manage an
 
 ## The Render Tree {/*the-render-tree*/}
 
-A major feature of components is the ability to compose components of other components. As we [nest components](/learn/your-first-component#nesting-and-organizing-components), we have the concept of parent and child components, where each parent component may itself be a child of another component.
+A major feature of components is their ability to be composed of other components. As we [nest components](/learn/your-first-component#nesting-and-organizing-components), we have the concept of parent and child components, where each parent component may itself be a child of another component.
 
 When we render a React app, we can model this relationship in a tree, known as the render tree.
 

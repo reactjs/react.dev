@@ -581,9 +581,9 @@ You should write the `render` method as a pure function, meaning that it should 
 
 - `render` will not get called if [`shouldComponentUpdate`](#shouldcomponentupdate) is defined and returns `false`.
 
-- If you return an iterator from `render`, make sure each render creates a fresh iterator. React may render more than once in development, and a reused iterator may already be consumed. When possible, prefer returning an array or another reusable iterable.
-
 - When [Strict Mode](/reference/react/StrictMode) is on, React will call `render` twice in development and then throw away one of the results. This helps you notice the accidental side effects that need to be moved out of the `render` method.
+
+- If you return an iterator from `render`, make sure each render creates a fresh iterator. Iterators are consumed on use, so a reused iterator may already be empty. When possible, prefer returning an array or another reusable iterable.
 
 - There is no one-to-one correspondence between the `render` call and the subsequent `componentDidMount` or `componentDidUpdate` call. Some of the `render` call results may be discarded by React when it's beneficial.
 

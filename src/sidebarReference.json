@@ -249,6 +249,11 @@
       "path": "/reference/react-dom",
       "routes": [
         {
+          "title": "browser",
+          "path": "/reference/react-dom/browser",
+          "version": "canary"
+        },
+        {
           "title": "createPortal",
           "path": "/reference/react-dom/createPortal"
         },

@@ -30,6 +30,12 @@ These APIs can be used to make apps faster by pre-loading resources such as scri
 * [`preinit`](/reference/react-dom/preinit) lets you fetch and evaluate an external script or fetch and insert a stylesheet.
 * [`preinitModule`](/reference/react-dom/preinitModule) lets you fetch and evaluate an ESM module.
 
+## Server Rendering APIs {/*server-rendering-apis*/}
+
+This API controls how components render on the server:
+
+* <CanaryBadge /> [`browser`](/reference/react-dom/browser) lets you mark a component as browser-only during server rendering.
+
 ---
 
 ## Entry points {/*entry-points*/}

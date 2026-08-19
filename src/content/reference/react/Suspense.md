@@ -2374,6 +2374,129 @@ The server HTML will include the loading indicator. It will be replaced by the `
 
 ---
 
+### <CanaryBadge /> Providing a fallback for browser-only content {/*providing-a-fallback-for-browser-only-content*/}
+
+A Suspense boundary can provide a fallback for a browser-only component. Wrap the component in `<Suspense>` and call [`use(browser())`](/reference/react/use#use-browser) inside it.
+
+Press **Render the page**. The loading fallback appears first. After a short delay, React hydrates the page and displays the browser-only editor.
+
+<Sandpack>
+
+```js src/App.js active
+import { Suspense, use } from 'react';
+import { browser } from 'react-dom';
+
+function BrowserOnlyEditor() {
+  use(browser('The editor requires browser APIs.'));
+  return <label>Draft: <input /></label>;
+}
+
+export default function App() {
+  return (
+    <Suspense fallback={<p>Loading editor...</p>}>
+      <BrowserOnlyEditor />
+    </Suspense>
+  );
+}
+```
+
+```js src/Document.js hidden
+import App from './App.js';
+
+export default function Document() {
+  return (
+    <html lang="en">
+      <head>
+        <title>Article editor</title>
+      </head>
+      <body>
+        <h1>Article editor</h1>
+        <App />
+      </body>
+    </html>
+  );
+}
+```
+
+```js src/index.js
+import { hydrateRoot } from 'react-dom/client';
+import { renderToReadableStream } from 'react-dom/server';
+import Document from './Document.js';
+import { flushReadableStreamToFrame } from './demo-helpers.js';
+import './styles.css';
+
+async function main(frame) {
+  const stream = await renderToReadableStream(<Document />);
+  await flushReadableStreamToFrame(stream, frame);
+
+  // Wait so both the fallback and hydrated content are visible.
+  await new Promise(resolve => setTimeout(resolve, 1200));
+  hydrateRoot(frame.contentDocument, <Document />);
+}
+
+const renderButton = document.getElementById('render');
+renderButton.addEventListener('click', () => {
+  renderButton.disabled = true;
+  main(document.getElementById('preview'));
+}, { once: true });
+```
+
+```js src/demo-helpers.js hidden
+export async function flushReadableStreamToFrame(readable, frame) {
+  const doc = frame.contentWindow.document;
+  const decoder = new TextDecoder();
+  for await (const chunk of readable) {
+    doc.write(decoder.decode(chunk, { stream: true }));
+  }
+  doc.close();
+}
+```
+
+```html public/index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Browser-only rendering</title>
+</head>
+<body>
+  <button id="render">Render the page</button>
+  <br /><br />
+  <iframe id="preview" title="Rendered page"></iframe>
+</body>
+</html>
+```
+
+```css src/styles.css hidden
+iframe {
+  width: 100%;
+  height: 180px;
+  border: 1px solid #aaa;
+}
+```
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "canary",
+    "react-dom": "canary",
+    "react-scripts": "latest"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
+```
+
+</Sandpack>
+
+During server rendering, React includes the Suspense boundary's fallback in the HTML. In the browser, React replaces the fallback with the editor.
+
+---
+
 ### Waiting for a stylesheet to load {/*waiting-for-a-stylesheet-to-load*/}
 
 A stylesheet rendered with [`<link rel="stylesheet">` and a `precedence` prop](/reference/react-dom/components/link#special-rendering-behavior) blocks the Suspense boundary until the stylesheet loads, up to a timeout, so the content doesn't appear unstyled.

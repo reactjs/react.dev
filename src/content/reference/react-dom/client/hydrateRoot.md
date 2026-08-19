@@ -319,7 +319,7 @@ export default function App() {
 
 This way the initial render pass will render the same content as the server, avoiding mismatches, but an additional pass will happen synchronously right after hydration.
 
-This approach is useful when you need different content on the server and in the browser. If a component should not render on the server at all, React Canary's [`browser`](/reference/react-dom/browser) API lets you mark it as browser-only without waiting for an Effect.
+Use this approach when you need to render different content on the server and in the browser. If a component should render only in the browser, call [`use(browser())`](/reference/react/use#use-browser) in Canary instead of waiting for an Effect.
 
 <Pitfall>
 

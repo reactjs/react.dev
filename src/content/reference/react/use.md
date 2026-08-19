@@ -4,7 +4,9 @@ title: use
 
 <Intro>
 
-`use` is a React API that lets you read the value of a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](/learn/passing-data-deeply-with-context). In Canary, you can also pass `use` the value returned by [`browser`](/reference/react-dom/browser) to mark a component as browser-only during server rendering.
+`use` is a React API that lets you read the value of a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](/learn/passing-data-deeply-with-context).
+
+<Canary>You can also pass `use` the value returned by [`browser`](/reference/react-dom/browser) to mark a component as browser-only during server rendering.</Canary>
 
 ```js
 const value = use(resource);

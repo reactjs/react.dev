@@ -29,7 +29,7 @@ You can pass these types of resources to [`use`](/reference/react/use):
 
 * A [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) to read its resolved value.
 * A [context](/learn/passing-data-deeply-with-context) to read its value.
-* <CanaryBadge /> An opaque value returned by [`browser`](/reference/react-dom/browser) to mark a component as browser-only during server rendering.
+* <CanaryBadge /> The value returned by [`browser`](/reference/react-dom/browser) to mark a component as browser-only during server rendering.
 
 ```js
 function MessageComponent({ messagePromise }) {

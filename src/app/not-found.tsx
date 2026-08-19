@@ -5,14 +5,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-'use client';
-
 import {Page} from 'components/Layout/Page';
-import {MDXComponents} from 'components/MDX/MDXComponents';
+import Intro from 'components/MDX/Intro';
+import Link from 'components/MDX/Link';
 import sidebarLearn from '../sidebarLearn.json';
 import type {RouteItem} from 'components/Layout/getRouteMeta';
+import type {Metadata} from 'next';
 
-const {Intro, MaxWidth, p: P, a: A} = MDXComponents;
+export const metadata: Metadata = {
+  title: 'Not Found – React',
+};
 
 export default function NotFound() {
   return (
@@ -22,19 +24,19 @@ export default function NotFound() {
       routeTree={sidebarLearn as RouteItem}
       section="unknown"
       pathname="/404">
-      <MaxWidth>
+      <div className="max-w-4xl ms-0 2xl:mx-auto">
         <Intro>
-          <P>This page doesn’t exist.</P>
-          <P>
+          <p>This page doesn’t exist.</p>
+          <p>
             If this is a mistake{', '}
-            <A href="https://github.com/reactjs/react.dev/issues/new">
+            <Link href="https://github.com/reactjs/react.dev/issues/new">
               let us know
-            </A>
+            </Link>
             {', '}
             and we will try to fix it!
-          </P>
+          </p>
         </Intro>
-      </MaxWidth>
+      </div>
     </Page>
   );
 }

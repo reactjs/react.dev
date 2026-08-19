@@ -1,10 +1,20 @@
 'use client';
 
-import {lazy, memo, Suspense} from 'react';
+import {lazy, memo, Suspense, useSyncExternalStore} from 'react';
 import type {SandpackFile} from '@codesandbox/sandpack-react/unstyled';
 
 const SandpackRoot = lazy(() => import('./SandpackRoot'));
 const SandpackRSCRoot = lazy(() => import('./SandpackRSCRoot'));
+
+const subscribeToHydration = () => () => {};
+
+function useIsHydrated() {
+  return useSyncExternalStore(
+    subscribeToHydration,
+    () => true,
+    () => false
+  );
+}
 
 type Files = Record<string, SandpackFile>;
 
@@ -69,8 +79,15 @@ export const SandpackRSCIsland = memo(function SandpackRSCIsland({
   files,
   ...props
 }: any & {files: Files}) {
+  const isHydrated = useIsHydrated();
+  const fallback = <SandpackGlimmer code={activeCode(files)} />;
+
+  if (!isHydrated) {
+    return fallback;
+  }
+
   return (
-    <Suspense fallback={<SandpackGlimmer code={activeCode(files)} />}>
+    <Suspense fallback={fallback}>
       <SandpackRSCRoot {...props} files={files} />
     </Suspense>
   );

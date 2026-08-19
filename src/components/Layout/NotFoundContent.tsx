@@ -5,8 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-'use client';
-
 import PageHeading from 'components/PageHeading';
 import Intro from 'components/MDX/Intro';
 import Link from 'components/MDX/Link';

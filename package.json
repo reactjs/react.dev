@@ -9,7 +9,7 @@
     "predev": "node scripts/buildRscWorker.mjs",
     "dev": "next dev",
     "prebuild:rsc": "node scripts/buildRscWorker.mjs",
-    "build": "node scripts/buildRscWorker.mjs && next build && node --experimental-modules ./scripts/downloadFonts.mjs && node ./scripts/generateOgImages.mjs",
+    "build": "node scripts/buildRscWorker.mjs && next build && node --experimental-modules ./scripts/downloadFonts.mjs && node ./scripts/generateOgImages.mjs && node ./scripts/validateMetadata.mjs",
     "lint": "eslint \"{src,plugins}/**/*.{js,jsx,ts,tsx}\" && eslint \"src/content/**/*.md\"",
     "lint:fix": "eslint --fix \"{src,plugins}/**/*.{js,jsx,ts,tsx}\" && eslint --fix \"src/content/**/*.md\"",
     "format:source": "prettier --config .prettierrc --write \"{plugins,src}/**/*.{js,ts,jsx,tsx,css}\"",
@@ -25,6 +25,7 @@
     "check-all": "npm-run-all prettier lint:fix tsc rss",
     "rss": "node scripts/generateRss.js",
     "deadlinks": "node scripts/deadLinkChecker.js",
+    "validate-metadata": "node scripts/validateMetadata.mjs",
     "copyright": "node scripts/copyright.js",
     "test:eslint-local-rules": "yarn --cwd eslint-local-rules test"
   },

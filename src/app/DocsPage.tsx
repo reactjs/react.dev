@@ -33,7 +33,8 @@ export async function DocsPage({
       routeTree={routeTree}
       meta={data.meta}
       section={section}
-      pathname={pathname}>
+      pathname={pathname}
+      showCopyPage>
       {children ?? content}
     </Page>
   );

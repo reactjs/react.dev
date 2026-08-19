@@ -8,15 +8,11 @@
 'use client';
 
 import {useEffect} from 'react';
-import {Page} from 'components/Layout/Page';
-import {MDXComponents} from 'components/MDX/MDXComponents';
-import sidebarLearn from '../sidebarLearn.json';
-import type {RouteItem} from 'components/Layout/getRouteMeta';
-
-const {Intro, MaxWidth, p: P, a: A} = MDXComponents;
+import Link from 'next/link';
 
 export default function GlobalError({
   error,
+  reset,
 }: {
   error: Error & {digest?: string};
   reset: () => void;
@@ -26,24 +22,37 @@ export default function GlobalError({
   }, [error]);
 
   return (
-    <Page
-      toc={[]}
-      routeTree={sidebarLearn as RouteItem}
-      section="unknown"
-      pathname="/500"
-      meta={{title: 'Something Went Wrong'}}>
-      <MaxWidth>
-        <Intro>
-          <P>Something went very wrong.</P>
-          <P>Sorry about that.</P>
-          <P>
-            If you’d like, please{' '}
-            <A href="https://github.com/reactjs/react.dev/issues/new">
-              report a bug.
-            </A>
-          </P>
-        </Intro>
-      </MaxWidth>
-    </Page>
+    <main className="min-h-screen px-5 py-16 sm:px-12">
+      <div className="max-w-4xl mx-auto">
+        <h1 className="font-display text-4xl font-bold text-primary dark:text-primary-dark">
+          Something Went Wrong
+        </h1>
+        <div className="mt-6 font-display text-xl leading-relaxed text-primary dark:text-primary-dark">
+          <p>Something went very wrong. Sorry about that.</p>
+          <p className="mt-4">
+            You can try again or{' '}
+            <a
+              className="text-link dark:text-link-dark underline"
+              href="https://github.com/reactjs/react.dev/issues/new">
+              report a bug
+            </a>
+            .
+          </p>
+        </div>
+        <div className="flex gap-3 mt-8">
+          <button
+            type="button"
+            onClick={reset}
+            className="py-2 px-4 rounded-full bg-link text-white font-bold">
+            Try again
+          </button>
+          <Link
+            href="/"
+            className="py-2 px-4 rounded-full border border-border dark:border-border-dark font-bold text-primary dark:text-primary-dark">
+            Go home
+          </Link>
+        </div>
+      </div>
+    </main>
   );
 }

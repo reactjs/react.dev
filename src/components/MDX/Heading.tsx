@@ -33,7 +33,7 @@ const Heading = forwardRefWithAs<HeadingProps, 'div'>(function Heading(
   return (
     <Comp id={id} {...props} ref={ref} className={cn('mdx-heading', className)}>
       {children}
-      {isPageAnchor && (
+      {isPageAnchor && id && (
         <Link
           href={`#${id}`}
           aria-label={label}

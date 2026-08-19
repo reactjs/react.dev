@@ -16,6 +16,7 @@ module.exports = {
   content: [
     './src/app/**/*.{js,ts,jsx,tsx}',
     './src/components/**/*.{js,ts,jsx,tsx}',
+    '!./src/components/MDX/Sandpack/sandpack-rsc/sandbox-code/src/worker-bundle.dist.js',
     './src/styles/**/*.{js,ts,jsx,tsx}',
   ],
   darkMode: 'class',

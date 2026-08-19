@@ -59,6 +59,48 @@ function sumGroup(files) {
   return {raw, gzip, count: files.length};
 }
 
+function addRouteStats(stats) {
+  const routeStatsFile = path.join(
+    nextDir,
+    'diagnostics',
+    'route-bundle-stats.json'
+  );
+  if (!fs.existsSync(routeStatsFile)) return;
+
+  const routeStats = JSON.parse(fs.readFileSync(routeStatsFile, 'utf8'));
+  const representativeRoutes = {
+    'First-load JS: Home': '/',
+    'First-load JS: Learn': '/learn/[[...slug]]',
+    'First-load JS: Reference': '/reference/[[...slug]]',
+    'First-load JS: Community': '/community/[[...slug]]',
+    'First-load JS: Blog': '/blog/[[...slug]]',
+  };
+
+  for (const [label, route] of Object.entries(representativeRoutes)) {
+    const entry = routeStats.find((item) => item.route === route);
+    if (!entry) continue;
+    const files = entry.firstLoadChunkPaths
+      .map((file) => path.join(root, file))
+      .filter((file) => fs.existsSync(file));
+    stats[label] = sumGroup(files);
+  }
+}
+
+function addHtmlStats(stats) {
+  const representativePages = {
+    'HTML: Home': 'index.html',
+    'HTML: Effects guide': 'learn/synchronizing-with-effects.html',
+    'HTML: useState': 'reference/react/useState.html',
+  };
+
+  for (const [label, file] of Object.entries(representativePages)) {
+    const fullPath = path.join(nextDir, 'server', 'app', file);
+    if (fs.existsSync(fullPath)) {
+      stats[label] = sumGroup([fullPath]);
+    }
+  }
+}
+
 function report() {
   const manifest = JSON.parse(
     fs.readFileSync(path.join(nextDir, 'build-manifest.json'), 'utf8')
@@ -73,7 +115,7 @@ function report() {
   const jsFiles = walk(path.join(nextDir, 'static', 'chunks')).filter((f) =>
     f.endsWith('.js')
   );
-  const cssFiles = walk(path.join(nextDir, 'static', 'css')).filter((f) =>
+  const cssFiles = walk(path.join(nextDir, 'static')).filter((f) =>
     f.endsWith('.css')
   );
 
@@ -82,6 +124,8 @@ function report() {
     'Total JS': sumGroup(jsFiles),
     'Total CSS': sumGroup(cssFiles),
   };
+  addRouteStats(stats);
+  addHtmlStats(stats);
 
   fs.mkdirSync(analyzeDir, {recursive: true});
   fs.writeFileSync(statsFile, JSON.stringify(stats, null, 2));
@@ -110,7 +154,9 @@ function isNewFormat(obj) {
   const vals = obj && typeof obj === 'object' ? Object.values(obj) : [];
   return (
     vals.length > 0 &&
-    vals.every((v) => v && typeof v.gzip === 'number' && typeof v.count === 'number')
+    vals.every(
+      (v) => v && typeof v.gzip === 'number' && typeof v.count === 'number'
+    )
   );
 }
 

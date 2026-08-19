@@ -5,8 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-'use client';
-
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
@@ -19,6 +17,7 @@ import {IconFacebookCircle} from 'components/Icon/IconFacebookCircle';
 import {IconTwitter} from 'components/Icon/IconTwitter';
 import {IconBsky} from 'components/Icon/IconBsky';
 import {IconGitHub} from 'components/Icon/IconGitHub';
+import {UwuFooterControls} from './UwuFooterControls';
 
 export function Footer() {
   const socialLinkClasses = 'hover:text-primary dark:text-primary-dark';
@@ -295,22 +294,7 @@ export function Footer() {
             dir="ltr">
             Copyright &copy; Meta Platforms, Inc
           </div>
-          <div
-            className="uwu-visible text-xs cursor-pointer hover:text-link hover:dark:text-link-dark hover:underline"
-            onClick={() => {
-              // @ts-ignore
-              window.__setUwu(false);
-            }}>
-            no uwu plz
-          </div>
-          <div
-            className="uwu-hidden text-xs cursor-pointer hover:text-link hover:dark:text-link-dark hover:underline"
-            onClick={() => {
-              // @ts-ignore
-              window.__setUwu(true);
-            }}>
-            uwu?
-          </div>
+          <UwuFooterControls />
           <div className="uwu-visible text-xs">
             Logo by
             <ExternalLink

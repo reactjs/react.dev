@@ -22,10 +22,12 @@ export function buildPageMetadata({
   pathname,
   section,
   routeTree,
+  title: titleOverride,
 }: {
   data: PageData;
   pathname: string;
   section: PageSection;
+  title?: string;
   /**
    * Optional sidebar tree, used to compute the Algolia `algolia-search-order`
    * meta tag for Learn/Blog pages. Omit for routes outside those sections.
@@ -34,7 +36,9 @@ export function buildPageMetadata({
 }): Metadata {
   const isHomePage = pathname === '/';
   const isBlogIndex = section === 'blog' && pathname === '/blog';
-  const title = data.meta.title || '';
+  const routeMeta = routeTree ? getRouteMeta(pathname, routeTree) : null;
+  const title =
+    titleOverride || data.meta.title || routeMeta?.route?.title || '';
   const titleForTitleTag = data.meta.titleForTitleTag;
   const pageTitle =
     (titleForTitleTag ?? title) + (isHomePage ? '' : ' – React');
@@ -52,7 +56,7 @@ export function buildPageMetadata({
   const ogImage =
     isHomePage || !title || pathname.startsWith('/errors')
       ? `https://${siteDomain}/images/og-${
-          section === 'unknown' ? 'default' : section
+          section === 'unknown' ? 'unknown' : section
         }.png`
       : `https://${siteDomain}/images/og/${pathname
           .slice(1)
@@ -70,10 +74,10 @@ export function buildPageMetadata({
   // the docs sidebar ordering in search results.
   const other: Record<string, string> = {};
   if (
-    routeTree &&
+    routeMeta &&
     (section === 'learn' || (section === 'blog' && !isBlogIndex))
   ) {
-    const {order} = getRouteMeta(pathname, routeTree);
+    const {order} = routeMeta;
     if (order != null) {
       other['algolia-search-order'] = String(order);
     }

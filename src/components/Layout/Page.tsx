@@ -21,8 +21,6 @@ import type {RouteItem} from 'components/Layout/getRouteMeta';
 import {TopNav} from './TopNav';
 import cn from 'classnames';
 
-import(/* webpackPrefetch: true */ '../MDX/CodeBlock/CodeBlock');
-
 export type PageSection =
   | 'learn'
   | 'reference'
@@ -44,6 +42,7 @@ interface PageProps {
   section: PageSection;
   /** Cleaned pathname from the server, e.g. "/", "/learn/state". */
   pathname: string;
+  showCopyPage?: boolean;
 }
 
 export function Page({
@@ -53,6 +52,7 @@ export function Page({
   meta,
   section,
   pathname,
+  showCopyPage = false,
 }: PageProps) {
   const {route, nextRoute, prevRoute, breadcrumbs} = getRouteMeta(
     pathname,
@@ -80,6 +80,7 @@ export function Page({
             description={description}
             tags={route?.tags}
             breadcrumbs={breadcrumbs}
+            pathname={showCopyPage ? pathname : undefined}
           />
         </div>
         <div className="px-5 sm:px-12">

@@ -14,8 +14,6 @@ import type {RouteItem} from './getRouteMeta';
 import type {PageData} from 'lib/readMarkdownPage';
 import {renderCompiledMDX} from 'utils/compileMDX';
 
-import(/* webpackPrefetch: true */ '../MDX/CodeBlock/CodeBlock');
-
 export async function DocsContent({
   data,
   pathname,
@@ -48,6 +46,7 @@ export async function DocsContent({
                 description={description}
                 tags={route?.tags}
                 breadcrumbs={breadcrumbs}
+                pathname={pathname}
               />
             </div>
             <div className="px-5 sm:px-12">

@@ -6,12 +6,19 @@
  */
 
 import type {Metadata} from 'next';
+import {buildPageMetadata} from 'lib/buildPageMetadata';
 import {loadErrorDecoderData} from 'lib/loadErrorDecoderData';
 import {ErrorDecoderView} from './ErrorDecoderView';
 
-export const metadata: Metadata = {
-  title: 'Minified Error Decoder',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const data = await loadErrorDecoderData(null);
+  return buildPageMetadata({
+    data,
+    pathname: '/errors',
+    section: 'unknown',
+    title: 'Minified Error Decoder',
+  });
+}
 
 export default async function ErrorDecoderIndex() {
   const data = await loadErrorDecoderData(null);

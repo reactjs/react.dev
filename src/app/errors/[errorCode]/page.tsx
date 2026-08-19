@@ -6,6 +6,7 @@
  */
 
 import type {Metadata} from 'next';
+import {buildPageMetadata} from 'lib/buildPageMetadata';
 import {listErrorCodes, loadErrorDecoderData} from 'lib/loadErrorDecoderData';
 import {ErrorDecoderView} from '../ErrorDecoderView';
 
@@ -20,7 +21,13 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({params}: PageProps): Promise<Metadata> {
   const {errorCode} = await params;
-  return {title: `Minified React error #${errorCode}`};
+  const data = await loadErrorDecoderData(errorCode);
+  return buildPageMetadata({
+    data,
+    pathname: `/errors/${errorCode}`,
+    section: 'unknown',
+    title: `Minified React error #${errorCode}`,
+  });
 }
 
 export default async function ErrorDecoderPage({params}: PageProps) {

@@ -5,8 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-'use client';
-
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
@@ -16,12 +14,9 @@ import Tag from 'components/Tag';
 import {H1} from './MDX/Heading';
 import type {RouteTag, RouteItem} from './Layout/getRouteMeta';
 import * as React from 'react';
-import {useState, useEffect} from 'react';
-import {usePathname} from 'next/navigation';
 import {IconCanary} from './Icon/IconCanary';
 import {IconExperimental} from './Icon/IconExperimental';
-import {IconCopy} from './Icon/IconCopy';
-import {Button} from './Button';
+import {CopyAsMarkdownButton} from './CopyAsMarkdownButton';
 
 interface PageHeadingProps {
   title: string;
@@ -31,51 +26,7 @@ interface PageHeadingProps {
   description?: string;
   tags?: RouteTag[];
   breadcrumbs: RouteItem[];
-}
-
-function CopyAsMarkdownButton() {
-  const pathname = usePathname() || '/';
-  const [copied, setCopied] = useState(false);
-
-  useEffect(() => {
-    if (!copied) return;
-    const timer = setTimeout(() => setCopied(false), 2000);
-    return () => clearTimeout(timer);
-  }, [copied]);
-
-  async function fetchPageBlob() {
-    const cleanPath = pathname.split(/[?#]/)[0];
-    const res = await fetch(cleanPath + '.md');
-    if (!res.ok) throw new Error('Failed to fetch');
-    const text = await res.text();
-    return new Blob([text], {type: 'text/plain'});
-  }
-
-  async function handleCopy() {
-    try {
-      await navigator.clipboard.write([
-        // Don't wait for the blob, or Safari will refuse clipboard access
-        new ClipboardItem({'text/plain': fetchPageBlob()}),
-      ]);
-      setCopied(true);
-    } catch {
-      // Silently fail
-    }
-  }
-
-  return (
-    <Button onClick={handleCopy} className="text-sm py-1 px-3">
-      <IconCopy className="w-3.5 h-3.5 me-1.5" />
-      {copied ? (
-        'Copied!'
-      ) : (
-        <>
-          <span className="hidden sm:inline">Copy page</span>
-          <span className="sm:hidden">Copy</span>
-        </>
-      )}
-    </Button>
-  );
+  pathname?: string;
 }
 
 function PageHeading({
@@ -84,6 +35,7 @@ function PageHeading({
   version,
   tags = [],
   breadcrumbs,
+  pathname,
 }: PageHeadingProps) {
   return (
     <div className="px-5 sm:px-12 pt-3.5">
@@ -92,7 +44,7 @@ function PageHeading({
           <div className="flex-1">
             {breadcrumbs ? <Breadcrumbs breadcrumbs={breadcrumbs} /> : null}
           </div>
-          <CopyAsMarkdownButton />
+          {pathname && <CopyAsMarkdownButton pathname={pathname} />}
         </div>
         <H1 className="mt-0 text-primary dark:text-primary-dark -mx-.5 break-words">
           {title}

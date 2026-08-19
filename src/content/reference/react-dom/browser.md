@@ -51,7 +51,7 @@ During server rendering, `use(browser())` stops rendering the component and leav
 
 #### Returns {/*returns*/}
 
-`browser` returns a value that you can pass to `use` in a component or use as the reason when [aborting a server render](#aborting-pending-server-rendering-for-the-browser). In the browser, passing this value to `use` returns `undefined`.
+`browser` returns an opaque value that you can pass to `use` in a component or use as the reason when [aborting a server render](#aborting-pending-server-rendering-for-the-browser). In the browser, passing this value to `use` returns `undefined`.
 
 #### Caveats {/*caveats*/}
 

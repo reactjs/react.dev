@@ -25,14 +25,21 @@ In addition to [Hooks](/reference/react/hooks) and [Components](/reference/react
 
 *Resources* can be accessed by a component without having them as part of their state. For example, a component can read a message from a Promise or read styling information from a context.
 
-To read a value from a resource, use this API:
+You can pass these types of resources to [`use`](/reference/react/use):
 
-* [`use`](/reference/react/use) lets you read the value of a resource like a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](/learn/passing-data-deeply-with-context).
-* <CanaryBadge /> [`use(browser())`](/reference/react/use#use-browser) marks a component as browser-only during server rendering.
+* A [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) to read its resolved value.
+* A [context](/learn/passing-data-deeply-with-context) to read its value.
+* <CanaryBadge /> The value returned by [`browser`](/reference/react-dom/browser) to mark a component as browser-only during server rendering.
+
 ```js
 function MessageComponent({ messagePromise }) {
   const message = use(messagePromise);
   const theme = use(ThemeContext);
+  // ...
+}
+
+function BrowserOnlyComponent() {
+  use(browser());
   // ...
 }
 ```

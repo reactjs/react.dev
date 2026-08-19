@@ -2372,8 +2372,6 @@ function Chat() {
 
 The server HTML will include the loading indicator. It will be replaced by the `Chat` component on the client.
 
-If you're using Canary, call [`use(browser())`](/reference/react/use#use-browser) instead of throwing an error to mark a component as browser-only.
-
 ---
 
 ### <CanaryBadge /> Providing a fallback for browser-only content {/*providing-a-fallback-for-browser-only-content*/}

@@ -27,7 +27,8 @@ In addition to [Hooks](/reference/react/hooks) and [Components](/reference/react
 
 To read a value from a resource, use this API:
 
-* [`use`](/reference/react/use) lets you read the value of a resource like a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](/learn/passing-data-deeply-with-context). In Canary, [`use(browser())`](/reference/react/use#use-browser) marks a component as browser-only during server rendering.
+* [`use`](/reference/react/use) lets you read the value of a resource like a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](/learn/passing-data-deeply-with-context).
+* <CanaryBadge /> [`use(browser())`](/reference/react/use#use-browser) marks a component as browser-only during server rendering.
 ```js
 function MessageComponent({ messagePromise }) {
   const message = use(messagePromise);

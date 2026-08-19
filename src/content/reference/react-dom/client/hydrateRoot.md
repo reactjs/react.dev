@@ -319,7 +319,7 @@ export default function App() {
 
 This way the initial render pass will render the same content as the server, avoiding mismatches, but an additional pass will happen synchronously right after hydration.
 
-Use this approach when you need to render different content on the server and in the browser.
+Use this approach when you want the client-rendered content to be different from the initial server-rendered HTML.
 
 <Canary>If a component should render only in the browser, call [`use(browser())`](/reference/react/use#use-browser) instead of waiting for an Effect.</Canary>
 

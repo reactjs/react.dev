@@ -35,10 +35,6 @@ You can pass these types of resources to [`use`](/reference/react/use):
 function MessageComponent({ messagePromise }) {
   const message = use(messagePromise);
   const theme = use(ThemeContext);
-  // ...
-}
-
-function BrowserOnlyComponent() {
   use(browser());
   // ...
 }

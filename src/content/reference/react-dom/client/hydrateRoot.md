@@ -274,6 +274,8 @@ This only works one level deep, and is intended to be an escape hatch. Don’t o
 
 ---
 
+{/* TODO: Remove this subsection when browser is available in Stable. */}
+
 ### Handling different client and server content {/*handling-different-client-and-server-content*/}
 
 If you intentionally need to render something different on the server and the client, you can do a two-pass rendering. Components that render something different on the client can read a [state variable](/reference/react/useState) like `isClient`, which you can set to `true` in an [Effect](/reference/react/useEffect):

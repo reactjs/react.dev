@@ -199,7 +199,7 @@ function Counter() {
 
 **If your app is fully built with React, you shouldn't need to create any more roots, or to call [`root.render`](#root-render) again.**
 
-From this point on, React will manage the DOM of your entire app. To add more components, [nest them inside the `App` component.](/learn/importing-and-exporting-components) When you need to update the UI, each of your components can do this by [using state.](/reference/react/useState) When you need to display extra content like a modal or a tooltip outside the DOM node, [render it with a portal.](/reference/react-dom/createPortal)
+From this point on, React will manage the DOM of your entire app. To add more components, [nest them inside the `App` component.](/learn/importing-and-exporting-components) When you need to update the UI, each of your components can do this by [using state.](/reference/react/useState) When you need to display extra content like a modal or a tooltip outside the DOM node, [render it with a Portal.](/reference/react-dom/createPortal)
 
 <Note>
 

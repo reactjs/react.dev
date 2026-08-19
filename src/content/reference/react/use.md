@@ -4,7 +4,7 @@ title: use
 
 <Intro>
 
-`use` is a React API that lets you read the value of a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](/learn/passing-data-deeply-with-context). You can also pass `use` the value returned by [`browser`](/reference/react-dom/browser) to mark a component as browser-only during server rendering.
+`use` is a React API that lets you read the value of a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](/learn/passing-data-deeply-with-context). You can also call `use` with the opaque value returned by [`browser`](/reference/react-dom/browser) to mark a component as browser-only during server rendering.
 
 ```js
 const value = use(resource);
@@ -100,7 +100,7 @@ During server rendering, the component calling `use(browser())` suspends and Rea
 
 #### Parameters {/*browser-parameters*/}
 
-* `browserValue`: The value returned by [`browser`](/reference/react-dom/browser).
+* `browserValue`: The opaque value returned by [`browser`](/reference/react-dom/browser).
 
 #### Returns {/*browser-returns*/}
 

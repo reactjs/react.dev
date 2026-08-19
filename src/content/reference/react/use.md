@@ -4,7 +4,7 @@ title: use
 
 <Intro>
 
-`use` is a React API that lets you read the value of a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](/learn/passing-data-deeply-with-context).
+`use` is a React API that lets you read a resource during rendering, such as a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](/learn/passing-data-deeply-with-context).
 
 ```js
 const value = use(resource);
@@ -1325,6 +1325,8 @@ async function getData(url) {
 </Sandpack>
 
 ---
+
+## Usage (Browser) {/*usage-browser*/}
 
 ### <CanaryBadge /> Rendering a component only in the browser {/*rendering-a-component-only-in-the-browser*/}
 

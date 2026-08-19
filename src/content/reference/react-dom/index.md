@@ -34,7 +34,7 @@ These APIs can be used to make apps faster by pre-loading resources such as scri
 
 This API controls how components render on the server:
 
-* <CanaryBadge /> [`browser`](/reference/react-dom/browser) lets you skip rendering part of a React tree on the server, leaving its nearest Suspense fallback in place until that content renders in the browser.
+* <CanaryBadge /> [`browser`](/reference/react-dom/browser) lets you render part of a React tree only in the browser.
 
 ---
 

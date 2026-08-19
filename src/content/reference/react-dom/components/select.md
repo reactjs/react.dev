@@ -40,7 +40,7 @@ To display a select box, render the [built-in browser `<select>`](https://develo
 
 You can [make a select box controlled](#controlling-a-select-box-with-a-state-variable) by passing a `value` prop:
 
-* `value`: A string (or an array of strings for [`multiple={true}`](#enabling-multiple-selection)). Controls which option is selected. Every value string match the `value` of some `<option>` nested inside the `<select>`.
+* `value`: A string (or an array of strings for [`multiple={true}`](#enabling-multiple-selection)). Controls which option is selected. Every value string must match the `value` of some `<option>` nested inside the `<select>`.
 
 When you pass `value`, you must also pass an `onChange` handler that updates the passed value.
 

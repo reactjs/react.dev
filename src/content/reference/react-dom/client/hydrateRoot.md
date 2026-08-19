@@ -319,6 +319,8 @@ export default function App() {
 
 This way the initial render pass will render the same content as the server, avoiding mismatches, but an additional pass will happen synchronously right after hydration.
 
+This approach is useful when you need different content on the server and in the browser. If a component should not render on the server at all, React Canary's [`browser`](/reference/react-dom/browser) API lets you mark it as browser-only without waiting for an Effect.
+
 <Pitfall>
 
 This approach makes hydration slower because your components have to render twice. Be mindful of the user experience on slow connections. The JavaScript code may load significantly later than the initial HTML render, so rendering a different UI immediately after hydration may also feel jarring to the user.

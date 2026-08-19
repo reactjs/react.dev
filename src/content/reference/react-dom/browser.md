@@ -13,7 +13,7 @@ version: canary
 
 </Canary>
 
-`browser` lets you render part of a React tree only in the browser.
+`browser` lets you mark a component as browser-only during server rendering.
 
 ```js
 use(browser(reason?))
@@ -29,7 +29,7 @@ use(browser(reason?))
 
 ### `browser(reason?)` {/*browser*/}
 
-Call `browser` inside [`use`](/reference/react/use) to skip rendering a component on the server and render it in the browser instead:
+Call `browser` inside [`use`](/reference/react/use) to mark a component as browser-only during server rendering:
 
 ```js
 import { use } from 'react';
@@ -47,7 +47,7 @@ During server rendering, `use(browser())` stops rendering the component and leav
 
 #### Parameters {/*parameters*/}
 
-* **optional** `reason`: A string or function that explains why the content needs to render in the browser. If you pass a function, React calls it each time a server renderer encounters the value returned by `browser`. React does not call it in the browser. Use a function for values that are expensive to create, such as `() => new Error(...)`. The string or the function's return value becomes the `cause` of the `Error` passed to `onBrowserBailout`.
+* **optional** `reason`: A string or function that explains why the content needs to render in the browser. The string or the function's return value becomes the `cause` of the `Error` passed to [`onBrowserBailout`](#reporting-browser-only-rendering-on-the-server). React calls a reason function each time a server renderer encounters the value returned by `browser`, but does not call it in the browser. If creating the reason is expensive, pass a function such as `() => new Error(...)`.
 
 #### Returns {/*returns*/}
 
@@ -56,9 +56,8 @@ During server rendering, `use(browser())` stops rendering the component and leav
 #### Caveats {/*caveats*/}
 
 * `use(browser())` must be inside a `<Suspense>` boundary during server rendering. Without one, the server render fails.
-* `browser` is not available in a `react-server` environment. You can use it while rendering Client Components on the server, but you cannot import it in a [React Server Component](/reference/rsc/server-components).
-* Calling `browser()` by itself has no effect. You can create the value at module scope and reuse it.
-* To skip rendering a component on the server, pass the value returned by `browser` to `use`. Do not throw it.
+* In a React Server Components app, `use(browser())` must be called from a [Client Component](/reference/rsc/use-client), not a [Server Component](/reference/rsc/server-components).
+* Calling `browser()` by itself has no effect. To mark a component as browser-only, pass the value returned by `browser` to `use`. Do not throw it.
 
 ---
 
@@ -66,9 +65,11 @@ During server rendering, `use(browser())` stops rendering the component and leav
 
 ### Rendering content only in the browser {/*rendering-content-only-in-the-browser*/}
 
-Call `use` with the value returned by `browser` to skip rendering a component on the server:
+Call `browser` inside `use` in a component that should only render in the browser:
 
-Press **Render on the server** to see the fallback first. The demo waits briefly before hydrating and showing the browser-only editor.
+You can use this instead of checking `typeof window`, waiting for an [`Effect`](/reference/react/useEffect) to set mounted state, or using a framework option to disable server rendering.
+
+Press **Render the page**. The loading fallback appears first. After a short delay, React hydrates the page and displays the browser-only editor.
 
 <Sandpack>
 
@@ -150,7 +151,7 @@ export async function flushReadableStreamToFrame(readable, frame) {
   <title>Browser-only rendering</title>
 </head>
 <body>
-  <button id="render">Render on the server</button>
+  <button id="render">Render the page</button>
   <br /><br />
   <iframe id="preview" title="Rendered page"></iframe>
 </body>
@@ -271,7 +272,7 @@ If there is no Suspense boundary to provide a fallback, the server render fails.
 
 ### Aborting pending server rendering for the browser {/*aborting-pending-server-rendering-for-the-browser*/}
 
-Pass the value returned by `browser` as the reason when aborting a server render. React then leaves pending Suspense boundaries in their fallback state and renders their content in the browser:
+If you call a server rendering API directly, you can stop waiting for pending content and let the browser finish rendering it. Pass the value returned by `browser` as the reason when aborting the server render. React then leaves pending Suspense boundaries in their fallback state and renders their content in the browser:
 
 ```js {1,8}
 import { browser } from 'react-dom';

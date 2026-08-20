@@ -7,11 +7,12 @@
 
 import {Fragment} from 'react';
 import type {ReactNode} from 'react';
-import {compile, run} from '@mdx-js/mdx';
+import {compile, createProcessor, run} from '@mdx-js/mdx';
 import * as runtime from 'react/jsx-runtime';
 import matter from 'gray-matter';
 import remarkGfm from 'remark-gfm';
 import remarkFrontmatter from 'remark-frontmatter';
+import type {Root} from 'mdast';
 import {remarkPlugins} from '../../plugins/markdownToHtml';
 import {createMDXComponents} from 'components/MDX/MDXComponents';
 import type {LanguageItem} from 'components/MDX/LanguagesContext';
@@ -43,24 +44,31 @@ function compileOptions() {
       ...remarkPlugins,
       remarkGfm,
       remarkFrontmatter,
-      MaxWidthWrapperPlugin,
+      // Must run before MaxWidthWrapperPlugin; see TOCExtractorPlugin.
       TOCExtractorPlugin,
+      MaxWidthWrapperPlugin,
     ],
     rehypePlugins: [MetaAttributesPlugin],
     outputFormat: 'function-body' as const,
   };
 }
 
+// Compiles the processed heading mdast rather than re-parsing its source,
+// which would e.g. turn "1. Install" into a list and lose smartypants.
+const tocProcessor = createProcessor({outputFormat: 'function-body'});
+
 async function compileToc(toc: ExtractedTocItem[]) {
   return Promise.all(
-    toc.map(async ({source, ...item}): Promise<CompiledTocItem> => {
-      if (!source) {
+    toc.map(async ({children, ...item}): Promise<CompiledTocItem> => {
+      if (!children) {
         return item;
       }
-      const code = await compile(source, {
-        remarkPlugins: [remarkGfm],
-        outputFormat: 'function-body',
-      });
+      const tree: Root = {
+        type: 'root',
+        children: [{type: 'paragraph', children}],
+      };
+      const transformed = await tocProcessor.run(tree);
+      const code = tocProcessor.stringify(transformed as any);
       return {...item, code: String(code)};
     })
   );

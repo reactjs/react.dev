@@ -1,45 +1,51 @@
-import type {Root} from 'mdast';
+import type {PhrasingContent, Root} from 'mdast';
 import type {VFile} from 'vfile';
-import visit from 'unist-util-visit';
 
 export interface ExtractedTocItem {
   url: string;
   depth: number;
-  source?: string;
+  children?: PhrasingContent[];
   text?: string;
 }
 
-function sourceForChildren(
-  source: string,
-  children: Array<{
-    position?: {start: {offset?: number}; end: {offset?: number}};
-  }>
-) {
-  const start = children[0]?.position?.start.offset;
-  const end = children.at(-1)?.position?.end.offset;
-  return start == null || end == null ? '' : source.slice(start, end).trim();
+// Drops the trailing {/*custom-id*/} expression.
+function headingContent(children: PhrasingContent[]): PhrasingContent[] {
+  const content = [...children];
+  const last = content[content.length - 1] as {type: string} | undefined;
+  if (last?.type === 'mdxTextExpression') {
+    content.pop();
+  }
+  const lastText = content[content.length - 1];
+  if (lastText?.type === 'text') {
+    content[content.length - 1] = {
+      ...lastText,
+      value: lastText.value.replace(/\s+$/, ''),
+    };
+  }
+  return content;
 }
 
+// Only top-level headings go into the TOC, so this must run before
+// MaxWidthWrapperPlugin moves them into <MaxWidth> wrappers.
 export function TOCExtractorPlugin({maxDepth = 3} = {}) {
   return (tree: Root, file: VFile) => {
     const toc: ExtractedTocItem[] = [];
-    const source = String(file.value);
 
-    visit(tree, (node: any) => {
-      if (node.type === 'heading' && node.depth <= maxDepth) {
+    for (const node of tree.children as any[]) {
+      if (node.type === 'heading') {
         const id = node.data?.hProperties?.id;
-        if (id) {
+        if (node.depth <= maxDepth && id) {
           toc.push({
             url: `#${id}`,
             depth: node.depth,
-            source: sourceForChildren(source, node.children),
+            children: headingContent(node.children),
           });
         }
-        return;
+        continue;
       }
 
       if (node.type !== 'mdxJsxFlowElement') {
-        return;
+        continue;
       }
 
       if (node.name === 'Challenges' || node.name === 'Recap') {
@@ -59,7 +65,7 @@ export function TOCExtractorPlugin({maxDepth = 3} = {}) {
         const permalink = String(attributes.get('permalink') ?? 'team-member');
         toc.push({url: `#${permalink}`, depth: 3, text: name});
       }
-    });
+    }
 
     if (toc.length > 0) {
       toc.unshift({url: '#', depth: 2, text: 'Overview'});

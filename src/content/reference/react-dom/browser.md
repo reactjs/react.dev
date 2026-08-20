@@ -69,24 +69,47 @@ Call `browser` inside `use` in a component that should only render in the browse
 
 You can use this instead of checking `typeof window`, waiting for an [`Effect`](/reference/react/useEffect) to set mounted state, or using a framework option to disable server rendering.
 
-Press **Render the page**. The loading fallback appears first. After a short delay, React hydrates the page and displays the browser-only editor.
+Click **Reload** to see the loading fallback in the initial HTML. After hydration, React displays the draft loaded from `localStorage`.
 
 <Sandpack>
 
 ```js src/App.js active
-import { Suspense, use } from 'react';
+import { Suspense, use, useState } from 'react';
 import { browser } from 'react-dom';
 
-function BrowserOnlyEditor() {
-  use(browser('The editor requires browser APIs.'));
-  return <label>Draft: <input /></label>;
+function SavedDraft() {
+  use(browser('The draft is stored in localStorage.'));
+  const [draft, setDraft] = useState(
+    () => localStorage.getItem('draft') ?? ''
+  );
+
+  function handleChange(event) {
+    const nextDraft = event.target.value;
+    setDraft(nextDraft);
+    localStorage.setItem('draft', nextDraft);
+  }
+
+  return (
+    <label>
+      Draft:
+      <textarea
+        value={draft}
+        onChange={handleChange}
+        rows={4}
+        cols={30}
+      />
+    </label>
+  );
 }
 
 export default function App() {
   return (
-    <Suspense fallback={<p>Loading editor...</p>}>
-      <BrowserOnlyEditor />
-    </Suspense>
+    <>
+      <h1>Saved draft</h1>
+      <Suspense fallback={<p>Loading draft...</p>}>
+        <SavedDraft />
+      </Suspense>
+    </>
   );
 }
 ```
@@ -98,10 +121,14 @@ export default function Document() {
   return (
     <html lang="en">
       <head>
-        <title>Article editor</title>
+        <title>Saved draft</title>
+        <style>{`
+          h1 { font-size: 24px; margin-top: 0; }
+          label, textarea { display: block; }
+          textarea { margin-top: 5px; }
+        `}</style>
       </head>
       <body>
-        <h1>Article editor</h1>
         <App />
       </body>
     </html>
@@ -109,7 +136,7 @@ export default function Document() {
 }
 ```
 
-```js src/index.js
+```js src/index.js hidden
 import { hydrateRoot } from 'react-dom/client';
 import { renderToReadableStream } from 'react-dom/server';
 import Document from './Document.js';
@@ -125,11 +152,7 @@ async function main(frame) {
   hydrateRoot(frame.contentDocument, <Document />);
 }
 
-const renderButton = document.getElementById('render');
-renderButton.addEventListener('click', () => {
-  renderButton.disabled = true;
-  main(document.getElementById('preview'));
-}, { once: true });
+main(document.getElementById('preview'));
 ```
 
 ```js src/demo-helpers.js hidden
@@ -151,7 +174,7 @@ export async function flushReadableStreamToFrame(readable, frame) {
 }
 ```
 
-```html public/index.html
+```html public/index.html hidden
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -159,8 +182,6 @@ export async function flushReadableStreamToFrame(readable, frame) {
   <title>Browser-only rendering</title>
 </head>
 <body>
-  <button id="render">Render the page</button>
-  <br /><br />
   <iframe id="preview" title="Rendered page"></iframe>
 </body>
 </html>
@@ -169,8 +190,8 @@ export async function flushReadableStreamToFrame(readable, frame) {
 ```css src/styles.css hidden
 iframe {
   width: 100%;
-  height: 180px;
-  border: 1px solid #aaa;
+  height: 160px;
+  border: 0;
 }
 ```
 
@@ -199,12 +220,13 @@ In a React Server Components app, `use(browser())` must be called from a Client 
 ```js {1}
 'use client';
 
-import { use } from 'react';
+import { use, useState } from 'react';
 import { browser } from 'react-dom';
 
-export default function BrowserOnlyEditor() {
-  use(browser('The editor requires browser APIs.'));
-  return <Editor />;
+export default function SavedDraft() {
+  use(browser('The saved draft is stored in localStorage.'));
+  const [draft] = useState(() => localStorage.getItem('draft') ?? '');
+  return <DraftEditor initialDraft={draft} />;
 }
 ```
 
@@ -243,18 +265,19 @@ On the server, `useBrowserQuery` calls `useQuery` only when `initialData` is ava
 Pass an `onBrowserBailout` callback to the server renderer to report browser-only rendering. When React leaves a Suspense fallback for the browser, it does not call the server renderer's `onError` callback or [`hydrateRoot`'s `onRecoverableError`](/reference/react-dom/client/hydrateRoot#error-logging-in-production) callback. This example also passes a reason, which is available as the reported error's `cause`:
 
 ```js
-import { Suspense, use } from 'react';
+import { Suspense, use, useState } from 'react';
 import { browser } from 'react-dom';
 import { renderToPipeableStream } from 'react-dom/server';
 
-function BrowserOnlyEditor() {
-  use(browser(() => new Error('The editor requires a browser API.')));
-  return <Editor />;
+function SavedDraft() {
+  use(browser(() => new Error('The saved draft is stored in localStorage.')));
+  const [draft] = useState(() => localStorage.getItem('draft') ?? '');
+  return <DraftEditor initialDraft={draft} />;
 }
 
 const { pipe } = renderToPipeableStream(
-  <Suspense fallback={<p>Loading editor...</p>}>
-    <BrowserOnlyEditor />
+  <Suspense fallback={<p>Loading saved draft...</p>}>
+    <SavedDraft />
   </Suspense>,
   {
     onShellReady() {

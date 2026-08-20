@@ -9,6 +9,7 @@
 
 import {useEffect, useRef} from 'react';
 import {usePathname} from 'next/navigation';
+import {themeScript} from './themeScript';
 
 declare const gtag: (...args: any[]) => void;
 
@@ -47,6 +48,16 @@ export function ScrollRestoration() {
     const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
     if (isSafari) {
       history.scrollRestoration = 'auto';
+    }
+  }, []);
+  return null;
+}
+
+export function ThemeInitFallback() {
+  useEffect(() => {
+    // Set by the inline <script> in the root layout when it ran.
+    if (typeof window.__setPreferredTheme === 'undefined') {
+      new Function(themeScript)();
     }
   }, []);
   return null;

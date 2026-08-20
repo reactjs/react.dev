@@ -36,6 +36,10 @@ const pages = walk(appDir).filter(
 );
 const errors = [];
 
+if (!fs.existsSync(path.join(root, 'public', 'rss.xml'))) {
+  errors.push('public/rss.xml: missing generated RSS feed');
+}
+
 for (const file of pages) {
   const head = getHead(fs.readFileSync(file, 'utf8'));
   const relative = path.relative(appDir, file);
@@ -49,7 +53,6 @@ for (const file of pages) {
     if (!head.includes('<meta name="robots" content="noindex"')) {
       errors.push(`${relative}: missing noindex metadata`);
     }
-    continue;
   }
 
   const required = [
@@ -66,6 +69,24 @@ for (const file of pages) {
     if (!head.includes(marker)) {
       errors.push(`${relative}: missing ${marker}`);
     }
+  }
+
+  if (
+    relative === 'index.html' &&
+    !head.includes('<link rel="canonical" href="https://react.dev/"')
+  ) {
+    errors.push(
+      `${relative}: homepage canonical URL is missing trailing slash`
+    );
+  }
+
+  if (
+    file.endsWith('_not-found.html') &&
+    !head.includes(
+      '<meta property="og:image" content="https://react.dev/images/og-unknown.png"'
+    )
+  ) {
+    errors.push(`${relative}: incorrect not-found OG image`);
   }
 
   const ogImageTag = head.match(/<meta property="og:image"[^>]*>/)?.[0];

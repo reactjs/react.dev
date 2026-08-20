@@ -11,10 +11,9 @@ import Link from 'components/MDX/Link';
 import sidebarLearn from '../sidebarLearn.json';
 import type {RouteItem} from 'components/Layout/getRouteMeta';
 import type {Metadata} from 'next';
+import {buildNotFoundMetadata} from 'lib/buildPageMetadata';
 
-export const metadata: Metadata = {
-  title: 'Not Found – React',
-};
+export const metadata: Metadata = buildNotFoundMetadata();
 
 export default function NotFound() {
   return (

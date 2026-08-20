@@ -169,6 +169,11 @@ export default function TopNav({
   const [showSearch, setShowSearch] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const scrollParentRef = useRef<HTMLDivElement>(null);
+  // Deriving from the path hides the menu as soon as a navigation commits.
+  // Forget the path afterwards, so going Back doesn't reopen the menu.
+  if (openMenuPath !== null && openMenuPath !== asPath) {
+    setOpenMenuPath(null);
+  }
   const isMenuOpen = openMenuPath === asPath;
   const {breadcrumbs} = getRouteMeta(asPath, routeTree);
 

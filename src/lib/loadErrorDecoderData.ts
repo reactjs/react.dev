@@ -6,12 +6,11 @@
  */
 
 import 'server-only';
-import fs from 'fs';
-import path from 'path';
 import {notFound} from 'next/navigation';
 import {cacheLife} from 'next/cache';
 import compileMDX from 'utils/compileMDX';
 import type {CompiledMDX} from 'utils/compileMDX';
+import {readContentFile} from 'contentFiles';
 
 export interface ErrorDecoderData extends CompiledMDX {
   errorCode: string | null;
@@ -38,13 +37,11 @@ async function compileErrorDecoderData(
 ): Promise<ErrorDecoderData> {
   'use cache';
   cacheLife('max');
-  const rootDir = path.join(process.cwd(), 'src/content/errors');
-  const targetPath = code || 'index';
-  let mdx: string;
-  try {
-    mdx = fs.readFileSync(path.join(rootDir, targetPath + '.md'), 'utf8');
-  } catch {
-    mdx = fs.readFileSync(path.join(rootDir, 'generic.md'), 'utf8');
+  const mdx =
+    (await readContentFile(`errors/${code || 'index'}.md`)) ??
+    (await readContentFile('errors/generic.md'));
+  if (mdx == null) {
+    throw new Error('Missing src/content/errors/generic.md');
   }
 
   const compiled = await compileMDX(mdx);

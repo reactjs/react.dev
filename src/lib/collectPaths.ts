@@ -6,15 +6,8 @@
  */
 
 import 'server-only';
-import fs from 'fs';
-import path from 'path';
-import {promisify} from 'util';
-import {cacheLife} from 'next/cache';
+import {listContentFiles} from 'contentFiles';
 
-const readdir = promisify(fs.readdir);
-const stat = promisify(fs.stat);
-
-const ROOT = path.join(process.cwd(), 'src/content');
 const DEV_ONLY_PAGES = new Set(['learn/rsc-sandbox-test']);
 
 export function isContentPageAvailable(segments: string[]): boolean {
@@ -24,21 +17,10 @@ export function isContentPageAvailable(segments: string[]): boolean {
   );
 }
 
-async function getFiles(dir: string, base: string): Promise<string[]> {
-  const subdirs = await readdir(dir);
-  const files = await Promise.all(
-    subdirs.map(async (subdir) => {
-      const res = path.resolve(dir, subdir);
-      return (await stat(res)).isDirectory()
-        ? getFiles(res, base)
-        : res.slice(base.length + 1);
-    })
-  );
-  return files.flat().filter((file) => file.endsWith('.md'));
-}
-
+// 'foo/bar/baz.md' -> ['foo', 'bar', 'baz']
+// 'foo/bar/qux/index.md' -> ['foo', 'bar', 'qux']
 function getSegments(file: string): string[] {
-  const segments = file.slice(0, -3).replace(/\\/g, '/').split('/');
+  const segments = file.slice(0, -3).split('/');
   if (segments[segments.length - 1] === 'index') {
     segments.pop();
   }
@@ -54,13 +36,9 @@ function getSegments(file: string): string[] {
 export async function collectSectionPaths(
   section: string
 ): Promise<string[][]> {
-  'use cache';
-  cacheLife('max');
-  const dir = path.join(ROOT, section);
-  if (!fs.existsSync(dir)) return [];
-  const files = await getFiles(dir, dir);
-  return files
-    .map((file) => getSegments(file))
+  return listContentFiles()
+    .filter((file) => file.startsWith(section + '/'))
+    .map((file) => getSegments(file).slice(1))
     .filter((segments) => isContentPageAvailable([section, ...segments]));
 }
 
@@ -71,12 +49,9 @@ export async function collectSectionPaths(
  * statically prerender the markdown route handler.
  */
 export async function collectAllContentPaths(): Promise<string[][]> {
-  'use cache';
-  cacheLife('max');
-  const files = await getFiles(ROOT, ROOT);
   return (
-    files
-      .map((file) => getSegments(file))
+    listContentFiles()
+      .map(getSegments)
       // Drop the root `index.md` (-> []); `/index.md` isn't a served URL and an
       // empty catch-all param can't be prerendered.
       .filter((segments) => segments.length > 0)
@@ -91,12 +66,7 @@ export async function collectAllContentPaths(): Promise<string[][]> {
 export async function collectFlatSectionSlugs(
   section: string
 ): Promise<string[]> {
-  'use cache';
-  cacheLife('max');
-  const dir = path.join(ROOT, section);
-  if (!fs.existsSync(dir)) return [];
-  const entries = await readdir(dir);
-  return entries
-    .filter((name) => name.endsWith('.md') && name !== 'index.md')
-    .map((name) => name.slice(0, -3));
+  return (await collectSectionPaths(section))
+    .filter((segments) => segments.length === 1)
+    .map(([slug]) => slug);
 }

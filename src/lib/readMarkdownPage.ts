@@ -6,16 +6,13 @@
  */
 
 import 'server-only';
-import fs from 'fs/promises';
-import path from 'path';
 import {cacheLife} from 'next/cache';
 import {isContentPageAvailable} from './collectPaths';
+import {readContentPage} from 'contentFiles';
 import compileMDX from 'utils/compileMDX';
 import type {CompiledMDX} from 'utils/compileMDX';
 
 export type PageData = CompiledMDX;
-
-const ROOT = path.join(process.cwd(), 'src/content');
 
 /**
  * Read and compile an MDX page from src/content. Resolves either
@@ -36,18 +33,7 @@ export async function readMarkdownPage(
   cacheLife('max');
   if (!isContentPageAvailable(segments)) return null;
   const routePath = segments.join('/') || 'index';
-  let mdx: string | null = null;
-  for (const candidate of [
-    path.join(ROOT, routePath + '.md'),
-    path.join(ROOT, routePath, 'index.md'),
-  ]) {
-    try {
-      mdx = await fs.readFile(/* turbopackIgnore: true */ candidate, 'utf8');
-      break;
-    } catch {
-      // Try next candidate.
-    }
-  }
+  const mdx = await readContentPage(routePath);
   if (mdx == null) return null;
   const compiled = await compileMDX(mdx);
   if (routePath === 'index') {

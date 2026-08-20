@@ -5,11 +5,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import fs from 'fs';
-import path from 'path';
 import {NextResponse} from 'next/server';
 import {cacheLife} from 'next/cache';
 import {collectAllContentPaths, isContentPageAvailable} from 'lib/collectPaths';
+import {readContentPage} from 'contentFiles';
 
 const FOOTER = `
 ---
@@ -29,8 +28,7 @@ export async function generateStaticParams() {
 }
 
 /**
- * Read a markdown file for the given URL segments. Cached so prerendered
- * `.md` endpoints don't re-read from disk per request. Returns null when no
+ * Read a markdown file for the given URL segments. Returns null when no
  * matching file exists.
  */
 async function readContentMarkdown(
@@ -45,18 +43,7 @@ async function readContentMarkdown(
   // Block /index.md URLs - use /foo.md instead of /foo/index.md
   if (filePath.endsWith('/index') || filePath === 'index') return null;
 
-  const candidates = [
-    path.join(process.cwd(), 'src/content', filePath + '.md'),
-    path.join(process.cwd(), 'src/content', filePath, 'index.md'),
-  ];
-  for (const fullPath of candidates) {
-    try {
-      return fs.readFileSync(/* turbopackIgnore: true */ fullPath, 'utf8');
-    } catch {
-      // Try next candidate
-    }
-  }
-  return null;
+  return readContentPage(filePath);
 }
 
 export async function GET(

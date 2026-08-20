@@ -17,9 +17,6 @@ const nextConfig = {
   reactStrictMode: true,
   reactCompiler: true,
   cacheComponents: true,
-  outputFileTracingIncludes: {
-    '/*': ['./src/content/**/*.md'],
-  },
   serverExternalPackages: [
     '@babel/core',
     '@babel/plugin-transform-modules-commonjs',
@@ -31,6 +28,13 @@ const nextConfig = {
     'remark-frontmatter',
   ],
   turbopack: {
+    // For src/contentFiles.ts.
+    rules: {
+      '*.md': {
+        loaders: ['./plugins/rawLoader.js'],
+        as: '*.js',
+      },
+    },
     resolveAlias: {
       'use-sync-external-store/shim': 'react',
       esquery: 'esquery/dist/esquery.min.js',

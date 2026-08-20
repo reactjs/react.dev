@@ -2386,24 +2386,47 @@ The server HTML will include the loading indicator. It will be replaced by the `
 
 A Suspense boundary can provide a fallback for a browser-only component. Wrap the component in `<Suspense>` and call [`use(browser())`](/reference/react/use#use-browser) inside it.
 
-Press **Render the page**. The loading fallback appears first. After a short delay, React hydrates the page and displays the browser-only editor.
+Click **Reload** to see the loading fallback in the initial HTML. After hydration, React displays the draft loaded from `localStorage`.
 
 <Sandpack>
 
 ```js src/App.js active
-import { Suspense, use } from 'react';
+import { Suspense, use, useState } from 'react';
 import { browser } from 'react-dom';
 
-function BrowserOnlyEditor() {
-  use(browser('The editor requires browser APIs.'));
-  return <label>Draft: <input /></label>;
+function SavedDraft() {
+  use(browser('The draft is stored in localStorage.'));
+  const [draft, setDraft] = useState(
+    () => localStorage.getItem('draft') ?? ''
+  );
+
+  function handleChange(event) {
+    const nextDraft = event.target.value;
+    setDraft(nextDraft);
+    localStorage.setItem('draft', nextDraft);
+  }
+
+  return (
+    <label>
+      Draft:
+      <textarea
+        value={draft}
+        onChange={handleChange}
+        rows={4}
+        cols={30}
+      />
+    </label>
+  );
 }
 
 export default function App() {
   return (
-    <Suspense fallback={<p>Loading editor...</p>}>
-      <BrowserOnlyEditor />
-    </Suspense>
+    <>
+      <h1>Saved draft</h1>
+      <Suspense fallback={<p>Loading draft...</p>}>
+        <SavedDraft />
+      </Suspense>
+    </>
   );
 }
 ```
@@ -2415,10 +2438,14 @@ export default function Document() {
   return (
     <html lang="en">
       <head>
-        <title>Article editor</title>
+        <title>Saved draft</title>
+        <style>{`
+          h1 { font-size: 24px; margin-top: 0; }
+          label, textarea { display: block; }
+          textarea { margin-top: 5px; }
+        `}</style>
       </head>
       <body>
-        <h1>Article editor</h1>
         <App />
       </body>
     </html>
@@ -2426,7 +2453,7 @@ export default function Document() {
 }
 ```
 
-```js src/index.js
+```js src/index.js hidden
 import { hydrateRoot } from 'react-dom/client';
 import { renderToReadableStream } from 'react-dom/server';
 import Document from './Document.js';
@@ -2442,11 +2469,7 @@ async function main(frame) {
   hydrateRoot(frame.contentDocument, <Document />);
 }
 
-const renderButton = document.getElementById('render');
-renderButton.addEventListener('click', () => {
-  renderButton.disabled = true;
-  main(document.getElementById('preview'));
-}, { once: true });
+main(document.getElementById('preview'));
 ```
 
 ```js src/demo-helpers.js hidden
@@ -2468,7 +2491,7 @@ export async function flushReadableStreamToFrame(readable, frame) {
 }
 ```
 
-```html public/index.html
+```html public/index.html hidden
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -2476,8 +2499,6 @@ export async function flushReadableStreamToFrame(readable, frame) {
   <title>Browser-only rendering</title>
 </head>
 <body>
-  <button id="render">Render the page</button>
-  <br /><br />
   <iframe id="preview" title="Rendered page"></iframe>
 </body>
 </html>
@@ -2486,8 +2507,8 @@ export async function flushReadableStreamToFrame(readable, frame) {
 ```css src/styles.css hidden
 iframe {
   width: 100%;
-  height: 180px;
-  border: 1px solid #aaa;
+  height: 160px;
+  border: 0;
 }
 ```
 
@@ -2509,7 +2530,7 @@ iframe {
 
 </Sandpack>
 
-During server rendering, React includes the Suspense boundary's fallback in the HTML. In the browser, React replaces the fallback with the editor.
+During server rendering, React includes the Suspense boundary's fallback in the HTML. In the browser, React replaces the fallback with the saved draft.
 
 ---
 

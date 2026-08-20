@@ -1245,8 +1245,8 @@ root.render(
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eafeac09-20260819",
-    "react-dom": "19.3.0-canary-eafeac09-20260819",
+    "react": "19.3.0-canary-eb8feb71-20260814",
+    "react-dom": "19.3.0-canary-eb8feb71-20260814",
     "react-scripts": "latest"
   },
   "scripts": {
@@ -2442,8 +2442,8 @@ root.render(
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eafeac09-20260819",
-    "react-dom": "19.3.0-canary-eafeac09-20260819",
+    "react": "19.3.0-canary-eb8feb71-20260814",
+    "react-dom": "19.3.0-canary-eb8feb71-20260814",
     "react-scripts": "latest"
   },
   "scripts": {
@@ -3670,8 +3670,8 @@ root.render(
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eafeac09-20260819",
-    "react-dom": "19.3.0-canary-eafeac09-20260819",
+    "react": "19.3.0-canary-eb8feb71-20260814",
+    "react-dom": "19.3.0-canary-eb8feb71-20260814",
     "react-scripts": "latest"
   },
   "scripts": {
@@ -4879,8 +4879,8 @@ root.render(
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eafeac09-20260819",
-    "react-dom": "19.3.0-canary-eafeac09-20260819",
+    "react": "19.3.0-canary-eb8feb71-20260814",
+    "react-dom": "19.3.0-canary-eb8feb71-20260814",
     "react-scripts": "latest"
   },
   "scripts": {
@@ -6195,8 +6195,8 @@ root.render(
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eafeac09-20260819",
-    "react-dom": "19.3.0-canary-eafeac09-20260819",
+    "react": "19.3.0-canary-eb8feb71-20260814",
+    "react-dom": "19.3.0-canary-eb8feb71-20260814",
     "react-scripts": "latest"
   },
   "scripts": {
@@ -7493,8 +7493,8 @@ root.render(
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eafeac09-20260819",
-    "react-dom": "19.3.0-canary-eafeac09-20260819",
+    "react": "19.3.0-canary-eb8feb71-20260814",
+    "react-dom": "19.3.0-canary-eb8feb71-20260814",
     "react-scripts": "latest"
   },
   "scripts": {
@@ -8814,8 +8814,8 @@ root.render(
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eafeac09-20260819",
-    "react-dom": "19.3.0-canary-eafeac09-20260819",
+    "react": "19.3.0-canary-eb8feb71-20260814",
+    "react-dom": "19.3.0-canary-eb8feb71-20260814",
     "react-scripts": "latest"
   },
   "scripts": {
@@ -10155,8 +10155,8 @@ root.render(
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eafeac09-20260819",
-    "react-dom": "19.3.0-canary-eafeac09-20260819",
+    "react": "19.3.0-canary-eb8feb71-20260814",
+    "react-dom": "19.3.0-canary-eb8feb71-20260814",
     "react-scripts": "latest"
   },
   "scripts": {
@@ -11441,8 +11441,8 @@ root.render(
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eafeac09-20260819",
-    "react-dom": "19.3.0-canary-eafeac09-20260819",
+    "react": "19.3.0-canary-eb8feb71-20260814",
+    "react-dom": "19.3.0-canary-eb8feb71-20260814",
     "react-scripts": "latest"
   },
   "scripts": {
@@ -12840,8 +12840,8 @@ root.render(
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eafeac09-20260819",
-    "react-dom": "19.3.0-canary-eafeac09-20260819",
+    "react": "19.3.0-canary-eb8feb71-20260814",
+    "react-dom": "19.3.0-canary-eb8feb71-20260814",
     "react-scripts": "latest"
   },
   "scripts": {
@@ -14178,8 +14178,8 @@ root.render(
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eafeac09-20260819",
-    "react-dom": "19.3.0-canary-eafeac09-20260819",
+    "react": "19.3.0-canary-eb8feb71-20260814",
+    "react-dom": "19.3.0-canary-eb8feb71-20260814",
     "react-scripts": "latest"
   },
   "scripts": {

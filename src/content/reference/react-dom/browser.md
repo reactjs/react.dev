@@ -258,6 +258,182 @@ function ProductDetails({ productId, initialData }) {
 
 On the server, `useBrowserQuery` calls `useQuery` only when `initialData` is available. Otherwise, the closest Suspense boundary's fallback remains in the HTML. In the browser, `use(browser())` returns `undefined`, so the query library can fetch the data or read it from its client cache.
 
+This example renders one query with initial data and one without it.
+
+Click **Reload** to see the second product's loading fallback before its query resolves.
+
+<Sandpack>
+
+```js src/App.js active
+import { Suspense, use } from 'react';
+import { browser } from 'react-dom';
+import { useQuery } from './query.js';
+
+function useBrowserQuery(query, options) {
+  if (options.initialData === undefined) {
+    use(browser('useBrowserQuery: No initial data was provided.'));
+  }
+  return useQuery(query, options);
+}
+
+function ProductDetails({productId, initialData}) {
+  const product = useBrowserQuery(`/api/products/${productId}`, {
+    initialData,
+  });
+  return <strong>{product.name}</strong>;
+}
+
+export default function App() {
+  return (
+    <>
+      <h1>Featured products</h1>
+      <ul>
+        <li>
+          <ProductDetails
+            productId="react-mug"
+            initialData={{name: 'React mug'}}
+          />
+        </li>
+        <Suspense fallback={<li>Loading another product...</li>}>
+          <li>
+            <ProductDetails productId="react-shirt" />
+          </li>
+        </Suspense>
+      </ul>
+    </>
+  );
+}
+```
+
+```js src/query.js hidden
+import { use } from 'react';
+
+// This is a simplified implementation of a
+// Suspense-enabled query library.
+
+const products = {
+  '/api/products/react-shirt': {name: 'React shirt'},
+};
+
+const cache = new Map();
+
+function fetchProduct(query) {
+  if (!cache.has(query)) {
+    cache.set(
+      query,
+      new Promise(resolve => {
+        setTimeout(() => resolve(products[query]), 600);
+      })
+    );
+  }
+  return cache.get(query);
+}
+
+export function useQuery(query, options) {
+  if (options.initialData !== undefined) {
+    return options.initialData;
+  }
+  return use(fetchProduct(query));
+}
+```
+
+```js src/Document.js hidden
+import App from './App.js';
+
+export default function Document() {
+  return (
+    <html lang="en">
+      <head>
+        <title>Featured products</title>
+        <style>{`
+          h1 { font-size: 24px; margin-top: 0; }
+        `}</style>
+      </head>
+      <body>
+        <App />
+      </body>
+    </html>
+  );
+}
+```
+
+```js src/index.js hidden
+import { hydrateRoot } from 'react-dom/client';
+import { renderToReadableStream } from 'react-dom/server';
+import Document from './Document.js';
+import { flushReadableStreamToFrame } from './demo-helpers.js';
+import './styles.css';
+
+async function main(frame) {
+  const stream = await renderToReadableStream(<Document />);
+  await flushReadableStreamToFrame(stream, frame);
+
+  // Wait so both the fallback and hydrated content are visible.
+  await new Promise(resolve => setTimeout(resolve, 1200));
+  hydrateRoot(frame.contentDocument, <Document />);
+}
+
+main(document.getElementById('preview'));
+```
+
+```js src/demo-helpers.js hidden
+export async function flushReadableStreamToFrame(readable, frame) {
+  const doc = frame.contentWindow.document;
+  const decoder = new TextDecoder();
+  const reader = readable.getReader();
+
+  while (true) {
+    const {done, value} = await reader.read();
+    if (done) {
+      break;
+    }
+    doc.write(decoder.decode(value, {stream: true}));
+  }
+
+  doc.write(decoder.decode());
+  doc.close();
+}
+```
+
+```html public/index.html hidden
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Conditional browser rendering</title>
+</head>
+<body>
+  <iframe id="preview" title="Rendered page"></iframe>
+</body>
+</html>
+```
+
+```css src/styles.css hidden
+iframe {
+  width: 100%;
+  height: 170px;
+  border: 0;
+}
+```
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "19.3.0-canary-eb8feb71-20260814",
+    "react-dom": "19.3.0-canary-eb8feb71-20260814",
+    "react-scripts": "latest"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
+```
+
+</Sandpack>
+
 ---
 
 ### Reporting browser-only rendering on the server {/*reporting-browser-only-rendering-on-the-server*/}

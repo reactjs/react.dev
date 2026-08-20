@@ -7,16 +7,20 @@
 
 'use client';
 
-import {useEffect} from 'react';
+import {useEffect, useRef} from 'react';
 import {usePathname} from 'next/navigation';
 
 declare const gtag: (...args: any[]) => void;
 
 export function AnalyticsTracker() {
   const pathname = usePathname();
+  const previousPathname = useRef(pathname);
 
   useEffect(() => {
-    if (typeof window === 'undefined' || typeof gtag === 'undefined') return;
+    // gtag('config') already reports the initial page view.
+    if (previousPathname.current === pathname) return;
+    previousPathname.current = pathname;
+    if (typeof gtag === 'undefined') return;
     gtag('event', 'pageview', {event_label: pathname});
   }, [pathname]);
 

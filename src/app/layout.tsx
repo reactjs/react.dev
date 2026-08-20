@@ -146,6 +146,8 @@ const themeScript = `
 })();
 `;
 
+// Translation forks load the fonts from react.dev too.
+const FONT_ORIGIN = 'https://react.dev';
 const FONT_PRELOADS = [
   'Source-Code-Pro-Regular.woff2',
   'Source-Code-Pro-Bold.woff2',
@@ -189,7 +191,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
           <link
             key={file}
             rel="preload"
-            href={`/fonts/${file}`}
+            href={`${FONT_ORIGIN}/fonts/${file}`}
             as="font"
             type="font/woff2"
             crossOrigin="anonymous"

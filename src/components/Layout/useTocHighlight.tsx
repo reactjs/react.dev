@@ -10,26 +10,24 @@
  */
 
 import {useState, useRef, useEffect} from 'react';
+import type {Toc} from '../MDX/TocContext';
 
 const TOP_OFFSET = 85;
 
-export function getHeaderAnchors(): HTMLAnchorElement[] {
-  return Array.prototype.filter.call(
-    document.getElementsByClassName('mdx-header-anchor'),
-    function (testElement) {
-      return (
-        testElement.parentNode.nodeName === 'H1' ||
-        testElement.parentNode.nodeName === 'H2' ||
-        testElement.parentNode.nodeName === 'H3'
-      );
-    }
+// Resolves each TOC entry to its heading element. The first entry
+// ("Overview", href "#") is the top of the page and has no element.
+function getTocTargets(headings: Toc): Array<HTMLElement | null> {
+  return headings.map((heading) =>
+    heading.url.length > 1
+      ? document.getElementById(heading.url.slice(1))
+      : null
   );
 }
 
 /**
  * Sets up Table of Contents highlighting.
  */
-export function useTocHighlight() {
+export function useTocHighlight(headings: Toc) {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const timeoutRef = useRef<number | null>(null);
 
@@ -37,26 +35,28 @@ export function useTocHighlight() {
     function updateActiveLink() {
       const pageHeight = document.body.scrollHeight;
       const scrollPosition = window.scrollY + window.innerHeight;
-      const headersAnchors = getHeaderAnchors();
+      const targets = getTocTargets(headings);
 
       if (scrollPosition >= 0 && pageHeight - scrollPosition <= 0) {
         // Scrolled to bottom of page.
-        setCurrentIndex(headersAnchors.length - 1);
+        setCurrentIndex(targets.length - 1);
         return;
       }
 
-      let index = -1;
-      while (index < headersAnchors.length - 1) {
-        const headerAnchor = headersAnchors[index + 1];
-        const {top} = headerAnchor.getBoundingClientRect();
-
-        if (top >= TOP_OFFSET) {
+      // The last heading that has scrolled past the top of the viewport.
+      let index = 0;
+      for (let i = 1; i < targets.length; i++) {
+        const target = targets[i];
+        if (target == null) {
+          continue;
+        }
+        if (target.getBoundingClientRect().top >= TOP_OFFSET) {
           break;
         }
-        index += 1;
+        index = i;
       }
 
-      setCurrentIndex(Math.max(index, 0));
+      setCurrentIndex(index);
     }
 
     function throttledUpdateActiveLink() {
@@ -81,7 +81,7 @@ export function useTocHighlight() {
       document.removeEventListener('scroll', throttledUpdateActiveLink);
       document.removeEventListener('resize', throttledUpdateActiveLink);
     };
-  }, []);
+  }, [headings]);
 
   return {
     currentIndex,

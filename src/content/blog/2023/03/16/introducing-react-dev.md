@@ -42,7 +42,7 @@ When we released React Hooks in 2018, the Hooks docs assumed the reader is famil
 **The new docs teach React with Hooks from the beginning.** The docs are divided in two main sections:
 
 * **[Learn React](/learn)** is a self-paced course that teaches React from scratch.
-* **[API Reference](/reference)** provides the details and usage examples for every React API.
+* **[API Reference](/reference/react)** provides the details and usage examples for every React API.
 
 Let's have a closer look at what you can find in each section.
 

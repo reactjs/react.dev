@@ -90,7 +90,7 @@ function SandpackRSCRoot(props: SandpackProps) {
 
   files['/src/styles.css'] = {
     code: [sandboxStyle, files['/src/styles.css']?.code ?? ''].join('\n\n'),
-    hidden: sourceFiles['/src/styles.css']?.hidden ?? true,
+    hidden: true,
   };
 
   return (

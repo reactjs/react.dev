@@ -177,8 +177,8 @@ iframe {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
+    "react": "19.3.0-canary-eb8feb71-20260814",
+    "react-dom": "19.3.0-canary-eb8feb71-20260814",
     "react-scripts": "latest"
   },
   "scripts": {

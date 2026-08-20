@@ -1332,7 +1332,7 @@ async function getData(url) {
 
 Pass the value returned by [`browser`](/reference/react-dom/browser) to `use` inside a component that should only render in the browser.
 
-Press **Render the page** to see the loading fallback. React then displays a draft loaded from `localStorage`.
+Press **Load draft**. The initial HTML contains the loading fallback. After hydration, React displays the draft loaded from `localStorage`.
 
 <Sandpack>
 
@@ -1445,7 +1445,7 @@ export async function flushReadableStreamToFrame(readable, frame) {
   <title>Browser-only rendering</title>
 </head>
 <body>
-  <button id="render">Render the page</button>
+  <button id="render">Load draft</button>
   <br /><br />
   <iframe id="preview" title="Rendered page"></iframe>
 </body>

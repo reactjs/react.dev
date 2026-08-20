@@ -2386,7 +2386,7 @@ The server HTML will include the loading indicator. It will be replaced by the `
 
 A Suspense boundary can provide a fallback for a browser-only component. Wrap the component in `<Suspense>` and call [`use(browser())`](/reference/react/use#use-browser) inside it.
 
-Press **Render the page** to see the loading fallback. React then displays a draft loaded from `localStorage`.
+Press **Load draft**. The initial HTML contains the loading fallback. After hydration, React displays the draft loaded from `localStorage`.
 
 <Sandpack>
 
@@ -2499,7 +2499,7 @@ export async function flushReadableStreamToFrame(readable, frame) {
   <title>Browser-only rendering</title>
 </head>
 <body>
-  <button id="render">Render the page</button>
+  <button id="render">Load draft</button>
   <br /><br />
   <iframe id="preview" title="Rendered page"></iframe>
 </body>

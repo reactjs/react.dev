@@ -69,7 +69,7 @@ Call `browser` inside `use` in a component that should only render in the browse
 
 You can use this instead of checking `typeof window`, waiting for an [`Effect`](/reference/react/useEffect) to set mounted state, or using a framework option to disable server rendering.
 
-Press **Render the page** to see the loading fallback. React then displays a draft loaded from `localStorage`.
+Press **Load draft**. The initial HTML contains the loading fallback. After hydration, React displays the draft loaded from `localStorage`.
 
 <Sandpack>
 
@@ -182,7 +182,7 @@ export async function flushReadableStreamToFrame(readable, frame) {
   <title>Browser-only rendering</title>
 </head>
 <body>
-  <button id="render">Render the page</button>
+  <button id="render">Load draft</button>
   <br /><br />
   <iframe id="preview" title="Rendered page"></iframe>
 </body>

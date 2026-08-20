@@ -18,9 +18,6 @@ const nextConfig = {
   reactCompiler: true,
   cacheComponents: true,
   serverExternalPackages: [
-    '@babel/core',
-    '@babel/plugin-transform-modules-commonjs',
-    '@babel/preset-react',
     '@mdx-js/mdx',
     'gray-matter',
     'unist-util-visit',

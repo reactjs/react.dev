@@ -95,14 +95,17 @@ function CurrentTime() {
 
   useEffect(() => {
     const msPerMinute = 60 * 1000;
+    let timeout;
 
     function updateDate() {
       setDate(new Date());
+      const now = Date.now();
+      const nextMinute = (Math.floor(now / msPerMinute) + 1) * msPerMinute;
+      timeout = setTimeout(updateDate, nextMinute - now);
     }
 
     updateDate();
-    const interval = setInterval(updateDate, msPerMinute);
-    return () => clearInterval(interval);
+    return () => clearTimeout(timeout);
   }, []);
 
   const currentTime = date?.toLocaleTimeString([], {

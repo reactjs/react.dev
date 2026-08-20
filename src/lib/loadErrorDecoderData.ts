@@ -33,7 +33,7 @@ async function loadErrorCodes(): Promise<Record<string, string>> {
  */
 async function compileErrorDecoderData(
   code: string | null,
-  errorCodes: Record<string, string>
+  errorMessage: string | null
 ): Promise<ErrorDecoderData> {
   'use cache';
   cacheLife('max');
@@ -49,7 +49,7 @@ async function compileErrorDecoderData(
   return {
     ...compiled,
     errorCode: code,
-    errorMessage: code ? errorCodes[code] : null,
+    errorMessage,
   };
 }
 
@@ -60,7 +60,7 @@ export async function loadErrorDecoderData(
   if (code && !errorCodes[code]) {
     notFound();
   }
-  return compileErrorDecoderData(code, errorCodes);
+  return compileErrorDecoderData(code, code ? errorCodes[code] : null);
 }
 
 export async function listErrorCodes(): Promise<string[]> {

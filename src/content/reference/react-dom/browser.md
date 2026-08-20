@@ -69,7 +69,7 @@ Call `browser` inside `use` in a component that should only render in the browse
 
 You can use this instead of checking `typeof window`, waiting for an [`Effect`](/reference/react/useEffect) to set mounted state, or using a framework option to disable server rendering.
 
-Press **Load draft**. The initial HTML contains the loading fallback. After hydration, React displays the draft loaded from `localStorage`.
+Click **Reload** to see the loading fallback in the initial HTML. After hydration, React displays the draft loaded from `localStorage`.
 
 <Sandpack>
 
@@ -104,9 +104,12 @@ function SavedDraft() {
 
 export default function App() {
   return (
-    <Suspense fallback={<p>Loading draft...</p>}>
-      <SavedDraft />
-    </Suspense>
+    <>
+      <h1>Saved draft</h1>
+      <Suspense fallback={<p>Loading draft...</p>}>
+        <SavedDraft />
+      </Suspense>
+    </>
   );
 }
 ```
@@ -120,6 +123,7 @@ export default function Document() {
       <head>
         <title>Saved draft</title>
         <style>{`
+          h1 { font-size: 24px; margin-top: 0; }
           label, textarea { display: block; }
           textarea { margin-top: 5px; }
         `}</style>
@@ -148,11 +152,7 @@ async function main(frame) {
   hydrateRoot(frame.contentDocument, <Document />);
 }
 
-const renderButton = document.getElementById('render');
-renderButton.addEventListener('click', () => {
-  renderButton.disabled = true;
-  main(document.getElementById('preview'));
-}, { once: true });
+main(document.getElementById('preview'));
 ```
 
 ```js src/demo-helpers.js hidden
@@ -182,8 +182,6 @@ export async function flushReadableStreamToFrame(readable, frame) {
   <title>Browser-only rendering</title>
 </head>
 <body>
-  <button id="render">Load draft</button>
-  <br /><br />
   <iframe id="preview" title="Rendered page"></iframe>
 </body>
 </html>
@@ -192,7 +190,7 @@ export async function flushReadableStreamToFrame(readable, frame) {
 ```css src/styles.css hidden
 iframe {
   width: 100%;
-  height: 120px;
+  height: 160px;
   border: 0;
 }
 ```

@@ -9,6 +9,10 @@ import {SidebarNav} from 'components/Layout/SidebarNav';
 import {TopNav} from 'components/Layout/TopNav';
 import type {RouteItem} from 'components/Layout/getRouteMeta';
 import sidebarCommunity from '../../sidebarCommunity.json';
+import type {Metadata} from 'next';
+import {buildNotFoundMetadata} from 'lib/buildPageMetadata';
+
+export const metadata: Metadata = buildNotFoundMetadata();
 
 export default function CommunityLayout({
   children,

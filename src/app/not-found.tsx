@@ -8,6 +8,7 @@
 import {Page} from 'components/Layout/Page';
 import Intro from 'components/MDX/Intro';
 import Link from 'components/MDX/Link';
+import {P} from 'components/MDX/Primitives';
 import sidebarLearn from '../sidebarLearn.json';
 import type {RouteItem} from 'components/Layout/getRouteMeta';
 import type {Metadata} from 'next';
@@ -25,15 +26,15 @@ export default function NotFound() {
       pathname="/404">
       <div className="max-w-4xl ms-0 2xl:mx-auto">
         <Intro>
-          <p>This page doesn’t exist.</p>
-          <p>
+          <P>This page doesn’t exist.</P>
+          <P>
             If this is a mistake{', '}
             <Link href="https://github.com/reactjs/react.dev/issues/new">
               let us know
             </Link>
             {', '}
             and we will try to fix it!
-          </p>
+          </P>
         </Intro>
       </div>
     </Page>

@@ -9,6 +9,10 @@ import {SidebarNav} from 'components/Layout/SidebarNav';
 import {TopNav} from 'components/Layout/TopNav';
 import type {RouteItem} from 'components/Layout/getRouteMeta';
 import sidebarLearn from '../../sidebarLearn.json';
+import type {Metadata} from 'next';
+import {buildNotFoundMetadata} from 'lib/buildPageMetadata';
+
+export const metadata: Metadata = buildNotFoundMetadata();
 
 export default function LearnLayout({children}: {children: React.ReactNode}) {
   const routeTree = sidebarLearn as RouteItem;

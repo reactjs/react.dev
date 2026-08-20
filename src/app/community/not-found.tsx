@@ -8,10 +8,6 @@
 import sidebarCommunity from '../../sidebarCommunity.json';
 import {NotFoundContent} from 'components/Layout/NotFoundContent';
 import type {RouteItem} from 'components/Layout/getRouteMeta';
-import type {Metadata} from 'next';
-import {buildNotFoundMetadata} from 'lib/buildPageMetadata';
-
-export const metadata: Metadata = buildNotFoundMetadata();
 
 export default function NotFound() {
   return (

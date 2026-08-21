@@ -7,6 +7,6 @@
     "test": "node __tests__/lint-markdown-code-blocks.test.js"
   },
   "devDependencies": {
-    "eslint-mdx": "^2"
+    "eslint-mdx": "^3.8.1"
   }
 }

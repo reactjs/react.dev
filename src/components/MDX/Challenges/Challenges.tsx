@@ -5,21 +5,23 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+'use client';
+
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {Children, useRef, useEffect, useState} from 'react';
+import {useRef, useEffect, useState} from 'react';
 import * as React from 'react';
 import cn from 'classnames';
 import {H2} from 'components/MDX/Heading';
 import {H4} from 'components/MDX/Heading';
 import {Challenge} from './Challenge';
 import {Navigation} from './Navigation';
-import {useRouter} from 'next/router';
+import {usePathname} from 'next/navigation';
 
 interface ChallengesProps {
-  children: React.ReactElement[];
+  challenges: ChallengeContents[];
   isRecipes?: boolean;
   titleText?: string;
   titleId?: string;
@@ -35,78 +37,37 @@ export interface ChallengeContents {
   hint?: React.ReactNode;
 }
 
-const parseChallengeContents = (
-  children: React.ReactElement[]
-): ChallengeContents[] => {
-  const contents: ChallengeContents[] = [];
-
-  if (!children) {
-    return contents;
-  }
-
-  let challenge: Partial<ChallengeContents> = {};
-  let content: React.ReactElement[] = [];
-  Children.forEach(children, (child) => {
-    const {props, type} = child as React.ReactElement<{
-      children?: string;
-      id?: string;
-    }>;
-    switch ((type as any).mdxName) {
-      case 'Solution': {
-        challenge.solution = child;
-        challenge.content = content;
-        contents.push(challenge as ChallengeContents);
-        challenge = {};
-        content = [];
-        break;
-      }
-      case 'Hint': {
-        challenge.hint = child;
-        break;
-      }
-      case 'h4': {
-        challenge.order = contents.length + 1;
-        challenge.name = props.children;
-        challenge.id = props.id;
-        break;
-      }
-      default: {
-        content.push(child);
-      }
-    }
-  });
-
-  return contents;
-};
-
 enum QueuedScroll {
   INIT = 'init',
   NEXT = 'next',
 }
 
 export function Challenges({
-  children,
+  challenges,
   isRecipes,
   noTitle,
   titleText = isRecipes ? 'Try out some examples' : 'Try out some challenges',
   titleId = isRecipes ? 'examples' : 'challenges',
 }: ChallengesProps) {
-  const challenges = parseChallengeContents(children);
   const totalChallenges = challenges.length;
   const scrollAnchorRef = useRef<HTMLDivElement>(null);
   const queuedScrollRef = useRef<undefined | QueuedScroll>(QueuedScroll.INIT);
   const [activeIndex, setActiveIndex] = useState(0);
   const currentChallenge = challenges[activeIndex];
-  const {asPath} = useRouter();
+  const asPath = usePathname() || '/';
 
   useEffect(() => {
     if (queuedScrollRef.current === QueuedScroll.INIT) {
       const initIndex = challenges.findIndex(
-        (challenge) => challenge.id === asPath.split('#')[1]
+        (challenge) =>
+          challenge.id ===
+          (typeof window !== 'undefined' ? window.location.hash.slice(1) : '')
       );
       if (initIndex === -1) {
         queuedScrollRef.current = undefined;
       } else if (initIndex !== activeIndex) {
+        // The URL fragment selects the initially visible challenge after mount.
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setActiveIndex(initIndex);
       }
     }

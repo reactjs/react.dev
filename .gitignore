@@ -43,9 +43,13 @@ public/rss.xml
 # claude local settings
 .claude/*.local.*
 .claude/react/
+.claude/launch.json
 
 # worktrees
 .worktrees/
 
 # Generated OG images (scripts/generateOgImages.mjs)
 public/images/og/
+
+# Generated Sandpack RSC runtime sources (scripts/buildRscWorker.mjs)
+public/sandpack-rsc/

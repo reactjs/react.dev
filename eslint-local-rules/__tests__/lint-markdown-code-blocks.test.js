@@ -10,32 +10,30 @@ const fs = require('fs');
 const path = require('path');
 const {ESLint} = require('eslint');
 const plugin = require('..');
+const parser = require('../parser');
 
-const FIXTURES_DIR = path.join(
-  __dirname,
-  'fixtures',
-  'src',
-  'content'
-);
-const PARSER_PATH = path.join(__dirname, '..', 'parser.js');
-
+const FIXTURES_DIR = path.join(__dirname, 'fixtures', 'src', 'content');
 function createESLint({fix = false} = {}) {
   return new ESLint({
-    useEslintrc: false,
+    overrideConfigFile: true,
     fix,
-    plugins: {
-      'local-rules': plugin,
-    },
-    overrideConfig: {
-      parser: PARSER_PATH,
-      plugins: ['local-rules'],
-      rules: {
-        'local-rules/lint-markdown-code-blocks': 'error',
+    overrideConfig: [
+      {
+        files: ['**/*.md'],
+        languageOptions: {
+          parser,
+          parserOptions: {
+            sourceType: 'module',
+          },
+        },
+        plugins: {
+          'local-rules': plugin,
+        },
+        rules: {
+          'local-rules/lint-markdown-code-blocks': 'error',
+        },
       },
-      parserOptions: {
-        sourceType: 'module',
-      },
-    },
+    ],
   });
 }
 
@@ -53,11 +51,7 @@ async function lintFixture(name, {fix = false} = {}) {
 
 async function run() {
   const basicResult = await lintFixture('basic-error.md');
-  assert.strictEqual(
-    basicResult.messages.length,
-    1,
-    'expected one diagnostic'
-  );
+  assert.strictEqual(basicResult.messages.length, 1, 'expected one diagnostic');
   assert(
     basicResult.messages[0].message.includes('Calling setState during render'),
     'expected message to mention setState during render'
@@ -91,9 +85,7 @@ async function run() {
     fix: true,
   });
   assert(
-    duplicateFixed.output.includes(
-      "{expectedErrors: {'react-compiler': [4]}}"
-    ),
+    duplicateFixed.output.includes("{expectedErrors: {'react-compiler': [4]}}"),
     'expected duplicates to be rewritten to a single canonical block'
   );
   assert(
@@ -118,14 +110,12 @@ async function run() {
     fix: true,
   });
   assert(
-    malformedFixed.output.includes(
-      "{expectedErrors: {'react-compiler': [4]}}"
-    ),
+    malformedFixed.output.includes("{expectedErrors: {'react-compiler': [4]}}"),
     'expected malformed metadata to be replaced with canonical form'
   );
 }
 
-run().catch(error => {
+run().catch((error) => {
   console.error(error);
   process.exitCode = 1;
 });

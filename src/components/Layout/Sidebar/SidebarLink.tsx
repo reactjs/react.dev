@@ -9,8 +9,6 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import {useRef, useEffect} from 'react';
 import * as React from 'react';
 import cn from 'classnames';
@@ -28,7 +26,6 @@ interface SidebarLinkProps {
   icon?: React.ReactNode;
   isExpanded?: boolean;
   hideArrow?: boolean;
-  isPending: boolean;
 }
 
 export function SidebarLink({
@@ -39,7 +36,6 @@ export function SidebarLink({
   level,
   isExpanded,
   hideArrow,
-  isPending,
 }: SidebarLinkProps) {
   const ref = useRef<HTMLAnchorElement>(null);
 
@@ -76,8 +72,6 @@ export function SidebarLink({
             level > 0 && !selected,
           'text-base text-link dark:text-link-dark bg-highlight dark:bg-highlight-dark border-blue-40 hover:bg-highlight hover:text-link dark:hover:bg-highlight-dark dark:hover:text-link-dark':
             selected,
-          'dark:bg-gray-70 bg-gray-3 dark:hover:bg-gray-70 hover:bg-gray-3':
-            isPending,
         }
       )}>
       {/* This here needs to be refactored ofc */}

@@ -9,17 +9,18 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {Children} from 'react';
 import * as React from 'react';
-import {SandpackProvider} from '@codesandbox/sandpack-react/unstyled';
+import {
+  SandpackProvider,
+  type SandpackFile,
+} from '@codesandbox/sandpack-react/unstyled';
 import {SandpackLogLevel} from '@codesandbox/sandpack-client';
 import {CustomPreset} from './CustomPreset';
-import {createFileMap} from './createFileMap';
 import {CustomTheme} from './Themes';
 import {template} from './template';
 
 type SandpackProps = {
-  children: React.ReactNode;
+  files: Record<string, SandpackFile>;
   autorun?: boolean;
 };
 
@@ -74,9 +75,8 @@ ul {
 `.trim();
 
 function SandpackRoot(props: SandpackProps) {
-  let {children, autorun = true} = props;
-  const codeSnippets = Children.toArray(children) as React.ReactElement[];
-  const files = createFileMap(codeSnippets);
+  const {files: sourceFiles, autorun = true} = props;
+  const files = {...sourceFiles};
 
   if ('/index.html' in files) {
     throw new Error(
@@ -87,7 +87,7 @@ function SandpackRoot(props: SandpackProps) {
 
   files['/src/styles.css'] = {
     code: [sandboxStyle, files['/src/styles.css']?.code ?? ''].join('\n\n'),
-    hidden: !files['/src/styles.css']?.visible,
+    hidden: true,
   };
 
   return (

@@ -9,27 +9,25 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {Suspense} from 'react';
 import * as React from 'react';
-import {useRouter} from 'next/router';
 import {SidebarNav} from './SidebarNav';
 import {Footer} from './Footer';
 import {Toc} from './Toc';
-// import SocialBanner from '../SocialBanner';
 import {DocsPageFooter} from 'components/DocsFooter';
-import {Seo} from 'components/Seo';
 import PageHeading from 'components/PageHeading';
 import {getRouteMeta} from './getRouteMeta';
-import {TocContext} from '../MDX/TocContext';
-import {Languages, LanguagesContext} from '../MDX/LanguagesContext';
 import type {TocItem} from 'components/MDX/TocContext';
 import type {RouteItem} from 'components/Layout/getRouteMeta';
-import {HomeContent} from './HomeContent';
 import {TopNav} from './TopNav';
 import cn from 'classnames';
-import Head from 'next/head';
 
-import(/* webpackPrefetch: true */ '../MDX/CodeBlock/CodeBlock');
+export type PageSection =
+  | 'learn'
+  | 'reference'
+  | 'community'
+  | 'blog'
+  | 'home'
+  | 'unknown';
 
 interface PageProps {
   children: React.ReactNode;
@@ -41,8 +39,10 @@ interface PageProps {
     version?: 'experimental' | 'canary';
     description?: string;
   };
-  section: 'learn' | 'reference' | 'community' | 'blog' | 'home' | 'unknown';
-  languages?: Languages | null;
+  section: PageSection;
+  /** Cleaned pathname from the server, e.g. "/", "/learn/state". */
+  pathname: string;
+  showCopyPage?: boolean;
 }
 
 export function Page({
@@ -51,23 +51,22 @@ export function Page({
   routeTree,
   meta,
   section,
-  languages = null,
+  pathname,
+  showCopyPage = false,
 }: PageProps) {
-  const {asPath} = useRouter();
-  const cleanedPath = asPath.split(/[\?\#]/)[0];
-  const {route, nextRoute, prevRoute, breadcrumbs, order} = getRouteMeta(
-    cleanedPath,
+  const {route, nextRoute, prevRoute, breadcrumbs} = getRouteMeta(
+    pathname,
     routeTree
   );
   const title = meta.title || route?.title || '';
   const version = meta.version;
   const description = meta.description || route?.description || '';
-  const isHomePage = cleanedPath === '/';
-  const isBlogIndex = cleanedPath === '/blog';
+  const isHomePage = section === 'home';
+  const isBlogIndex = section === 'blog' && pathname === '/blog';
 
   let content;
   if (isHomePage) {
-    content = <HomeContent />;
+    content = children;
   } else {
     content = (
       <div className="ps-0">
@@ -81,6 +80,7 @@ export function Page({
             description={description}
             tags={route?.tags}
             breadcrumbs={breadcrumbs}
+            pathname={showCopyPage ? pathname : undefined}
           />
         </div>
         <div className="px-5 sm:px-12">
@@ -89,9 +89,7 @@ export function Page({
               'max-w-7xl mx-auto',
               section === 'blog' && 'lg:flex lg:flex-col lg:items-center'
             )}>
-            <TocContext value={toc}>
-              <LanguagesContext value={languages}>{children}</LanguagesContext>
-            </TocContext>
+            {children}
           </div>
           {!isBlogIndex && (
             <DocsPageFooter
@@ -118,47 +116,9 @@ export function Page({
     showSidebar = false;
   }
 
-  let searchOrder;
-  if (section === 'learn' || (section === 'blog' && !isBlogIndex)) {
-    searchOrder = order;
-  }
-
   return (
     <>
-      <Seo
-        title={title}
-        titleForTitleTag={meta.titleForTitleTag}
-        isHomePage={isHomePage}
-        image={
-          // OG images are generated per page at build time by
-          // scripts/generateOgImages.mjs. Pages without a generated
-          // card (home, errors, 404, 500) use the static section image.
-          isHomePage ||
-          !title ||
-          cleanedPath.startsWith('/errors') ||
-          cleanedPath === '/404' ||
-          cleanedPath === '/500'
-            ? `/images/og-${section ?? 'unknown'}.png`
-            : `/images/og/${cleanedPath.slice(1).replace(/\//g, '-')}.png`
-        }
-        searchOrder={searchOrder}
-      />
-      {(isHomePage || isBlogIndex) && (
-        <Head>
-          <link
-            rel="alternate"
-            type="application/rss+xml"
-            title="React Blog RSS Feed"
-            href="/rss.xml"
-          />
-        </Head>
-      )}
-      {/* <SocialBanner /> */}
-      <TopNav
-        section={section}
-        routeTree={routeTree}
-        breadcrumbs={breadcrumbs}
-      />
+      <TopNav section={section} routeTree={routeTree} />
       <div
         className={cn(
           hasColumns &&
@@ -167,44 +127,37 @@ export function Page({
         {showSidebar && (
           <div className="lg:-mt-16 z-10">
             <div className="fixed top-0 py-0 shadow lg:pt-16 lg:sticky start-0 end-0 lg:shadow-none">
-              <SidebarNav
-                key={section}
-                routeTree={routeTree}
-                breadcrumbs={breadcrumbs}
-              />
+              <SidebarNav key={section} routeTree={routeTree} />
             </div>
           </div>
         )}
-        {/* No fallback UI so need to be careful not to suspend directly inside. */}
-        <Suspense fallback={null}>
-          <main className="min-w-0 isolate">
-            <article
-              className="font-normal break-words text-primary dark:text-primary-dark"
-              key={asPath}>
-              {content}
-            </article>
+        <main className="min-w-0 isolate">
+          <article
+            className="font-normal break-words text-primary dark:text-primary-dark"
+            key={pathname}>
+            {content}
+          </article>
+          <div
+            className={cn(
+              'self-stretch w-full',
+              isHomePage && 'bg-wash dark:bg-gray-95 mt-[-1px]'
+            )}>
+            {!isHomePage && (
+              <div className="w-full px-5 pt-10 mx-auto sm:px-12 md:px-12 md:pt-12 lg:pt-10">
+                <hr className="mx-auto max-w-7xl border-border dark:border-border-dark" />
+              </div>
+            )}
             <div
               className={cn(
-                'self-stretch w-full',
-                isHomePage && 'bg-wash dark:bg-gray-95 mt-[-1px]'
+                'py-12 px-5 sm:px-12 md:px-12 sm:py-12 md:py-16 lg:py-14',
+                isHomePage && 'lg:pt-0'
               )}>
-              {!isHomePage && (
-                <div className="w-full px-5 pt-10 mx-auto sm:px-12 md:px-12 md:pt-12 lg:pt-10">
-                  <hr className="mx-auto max-w-7xl border-border dark:border-border-dark" />
-                </div>
-              )}
-              <div
-                className={cn(
-                  'py-12 px-5 sm:px-12 md:px-12 sm:py-12 md:py-16 lg:py-14',
-                  isHomePage && 'lg:pt-0'
-                )}>
-                <Footer />
-              </div>
+              <Footer />
             </div>
-          </main>
-        </Suspense>
+          </div>
+        </main>
         <div className="hidden -mt-16 lg:max-w-custom-xs 2xl:block">
-          {showToc && toc.length > 0 && <Toc headings={toc} key={asPath} />}
+          {showToc && toc.length > 0 && <Toc headings={toc} key={pathname} />}
         </div>
       </div>
     </>

@@ -14,8 +14,9 @@ const colors = require('./colors');
 
 module.exports = {
   content: [
+    './src/app/**/*.{js,ts,jsx,tsx}',
     './src/components/**/*.{js,ts,jsx,tsx}',
-    './src/pages/**/*.{js,ts,jsx,tsx}',
+    '!./src/components/MDX/Sandpack/sandpack-rsc/sandbox-code/src/worker-bundle.dist.js',
     './src/styles/**/*.{js,ts,jsx,tsx}',
   ],
   darkMode: 'class',
@@ -102,7 +103,8 @@ module.exports = {
         base: '15px',
         sm: '13px',
         xs: '11px',
-        code: 'calc(1em - 20%)',
+        code: 'calc(1em - 10%)',
+        'sandpack-code': 'calc(1em - 20%)',
       },
       animation: {
         marquee: 'marquee 40s linear infinite',

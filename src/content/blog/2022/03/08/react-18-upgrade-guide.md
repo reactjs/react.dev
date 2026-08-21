@@ -99,7 +99,7 @@ root.render(<AppWithCallbackAfterRender />);
 
 <Note>
 
-There is no one-to-one replacement for the old render callback API — it depends on your use case. See the working group post for [Replacing render with createRoot](https://github.com/reactwg/react-18/discussions/5) for more information.
+There is no one-to-one replacement for the old render callback API—it depends on your use case. See the working group post for [Replacing render with createRoot](https://github.com/reactwg/react-18/discussions/5) for more information.
 
 </Note>
 

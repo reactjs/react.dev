@@ -167,6 +167,7 @@ export default function TopNav({
   const asPath = usePathname() || '/';
   const [openMenuPath, setOpenMenuPath] = useState<string | null>(null);
   const [showSearch, setShowSearch] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const scrollParentRef = useRef<HTMLDivElement>(null);
   // Deriving from the path hides the menu as soon as a navigation commits.
   // Forget the path afterwards, so going Back doesn't reopen the menu.
@@ -210,6 +211,24 @@ export default function TopNav({
     };
   }, []);
 
+  const scrollDetectorRef = useRef(null);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsScrolled(!entry.isIntersecting);
+        });
+      },
+      {
+        root: null,
+        rootMargin: `0px 0px`,
+        threshold: 0,
+      }
+    );
+    observer.observe(scrollDetectorRef.current!);
+    return () => observer.disconnect();
+  }, []);
+
   const onOpenSearch = useCallback(() => {
     startTransition(() => {
       setShowSearch(true);
@@ -226,6 +245,7 @@ export default function TopNav({
         onOpen={onOpenSearch}
         onClose={onCloseSearch}
       />
+      <div ref={scrollDetectorRef} />
       <div
         className={cn(
           isMenuOpen
@@ -234,8 +254,8 @@ export default function TopNav({
         )}>
         <nav
           className={cn(
-            'items-center w-full flex justify-between bg-wash dark:bg-wash-dark px-1.5 lg:pe-5 lg:ps-4 z-40',
-            isMenuOpen && 'dark:shadow-nav-dark shadow-nav'
+            'duration-300 backdrop-filter backdrop-blur-lg backdrop-saturate-200 transition-shadow bg-opacity-90 items-center w-full flex justify-between bg-wash dark:bg-wash-dark dark:bg-opacity-95 px-1.5 lg:pe-5 lg:ps-4 z-40',
+            {'dark:shadow-nav-dark shadow-nav': isScrolled || isMenuOpen}
           )}>
           <div className="flex items-center justify-between w-full h-16 gap-0 sm:gap-3">
             <div className="flex flex-row 3xl:flex-1 items-centers">

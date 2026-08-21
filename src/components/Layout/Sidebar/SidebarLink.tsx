@@ -132,9 +132,8 @@ export function SidebarLink({
               onToggle();
             }
           }}
-          aria-label={isExpanded ? "Collapse" : "Expand"}
-          aria-expanded={isExpanded}
-        >
+          aria-label={isExpanded ? 'Collapse' : 'Expand'}
+          aria-expanded={isExpanded}>
           <IconNavArrow displayDirection={isExpanded ? 'down' : 'end'} />
         </span>
       )}

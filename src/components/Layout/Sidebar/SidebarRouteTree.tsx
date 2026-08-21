@@ -120,7 +120,9 @@ function ExpandableSidebarItem({
         hideArrow={isForceExpanded}
         onToggle={onToggle}
       />
-      <CollapseWrapper duration={250} isExpanded={isForceExpanded || isExpanded}>
+      <CollapseWrapper
+        duration={250}
+        isExpanded={isForceExpanded || isExpanded}>
         <SidebarRouteTree
           isForceExpanded={isForceExpanded}
           routeTree={{title, routes}}
@@ -142,13 +144,14 @@ export function SidebarRouteTree({
   const pendingRoute = usePendingRoute();
   const currentRoutes = routeTree.routes as RouteItem[];
 
-  const defaultExpandedPath = currentRoutes.find(({path}) => {
-    const isBreadcrumb =
-      breadcrumbs.length > 1 &&
-      breadcrumbs[breadcrumbs.length - 1].path === path;
-    const selected = slug === path;
-    return isBreadcrumb || selected;
-  })?.path || null;
+  const defaultExpandedPath =
+    currentRoutes.find(({path}) => {
+      const isBreadcrumb =
+        breadcrumbs.length > 1 &&
+        breadcrumbs[breadcrumbs.length - 1].path === path;
+      const selected = slug === path;
+      return isBreadcrumb || selected;
+    })?.path || null;
 
   const [expandedPath, setExpandedPath] = useState<string | null>(
     defaultExpandedPath
@@ -203,7 +206,7 @@ export function SidebarRouteTree({
                 pendingRoute={pendingRoute}
                 isExpanded={expandedPath === path}
                 onToggle={() =>
-                  setExpandedPath(expandedPath === path ? null : (path || null))
+                  setExpandedPath(expandedPath === path ? null : path || null)
                 }
               />
             );

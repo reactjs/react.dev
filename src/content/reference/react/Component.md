@@ -573,11 +573,13 @@ You should write the `render` method as a pure function, meaning that it should 
 
 #### Returns {/*render-returns*/}
 
-`render` can return any valid React node. This includes React elements such as `<div />`, strings, numbers, [portals](/reference/react-dom/createPortal), empty nodes (`null`, `undefined`, `true`, and `false`), and arrays of React nodes.
+`render` can return any valid React node. This includes React elements such as `<div />`, strings, numbers, [portals](/reference/react-dom/createPortal), empty nodes (`null`, `undefined`, `true`, and `false`), arrays, and other [iterables](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#the_iterable_protocol) of React nodes.
 
 #### Caveats {/*render-caveats*/}
 
 - `render` should be written as a pure function of props, state, and context. It should not have side effects.
+
+- If you return an iterable from `render`, avoid one-shot iterators that can only be enumerated once. React may enumerate the returned value more than once, so prefer arrays or iterable objects that create a fresh iterator each time.
 
 - `render` will not get called if [`shouldComponentUpdate`](#shouldcomponentupdate) is defined and returns `false`.
 

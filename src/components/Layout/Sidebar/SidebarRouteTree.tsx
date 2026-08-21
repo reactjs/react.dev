@@ -9,7 +9,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {useRef, useLayoutEffect, Fragment} from 'react';
+import {useRef, useLayoutEffect, Fragment, useState, useEffect} from 'react';
 
 import cn from 'classnames';
 import {useRouter} from 'next/router';
@@ -78,6 +78,67 @@ function CollapseWrapper({
   );
 }
 
+interface ExpandableSidebarItemProps {
+  title: string;
+  path: string;
+  level: number;
+  routes?: RouteItem[];
+  version?: 'canary' | 'major' | 'experimental' | 'rc';
+  isForceExpanded: boolean;
+  breadcrumbs: RouteItem[];
+  selected: boolean;
+  pendingRoute: string | null;
+}
+
+function ExpandableSidebarItem({
+  title,
+  path,
+  level,
+  routes,
+  version,
+  isForceExpanded,
+  breadcrumbs,
+  selected,
+  pendingRoute,
+}: ExpandableSidebarItemProps) {
+  const isBreadcrumb =
+    breadcrumbs.length > 1 &&
+    breadcrumbs[breadcrumbs.length - 1].path === path;
+  const defaultExpanded = isForceExpanded || isBreadcrumb || selected;
+  const [isExpanded, setIsExpanded] = useState(defaultExpanded);
+
+  useEffect(() => {
+    if (defaultExpanded) {
+      setIsExpanded(true);
+    }
+  }, [defaultExpanded]);
+
+  return (
+    <li key={`${title}-${path}-${level}-heading`}>
+      <SidebarLink
+        key={`${title}-${path}-${level}-link`}
+        href={path}
+        isPending={pendingRoute === path}
+        selected={selected}
+        level={level}
+        title={title}
+        version={version}
+        isExpanded={isExpanded}
+        hideArrow={isForceExpanded}
+        onToggle={() => setIsExpanded(!isExpanded)}
+      />
+      <CollapseWrapper duration={250} isExpanded={isExpanded}>
+        <SidebarRouteTree
+          isForceExpanded={isForceExpanded}
+          routeTree={{title, routes}}
+          breadcrumbs={breadcrumbs}
+          level={level + 1}
+        />
+      </CollapseWrapper>
+    </li>
+  );
+}
+
 export function SidebarRouteTree({
   isForceExpanded,
   breadcrumbs,
@@ -116,32 +177,19 @@ export function SidebarRouteTree({
             );
           } else if (routes) {
             // if route has a path and child routes, treat it as an expandable sidebar item
-            const isBreadcrumb =
-              breadcrumbs.length > 1 &&
-              breadcrumbs[breadcrumbs.length - 1].path === path;
-            const isExpanded = isForceExpanded || isBreadcrumb || selected;
             listItem = (
-              <li key={`${title}-${path}-${level}-heading`}>
-                <SidebarLink
-                  key={`${title}-${path}-${level}-link`}
-                  href={path}
-                  isPending={pendingRoute === path}
-                  selected={selected}
-                  level={level}
-                  title={title}
-                  version={version}
-                  isExpanded={isExpanded}
-                  hideArrow={isForceExpanded}
-                />
-                <CollapseWrapper duration={250} isExpanded={isExpanded}>
-                  <SidebarRouteTree
-                    isForceExpanded={isForceExpanded}
-                    routeTree={{title, routes}}
-                    breadcrumbs={breadcrumbs}
-                    level={level + 1}
-                  />
-                </CollapseWrapper>
-              </li>
+              <ExpandableSidebarItem
+                key={`${title}-${path}-${level}-heading`}
+                title={title}
+                path={path}
+                level={level}
+                routes={routes}
+                version={version}
+                isForceExpanded={isForceExpanded}
+                breadcrumbs={breadcrumbs}
+                selected={selected}
+                pendingRoute={pendingRoute}
+              />
             );
           } else {
             // if route has a path and no child routes, treat it as a sidebar link

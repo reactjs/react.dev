@@ -29,6 +29,7 @@ interface SidebarLinkProps {
   isExpanded?: boolean;
   hideArrow?: boolean;
   isPending: boolean;
+  onToggle?: () => void;
 }
 
 export function SidebarLink({
@@ -40,6 +41,7 @@ export function SidebarLink({
   isExpanded,
   hideArrow,
   isPending,
+  onToggle,
 }: SidebarLinkProps) {
   const ref = useRef<HTMLAnchorElement>(null);
 
@@ -115,7 +117,24 @@ export function SidebarLink({
           className={cn('pe-1', {
             'text-link dark:text-link-dark': isExpanded,
             'text-tertiary dark:text-tertiary-dark': !isExpanded,
-          })}>
+          })}
+          role="button"
+          tabIndex={0}
+          onClick={(e) => {
+            if (onToggle) {
+              e.preventDefault();
+              onToggle();
+            }
+          }}
+          onKeyDown={(e) => {
+            if (onToggle && (e.key === 'Enter' || e.key === ' ')) {
+              e.preventDefault();
+              onToggle();
+            }
+          }}
+          aria-label={isExpanded ? "Collapse" : "Expand"}
+          aria-expanded={isExpanded}
+        >
           <IconNavArrow displayDirection={isExpanded ? 'down' : 'end'} />
         </span>
       )}

@@ -26,6 +26,7 @@ interface SidebarLinkProps {
   icon?: React.ReactNode;
   isExpanded?: boolean;
   hideArrow?: boolean;
+  onNavigate?: () => void;
 }
 
 export function SidebarLink({
@@ -36,6 +37,7 @@ export function SidebarLink({
   level,
   isExpanded,
   hideArrow,
+  onNavigate,
 }: SidebarLinkProps) {
   const ref = useRef<HTMLAnchorElement>(null);
 
@@ -59,6 +61,7 @@ export function SidebarLink({
       ref={ref}
       title={title}
       target={target}
+      onNavigate={onNavigate}
       passHref
       aria-current={selected ? 'page' : undefined}
       className={cn(

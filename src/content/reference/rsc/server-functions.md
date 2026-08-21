@@ -34,7 +34,7 @@ Server Functions can be created in Server Components and passed as props to Clie
 
 ## Usage {/*usage*/}
 
-### Creating a Server Function from a Server Component {/*creating-a-server-function-from-a-server-component*/}
+### Creating a Server Function in a Server Component {/*creating-a-server-function-from-a-server-component*/}
 
 Server Components can define Server Functions with the `"use server"` directive:
 
@@ -42,7 +42,7 @@ Server Components can define Server Functions with the `"use server"` directive:
 // Server Component
 import Button from './Button';
 
-function EmptyNote () {
+function EmptyNote() {
   async function createNoteAction() {
     // Server Function
     'use server';
@@ -50,7 +50,7 @@ function EmptyNote () {
     await db.notes.create();
   }
 
-  return <Button onClick={createNoteAction}/>;
+  return <Button onClick={createNoteAction} />;
 }
 ```
 
@@ -62,14 +62,13 @@ When React renders the `EmptyNote` Server Component, it will create a reference 
 export default function Button({onClick}) {
   console.log(onClick);
   // {$$typeof: Symbol.for("react.server.reference"), $$id: 'createNoteAction'}
-  return <button onClick={() => onClick()}>Create Empty Note</button>
+  return <button onClick={() => onClick()}>Create Empty Note</button>;
 }
 ```
 
 For more, see the docs for [`"use server"`](/reference/rsc/use-server).
 
-
-### Importing Server Functions from Client Components {/*importing-server-functions-from-client-components*/}
+### Importing a Server Function into a Client Component {/*importing-server-functions-from-client-components*/}
 
 Client Components can import Server Functions from files that use the `"use server"` directive:
 
@@ -79,25 +78,23 @@ Client Components can import Server Functions from files that use the `"use serv
 export async function createNote() {
   await db.notes.create();
 }
-
 ```
 
 When the bundler builds the `EmptyNote` Client Component, it will create a reference to the `createNote` function in the bundle. When the `button` is clicked, React will send a request to the server to execute the `createNote` function using the reference provided:
 
-```js [[1, 2, "createNote"], [1, 5, "createNote"], [1, 7, "createNote"]]
+```js [[1, 3, "createNote"], [1, 6, "createNote"]]
 "use client";
+
 import {createNote} from './actions';
 
 function EmptyNote() {
-  console.log(createNote);
-  // {$$typeof: Symbol.for("react.server.reference"), $$id: 'createNote'}
-  <button onClick={() => createNote()} />
+  return <button onClick={() => createNote()}>Create Empty Note</button>;
 }
 ```
 
 For more, see the docs for [`"use server"`](/reference/rsc/use-server).
 
-### Server Functions with Actions {/*server-functions-with-actions*/}
+### Calling a Server Function from an Action {/*server-functions-with-actions*/}
 
 Server Functions can be called from Actions on the client:
 
@@ -109,12 +106,14 @@ export async function updateName(name) {
     return {error: 'Name is required'};
   }
   await db.users.updateName(name);
+  return {error: null};
 }
 ```
 
-```js [[1, 3, "updateName"], [1, 13, "updateName"], [2, 11, "submitAction"], [2, 25, "submitAction"]]
+```js [[1, 4, "updateName"], [1, 14, "updateName"], [2, 12, "submitAction"], [2, 26, "submitAction"]]
 "use client";
 
+import {useState, useTransition} from 'react';
 import {updateName} from './actions';
 
 function UpdateName() {
@@ -123,38 +122,55 @@ function UpdateName() {
 
   const [isPending, startTransition] = useTransition();
 
-  const submitAction = async () => {
+  function submitAction() {
     startTransition(async () => {
       const {error} = await updateName(name);
+      // State updates after an await aren't automatically Transitions, so wrap them
       startTransition(() => {
-        if (error) {
-          setError(error);
-        } else {
+        setError(error);
+        if (!error) {
           setName('');
         }
       });
-    })
+    });
   }
 
   return (
     <form action={submitAction}>
-      <input type="text" name="name" disabled={isPending}/>
+      <input
+        type="text"
+        name="name"
+        value={name}
+        onChange={event => setName(event.target.value)}
+        disabled={isPending}
+      />
       {error && <span>Failed: {error}</span>}
     </form>
-  )
+  );
 }
 ```
 
 This allows you to access the `isPending` state of the Server Function by wrapping it in an Action on the client.
 
-For more, see the docs for [Calling a Server Function outside of `<form>`](/reference/rsc/use-server#calling-a-server-function-outside-of-form)
+For more, see the docs for [Calling a Server Function outside of `<form>`](/reference/rsc/use-server#calling-a-server-function-outside-of-form).
 
-### Server Functions with Form Actions {/*using-server-functions-with-form-actions*/}
+### Using a Server Function as a Form Action {/*using-server-functions-with-form-actions*/}
 
 Server Functions work with the new Form features in React 19.
 
-You can pass a Server Function to a Form to automatically submit the form to the server:
+You can pass a Server Function to a Form to automatically submit the form to the server. React passes the submitted `FormData` to the Server Function as its first argument:
 
+```js [[1, 3, "updateName"]]
+"use server";
+
+export async function updateName(formData) {
+  const name = formData.get('name');
+  if (typeof name !== 'string' || !name) {
+    throw new Error('Name is required');
+  }
+  await db.users.updateName(name);
+}
+```
 
 ```js [[1, 3, "updateName"], [1, 7, "updateName"]]
 "use client";
@@ -166,21 +182,35 @@ function UpdateName() {
     <form action={updateName}>
       <input type="text" name="name" />
     </form>
-  )
+  );
 }
 ```
 
-When the Form submission succeeds, React will automatically reset the form. You can add `useActionState` to access the pending state, last response, or to support progressive enhancement.
+When the Form Action succeeds, React will automatically reset the form's uncontrolled fields. Server Function forms can be submitted before the JavaScript bundle loads. You can add `useActionState` to access the pending state and last response.
 
 For more, see the docs for [Server Functions in Forms](/reference/rsc/use-server#server-functions-in-forms).
 
-### Server Functions with `useActionState` {/*server-functions-with-use-action-state*/}
+### Calling a Server Function with `useActionState` {/*server-functions-with-use-action-state*/}
 
-You can call Server Functions with `useActionState` for the common case where you just need access to the action pending state and last returned response:
+You can call Server Functions with `useActionState` for the common case where you just need access to the action pending state and last returned response. The Server Function receives the previous state as its first argument and the submitted `FormData` as its second argument. Its return value becomes the next state:
 
-```js [[1, 3, "updateName"], [1, 6, "updateName"], [2, 6, "submitAction"], [2, 9, "submitAction"]]
+```js [[1, 3, "updateName"]]
+"use server";
+
+export async function updateName(previousState, formData) {
+  const name = formData.get('name');
+  if (typeof name !== 'string' || !name) {
+    return {error: 'Name is required'};
+  }
+  await db.users.updateName(name);
+  return {error: null};
+}
+```
+
+```js [[1, 4, "updateName"], [1, 7, "updateName"], [2, 7, "submitAction"], [2, 10, "submitAction"]]
 "use client";
 
+import {useActionState} from 'react';
 import {updateName} from './actions';
 
 function UpdateName() {
@@ -188,28 +218,29 @@ function UpdateName() {
 
   return (
     <form action={submitAction}>
-      <input type="text" name="name" disabled={isPending}/>
+      <input type="text" name="name" disabled={isPending} />
       {state.error && <span>Failed: {state.error}</span>}
     </form>
   );
 }
 ```
 
-When using `useActionState` with Server Functions, React will also automatically replay form submissions entered before hydration finishes. This means users can interact with your app even before the app has hydrated.
+When using `useActionState` with a Server Function, the form can be submitted before hydration finishes and the Server Function's response can be shown before the app has hydrated.
 
 For more, see the docs for [`useActionState`](/reference/react/useActionState).
 
-### Progressive enhancement with `useActionState` {/*progressive-enhancement-with-useactionstate*/}
+### Supporting progressive enhancement with `useActionState` {/*progressive-enhancement-with-useactionstate*/}
 
 Server Functions also support progressive enhancement with the third argument of `useActionState`.
 
-```js [[1, 3, "updateName"], [1, 6, "updateName"], [2, 6, "/name/update"], [3, 6, "submitAction"], [3, 9, "submitAction"]]
+```js [[1, 4, "updateName"], [1, 7, "updateName"], [2, 7, "/name/update"], [3, 7, "submitAction"], [3, 10, "submitAction"]]
 "use client";
 
+import {useActionState} from 'react';
 import {updateName} from './actions';
 
 function UpdateName() {
-  const [, submitAction] = useActionState(updateName, null, `/name/update`);
+  const [, submitAction] = useActionState(updateName, {error: null}, `/name/update`);
 
   return (
     <form action={submitAction}>
@@ -219,6 +250,6 @@ function UpdateName() {
 }
 ```
 
-When the <CodeStep step={2}>permalink</CodeStep> is provided to `useActionState`, React will redirect to the provided URL if the form is submitted before the JavaScript bundle loads.
+When the <CodeStep step={2}>permalink</CodeStep> is provided to `useActionState`, the browser will navigate to the provided URL if the form is submitted before the JavaScript bundle loads. At the destination, render `useActionState` with the same Server Function and permalink so React can pass the returned state to it.
 
 For more, see the docs for [`useActionState`](/reference/react/useActionState).

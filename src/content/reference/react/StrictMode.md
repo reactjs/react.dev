@@ -841,7 +841,7 @@ Every callback `ref` has some setup code and may have some cleanup code. Normall
 
 When Strict Mode is on, React will also run **one extra setup+cleanup cycle in development for every callback `ref`.** This may feel surprising, but it helps reveal subtle bugs that are hard to catch manually.
 
-Consider this example, which allows you to select an animal and then scroll to one of them. Notice when you switch from "Cats" to "Dogs", the console logs show that the number of animals in the list keeps growing, and the "Scroll to" buttons stop working:
+Consider this example, which allows you to select an animal and then scroll to one of them. Notice when you switch from "Neo" to "Millie", the console logs show that the number of animals in the list keeps growing, and the "Scroll to" buttons stop working:
 
 <Sandpack>
 

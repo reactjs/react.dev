@@ -16,7 +16,6 @@ import {
   useRef,
   useCallback,
   useEffect,
-  useLayoutEffect,
   startTransition,
   Suspense,
 } from 'react';
@@ -118,9 +117,7 @@ function Link({
   href,
   children,
   ...props
-}: React.AnchorHTMLAttributes<HTMLAnchorElement> & {
-  onNavigate?: () => void;
-}) {
+}: React.AnchorHTMLAttributes<HTMLAnchorElement>) {
   return (
     <NextLink
       href={`${href}`}
@@ -131,12 +128,11 @@ function Link({
   );
 }
 
-function NavItem({url, isActive, children, onNavigate}: any) {
+function NavItem({url, isActive, children}: any) {
   return (
     <div className="flex flex-auto sm:flex-1">
       <Link
         href={url}
-        onNavigate={onNavigate}
         className={cn(
           'active:scale-95 transition-transform w-full text-center outline-link py-1.5 px-1.5 xs:px-3 sm:px-4 rounded-full capitalize whitespace-nowrap',
           !isActive && 'hover:bg-primary/5 hover:dark:bg-primary-dark/5',
@@ -173,20 +169,13 @@ export default function TopNav({
   const [showSearch, setShowSearch] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const scrollParentRef = useRef<HTMLDivElement>(null);
-  const closeMenu = useCallback(() => setOpenMenuPath(null), []);
   // Deriving from the path hides the menu as soon as a navigation commits.
   // Forget the path afterwards, so going Back doesn't reopen the menu.
   if (openMenuPath !== null && openMenuPath !== asPath) {
-    closeMenu();
+    setOpenMenuPath(null);
   }
   const isMenuOpen = openMenuPath === asPath;
   const {breadcrumbs} = getRouteMeta(asPath, routeTree);
-
-  // The mobile menu is transient UI. Reset it when Activity hides this route
-  // so going Back does not restore the menu in its open state.
-  useLayoutEffect(() => {
-    return () => setOpenMenuPath(null);
-  }, []);
 
   // HACK. Fix up the data structures instead.
   if ((routeTree as any).routes.length === 1) {
@@ -428,28 +417,20 @@ export default function TopNav({
                 {/* No fallback UI so need to be careful not to suspend directly inside. */}
                 <Suspense fallback={null}>
                   <div className="ps-3 xs:ps-5 xs:gap-0.5 xs:text-base overflow-x-auto flex flex-row lg:hidden text-base font-bold text-secondary dark:text-secondary-dark">
-                    <NavItem
-                      isActive={section === 'learn'}
-                      url="/learn"
-                      onNavigate={closeMenu}>
+                    <NavItem isActive={section === 'learn'} url="/learn">
                       Learn
                     </NavItem>
                     <NavItem
                       isActive={section === 'reference'}
-                      url="/reference/react"
-                      onNavigate={closeMenu}>
+                      url="/reference/react">
                       Reference
                     </NavItem>
                     <NavItem
                       isActive={section === 'community'}
-                      url="/community"
-                      onNavigate={closeMenu}>
+                      url="/community">
                       Community
                     </NavItem>
-                    <NavItem
-                      isActive={section === 'blog'}
-                      url="/blog"
-                      onNavigate={closeMenu}>
+                    <NavItem isActive={section === 'blog'} url="/blog">
                       Blog
                     </NavItem>
                   </div>
@@ -464,7 +445,6 @@ export default function TopNav({
                     routeTree={routeTree}
                     breadcrumbs={breadcrumbs}
                     isForceExpanded={isMenuOpen}
-                    onNavigate={closeMenu}
                   />
                 </Suspense>
                 <div className="h-16" />

@@ -23,7 +23,6 @@ interface SidebarRouteTreeProps {
   breadcrumbs: RouteItem[];
   routeTree: RouteItem;
   level?: number;
-  onNavigate?: () => void;
 }
 
 function CollapseWrapper({
@@ -82,7 +81,6 @@ export function SidebarRouteTree({
   breadcrumbs,
   routeTree,
   level = 0,
-  onNavigate,
 }: SidebarRouteTreeProps) {
   const slug = (usePathname() || '/').split(/[\?\#]/)[0];
   const currentRoutes = routeTree.routes as RouteItem[];
@@ -111,7 +109,6 @@ export function SidebarRouteTree({
                 isForceExpanded={isForceExpanded}
                 routeTree={{title, routes}}
                 breadcrumbs={[]}
-                onNavigate={onNavigate}
               />
             );
           } else if (routes) {
@@ -131,7 +128,6 @@ export function SidebarRouteTree({
                   version={version}
                   isExpanded={isExpanded}
                   hideArrow={isForceExpanded}
-                  onNavigate={onNavigate}
                 />
                 <CollapseWrapper duration={250} isExpanded={isExpanded}>
                   <SidebarRouteTree
@@ -139,7 +135,6 @@ export function SidebarRouteTree({
                     routeTree={{title, routes}}
                     breadcrumbs={breadcrumbs}
                     level={level + 1}
-                    onNavigate={onNavigate}
                   />
                 </CollapseWrapper>
               </li>
@@ -154,7 +149,6 @@ export function SidebarRouteTree({
                   level={level}
                   title={title}
                   version={version}
-                  onNavigate={onNavigate}
                 />
               </li>
             );

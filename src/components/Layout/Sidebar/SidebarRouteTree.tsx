@@ -100,19 +100,12 @@ function ExpandableSidebarItem({
   breadcrumbs,
   selected,
   pendingRoute,
-}: ExpandableSidebarItemProps) {
-  const isBreadcrumb =
-    breadcrumbs.length > 1 &&
-    breadcrumbs[breadcrumbs.length - 1].path === path;
-  const defaultExpanded = isForceExpanded || isBreadcrumb || selected;
-  const [isExpanded, setIsExpanded] = useState(defaultExpanded);
-
-  useEffect(() => {
-    if (defaultExpanded) {
-      setIsExpanded(true);
-    }
-  }, [defaultExpanded]);
-
+  isExpanded,
+  onToggle,
+}: ExpandableSidebarItemProps & {
+  isExpanded: boolean;
+  onToggle: () => void;
+}) {
   return (
     <li key={`${title}-${path}-${level}-heading`}>
       <SidebarLink
@@ -123,11 +116,11 @@ function ExpandableSidebarItem({
         level={level}
         title={title}
         version={version}
-        isExpanded={isExpanded}
+        isExpanded={isForceExpanded || isExpanded}
         hideArrow={isForceExpanded}
-        onToggle={() => setIsExpanded(!isExpanded)}
+        onToggle={onToggle}
       />
-      <CollapseWrapper duration={250} isExpanded={isExpanded}>
+      <CollapseWrapper duration={250} isExpanded={isForceExpanded || isExpanded}>
         <SidebarRouteTree
           isForceExpanded={isForceExpanded}
           routeTree={{title, routes}}
@@ -148,6 +141,25 @@ export function SidebarRouteTree({
   const slug = useRouter().asPath.split(/[\?\#]/)[0];
   const pendingRoute = usePendingRoute();
   const currentRoutes = routeTree.routes as RouteItem[];
+
+  const defaultExpandedPath = currentRoutes.find(({path}) => {
+    const isBreadcrumb =
+      breadcrumbs.length > 1 &&
+      breadcrumbs[breadcrumbs.length - 1].path === path;
+    const selected = slug === path;
+    return isBreadcrumb || selected;
+  })?.path || null;
+
+  const [expandedPath, setExpandedPath] = useState<string | null>(
+    defaultExpandedPath
+  );
+
+  useEffect(() => {
+    if (defaultExpandedPath) {
+      setExpandedPath(defaultExpandedPath);
+    }
+  }, [defaultExpandedPath]);
+
   return (
     <ul>
       {currentRoutes.map(
@@ -189,6 +201,10 @@ export function SidebarRouteTree({
                 breadcrumbs={breadcrumbs}
                 selected={selected}
                 pendingRoute={pendingRoute}
+                isExpanded={expandedPath === path}
+                onToggle={() =>
+                  setExpandedPath(expandedPath === path ? null : (path || null))
+                }
               />
             );
           } else {

@@ -236,26 +236,33 @@ export default function SavedDraft() {
 
 ### Conditionally rendering in the browser {/*conditionally-rendering-in-the-browser*/}
 
-Like other calls to [`use`](/reference/react/use), you can call `use(browser())` conditionally or inside a custom Hook. For example, a custom Hook can return an initial value when it is provided, and read it from IndexedDB in the browser when it isn't:
+Like other calls to [`use`](/reference/react/use), you can call `use(browser())` conditionally or inside a custom Hook. For example, you can wrap a Suspense-enabled data-fetching library's `useQuery` and skip server rendering when initial data is missing:
 
-```js {6}
-function useSetting(settingId, initialValue) {
-  if (initialValue !== undefined) {
-    return initialValue;
+```js {3}
+function useBrowserQuery(query, options) {
+  if (options.initialData === undefined) {
+    use(browser('useBrowserQuery: No initial data was provided.'));
   }
 
-  use(browser('No initial setting was provided.'));
-  return use(readSetting(settingId));
+  return useQuery(query, options);
+}
+
+function ProductDetails({ productId, initialData }) {
+  const product = useBrowserQuery(`/api/products/${productId}`, {
+    initialData,
+  });
+
+  return <h1>{product.name}</h1>;
 }
 ```
 
-On the server, `useSetting` returns `initialValue` when it is provided. Otherwise, the closest Suspense boundary's fallback remains in the HTML. In the browser, `use(browser())` returns `undefined`, so the Hook continues and reads the setting from IndexedDB.
+On the server, `useBrowserQuery` calls `useQuery` only when `initialData` is available. Otherwise, the closest Suspense boundary's fallback remains in the HTML. In the browser, `use(browser())` returns `undefined`, so the query library can fetch the data or read it from its client cache.
 
-In this example, the email notification setting is provided as initial data. The push notification setting is not, so click **Reload** to see its loading fallback while React reads it from IndexedDB.
+Here is a complete example using notification settings stored in IndexedDB. The email notification setting receives initial data, but the push notification setting does not. Click **Reload** to see the email setting in the initial HTML while the push setting shows a loading fallback.
 
 <Sandpack>
 
-```js src/App.js active
+```js src/App.js
 import { Suspense } from 'react';
 import { useSetting } from './useSetting.js';
 
@@ -290,7 +297,7 @@ export default function App() {
 }
 ```
 
-```js src/useSetting.js
+```js src/useSetting.js active
 import { use } from 'react';
 import { browser } from 'react-dom';
 import { readSetting } from './database.js';
@@ -306,6 +313,8 @@ export function useSetting(settingId, initialValue) {
 ```
 
 ```js src/database.js hidden
+// This is a simplified IndexedDB wrapper for this example.
+
 const cache = new Map();
 
 export function readSetting(settingId) {

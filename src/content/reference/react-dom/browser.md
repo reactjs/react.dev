@@ -236,60 +236,53 @@ export default function SavedDraft() {
 
 ### Conditionally rendering in the browser {/*conditionally-rendering-in-the-browser*/}
 
-Like other calls to [`use`](/reference/react/use), you can call `use(browser())` conditionally or inside a custom Hook. For example, you can wrap a Suspense-enabled data-fetching library's `useQuery` and skip server rendering when initial data is missing:
+Like other calls to [`use`](/reference/react/use), you can call `use(browser())` conditionally or inside a custom Hook. For example, a custom Hook can use initial data when it is available during server rendering, and read from IndexedDB in the browser when it isn't:
 
 ```js {3}
-function useBrowserQuery(query, options) {
-  if (options.initialData === undefined) {
-    use(browser('useBrowserQuery: No initial data was provided.'));
+function useDraft(draftId, initialDraft) {
+  if (initialDraft !== undefined) {
+    return initialDraft;
   }
 
-  return useQuery(query, options);
-}
-
-function ProductDetails({ productId, initialData }) {
-  const product = useBrowserQuery(`/api/products/${productId}`, {
-    initialData,
-  });
-
-  return <h1>{product.name}</h1>;
+  use(browser('The draft is stored in IndexedDB.'));
+  return use(readDraft(draftId));
 }
 ```
 
-On the server, `useBrowserQuery` calls `useQuery` only when `initialData` is available. Otherwise, the closest Suspense boundary's fallback remains in the HTML. In the browser, `use(browser())` returns `undefined`, so the query library can fetch the data or read it from its client cache.
+On the server, `useDraft` returns `initialDraft` when it is provided. Otherwise, the closest Suspense boundary's fallback remains in the HTML. In the browser, `use(browser())` returns `undefined`, so the Hook continues and reads the draft from IndexedDB.
 
-This example renders one query with initial data and one without it.
+This example renders one draft with initial data and one stored in IndexedDB.
 
-Click **Reload** to see the second product's loading fallback before its query resolves.
+Click **Reload** to see the second draft's loading fallback while React reads it from IndexedDB.
 
 <Sandpack>
 
 ```js src/App.js active
 import { Suspense } from 'react';
-import { useBrowserQuery } from './useBrowserQuery.js';
+import { useDraft } from './useDraft.js';
 
-function ProductDetails({productId, initialData}) {
-  const product = useBrowserQuery(`/api/products/${productId}`, {
-    initialData,
-  });
-  return <strong>{product.name}</strong>;
+function Draft({draftId, title, initialDraft}) {
+  const draft = useDraft(draftId, initialDraft);
+  return (
+    <li>
+      <strong>{title}</strong>
+      <p>{draft}</p>
+    </li>
+  );
 }
 
 export default function App() {
   return (
     <>
-      <h1>Featured products</h1>
+      <h1>Saved drafts</h1>
       <ul>
-        <li>
-          <ProductDetails
-            productId="react-mug"
-            initialData={{name: 'React mug'}}
-          />
-        </li>
-        <Suspense fallback={<li>Loading another product...</li>}>
-          <li>
-            <ProductDetails productId="react-shirt" />
-          </li>
+        <Draft
+          draftId="release-notes"
+          title="Release notes"
+          initialDraft="Announce the next release."
+        />
+        <Suspense fallback={<li>Loading saved draft...</li>}>
+          <Draft draftId="trip-notes" title="Trip notes" />
         </Suspense>
       </ul>
     </>
@@ -297,48 +290,56 @@ export default function App() {
 }
 ```
 
-```js src/useBrowserQuery.js
+```js src/useDraft.js
 import { use } from 'react';
 import { browser } from 'react-dom';
-import { useQuery } from './query.js';
+import { readDraft } from './database.js';
 
-export function useBrowserQuery(query, options) {
-  if (options.initialData === undefined) {
-    use(browser('useBrowserQuery: No initial data was provided.'));
+export function useDraft(draftId, initialDraft) {
+  if (initialDraft !== undefined) {
+    return initialDraft;
   }
-  return useQuery(query, options);
+
+  use(browser('The draft is stored in IndexedDB.'));
+  return use(readDraft(draftId));
 }
 ```
 
-```js src/query.js hidden
-import { use } from 'react';
-
-// This is a simplified implementation of a
-// Suspense-enabled query library.
-
-const products = {
-  '/api/products/react-shirt': {name: 'React shirt'},
+```js src/database.js hidden
+const drafts = {
+  'trip-notes': 'Remember to pack a charger.',
 };
 
 const cache = new Map();
 
-function fetchProduct(query) {
-  if (!cache.has(query)) {
-    cache.set(
-      query,
-      new Promise(resolve => {
-        setTimeout(() => resolve(products[query]), 600);
-      })
-    );
+export function readDraft(draftId) {
+  if (!cache.has(draftId)) {
+    cache.set(draftId, readDraftFromIndexedDB(draftId));
   }
-  return cache.get(query);
+  return cache.get(draftId);
 }
 
-export function useQuery(query, options) {
-  if (options.initialData !== undefined) {
-    return options.initialData;
-  }
-  return use(fetchProduct(query));
+function readDraftFromIndexedDB(draftId) {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open('browser-example', 1);
+
+    request.onupgradeneeded = () => {
+      const store = request.result.createObjectStore('drafts');
+      for (const [key, value] of Object.entries(drafts)) {
+        store.add(value, key);
+      }
+    };
+
+    request.onerror = () => reject(request.error);
+    request.onsuccess = () => {
+      const transaction = request.result.transaction('drafts');
+      const draftRequest = transaction.objectStore('drafts').get(draftId);
+      draftRequest.onerror = () => reject(draftRequest.error);
+      draftRequest.onsuccess = () => {
+        setTimeout(() => resolve(draftRequest.result), 600);
+      };
+    };
+  });
 }
 ```
 
@@ -349,7 +350,7 @@ export default function Document() {
   return (
     <html lang="en">
       <head>
-        <title>Featured products</title>
+        <title>Saved drafts</title>
         <style>{`
           h1 { font-size: 24px; margin-top: 0; }
         `}</style>

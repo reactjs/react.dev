@@ -258,91 +258,46 @@ function ProductDetails({ productId, initialData }) {
 
 On the server, `useBrowserQuery` calls `useQuery` only when `initialData` is available. Otherwise, the closest Suspense boundary's fallback remains in the HTML. In the browser, `use(browser())` returns `undefined`, so the query library can fetch the data or read it from its client cache.
 
-You can also use this pattern to read from a browser-only data source when initial data isn't available. In this example, the email setting has initial data, but the push setting is read from IndexedDB. Click **Reload** to see the loading fallback for the push setting.
+You can also call `use(browser())` only when initial data isn't available. In this example, the event time zone is provided as initial data, but the user's time zone is read from the browser. Click **Reload** to see the loading fallback for the user's time zone.
 
 <Sandpack>
 
 ```js src/App.js
 import { Suspense } from 'react';
-import { useSetting } from './useSetting.js';
+import { useTimeZone } from './useTimeZone.js';
 
-function NotificationSetting({settingId, label, initialValue}) {
-  const enabled = useSetting(settingId, initialValue);
-  return (
-    <li>
-      {label}: <strong>{enabled ? 'On' : 'Off'}</strong>
-    </li>
-  );
+function TimeZone({label, initialTimeZone}) {
+  const timeZone = useTimeZone(initialTimeZone);
+  return <p>{label}: <strong>{timeZone}</strong></p>;
 }
 
 export default function App() {
   return (
     <>
-      <h1>Notification settings</h1>
-      <ul>
-        <NotificationSetting
-          settingId="email"
-          label="Email notifications"
-          initialValue={true}
-        />
-        <Suspense fallback={<li>Loading push notification setting...</li>}>
-          <NotificationSetting
-            settingId="push"
-            label="Push notifications"
-          />
-        </Suspense>
-      </ul>
+      <h1>Event details</h1>
+      <TimeZone
+        label="Event time zone"
+        initialTimeZone="America/New_York"
+      />
+      <Suspense fallback={<p>Loading your time zone...</p>}>
+        <TimeZone label="Your time zone" />
+      </Suspense>
     </>
   );
 }
 ```
 
-```js src/useSetting.js active
+```js src/useTimeZone.js active
 import { use } from 'react';
 import { browser } from 'react-dom';
-import { readSetting } from './database.js';
 
-export function useSetting(settingId, initialValue) {
-  if (initialValue !== undefined) {
-    return initialValue;
+export function useTimeZone(initialTimeZone) {
+  if (initialTimeZone !== undefined) {
+    return initialTimeZone;
   }
 
-  use(browser('No initial setting was provided.'));
-  return use(readSetting(settingId));
-}
-```
-
-```js src/database.js hidden
-// This is a simplified IndexedDB wrapper for this example.
-
-const cache = new Map();
-
-export function readSetting(settingId) {
-  if (!cache.has(settingId)) {
-    cache.set(settingId, readSettingFromIndexedDB(settingId));
-  }
-  return cache.get(settingId);
-}
-
-function readSettingFromIndexedDB(settingId) {
-  return new Promise((resolve, reject) => {
-    const request = indexedDB.open('browser-notification-settings-example', 1);
-
-    request.onupgradeneeded = () => {
-      const store = request.result.createObjectStore('settings');
-      store.add(true, 'push');
-    };
-
-    request.onerror = () => reject(request.error);
-    request.onsuccess = () => {
-      const transaction = request.result.transaction('settings');
-      const settingRequest = transaction.objectStore('settings').get(settingId);
-      settingRequest.onerror = () => reject(settingRequest.error);
-      settingRequest.onsuccess = () => {
-        setTimeout(() => resolve(settingRequest.result), 600);
-      };
-    };
-  });
+  use(browser('No initial time zone was provided.'));
+  return Intl.DateTimeFormat().resolvedOptions().timeZone;
 }
 ```
 
@@ -353,7 +308,7 @@ export default function Document() {
   return (
     <html lang="en">
       <head>
-        <title>Notification settings</title>
+        <title>Event details</title>
         <style>{`
           h1 { font-size: 24px; margin-top: 0; }
         `}</style>

@@ -265,16 +265,8 @@ Click **Reload** to see the second product's loading fallback before its query r
 <Sandpack>
 
 ```js src/App.js active
-import { Suspense, use } from 'react';
-import { browser } from 'react-dom';
-import { useQuery } from './query.js';
-
-function useBrowserQuery(query, options) {
-  if (options.initialData === undefined) {
-    use(browser('useBrowserQuery: No initial data was provided.'));
-  }
-  return useQuery(query, options);
-}
+import { Suspense } from 'react';
+import { useBrowserQuery } from './useBrowserQuery.js';
 
 function ProductDetails({productId, initialData}) {
   const product = useBrowserQuery(`/api/products/${productId}`, {
@@ -302,6 +294,19 @@ export default function App() {
       </ul>
     </>
   );
+}
+```
+
+```js src/useBrowserQuery.js
+import { use } from 'react';
+import { browser } from 'react-dom';
+import { useQuery } from './query.js';
+
+export function useBrowserQuery(query, options) {
+  if (options.initialData === undefined) {
+    use(browser('useBrowserQuery: No initial data was provided.'));
+  }
+  return useQuery(query, options);
 }
 ```
 

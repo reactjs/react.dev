@@ -258,7 +258,7 @@ function ProductDetails({ productId, initialData }) {
 
 On the server, `useBrowserQuery` calls `useQuery` only when `initialData` is available. Otherwise, the closest Suspense boundary's fallback remains in the HTML. In the browser, `use(browser())` returns `undefined`, so the query library can fetch the data or read it from its client cache.
 
-Here is a complete example using notification settings stored in IndexedDB. The email notification setting receives initial data, but the push notification setting does not. Click **Reload** to see the email setting in the initial HTML while the push setting shows a loading fallback.
+Another way to use conditional `use(browser())` is to read from a browser-only data source when initial data is unavailable. In this example, `useSetting` receives an initial value for the email notification setting, so React can include it in the initial HTML. The push notification setting has no initial value, so `useSetting` calls `use(browser())` before reading it from IndexedDB. Click **Reload** to see both paths: the email setting appears immediately, while the push setting shows a loading fallback until `useSetting` reads it from IndexedDB in the browser.
 
 <Sandpack>
 

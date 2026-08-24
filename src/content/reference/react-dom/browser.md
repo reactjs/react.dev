@@ -236,37 +236,34 @@ export default function SavedDraft() {
 
 ### Conditionally rendering in the browser {/*conditionally-rendering-in-the-browser*/}
 
-Like other calls to [`use`](/reference/react/use), you can call `use(browser())` conditionally or inside a custom Hook. For example, a custom Hook can use initial data when it is available during server rendering, and read from IndexedDB in the browser when it isn't:
+Like other calls to [`use`](/reference/react/use), you can call `use(browser())` conditionally or inside a custom Hook. For example, a custom Hook can return an initial value when it is provided, and read it from IndexedDB in the browser when it isn't:
 
-```js {3}
-function useDraft(draftId, initialDraft) {
-  if (initialDraft !== undefined) {
-    return initialDraft;
+```js {6}
+function useSetting(settingId, initialValue) {
+  if (initialValue !== undefined) {
+    return initialValue;
   }
 
-  use(browser('The draft is stored in IndexedDB.'));
-  return use(readDraft(draftId));
+  use(browser('No initial setting was provided.'));
+  return use(readSetting(settingId));
 }
 ```
 
-On the server, `useDraft` returns `initialDraft` when it is provided. Otherwise, the closest Suspense boundary's fallback remains in the HTML. In the browser, `use(browser())` returns `undefined`, so the Hook continues and reads the draft from IndexedDB.
+On the server, `useSetting` returns `initialValue` when it is provided. Otherwise, the closest Suspense boundary's fallback remains in the HTML. In the browser, `use(browser())` returns `undefined`, so the Hook continues and reads the setting from IndexedDB.
 
-This example renders one draft with initial data and one stored in IndexedDB.
-
-Click **Reload** to see the second draft's loading fallback while React reads it from IndexedDB.
+In this example, the email notification setting is provided as initial data. The push notification setting is not, so click **Reload** to see its loading fallback while React reads it from IndexedDB.
 
 <Sandpack>
 
 ```js src/App.js active
 import { Suspense } from 'react';
-import { useDraft } from './useDraft.js';
+import { useSetting } from './useSetting.js';
 
-function Draft({draftId, title, initialDraft}) {
-  const draft = useDraft(draftId, initialDraft);
+function NotificationSetting({settingId, label, initialValue}) {
+  const enabled = useSetting(settingId, initialValue);
   return (
     <li>
-      <strong>{title}</strong>
-      <p>{draft}</p>
+      {label}: <strong>{enabled ? 'On' : 'Off'}</strong>
     </li>
   );
 }
@@ -274,15 +271,18 @@ function Draft({draftId, title, initialDraft}) {
 export default function App() {
   return (
     <>
-      <h1>Saved drafts</h1>
+      <h1>Notification settings</h1>
       <ul>
-        <Draft
-          draftId="release-notes"
-          title="Release notes"
-          initialDraft="Announce the next release."
+        <NotificationSetting
+          settingId="email"
+          label="Email notifications"
+          initialValue={true}
         />
-        <Suspense fallback={<li>Loading saved draft...</li>}>
-          <Draft draftId="trip-notes" title="Trip notes" />
+        <Suspense fallback={<li>Loading push notification setting...</li>}>
+          <NotificationSetting
+            settingId="push"
+            label="Push notifications"
+          />
         </Suspense>
       </ul>
     </>
@@ -290,53 +290,47 @@ export default function App() {
 }
 ```
 
-```js src/useDraft.js
+```js src/useSetting.js
 import { use } from 'react';
 import { browser } from 'react-dom';
-import { readDraft } from './database.js';
+import { readSetting } from './database.js';
 
-export function useDraft(draftId, initialDraft) {
-  if (initialDraft !== undefined) {
-    return initialDraft;
+export function useSetting(settingId, initialValue) {
+  if (initialValue !== undefined) {
+    return initialValue;
   }
 
-  use(browser('The draft is stored in IndexedDB.'));
-  return use(readDraft(draftId));
+  use(browser('No initial setting was provided.'));
+  return use(readSetting(settingId));
 }
 ```
 
 ```js src/database.js hidden
-const drafts = {
-  'trip-notes': 'Remember to pack a charger.',
-};
-
 const cache = new Map();
 
-export function readDraft(draftId) {
-  if (!cache.has(draftId)) {
-    cache.set(draftId, readDraftFromIndexedDB(draftId));
+export function readSetting(settingId) {
+  if (!cache.has(settingId)) {
+    cache.set(settingId, readSettingFromIndexedDB(settingId));
   }
-  return cache.get(draftId);
+  return cache.get(settingId);
 }
 
-function readDraftFromIndexedDB(draftId) {
+function readSettingFromIndexedDB(settingId) {
   return new Promise((resolve, reject) => {
-    const request = indexedDB.open('browser-example', 1);
+    const request = indexedDB.open('browser-notification-settings-example', 1);
 
     request.onupgradeneeded = () => {
-      const store = request.result.createObjectStore('drafts');
-      for (const [key, value] of Object.entries(drafts)) {
-        store.add(value, key);
-      }
+      const store = request.result.createObjectStore('settings');
+      store.add(true, 'push');
     };
 
     request.onerror = () => reject(request.error);
     request.onsuccess = () => {
-      const transaction = request.result.transaction('drafts');
-      const draftRequest = transaction.objectStore('drafts').get(draftId);
-      draftRequest.onerror = () => reject(draftRequest.error);
-      draftRequest.onsuccess = () => {
-        setTimeout(() => resolve(draftRequest.result), 600);
+      const transaction = request.result.transaction('settings');
+      const settingRequest = transaction.objectStore('settings').get(settingId);
+      settingRequest.onerror = () => reject(settingRequest.error);
+      settingRequest.onsuccess = () => {
+        setTimeout(() => resolve(settingRequest.result), 600);
       };
     };
   });
@@ -350,7 +344,7 @@ export default function Document() {
   return (
     <html lang="en">
       <head>
-        <title>Saved drafts</title>
+        <title>Notification settings</title>
         <style>{`
           h1 { font-size: 24px; margin-top: 0; }
         `}</style>
@@ -417,7 +411,7 @@ export async function flushReadableStreamToFrame(readable, frame) {
 ```css src/styles.css hidden
 iframe {
   width: 100%;
-  height: 170px;
+  height: 240px;
   border: 0;
 }
 ```

@@ -258,7 +258,7 @@ function ProductDetails({ productId, initialData }) {
 
 On the server, `useBrowserQuery` calls `useQuery` only when `initialData` is available. Otherwise, the closest Suspense boundary's fallback remains in the HTML. In the browser, `use(browser())` returns `undefined`, so the query library can fetch the data or read it from its client cache.
 
-You can also call `use(browser())` only when initial data isn't available. In this example, the event time zone is provided as initial data, but the user's time zone is read from the browser. Click **Reload** to see the loading fallback for the user's time zone.
+The following example uses this pattern with time zones. The event time zone is provided as initial data, while the user's time zone is read from the browser. Click **Reload** to see the loading fallback for the user's time zone.
 
 <Sandpack>
 

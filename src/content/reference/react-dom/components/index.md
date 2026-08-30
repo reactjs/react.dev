@@ -186,7 +186,7 @@ Non-string JavaScript values passed to custom elements will be serialized by def
 <my-element value={[1,2,3]}></my-element>
 ```
 
-React will, however, recognize an custom element's property as one that it may pass arbitrary values to if the property name shows up on the class during construction:
+React will, however, recognize a custom element's property as one that it may pass arbitrary values to if the property name shows up on the class during construction:
 
 <Sandpack>
 

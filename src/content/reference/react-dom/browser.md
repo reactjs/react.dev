@@ -234,31 +234,13 @@ export default function SavedDraft() {
 
 ---
 
-### Conditionally rendering in the browser {/*conditionally-rendering-in-the-browser*/}
+### Conditionally rendering on the server {/*conditionally-rendering-in-the-browser*/}
 
-Like other calls to [`use`](/reference/react/use), you can call `use(browser())` conditionally or inside a custom Hook. For example, you can wrap a Suspense-enabled data-fetching library's `useQuery` and skip server rendering when initial data is missing:
+Like other calls to [`use`](/reference/react/use), you can call `use(browser())` conditionally or inside a custom Hook. For example, a `useTimeZone` Hook can accept an initial time zone when one is available and read it from the device when it is not.
 
-```js {3}
-function useBrowserQuery(query, options) {
-  if (options.initialData === undefined) {
-    use(browser('useBrowserQuery: No initial data was provided.'));
-  }
+If an initial time zone is provided, `useTimeZone` includes it in the HTML. Otherwise, `use(browser())` leaves the closest [`<Suspense>`](/reference/react/Suspense) boundary's fallback in the HTML. In the browser, `use(browser())` returns `undefined`, so `useTimeZone` reads the user's time zone from the device.
 
-  return useQuery(query, options);
-}
-
-function ProductDetails({ productId, initialData }) {
-  const product = useBrowserQuery(`/api/products/${productId}`, {
-    initialData,
-  });
-
-  return <h1>{product.name}</h1>;
-}
-```
-
-On the server, `useBrowserQuery` calls `useQuery` only when `initialData` is available. Otherwise, the closest Suspense boundary's fallback remains in the HTML. In the browser, `use(browser())` returns `undefined`, so the query library can fetch the data or read it from its client cache.
-
-The following example uses this pattern with time zones. The event time zone is provided as initial data, while the user's time zone is read from the browser. Click **Reload** to see the loading fallback for the user's time zone.
+Click **Reload** to see the loading fallback before the user's time zone appears.
 
 <Sandpack>
 
@@ -397,6 +379,28 @@ iframe {
 ```
 
 </Sandpack>
+
+You can apply the same pattern to a Suspense-enabled data-fetching library. For example, a wrapper can call `use(browser())` before the library's `useQuery` when initial data is missing:
+
+```js {3}
+function useBrowserQuery(query, options) {
+  if (options.initialData === undefined) {
+    use(browser('useBrowserQuery: No initial data was provided.'));
+  }
+
+  return useQuery(query, options);
+}
+
+function ProductDetails({ productId, initialData }) {
+  const product = useBrowserQuery(`/api/products/${productId}`, {
+    initialData,
+  });
+
+  return <h1>{product.name}</h1>;
+}
+```
+
+During server rendering, `useBrowserQuery` calls `useQuery` only when `initialData` is available. Otherwise, the closest Suspense boundary's fallback remains in the HTML. In the browser, `use(browser())` returns `undefined`, so the query library can fetch the data or read it from its client cache.
 
 ---
 

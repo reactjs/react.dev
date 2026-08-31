@@ -236,9 +236,9 @@ export default function SavedDraft() {
 
 ### Conditionally rendering on the server {/*conditionally-rendering-in-the-browser*/}
 
-Like other calls to [`use`](/reference/react/use), you can call `use(browser())` conditionally. This lets a Component or custom Hook opt out of server rendering based on a condition, such as the value of a prop passed to it.
+Like other calls to [`use`](/reference/react/use), you can call `use(browser())` conditionally. Unlike Hooks, `use` can be called after a conditional return or directly inside a conditional statement. This lets a Component or custom Hook opt out of server rendering based on a condition, such as the value of a prop passed to it.
 
-For example, this `useTimeZone` Hook accepts an optional default value. When provided, React renders the default value in the initial HTML and in the browser. When it is not provided, `use(browser())` suspends the Component during server rendering. In the browser, `use(browser())` does not suspend, so `useTimeZone` returns the device's local time zone.
+For example, this `useTimeZone` Hook accepts an optional default value. When provided, React renders the default value in the initial HTML and in the browser. When it is not provided, `use(browser())` suspends the Component during server rendering, but `useTimeZone` returns the device's local time zone when rendering in the browser.
 
 Click **Reload** to see the loading fallback before the user's time zone appears.
 
@@ -380,7 +380,7 @@ iframe {
 
 </Sandpack>
 
-You can apply the same pattern to a Suspense-enabled data-fetching library. For example, a wrapper can call `use(browser())` before the library's `useQuery` when initial data is missing:
+A wrapper around a Suspense-enabled data-fetching library can call `use(browser())` directly inside a condition before the library's `useQuery` when initial data is missing:
 
 ```js {3}
 function useBrowserQuery(query, options) {

@@ -236,7 +236,9 @@ export default function SavedDraft() {
 
 ### Conditionally rendering on the server {/*conditionally-rendering-in-the-browser*/}
 
-Like other calls to [`use`](/reference/react/use), you can call `use(browser())` conditionally. Unlike Hooks, `use` can be called after a conditional return or directly inside a conditional statement. This lets a Component or custom Hook opt out of server rendering based on a condition, such as the value of a prop passed to it.
+Unlike Hooks, [`use`](/reference/react/use) can be called inside a conditional statement or after an early return.
+
+You can use this behavior with `use(browser())` to conditionally opt a Component out of server rendering, including from inside a custom Hook. The condition might depend on the value of a prop.
 
 For example, this `useTimeZone` Hook accepts an optional default value. When provided, React renders the default value in the initial HTML and in the browser. Without a default value, the Component suspends during server rendering and shows the device's local time zone in the browser.
 
@@ -400,7 +402,11 @@ function ProductDetails({ productId, initialData }) {
 }
 ```
 
-If `initialData` is not provided, `useBrowserQuery` skips server rendering and leaves the closest [`<Suspense>`](/reference/react/Suspense) boundary's fallback in the HTML. In the browser, `useBrowserQuery` calls `useQuery`, allowing the query library to fetch the data or read it from its client cache as usual.
+When `initialData` is provided, `useBrowserQuery` calls `useQuery` during server rendering, and React includes the rendered content in the HTML.
+
+Without `initialData`, `useBrowserQuery` calls `use(browser())`, suspending the Component and leaving the closest [`<Suspense>`](/reference/react/Suspense) boundary's fallback in the HTML.
+
+In the browser, `useBrowserQuery` calls `useQuery` in both cases, allowing the query library to fetch the data or read it from its client cache as usual.
 
 ---
 
@@ -419,19 +425,22 @@ function SavedDraft() {
   return <DraftEditor initialDraft={draft} />;
 }
 
-const { pipe } = renderToPipeableStream(
-  <Suspense fallback={<p>Loading saved draft...</p>}>
-    <SavedDraft />
-  </Suspense>,
-  {
-    onShellReady() {
-      pipe(response);
-    },
-    onBrowserBailout(error, errorInfo) {
-      logBrowserBailout(error, errorInfo);
-    }
+function App() {
+  return (
+    <Suspense fallback={<p>Loading saved draft...</p>}>
+      <SavedDraft />
+    </Suspense>
+  );
+}
+
+const { pipe } = renderToPipeableStream(<App />, {
+  onShellReady() {
+    pipe(response);
+  },
+  onBrowserBailout(error, errorInfo) {
+    logBrowserBailout(error, errorInfo);
   }
-);
+});
 ```
 
 `onBrowserBailout` receives two arguments:

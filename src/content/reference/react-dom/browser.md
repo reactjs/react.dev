@@ -234,7 +234,7 @@ export default function SavedDraft() {
 
 ---
 
-### Conditionally rendering on the server {/*conditionally-rendering-in-the-browser*/}
+### Conditionally rendering on the server {/*conditionally-rendering-on-the-server*/}
 
 Unlike Hooks, [`use`](/reference/react/use) can be called inside a conditional statement or after an early return.
 
@@ -402,9 +402,9 @@ function ProductDetails({ productId, initialData }) {
 }
 ```
 
-When `initialData` is provided, `useBrowserQuery` calls `useQuery` during server rendering, and React includes the rendered content in the HTML.
+When `initialData` is provided, `useBrowserQuery` skips the call to `use(browser())` and passes the initial data to `useQuery`. This lets the Component render on the server.
 
-Without `initialData`, `useBrowserQuery` calls `use(browser())`, suspending the Component and leaving the closest [`<Suspense>`](/reference/react/Suspense) boundary's fallback in the HTML.
+Without `initialData`, `useBrowserQuery` calls `use(browser())`. React leaves the closest [`<Suspense>`](/reference/react/Suspense) boundary's fallback in the server-rendered HTML.
 
 In the browser, `useBrowserQuery` calls `useQuery` in both cases, allowing the query library to fetch the data or read it from its client cache as usual.
 

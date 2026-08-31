@@ -236,9 +236,9 @@ export default function SavedDraft() {
 
 ### Conditionally rendering on the server {/*conditionally-rendering-in-the-browser*/}
 
-Like other calls to [`use`](/reference/react/use), you can call `use(browser())` conditionally or inside a custom Hook. For example, a `useTimeZone` Hook can accept an initial time zone when one is available and read it from the device when it is not.
+Like other calls to [`use`](/reference/react/use), you can call `use(browser())` conditionally. This lets a Component or custom Hook opt out of server rendering based on a condition, such as the value of a prop passed to it.
 
-If an initial time zone is provided, `useTimeZone` includes it in the HTML. Otherwise, `use(browser())` leaves the closest [`<Suspense>`](/reference/react/Suspense) boundary's fallback in the HTML. In the browser, `use(browser())` returns `undefined`, so `useTimeZone` reads the user's time zone from the device.
+For example, `useTimeZone` accepts an optional initial value. If provided, that value is included in the initial HTML and rendered in the browser. If not, `use(browser())` causes the Component calling `useTimeZone` to suspend during server rendering. In the browser, `useTimeZone` reads the device's local time zone.
 
 Click **Reload** to see the loading fallback before the user's time zone appears.
 
@@ -400,7 +400,7 @@ function ProductDetails({ productId, initialData }) {
 }
 ```
 
-During server rendering, `useBrowserQuery` calls `useQuery` only when `initialData` is available. Otherwise, the closest Suspense boundary's fallback remains in the HTML. In the browser, `use(browser())` returns `undefined`, so the query library can fetch the data or read it from its client cache.
+This way, if `initialData` is not provided, `useBrowserQuery` skips server rendering, leaving the closest [`<Suspense>`](/reference/react/Suspense) boundary's fallback in the HTML. In the browser, `use(browser())` does not suspend, so the query library can fetch the data or read it from its client cache as usual.
 
 ---
 

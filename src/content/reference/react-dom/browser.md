@@ -380,7 +380,7 @@ iframe {
 
 </Sandpack>
 
-A wrapper around a Suspense-enabled data-fetching library can call `use(browser())` directly inside a condition before the library's `useQuery` when initial data is missing:
+You can apply a similar pattern to conditionally avoid server rendering when using a Suspense-enabled data-fetching library. For example, a wrapper can call `use(browser())` directly inside a condition before the library's `useQuery` when initial data is missing:
 
 ```js {3}
 function useBrowserQuery(query, options) {

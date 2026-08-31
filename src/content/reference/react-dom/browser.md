@@ -236,9 +236,7 @@ export default function SavedDraft() {
 
 ### Conditionally rendering on the server {/*conditionally-rendering-on-the-server*/}
 
-Unlike Hooks, [`use`](/reference/react/use) can be called inside a conditional statement or after an early return.
-
-You can use this behavior with `use(browser())` to conditionally opt a Component out of server rendering, including from inside a custom Hook. The condition might depend on the value of a prop.
+Like other calls to [`use`](/reference/react/use), `use(browser())` can be called inside a conditional statement or after an early return. This lets a Component or custom Hook opt out of server rendering based on a condition, such as the value of a prop.
 
 For example, this `useTimeZone` Hook accepts an optional default value. When provided, React renders the default value in the initial HTML and in the browser. Without a default value, the Component suspends during server rendering and shows the device's local time zone in the browser.
 
@@ -382,7 +380,7 @@ iframe {
 
 </Sandpack>
 
-You can apply a similar pattern to conditionally avoid server rendering when using a Suspense-enabled data-fetching library. For example, a wrapper can call `use(browser())` directly inside a condition before the library's `useQuery` when initial data is missing:
+You can apply a similar pattern to conditionally avoid server rendering when using a Suspense-enabled data-fetching library:
 
 ```js {3}
 function useBrowserQuery(query, options) {
@@ -402,11 +400,7 @@ function ProductDetails({ productId, initialData }) {
 }
 ```
 
-When `initialData` is provided, `useBrowserQuery` skips the call to `use(browser())` and passes the initial data to `useQuery`. This lets the Component render on the server.
-
-Without `initialData`, `useBrowserQuery` calls `use(browser())`. React leaves the closest [`<Suspense>`](/reference/react/Suspense) boundary's fallback in the server-rendered HTML.
-
-In the browser, `useBrowserQuery` calls `useQuery` in both cases, allowing the query library to fetch the data or read it from its client cache as usual.
+With `initialData`, React renders the Component to HTML on the server. Without it, React leaves the closest [`<Suspense>`](/reference/react/Suspense) boundary's fallback in the HTML. In the browser, `useQuery` can fetch the data or read it from its client cache as usual.
 
 ---
 

@@ -238,7 +238,7 @@ export default function SavedDraft() {
 
 Like other calls to [`use`](/reference/react/use), you can call `use(browser())` conditionally. This lets a Component or custom Hook opt out of server rendering based on a condition, such as the value of a prop passed to it.
 
-For example, `useTimeZone` accepts an optional initial value. If provided, that value is included in the initial HTML and rendered in the browser. If not, `use(browser())` causes the Component calling `useTimeZone` to suspend during server rendering. In the browser, `useTimeZone` reads the device's local time zone.
+For example, this `useTimeZone` Hook accepts an optional default value. When provided, React renders the default value in the initial HTML and in the browser. When it is not provided, `use(browser())` suspends the Component during server rendering. In the browser, `use(browser())` does not suspend, so `useTimeZone` returns the device's local time zone.
 
 Click **Reload** to see the loading fallback before the user's time zone appears.
 
@@ -248,8 +248,8 @@ Click **Reload** to see the loading fallback before the user's time zone appears
 import { Suspense } from 'react';
 import { useTimeZone } from './useTimeZone.js';
 
-function TimeZone({label, initialTimeZone}) {
-  const timeZone = useTimeZone(initialTimeZone);
+function TimeZone({label, defaultTimeZone}) {
+  const timeZone = useTimeZone(defaultTimeZone);
   return <p>{label}: <strong>{timeZone}</strong></p>;
 }
 
@@ -259,7 +259,7 @@ export default function App() {
       <h1>Event details</h1>
       <TimeZone
         label="Event time zone"
-        initialTimeZone="America/New_York"
+        defaultTimeZone="America/New_York"
       />
       <Suspense fallback={<p>Loading your time zone...</p>}>
         <TimeZone label="Your time zone" />
@@ -273,12 +273,12 @@ export default function App() {
 import { use } from 'react';
 import { browser } from 'react-dom';
 
-export function useTimeZone(initialTimeZone) {
-  if (initialTimeZone !== undefined) {
-    return initialTimeZone;
+export function useTimeZone(defaultTimeZone) {
+  if (defaultTimeZone !== undefined) {
+    return defaultTimeZone;
   }
 
-  use(browser('No initial time zone was provided.'));
+  use(browser('No default time zone was provided.'));
   return Intl.DateTimeFormat().resolvedOptions().timeZone;
 }
 ```
@@ -400,7 +400,7 @@ function ProductDetails({ productId, initialData }) {
 }
 ```
 
-This way, if `initialData` is not provided, `useBrowserQuery` skips server rendering, leaving the closest [`<Suspense>`](/reference/react/Suspense) boundary's fallback in the HTML. In the browser, `use(browser())` does not suspend, so the query library can fetch the data or read it from its client cache as usual.
+If `initialData` is not provided, `useBrowserQuery` skips server rendering and leaves the closest [`<Suspense>`](/reference/react/Suspense) boundary's fallback in the HTML. In the browser, `use(browser())` does not suspend, so the query library can fetch the data or read it from its client cache as usual.
 
 ---
 

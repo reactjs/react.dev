@@ -17,6 +17,15 @@ When the compiler reports a diagnostic, it means that the compiler was able to s
 What this means for linting, is that you don’t need to fix all violations immediately. Address them at your own pace to gradually increase the number of optimized components.
 </Note>
 
+<Note>
+**Clarification:**  
+As of `eslint-plugin-react-hooks@6.1.0`, the rules from `eslint-plugin-react-compiler` have **not** yet been merged into `eslint-plugin-react-hooks`.  
+You should continue to install and use both plugins separately if you rely on rules from each.  
+The React team has mentioned that a merge may happen in the future, but until then, this doc reflects the current state.
+</Note>
+
+
+## Available Lints {/*available-lints*/}
 ## Recommended Rules {/*recommended*/}
 
 These rules are included in the `recommended` preset in `eslint-plugin-react-hooks`:

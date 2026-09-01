@@ -108,17 +108,27 @@ export default defineConfig({
 
 Alternatively, you can use the Babel plugin directly with `@rolldown/plugin-babel`:
 
-```js {3,9}
+Alternatively, you can use the Babel plugin directly with `vite-plugin-babel`:
+
+```js {6,12-14}
 // vite.config.js
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import babel from '@rolldown/plugin-babel';
+import babel from 'vite-plugin-babel';
+
+const ReactCompilerConfig = {}
 
 export default defineConfig({
   plugins: [
     react(),
     babel({
-      plugins: ['babel-plugin-react-compiler'],
+      filter: /\.[jt]sx?$/,
+      babelConfig: {
+        presets: ["@babel/preset-typescript"],
+        plugins: [
+          ["babel-plugin-react-compiler", ReactCompilerConfig],
+        ]
+      }
     }),
   ],
 });

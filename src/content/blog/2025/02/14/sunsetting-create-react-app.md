@@ -135,7 +135,7 @@ import {RouterProvider, createBrowserRouter} from 'react-router';
 import Home from './Home';
 import Dashboard from './Dashboard';
 
-// ✅ Each route has it's own URL
+// ✅ Each route has its own URL
 const router = createBrowserRouter([
   {path: '/', element: <Home />},
   {path: '/dashboard', element: <Dashboard />}

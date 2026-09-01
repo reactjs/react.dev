@@ -12,10 +12,14 @@ version: rc
 This plugin helps you catch violations of React's rules at build time, ensuring your components and hooks follow React's rules for correctness and performance. The lints cover both fundamental React patterns (exhaustive-deps and rules-of-hooks) and issues flagged by React Compiler. React Compiler diagnostics are automatically surfaced by this ESLint plugin, and can be used even if your app hasn't adopted the compiler yet.
 
 <Note>
-When the compiler reports a diagnostic, it means that the compiler was able to statically detect a pattern that is not supported or breaks the Rules of React. When it detects this, it **automatically** skips over those components and hooks, while keeping the rest of your app compiled. This ensures optimal coverage of safe optimizations that won't break your app.
+**Clarification (updated):**
+Compiler-powered rules are available starting in `eslint-plugin-react-hooks@6.1.1` — but they are **not** included in the default `recommended` preset. If you want the compiler-powered rules, enable the `recommended-latest` preset or install `eslint-plugin-react-compiler` separately depending on your setup.
 
-What this means for linting, is that you don’t need to fix all violations immediately. Address them at your own pace to gradually increase the number of optimized components.
+Example: to opt into compiler-powered rules, add the `recommended-latest` preset to your ESLint config, or include the `eslint-plugin-react-compiler` plugin directly if you prefer explicit control.
+
+Refer to the plugin changelog and the recommended presets for the most up-to-date instructions.
 </Note>
+
 
 ## Recommended Rules {/*recommended*/}
 

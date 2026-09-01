@@ -90,7 +90,7 @@ export default async function Albums() {
 
 ## Streaming Proof {/*streaming-proof*/}
 
-This demo proves streaming is incremental. The shell renders instantly with a `<Suspense>` fallback. After 2 seconds the async component streams in and replaces it — without re-rendering the outer content. The timestamps show the gap.
+This demo proves streaming is incremental. The shell renders instantly with a `<Suspense>` fallback. After 2 seconds the async component streams in and replaces it—without re-rendering the outer content. The timestamps show the gap.
 
 <SandpackRSC>
 
@@ -208,7 +208,7 @@ export default function DataViewer({ map, set, date, big }) {
 
 ## Promise Streaming with use() {/*promise-streaming-use*/}
 
-The server creates a promise (resolves in 2s) and passes it as a prop through a parent async component that suspends for 3s. When the parent reveals at ~3s, the promise is already resolved — so `use()` returns instantly with no inner fallback. The elapsed time should be ~3000ms (the parent's delay), not ~5000ms (which would mean the promise restarted on the client).
+The server creates a promise (resolves in 2s) and passes it as a prop through a parent async component that suspends for 3s. When the parent reveals at ~3s, the promise is already resolved—so `use()` returns instantly with no inner fallback. The elapsed time should be ~3000ms (the parent's delay), not ~5000ms (which would mean the promise restarted on the client).
 
 <SandpackRSC>
 
@@ -390,7 +390,7 @@ export default function TestButton({ testTypes }) {
 
 ## Server Action Mutation + Re-render {/*action-mutation-rerender*/}
 
-The server action mutates server-side data and returns a confirmation string. The updated list is only visible because the framework automatically re-renders the entire server component tree after the action completes — the server component re-reads the data and streams the new UI to the client.
+The server action mutates server-side data and returns a confirmation string. The updated list is only visible because the framework automatically re-renders the entire server component tree after the action completes—the server component re-reads the data and streams the new UI to the client.
 
 <SandpackRSC>
 
@@ -487,7 +487,7 @@ export default function AddTodo({ createTodo }) {
 
 ## Inline Server Actions {/*inline-server-actions*/}
 
-Server actions defined inline inside a server component with `'use server'` on the function body. The action closes over module-level state and is passed as a prop — no separate `actions.js` file needed.
+Server actions defined inline inside a server component with `'use server'` on the function body. The action closes over module-level state and is passed as a prop—no separate `actions.js` file needed.
 
 <SandpackRSC>
 

@@ -30,7 +30,7 @@ The React Foundation has officially launched, hosted by the Linux Foundation.
 
 [In October](/blog/2025/10/07/introducing-the-react-foundation), we announced our intent to form the React Foundation. Today, we're excited to share that the React Foundation has officially launched.
 
-React, React Native, and supporting projects like JSX are no longer owned by Meta — they are now owned by the React Foundation, an independent foundation hosted by the Linux Foundation. You can read more in the [Linux Foundation's press release](https://www.linuxfoundation.org/press/linux-foundation-announces-the-formation-of-the-react-foundation).
+React, React Native, and supporting projects like JSX are no longer owned by Meta—they are now owned by the React Foundation, an independent foundation hosted by the Linux Foundation. You can read more in the [Linux Foundation's press release](https://www.linuxfoundation.org/press/linux-foundation-announces-the-formation-of-the-react-foundation).
 
 ### Founding Members {/*founding-members*/}
 
@@ -49,7 +49,7 @@ The React Foundation has eight Platinum founding members: **Amazon**, **Callstac
 
 ### New Provisional Leadership Council {/*new-provisional-leadership-council*/}
 
-React's technical governance will always be independent from the React Foundation board — React's technical direction will continue to be set by the people who contribute to and maintain React. We have formed a provisional leadership council to determine this structure. We will share an update in the coming months.
+React's technical governance will always be independent from the React Foundation board—React's technical direction will continue to be set by the people who contribute to and maintain React. We have formed a provisional leadership council to determine this structure. We will share an update in the coming months.
 
 ### Next Steps {/*next-steps*/}
 

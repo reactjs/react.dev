@@ -30,7 +30,7 @@ Many React-based frameworks are full-stack and let your React app take advantage
 
 ## Using React for a part of your existing page {/*using-react-for-a-part-of-your-existing-page*/}
 
-Let's say you have an existing page built with another technology (either a server one like Rails, or a client one like Backbone), and you want to render interactive React components somewhere on that page. That's a common way to integrate React--in fact, it's how most React usage looked at Meta for many years!
+Let's say you have an existing page built with another technology (either a server one like Rails, or a client one like Backbone), and you want to render interactive React Components somewhere on that page. That's a common way to integrate React--in fact, it's how most React usage looked at Meta for many years!
 
 You can do this in two steps:
 

@@ -1141,6 +1141,15 @@ useEffect(() => {
 
 </Pitfall>
 
+<Pitfall>
+
+**If you omit a dependency from the array, your Effect's closure will capture the "stale" value from the render when it was created.** This creates a "stale closure" bug where your Effect sees outdated state or props.
+
+Because the `eslint-plugin-react-hooks` relies on static analysis, it cannot catch every missing dependency or warn you at runtime when a stale value is read. Always ensure every reactive value used in the Effect is listed to avoid subtle, hard-to-debug issues!
+
+</Pitfall>
+
+
 <Recipes titleText="Examples of passing reactive dependencies" titleId="examples-dependencies">
 
 #### Passing a dependency array {/*passing-a-dependency-array*/}

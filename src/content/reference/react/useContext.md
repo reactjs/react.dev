@@ -16,6 +16,14 @@ const value = useContext(SomeContext)
 
 ---
 
+<Note>
+
+[`use`](/reference/react/use) is preferred over `useContext` because it is more flexible. Unlike `useContext`, `use` can be called inside conditionals and loops.
+
+</Note>
+
+---
+
 ## Reference {/*reference*/}
 
 ### `useContext(SomeContext)` {/*usecontext*/}

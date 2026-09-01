@@ -19,4 +19,4 @@ The `react-dom/client` APIs let you render React components on the client (in th
 
 ## Browser support {/*browser-support*/}
 
-React supports all popular browsers, including Internet Explorer 9 and above. Some polyfills are required for older browsers such as IE 9 and IE 10.
+React supports all popular browsers, including Chrome, Firefox, Safari, and Edge. React 18 [dropped support for Internet Explorer](/blog/2022/03/08/react-18-upgrade-guide#dropping-support-for-internet-explorer), which doesn't support the modern browser features that React relies on.

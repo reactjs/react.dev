@@ -1691,7 +1691,7 @@ function useAnimationLoop(isRunning, drawFrame) {
       frameId = requestAnimationFrame(tick);
     }
 
-    tick();
+    tick(startTime);
     return () => cancelAnimationFrame(frameId);
   }, [isRunning]);
 }

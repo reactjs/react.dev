@@ -320,13 +320,16 @@ React may [call your updaters twice](#my-initializer-or-updater-function-runs-tw
 
 #### Is using an updater always preferred? {/*is-using-an-updater-always-preferred*/}
 
-You might hear a recommendation to always write code like `setAge(a => a + 1)` if the state you're setting is calculated from the previous state. There is no harm in it, but it is also not always necessary.
+You might hear a recommendation to always write code like `setAge(a => a + 1)` if the state you're setting is calculated from the previous state. This is generally fine, but there are some nuances to consider.
 
-In most cases, there is no difference between these two approaches. React always makes sure that for intentional user actions, like clicks, the `age` state variable would be updated before the next click. This means there is no risk of a click handler seeing a "stale" `age` at the beginning of the event handler.
+For intentional user actions, like clicks, React always ensures that the state variable matches what was visible on the screen when the user took the action. However, if you do multiple updates within the same event handler, or if the state has been previously updated within a [Transition](/reference/react/startTransition), there may also be queued updates. In these cases you should intentionally choose how you access the previous state.
 
-However, if you do multiple updates within the same event, updaters can be helpful. They're also helpful if accessing the state variable itself is inconvenient (you might run into this when optimizing re-renders).
+* Using the state variable `age` allows you to calculate your state based on the age the user saw when they took the action.
+* Using an updater `setAge(a => a + 1)` allows you to calculate your state based on the currently pending state.
 
-If you prefer consistency over slightly more verbose syntax, it's reasonable to always write an updater if the state you're setting is calculated from the previous state. If it's calculated from the previous state of some *other* state variable, you might want to combine them into one object and [use a reducer.](/learn/extracting-state-logic-into-a-reducer)
+Updaters can also be valuable as an optimization since they let you access the state value during an update without forcing your component to re-render on every update.
+
+If you prefer consistency over slightly more verbose syntax, it's a reasonable default to always write an updater if the state you're setting is calculated from the previous state. If it's calculated from the previous state of some *other* state variable, you might want to combine them into one object and [use a reducer.](/learn/extracting-state-logic-into-a-reducer)
 
 </DeepDive>
 

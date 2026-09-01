@@ -222,6 +222,32 @@ For historical reasons, [`aria-*`](https://developer.mozilla.org/docs/Web/Access
 
 </Pitfall>
 
+### 4. Don't pass function references as children {/*4-dont-pass-function-references-as-children*/}
+
+JSX children should be elements, strings, or numbers—not function references. A common mistake is forgetting to call a function when you want to display its result:
+
+```js
+// ❌ This doesn't work - displays [Function] 
+export default function Button() {
+  const handleClick = () => alert('Clicked!');
+  return <button>{handleClick}</button>;
+}
+
+// ✅ This works - call the function if you want its result
+export default function Greeting() {
+  const getMessage = () => 'Hello, world!';
+  return <div>{getMessage()}</div>;
+}
+
+// ✅ Or pass it as a prop for event handling
+export default function Button() {
+  const handleClick = () => alert('Clicked!');
+  return <button onClick={handleClick}>Click me</button>;
+}
+```
+
+If you accidentally pass a function reference as a child, React will display it as `[Function]` instead of rendering meaningful content.
+
 ### Pro-tip: Use a JSX Converter {/*pro-tip-use-a-jsx-converter*/}
 
 Converting all these attributes in existing markup can be tedious! We recommend using a [converter](https://transform.tools/html-to-jsx) to translate your existing HTML and SVG to JSX. Converters are very useful in practice, but it's still worth understanding what is going on so that you can comfortably write JSX on your own.

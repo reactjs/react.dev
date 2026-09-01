@@ -27,6 +27,7 @@ The React Team recommends migrating your tests to [@testing-library/react](https
 ### ReactDOMTestUtils.renderIntoDocument {/*reactdomtestutilsrenderintodocument*/}
 
 `renderIntoDocument` can be replaced with `render` from `@testing-library/react`.
+Unlike `renderIntoDocument`, `render` gives you access to the rendered container and explicit cleanup APIs.
 
 Before:
 
@@ -42,6 +43,22 @@ After:
 import {render} from '@testing-library/react';
 
 render(<Component />);
+```
+
+`renderIntoDocument` rendered into a detached DOM node and returned the component instance instead of the container.
+This made it difficult to inspect the rendered output or reliably clean it up after a test.
+`render` returns helpers for the rendered tree, including `unmount`, and React Testing Library also provides `cleanup` to remove any trees mounted with `render` between tests.
+
+```js
+import {render} from '@testing-library/react';
+
+test('renders a component', () => {
+  const {unmount} = render(<Component />);
+
+  // ...assertions...
+
+  unmount();
+});
 ```
 
 ### ReactDOMTestUtils.Simulate {/*reactdomtestutilssimulate*/}

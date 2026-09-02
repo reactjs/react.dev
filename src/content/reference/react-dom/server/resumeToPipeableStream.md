@@ -26,10 +26,10 @@ This API is specific to Node.js. Environments with [Web Streams,](https://develo
 
 ### `resumeToPipeableStream(node, postponed, options?)` {/*resume-to-pipeable-stream*/}
 
-Call `resume` to resume rendering a pre-rendered React tree as HTML into a [Node.js Stream.](https://nodejs.org/api/stream.html#writable-streams)
+Call `resumeToPipeableStream` to resume rendering a pre-rendered React tree as HTML into a [Node.js Stream.](https://nodejs.org/api/stream.html#writable-streams)
 
 ```js
-import { resume } from 'react-dom/server';
+import { resumeToPipeableStream } from 'react-dom/server';
 import {getPostponedState} from './storage';
 
 async function handler(request, response) {
@@ -50,7 +50,7 @@ async function handler(request, response) {
 * `postponedState`: The opaque `postpone` object returned from a [prerender API](/reference/react-dom/static/index), loaded from wherever you stored it (e.g. redis, a file, or S3).
 * **optional** `options`: An object with streaming options.
   * **optional** `nonce`: A [`nonce`](http://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#nonce) string to allow scripts for [`script-src` Content-Security-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src).
-  * **optional** `signal`: An [abort signal](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal) that lets you [abort server rendering](#aborting-server-rendering) and render the rest on the client.
+  * **optional** `onAllReady`: A callback that fires when all rendering is complete, including both the shell and all additional content. You can call `pipe` here instead of in `onShellReady` for crawlers and static generation. The stream will contain the final HTML.
   * <CanaryBadge /> **optional** `onBrowserBailout`: A callback React calls when it recovers from [`browser()`](/reference/react-dom/browser) by leaving a Suspense fallback for the browser to replace. It receives an `Error` describing the browser-only render and an `errorInfo` object containing the `componentStack`. If a reason was passed to `browser`, it is available as `error.cause`. By default, React does nothing. [See how to report browser-only rendering.](/reference/react-dom/browser#reporting-browser-only-rendering-on-the-server)
   * **optional** `onError`: A callback that fires whenever there is a server error, whether [recoverable](/reference/react-dom/server/renderToReadableStream#recovering-from-errors-outside-the-shell) or [not.](/reference/react-dom/server/renderToReadableStream#recovering-from-errors-inside-the-shell) By default, this only calls `console.error`. If you override it to [log crash reports,](/reference/react-dom/server/renderToReadableStream#logging-crashes-on-the-server) make sure that you still call `console.error`.
   * **optional** `onShellReady`: A callback that fires right after the [shell](#specifying-what-goes-into-the-shell) has finished. You can call `pipe` here to start streaming. React will [stream the additional content](#streaming-more-content-as-it-loads) after the shell along with the inline `<script>` tags that replace the HTML loading fallbacks with the content.
@@ -59,7 +59,7 @@ async function handler(request, response) {
 
 #### Returns {/*returns*/}
 
-`resume` returns an object with two methods:
+`resumeToPipeableStream` returns an object with two methods:
 
 * `pipe` outputs the HTML into the provided [Writable Node.js Stream.](https://nodejs.org/api/stream.html#writable-streams) Call `pipe` in `onShellReady` if you want to enable streaming, or in `onAllReady` for crawlers and static generation.
 * `abort` lets you [abort server rendering](#aborting-server-rendering) and render the rest on the client.

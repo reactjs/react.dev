@@ -7,7 +7,7 @@ title: resumeAndPrerender
 `resumeAndPrerender` continues a prerendered React tree to a static HTML string using a [Web Stream](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API).
 
 ```js
-const { prelude,postpone } = await resumeAndPrerender(reactNode, postponedState, options?)
+const {prelude, postponed} = await resumeAndPrerender(reactNode, postponedState, options?)
 ```
 
 </Intro>

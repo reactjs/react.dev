@@ -26,7 +26,6 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
-.env.local
 .env.development.local
 .env.test.local
 .env.production.local
@@ -49,3 +48,4 @@ public/rss.xml
 
 # Generated OG images (scripts/generateOgImages.mjs)
 public/images/og/
+config.bat

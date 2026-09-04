@@ -109,6 +109,7 @@ export async function updateName(name) {
     return {error: 'Name is required'};
   }
   await db.users.updateName(name);
+  return {error: null};
 }
 ```
 
@@ -126,19 +127,17 @@ function UpdateName() {
   const submitAction = async () => {
     startTransition(async () => {
       const {error} = await updateName(name);
-      startTransition(() => {
-        if (error) {
-          setError(error);
-        } else {
-          setName('');
-        }
-      });
+      if (error) {
+        setError(error);
+        return;
+      }
+      setName('');
     })
   }
 
   return (
     <form action={submitAction}>
-      <input type="text" name="name" disabled={isPending}/>
+      <input type="text" name="name" value={name} onChange={(e) => setName(e.target.value)} disabled={isPending}/>
       {error && <span>Failed: {error}</span>}
     </form>
   )
@@ -156,14 +155,27 @@ Server Functions work with the new Form features in React 19.
 You can pass a Server Function to a Form to automatically submit the form to the server:
 
 
-```js [[1, 3, "updateName"], [1, 7, "updateName"]]
+```js [[1, 3, "updateNameForm"], [1, 7, "updateNameForm"]]
+"use server";
+
+export async function updateNameForm(formData) {
+  const name = formData.get('name');
+  if (!name) {
+    return {error: 'Name is required'};
+  }
+  await db.users.updateName(name);
+  return {error: null};
+}
+```
+
+```js [[1, 3, "updateNameForm"], [1, 7, "updateNameForm"]]
 "use client";
 
-import {updateName} from './actions';
+import {updateNameForm} from './actions';
 
 function UpdateName() {
   return (
-    <form action={updateName}>
+    <form action={updateNameForm}>
       <input type="text" name="name" />
     </form>
   )
@@ -178,13 +190,26 @@ For more, see the docs for [Server Functions in Forms](/reference/rsc/use-server
 
 You can call Server Functions with `useActionState` for the common case where you just need access to the action pending state and last returned response:
 
-```js [[1, 3, "updateName"], [1, 6, "updateName"], [2, 6, "submitAction"], [2, 9, "submitAction"]]
+```js [[1, 3, "updateNameAction"], [1, 6, "updateNameAction"], [2, 6, "submitAction"], [2, 9, "submitAction"]]
+"use server";
+
+export async function updateNameAction(previousState, formData) {
+  const name = formData.get('name');
+  if (!name) {
+    return {error: 'Name is required'};
+  }
+  await db.users.updateName(name);
+  return {error: null};
+}
+```
+
+```js [[1, 3, "updateNameAction"], [1, 6, "updateNameAction"], [2, 6, "submitAction"], [2, 9, "submitAction"]]
 "use client";
 
-import {updateName} from './actions';
+import {updateNameAction} from './actions';
 
 function UpdateName() {
-  const [state, submitAction, isPending] = useActionState(updateName, {error: null});
+  const [state, submitAction, isPending] = useActionState(updateNameAction, {error: null});
 
   return (
     <form action={submitAction}>

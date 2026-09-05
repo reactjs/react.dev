@@ -661,7 +661,7 @@ export default function TabButton({ action, children, isActive }) {
     return <b className="pending">{children}</b>;
   }
   return (
-    <button onClick={async () => {
+    <button onClick={() => {
       startTransition(async () => {
         // await the action that's passed in.
         // This allows it to be either sync or async.

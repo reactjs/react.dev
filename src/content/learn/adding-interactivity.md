@@ -4,19 +4,19 @@ title: Adding Interactivity
 
 <Intro>
 
-Some things on the screen update in response to user input. For example, clicking an image gallery switches the active image. In React, data that changes over time is called *state.* You can add state to any component, and update it as needed. In this chapter, you'll learn how to write components that handle interactions, update their state, and display different output over time.
+Some things on the screen update in response to user input. For example, clicking an image gallery switches the active image. In React, data that changes over time is called *State.* You can add State to any component, and update it as needed. In this chapter, you'll learn how to write components that handle interactions, update their State, and display different output over time.
 
 </Intro>
 
 <YouWillLearn isChapter={true}>
 
 * [How to handle user-initiated events](/learn/responding-to-events)
-* [How to make components "remember" information with state](/learn/state-a-components-memory)
+* [How to make components "remember" information with State](/learn/state-a-components-memory)
 * [How React updates the UI in two phases](/learn/render-and-commit)
-* [Why state doesn't update right after you change it](/learn/state-as-a-snapshot)
-* [How to queue multiple state updates](/learn/queueing-a-series-of-state-updates)
-* [How to update an object in state](/learn/updating-objects-in-state)
-* [How to update an array in state](/learn/updating-arrays-in-state)
+* [Why State doesn't update right after you change it](/learn/state-as-a-snapshot)
+* [How to queue multiple State updates](/learn/queueing-a-series-of-state-updates)
+* [How to update an object in State](/learn/updating-objects-in-state)
+* [How to update an array in State](/learn/updating-arrays-in-state)
 
 </YouWillLearn>
 
@@ -74,16 +74,16 @@ Read **[Responding to Events](/learn/responding-to-events)** to learn how to add
 
 ## State: a component's memory {/*state-a-components-memory*/}
 
-Components often need to change what's on the screen as a result of an interaction. Typing into the form should update the input field, clicking "next" on an image carousel should change which image is displayed, clicking "buy" puts a product in the shopping cart. Components need to "remember" things: the current input value, the current image, the shopping cart. In React, this kind of component-specific memory is called *state.*
+Components often need to change what's on the screen as a result of an interaction. Typing into the form should update the input field, clicking "next" on an image carousel should change which image is displayed, clicking "buy" puts a product in the shopping cart. Components need to "remember" things: the current input value, the current image, the shopping cart. In React, this kind of component-specific memory is called *State.*
 
-You can add state to a component with a [`useState`](/reference/react/useState) Hook. *Hooks* are special functions that let your components use React features (state is one of those features). The `useState` Hook lets you declare a state variable. It takes the initial state and returns a pair of values: the current state, and a state setter function that lets you update it.
+You can add State to a component with a [`useState`](/reference/react/useState) Hook. *Hooks* are special functions that let your components use React features (State is one of those features). The `useState` Hook lets you declare a State variable. It takes the initial State and returns a pair of values: the current State, and a State setter function that lets you update it.
 
 ```js
 const [index, setIndex] = useState(0);
 const [showMore, setShowMore] = useState(false);
 ```
 
-Here is how an image gallery uses and updates state on click:
+Here is how an image gallery uses and updates State on click:
 
 <Sandpack>
 
@@ -257,7 +257,7 @@ Read **[Render and Commit](/learn/render-and-commit)** to learn the lifecycle of
 
 ## State as a snapshot {/*state-as-a-snapshot*/}
 
-Unlike regular JavaScript variables, React state behaves more like a snapshot. Setting it does not change the state variable you already have, but instead triggers a re-render. This can be surprising at first!
+Unlike regular JavaScript variables, React State behaves more like a snapshot. Setting it does not change the State variable you already have, but instead triggers a re-render. This can be surprising at first!
 
 ```js
 console.log(count);  // 0
@@ -314,11 +314,11 @@ label, textarea { margin-bottom: 10px; display: block; }
 
 <LearnMore path="/learn/state-as-a-snapshot">
 
-Read **[State as a Snapshot](/learn/state-as-a-snapshot)** to learn why state appears "fixed" and unchanging inside the event handlers.
+Read **[State as a Snapshot](/learn/state-as-a-snapshot)** to learn why State appears "fixed" and unchanging inside the event handlers.
 
 </LearnMore>
 
-## Queueing a series of state updates {/*queueing-a-series-of-state-updates*/}
+## Queueing a series of State updates {/*queueing-a-series-of-state-updates*/}
 
 This component is buggy: clicking "+3" increments the score only once.
 
@@ -354,7 +354,7 @@ button { display: inline-block; margin: 10px; font-size: 20px; }
 
 </Sandpack>
 
-[State as a Snapshot](/learn/state-as-a-snapshot) explains why this is happening. Setting state requests a new re-render, but does not change it in the already running code. So `score` continues to be `0` right after you call `setScore(score + 1)`.
+[State as a Snapshot](/learn/state-as-a-snapshot) explains why this is happening. Setting State requests a new re-render, but does not change it in the already running code. So `score` continues to be `0` right after you call `setScore(score + 1)`.
 
 ```js
 console.log(score);  // 0
@@ -366,7 +366,7 @@ setScore(score + 1); // setScore(0 + 1);
 console.log(score);  // 0
 ```
 
-You can fix this by passing an *updater function* when setting state. Notice how replacing `setScore(score + 1)` with `setScore(s => s + 1)` fixes the "+3" button. This lets you queue multiple state updates.
+You can fix this by passing an *updater function* when setting State. Notice how replacing `setScore(score + 1)` with `setScore(s => s + 1)` fixes the "+3" button. This lets you queue multiple state updates.
 
 <Sandpack>
 
@@ -402,13 +402,13 @@ button { display: inline-block; margin: 10px; font-size: 20px; }
 
 <LearnMore path="/learn/queueing-a-series-of-state-updates">
 
-Read **[Queueing a Series of State Updates](/learn/queueing-a-series-of-state-updates)** to learn how to queue a sequence of state updates.
+Read **[Queueing a Series of State Updates](/learn/queueing-a-series-of-state-updates)** to learn how to queue a sequence of State updates.
 
 </LearnMore>
 
-## Updating objects in state {/*updating-objects-in-state*/}
+## Updating objects in State {/*updating-objects-in-state*/}
 
-State can hold any kind of JavaScript value, including objects. But you shouldn't change objects and arrays that you hold in the React state directly. Instead, when you want to update an object and array, you need to create a new one (or make a copy of an existing one), and then update the state to use that copy.
+State can hold any kind of JavaScript value, including objects. But you shouldn't change objects and arrays that you hold in the React State directly. Instead, when you want to update an object and array, you need to create a new one (or make a copy of an existing one), and then update the State to use that copy.
 
 Usually, you will use the `...` spread syntax to copy objects and arrays that you want to change. For example, updating a nested object could look like this:
 
@@ -637,9 +637,9 @@ Read **[Updating Objects in State](/learn/updating-objects-in-state)** to learn 
 
 </LearnMore>
 
-## Updating arrays in state {/*updating-arrays-in-state*/}
+## Updating arrays in State {/*updating-arrays-in-state*/}
 
-Arrays are another type of mutable JavaScript objects you can store in state and should treat as read-only. Just like with objects, when you want to update an array stored in state, you need to create a new one (or make a copy of an existing one), and then set state to use the new array:
+Arrays are another type of mutable JavaScript objects you can store in State and should treat as read-only. Just like with objects, when you want to update an array stored in State, you need to create a new one (or make a copy of an existing one), and then set State to use the new array:
 
 <Sandpack>
 

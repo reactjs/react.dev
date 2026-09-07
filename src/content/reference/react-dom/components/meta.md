@@ -1,5 +1,5 @@
 ---
-meta: "<meta>"
+title: "<meta>"
 ---
 
 <Intro>

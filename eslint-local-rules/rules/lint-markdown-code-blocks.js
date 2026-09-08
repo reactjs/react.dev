@@ -45,7 +45,7 @@ module.exports = {
         // For each supported code block, run the compiler and reconcile metadata.
         for (const block of blocks) {
           for (const message of validateInlineHighlights(
-            block.fence.metaText,
+            block.meta,
             block.code
           )) {
             context.report({

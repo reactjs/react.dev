@@ -341,7 +341,7 @@ b {
 
 Activity also preserves other browser-managed state, such as scroll position and media playback position. The following examples use the same video player to compare removing and hiding a `<video>` element. Play the video, switch to the Home tab, return to the Video tab, and then select **Play**.
 
-<Recipes titleText="The difference between removing and hiding a video" titleId="examples-preserving-media-state">
+<Recipes titleText="The difference between removing and hiding content" titleId="examples-preserving-media-state">
 
 #### Removing the video resets its playback position {/*removing-the-video-resets-its-playback-position*/}
 

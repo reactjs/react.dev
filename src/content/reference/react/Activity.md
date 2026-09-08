@@ -67,7 +67,7 @@ Activity is useful when part of the UI may become hidden and visible again. Unli
 
 Use an Activity boundary when preserving that work is valuable—for example, for a tab the user is likely to revisit or a panel that can prepare data in the background. A hidden boundary retains its state and DOM nodes, so it continues using memory. If the content is unlikely to become visible again, conditionally rendering it may be preferable because unmounting allows React and the browser to release its resources.
 
-### Preserving component state while content is hidden {/*restoring-the-state-of-hidden-components*/}
+### Preserving state while content is hidden {/*restoring-the-state-of-hidden-components*/}
 
 When this condition becomes false, React removes `<Sidebar>` from the tree and discards its state:
 
@@ -105,7 +105,7 @@ export default function App() {
         <button
           aria-controls='documentation-sidebar'
           aria-expanded={isShowingSidebar}
-          onClick={() => setIsShowingSidebar(showing => !showing)}
+          onClick={() => setIsShowingSidebar(s => !s)}
         >
           {isShowingSidebar ? 'Hide' : 'Show'} sidebar
         </button>
@@ -119,11 +119,14 @@ function Sidebar() {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <nav aria-label='Documentation' id='documentation-sidebar'>
+    <nav
+      aria-label='Documentation'
+      id='documentation-sidebar'
+    >
       <button
         aria-controls='overview-sections'
         aria-expanded={isExpanded}
-        onClick={() => setIsExpanded(expanded => !expanded)}
+        onClick={() => setIsExpanded(e => !e)}
       >
         Overview
         <span aria-hidden='true' className='indicator'>
@@ -166,185 +169,6 @@ main {
 </Sandpack>
 
 Changing `mode` preserves the state of the children. Removing the boundary or changing a child's type, key, or position can [reset its state](/learn/preserving-and-resetting-state).
-
----
-
-### Preserving state while navigating {/*preserving-state-while-navigating*/}
-
-When this condition becomes false, React removes `<VideoList>` from the tree and discards its state:
-
-```js
-{selectedVideo === null && <VideoList />}
-```
-
-Render the component inside an Activity boundary to preserve its state while it is hidden:
-
-```js
-<Activity mode={selectedVideo === null ? 'visible' : 'hidden'}>
-  <VideoList />
-</Activity>
-```
-
-In this example, filter the video list, open a result, and then go back. The search text and filtered results are preserved because the list remains mounted inside the hidden Activity boundary.
-
-<Sandpack>
-
-```js
-import { Activity, useState } from 'react';
-
-const videos = [
-  {
-    id: 1,
-    title: 'React Keynote',
-    description: 'The latest news from the React team.',
-  },
-  {
-    id: 2,
-    title: 'Building with Actions',
-    description: 'Handle mutations and pending states with Actions.',
-  },
-  {
-    id: 3,
-    title: 'Animating View Transitions',
-    description: 'Create polished transitions between screens.',
-  },
-  {
-    id: 4,
-    title: 'Understanding Server Components',
-    description: 'Render components ahead of time on the server.',
-  },
-];
-
-export default function App() {
-  const [selectedVideo, setSelectedVideo] = useState(null);
-
-  return (
-    <main>
-      <Activity
-        mode={selectedVideo === null ? 'visible' : 'hidden'}
-      >
-        <VideoList onSelect={setSelectedVideo} />
-      </Activity>
-
-      {selectedVideo !== null && (
-        <VideoDetails
-          onBack={() => setSelectedVideo(null)}
-          video={selectedVideo}
-        />
-      )}
-    </main>
-  );
-}
-
-function VideoList({ onSelect }) {
-  const [searchText, setSearchText] = useState('');
-  const visibleVideos = videos.filter(video => {
-    const text = `${video.title} ${video.description}`;
-    return text.toLowerCase().includes(searchText.toLowerCase());
-  });
-
-  return (
-    <section>
-      <h1>Videos</h1>
-      <label htmlFor='search'>Search videos</label>
-      <input
-        id='search'
-        onChange={event => setSearchText(event.target.value)}
-        placeholder='Try "React"'
-        type='search'
-        value={searchText}
-      />
-
-      <ul className='videos'>
-        {visibleVideos.map(video => (
-          <li key={video.id}>
-            <button onClick={() => onSelect(video)}>
-              <strong>{video.title}</strong>
-              <span>{video.description}</span>
-            </button>
-          </li>
-        ))}
-      </ul>
-    </section>
-  );
-}
-
-function VideoDetails({ video, onBack }) {
-  return (
-    <section>
-      <button className='back' onClick={onBack}>
-        Back
-      </button>
-      <div className='thumbnail' aria-hidden='true'>
-        ▶
-      </div>
-      <h1>{video.title}</h1>
-      <p>{video.description}</p>
-    </section>
-  );
-}
-```
-
-```css
-body {
-  margin: 0;
-  padding: 16px;
-  font-family: system-ui;
-}
-main {
-  max-width: 520px;
-}
-label,
-input {
-  display: block;
-}
-input {
-  box-sizing: border-box;
-  margin: 8px 0 16px;
-  padding: 8px;
-  width: 100%;
-}
-.videos {
-  display: grid;
-  gap: 8px;
-  list-style: none;
-  padding: 0;
-}
-.videos button {
-  background: #f5f5f5;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  cursor: pointer;
-  padding: 12px;
-  text-align: left;
-  width: 100%;
-}
-.videos strong,
-.videos span {
-  display: block;
-}
-.videos span {
-  color: #555;
-  margin-top: 4px;
-}
-.back {
-  margin-bottom: 12px;
-}
-.thumbnail {
-  align-items: center;
-  aspect-ratio: 16 / 9;
-  background: #282c34;
-  border-radius: 8px;
-  color: white;
-  display: flex;
-  font-size: 48px;
-  justify-content: center;
-}
-```
-
-</Sandpack>
-
-The search field is controlled by `VideoList` state. Hiding the list preserves that React state when the user opens a video. The next example shows a different case: state stored by the browser in an uncontrolled field.
 
 ---
 

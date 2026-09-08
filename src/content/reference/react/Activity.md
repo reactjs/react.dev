@@ -339,13 +339,13 @@ b {
 
 </Sandpack>
 
-Activity also preserves other browser-managed state, such as scroll position and media playback position. The following examples use the same video player to compare removing and hiding a `<video>` element. Play the video, hide it, show it again, and then select **Play**.
+Activity also preserves other browser-managed state, such as scroll position and media playback position. The following examples use the same video player to compare removing and hiding a `<video>` element. Play the video, switch to the Home tab, return to the Video tab, and then select **Play**.
 
 <Recipes titleText="The difference between removing and hiding a video" titleId="examples-preserving-media-state">
 
 #### Removing the video resets its playback position {/*removing-the-video-resets-its-playback-position*/}
 
-This version conditionally renders the video player. Hiding it removes the `<video>` element from the DOM, so playback starts from the beginning when you show it again.
+This version conditionally renders the active tab. Switching to Home removes the `<video>` element from the DOM, so playback starts from the beginning when you return to Video.
 
 <Sandpack>
 
@@ -354,14 +354,24 @@ import { useState } from 'react';
 import VideoPlayer from './VideoPlayer.js';
 
 export default function App() {
-  const [isShowingVideo, setIsShowingVideo] = useState(true);
+  const [activeTab, setActiveTab] = useState('video');
 
   return (
     <>
-      <button onClick={() => setIsShowingVideo(showing => !showing)}>
-        {isShowingVideo ? 'Hide' : 'Show'} video
+      <button
+        aria-pressed={activeTab === 'home'}
+        onClick={() => setActiveTab('home')}
+      >
+        Home
       </button>
-      {isShowingVideo && <VideoPlayer />}
+      <button
+        aria-pressed={activeTab === 'video'}
+        onClick={() => setActiveTab('video')}
+      >
+        Video
+      </button>
+      {activeTab === 'home' && <p>Welcome to my profile!</p>}
+      {activeTab === 'video' && <VideoPlayer />}
     </>
   );
 }
@@ -394,11 +404,11 @@ export default function VideoPlayer() {
 ```
 
 ```css
+button {
+  margin-right: 10px;
+}
 .video-player {
   margin-top: 10px;
-}
-.video-player button {
-  margin-right: 10px;
 }
 .video-player video {
   display: block;
@@ -412,7 +422,7 @@ export default function VideoPlayer() {
 
 #### Hiding the video preserves its playback position {/*hiding-the-video-preserves-its-playback-position*/}
 
-This version renders the video player inside an Activity boundary. Hiding it preserves the `<video>` element, so playback continues from the same position when you show it and select **Play** again.
+This version renders both tabs inside Activity boundaries. Switching to Home hides the `<video>` element without removing it, so playback continues from the same position when you return to Video and select **Play** again.
 
 <Sandpack>
 
@@ -421,14 +431,26 @@ import { Activity, useState } from 'react';
 import VideoPlayer from './VideoPlayer.js';
 
 export default function App() {
-  const [isShowingVideo, setIsShowingVideo] = useState(true);
+  const [activeTab, setActiveTab] = useState('video');
 
   return (
     <>
-      <button onClick={() => setIsShowingVideo(showing => !showing)}>
-        {isShowingVideo ? 'Hide' : 'Show'} video
+      <button
+        aria-pressed={activeTab === 'home'}
+        onClick={() => setActiveTab('home')}
+      >
+        Home
       </button>
-      <Activity mode={isShowingVideo ? 'visible' : 'hidden'}>
+      <button
+        aria-pressed={activeTab === 'video'}
+        onClick={() => setActiveTab('video')}
+      >
+        Video
+      </button>
+      <Activity mode={activeTab === 'home' ? 'visible' : 'hidden'}>
+        <p>Welcome to my profile!</p>
+      </Activity>
+      <Activity mode={activeTab === 'video' ? 'visible' : 'hidden'}>
         <VideoPlayer />
       </Activity>
     </>
@@ -463,11 +485,11 @@ export default function VideoPlayer() {
 ```
 
 ```css
+button {
+  margin-right: 10px;
+}
 .video-player {
   margin-top: 10px;
-}
-.video-player button {
-  margin-right: 10px;
 }
 .video-player video {
   display: block;

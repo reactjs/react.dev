@@ -183,13 +183,7 @@ Changing `mode` preserves the state of the children. Removing the boundary or ch
 
 Because Activity boundaries hide their children without removing them, the children's DOM is also preserved. This is useful for maintaining state held by the browser in DOM nodes.
 
-The Contact tab in the following examples contains an uncontrolled `<textarea>`. Enter a draft, switch to the Home tab, and then return to Contact to compare the behavior with and without Activity.
-
-<Recipes titleText="The difference between removing and hiding a form" titleId="examples-preserving-dom-state">
-
-#### Removing the form resets its state {/*removing-the-form-resets-its-state*/}
-
-This version conditionally renders the active tab. Switching to Home removes `<Contact>` and its `<textarea>` from the DOM, so the draft is lost.
+The Contact tab in the following example contains an uncontrolled `<textarea>`. Enter a draft, switch to the Home tab, and then return to Contact. The draft is lost because conditional rendering removes `<Contact>` and its `<textarea>` from the DOM.
 
 <Sandpack>
 
@@ -265,11 +259,7 @@ b {
 
 </Sandpack>
 
-<Solution />
-
-#### Hiding the form preserves its state {/*hiding-the-form-preserves-its-state*/}
-
-This version renders both tabs in Activity boundaries. Switching tabs hides `<Contact>` without removing its DOM nodes, so the draft remains available when the tab becomes visible again.
+To preserve the draft, render both tabs inside Activity boundaries and change their modes. Enter a draft, switch to Home, and then return to Contact. The draft remains because Activity hides `<Contact>` without removing its DOM nodes.
 
 <Sandpack>
 
@@ -348,10 +338,6 @@ b {
 ```
 
 </Sandpack>
-
-<Solution />
-
-</Recipes>
 
 Activity also preserves other browser-managed state, such as scroll position and media playback position. The following examples use the same video player to compare removing and hiding a `<video>` element. Play the video, hide it, show it again, and then select **Play**.
 

@@ -92,6 +92,18 @@ boundary remains mounted.
 
 ## Usage {/*usage*/}
 
+Activity is useful when part of the UI may become hidden and visible again. Unlike
+conditional rendering, hiding an Activity boundary preserves both React state and
+the DOM state of its children. Unlike hiding content only with CSS, Activity also
+cleans up the children's Effects and deprioritizes their updates while they are
+hidden.
+
+Use an Activity boundary when preserving that work is valuable—for example, for a
+tab the user is likely to revisit or a panel that can prepare data in the
+background. If the content is unlikely to become visible again, conditionally
+rendering it may be preferable because unmounting allows React and the browser to
+release its resources.
+
 ### Preserving state while content is hidden {/*restoring-the-state-of-hidden-components*/}
 
 When this condition becomes false, React removes `<Sidebar>` from the tree and
@@ -302,9 +314,10 @@ for DOM behavior that requires explicit cleanup.
 
 ### Pre-rendering content that is likely to become visible {/*pre-rendering-content-thats-likely-to-become-visible*/}
 
-Content inside a hidden Activity boundary renders at a lower priority without
-running Effects created with `useEffect` or `useLayoutEffect`. This allows the
-content to begin loading code and render-time data before it becomes visible:
+An Activity boundary can also prepare content before the user sees it. Content
+inside a hidden boundary renders at a lower priority without running Effects
+created with `useEffect` or `useLayoutEffect`. This lets the content load code and
+render-time data without delaying updates to visible content:
 
 ```js
 <Suspense fallback={<Loading />}>
@@ -318,6 +331,103 @@ If `Posts` suspends while reading code or data, React continues rendering the re
 of the page. If that hidden work completes, switching to the Posts tab can reveal
 the content without waiting for the same work again.
 
+The following example renders the Posts tab in a hidden Activity boundary when the
+page first loads. Wait briefly before selecting **Posts**. The list is available
+immediately because the hidden render started loading it in the background.
+
+<Sandpack>
+
+```js src/App.js active
+import { Activity, Suspense, use, useState } from 'react';
+import { getPosts } from './data.js';
+
+export default function App() {
+  const [activeTab, setActiveTab] = useState('home');
+
+  return (
+    <>
+      <div aria-label='Profile sections' role='group'>
+        <button
+          aria-pressed={activeTab === 'home'}
+          onClick={() => setActiveTab('home')}
+        >
+          Home
+        </button>
+        <button
+          aria-pressed={activeTab === 'posts'}
+          onClick={() => setActiveTab('posts')}
+        >
+          Posts
+        </button>
+      </div>
+
+      <Suspense fallback={<h1>Loading posts...</h1>}>
+        <Activity
+          mode={activeTab === 'home' ? 'visible' : 'hidden'}
+        >
+          <Home />
+        </Activity>
+        <Activity
+          mode={activeTab === 'posts' ? 'visible' : 'hidden'}
+        >
+          <Posts />
+        </Activity>
+      </Suspense>
+    </>
+  );
+}
+
+function Home() {
+  return <p>Welcome to my profile!</p>;
+}
+
+function Posts() {
+  const posts = use(getPosts());
+
+  return (
+    <ul>
+      {posts.map(post => (
+        <li key={post.id}>{post.title}</li>
+      ))}
+    </ul>
+  );
+}
+```
+
+```js src/data.js hidden
+let postsPromise;
+
+export function getPosts() {
+  if (!postsPromise) {
+    postsPromise = loadPosts();
+  }
+  return postsPromise;
+}
+
+async function loadPosts() {
+  // Add a delay so that pre-rendering is easier to observe.
+  await new Promise(resolve => setTimeout(resolve, 1500));
+
+  return Array.from({ length: 5 }, (_, index) => ({
+    id: index,
+    title: 'Post #' + (index + 1),
+  }));
+}
+```
+
+```css
+button {
+  margin-right: 8px;
+}
+```
+
+</Sandpack>
+
+If the user selects Posts before the hidden render finishes, the nearest Suspense
+fallback appears until the data is ready. Activity improves the likely case where
+the background work finishes first; it does not guarantee that the content will
+always be ready.
+
 <Note>
 
 Only code and data read during rendering can load during pre-rendering. Activity
@@ -330,21 +440,30 @@ cached Promise with [`use`](/reference/react/use). See
 
 </Note>
 
-<DeepDive>
+---
 
-#### How does `<Activity>` affect server rendering and hydration? {/*speeding-up-interactions-during-page-load*/}
+### Improving hydration performance {/*speeding-up-interactions-during-page-load*/}
 
-React does not include initially hidden `<Activity>` content in server-rendered HTML.
-On the client, React hydrates the visible content first and renders the hidden
-content later at a lower priority.
+Activity boundaries also divide server-rendered pages into units that React can
+hydrate independently. This is related to the selective hydration behavior of
+[`<Suspense>`](/reference/react/Suspense), but it does not require displaying a
+fallback in the initial UI.
 
-For initially visible `<Activity>` boundaries, React includes the content in the
-server-rendered HTML but can hydrate the boundary independently from surrounding
-content. If the user interacts with the boundary before hydration reaches it,
-React prioritizes hydrating that boundary.
+For example, without a boundary React hydrates this page as one unit:
 
-An always-visible `<Activity>` boundary lets React hydrate that subtree
-independently:
+```js
+function Page() {
+  return (
+    <>
+      <Post />
+      <Comments />
+    </>
+  );
+}
+```
+
+Wrapping `Comments` in an always-visible Activity boundary creates a separate
+hydration unit:
 
 ```js
 function Page() {
@@ -359,7 +478,43 @@ function Page() {
 }
 ```
 
-</DeepDive>
+The boundary is visible because the `mode` prop defaults to `'visible'`. Its
+server-rendered HTML remains visible, but React can hydrate it independently from
+the surrounding page. If the user interacts with that content before React reaches
+it, React prioritizes hydrating the boundary.
+
+You can also use visible and hidden Activity boundaries for tabbed content:
+
+```js
+function Page() {
+  const [activeTab, setActiveTab] = useState('home');
+
+  return (
+    <>
+      <button onClick={() => setActiveTab('home')}>
+        Home
+      </button>
+      <button onClick={() => setActiveTab('video')}>
+        Video
+      </button>
+
+      <Activity mode={activeTab === 'home' ? 'visible' : 'hidden'}>
+        <Home />
+      </Activity>
+      <Activity mode={activeTab === 'video' ? 'visible' : 'hidden'}>
+        <Video />
+      </Activity>
+    </>
+  );
+}
+```
+
+React does not include initially hidden `<Activity>` content in server-rendered HTML.
+On the client, React hydrates the visible content first and renders the hidden
+content later at a lower priority. Initially visible boundaries are included in the
+server-rendered HTML and can be hydrated independently. This allows the visible tab
+and the controls around it to become interactive without waiting for React to
+render the initially hidden tab.
 
 ---
 
@@ -375,13 +530,85 @@ the boundary is hidden.
 
 ##### Preserved media can continue playing {/*preserved-media-can-continue-playing*/}
 
-Add the corresponding cleanup to an Effect. For behavior that must stop when React
-hides the boundary, use [`useLayoutEffect`](/reference/react/useLayoutEffect):
+Unmounting a `<video>` element stops playback because the browser removes the DOM
+node. Hiding it with Activity preserves the node, so playback continues unless the
+component pauses it explicitly.
+
+Add the corresponding cleanup to an Effect. For behavior that must stop at the
+same time React hides the boundary, use
+[`useLayoutEffect`](/reference/react/useLayoutEffect):
 
 ```js
 import { useLayoutEffect, useRef } from 'react';
 
-function VideoPlayer({ src, captions }) {
+function VideoPlayer({ src }) {
+  const ref = useRef(null);
+
+  useLayoutEffect(() => {
+    const video = ref.current;
+
+    return () => {
+      video.pause();
+    };
+  }, []);
+
+  return <video ref={ref} controls src={src} />;
+}
+```
+
+React runs the cleanup when an enclosing Activity boundary becomes hidden. Because
+the `<video>` node remains in the DOM, its playback position is preserved for when
+the boundary becomes visible again.
+
+The `useLayoutEffect` cleanup runs as part of hiding the UI. A cleanup from
+`useEffect` can run later if, for example, a Suspense boundary suspends or a View
+Transition is in progress.
+
+This complete example pauses the video when you switch to Home while preserving
+its playback position. When you return to Video, playback can continue from the
+same position without recreating the element or downloading it again.
+
+<Sandpack>
+
+```js src/App.js active
+import {
+  Activity,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react';
+
+export default function App() {
+  const [activeTab, setActiveTab] = useState('video');
+
+  return (
+    <>
+      <div aria-label='Media sections' role='group'>
+        <button
+          aria-pressed={activeTab === 'home'}
+          onClick={() => setActiveTab('home')}
+        >
+          Home
+        </button>
+        <button
+          aria-pressed={activeTab === 'video'}
+          onClick={() => setActiveTab('video')}
+        >
+          Video
+        </button>
+      </div>
+
+      <Activity mode={activeTab === 'home' ? 'visible' : 'hidden'}>
+        <p>Welcome home!</p>
+      </Activity>
+      <Activity mode={activeTab === 'video' ? 'visible' : 'hidden'}>
+        <VideoPlayer />
+      </Activity>
+    </>
+  );
+}
+
+function VideoPlayer() {
   const ref = useRef(null);
 
   useLayoutEffect(() => {
@@ -393,25 +620,30 @@ function VideoPlayer({ src, captions }) {
   }, []);
 
   return (
-    <video ref={ref} controls src={src}>
-      <track
-        default
-        kind='captions'
-        src={captions}
-        srcLang='en'
-      />
-    </video>
+    <video
+      aria-label='Big Buck Bunny video'
+      controls
+      playsInline
+      ref={ref}
+      src='https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4'
+    />
   );
 }
 ```
 
-React runs the cleanup when an enclosing Activity boundary becomes hidden. Because
-the `<video>` node remains in the DOM, its playback position is preserved for when
-the boundary becomes visible again.
+```css
+button {
+  margin-right: 8px;
+}
+video {
+  aspect-ratio: 16 / 9;
+  margin-top: 12px;
+  max-width: 100%;
+  width: 400px;
+}
+```
 
-The `useLayoutEffect` cleanup runs as part of hiding the UI. A cleanup from
-`useEffect` can run later if, for example, a Suspense boundary suspends or a View
-Transition is in progress.
+</Sandpack>
 
 </Pitfall>
 

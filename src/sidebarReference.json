@@ -410,6 +410,10 @@
       "path": "/reference/dev-tools/react-performance-tracks"
     },
     {
+      "title": "React Suspense panel",
+      "path": "/reference/dev-tools/react-suspense-panel"
+    },
+    {
       "hasSectionHeader": true,
       "sectionHeader": "eslint-plugin-react-hooks"
     },

@@ -521,7 +521,97 @@ An Activity boundary can also prepare content before the user sees it. Content i
 
 If `Posts` suspends while reading code or data, React continues rendering the rest of the page while the hidden work proceeds.
 
-The following example renders both tabs inside Activity boundaries. `<Posts>` reads a cached Promise with [`use`](/reference/react/use), so React begins loading the posts while its boundary is hidden. Wait briefly before selecting **Posts**. If the hidden render has finished, the list appears immediately.
+The Posts tab in the following example reads a cached Promise with [`use`](/reference/react/use). Select **Posts** to see the Suspense fallback while the data loads. Because conditional rendering does not mount `<Posts>` until its tab is active, it cannot begin loading the posts ahead of time.
+
+<Sandpack>
+
+```js src/App.js active
+import { Suspense, useState } from 'react';
+import Home from './Home.js';
+import Posts from './Posts.js';
+
+export default function App() {
+  const [activeTab, setActiveTab] = useState('home');
+
+  return (
+    <>
+      <div aria-label="Profile sections" role="group">
+        <button
+          aria-pressed={activeTab === 'home'}
+          onClick={() => setActiveTab('home')}
+        >
+          Home
+        </button>
+        <button
+          aria-pressed={activeTab === 'posts'}
+          onClick={() => setActiveTab('posts')}
+        >
+          Posts
+        </button>
+      </div>
+
+      <Suspense fallback={<h1>Loading posts...</h1>}>
+        {activeTab === 'home' && <Home />}
+        {activeTab === 'posts' && <Posts />}
+      </Suspense>
+    </>
+  );
+}
+```
+
+```js src/Posts.js
+import { use } from 'react';
+import { getPosts } from './data.js';
+
+export default function Posts() {
+  const posts = use(getPosts());
+
+  return (
+    <ul>
+      {posts.map(post => (
+        <li key={post.id}>{post.title}</li>
+      ))}
+    </ul>
+  );
+}
+```
+
+```js src/Home.js hidden
+export default function Home() {
+  return <p>Welcome to my profile!</p>;
+}
+```
+
+```js src/data.js hidden
+let postsPromise;
+
+export function getPosts() {
+  if (!postsPromise) {
+    postsPromise = loadPosts();
+  }
+  return postsPromise;
+}
+
+async function loadPosts() {
+  // Add a delay so that loading is easier to observe.
+  await new Promise(resolve => setTimeout(resolve, 1500));
+
+  return Array.from({ length: 5 }, (_, index) => ({
+    id: index,
+    title: 'Post #' + (index + 1),
+  }));
+}
+```
+
+```css
+button {
+  margin-right: 8px;
+}
+```
+
+</Sandpack>
+
+To start loading the posts before the user selects the tab, render both tabs inside Activity boundaries. React begins rendering `<Posts>` while its boundary is hidden. Wait briefly before selecting **Posts**. If the hidden render has finished, the list appears immediately.
 
 <Sandpack>
 

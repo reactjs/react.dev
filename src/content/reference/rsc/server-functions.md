@@ -115,7 +115,7 @@ export async function updateName(name) {
 }
 ```
 
-```js [[1, 5, "updateName"], [1, 15, "updateName"], [2, 13, "submitAction"], [2, 27, "submitAction"]]
+```js [[1, 5, "updateName"], [1, 15, "updateName"], [2, 13, "submitAction"], [2, 28, "submitAction"]]
 // UpdateName.js
 "use client";
 

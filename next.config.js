@@ -15,9 +15,29 @@
 const nextConfig = {
   pageExtensions: ['jsx', 'js', 'ts', 'tsx', 'mdx', 'md'],
   reactStrictMode: true,
-  experimental: {
-    scrollRestoration: true,
-    reactCompiler: true,
+  reactCompiler: true,
+  cacheComponents: true,
+  serverExternalPackages: [
+    '@mdx-js/mdx',
+    'gray-matter',
+    'unist-util-visit',
+    'remark-gfm',
+    'remark-frontmatter',
+  ],
+  turbopack: {
+    // For src/contentFiles.ts.
+    rules: {
+      '*.md': {
+        loaders: ['./plugins/rawLoader.js'],
+        as: '*.js',
+      },
+    },
+    resolveAlias: {
+      'use-sync-external-store/shim': 'react',
+      esquery: 'esquery/dist/esquery.min.js',
+      raf: './src/utils/rafShim.js',
+      process: './src/utils/processShim.js',
+    },
   },
   async rewrites() {
     return {

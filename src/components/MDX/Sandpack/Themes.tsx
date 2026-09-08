@@ -44,7 +44,7 @@ export const CustomTheme = {
     mono: tailwindConfig.theme.extend.fontFamily.mono
       .join(', ')
       .replace(/"/gm, ''),
-    size: tailwindConfig.theme.extend.fontSize.code,
+    size: tailwindConfig.theme.extend.fontSize['sandpack-code'],
     lineHeight: '24px',
   },
 };

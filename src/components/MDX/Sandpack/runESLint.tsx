@@ -7,7 +7,7 @@
 
 // @ts-nocheck
 
-import {Linter} from 'eslint/lib/linter/linter';
+import {Linter} from 'eslint-linter-browserify';
 
 import type {Diagnostic} from '@codemirror/lint';
 import type {Text} from '@codemirror/text';
@@ -21,7 +21,7 @@ const getCodeMirrorPosition = (
 
 const linter = new Linter();
 
-const reactRules = require('eslint-plugin-react-hooks').rules;
+const reactRules = require('eslint-plugin-react-hooks-sandpack').rules;
 linter.defineRules({
   'react-hooks/rules-of-hooks': reactRules['rules-of-hooks'],
   'react-hooks/exhaustive-deps': reactRules['exhaustive-deps'],

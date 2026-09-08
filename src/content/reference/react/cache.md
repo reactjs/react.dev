@@ -370,7 +370,7 @@ At this time, `cache` should only be used in Server Components and the cache wil
 
 #### `memo` {/*deep-dive-memo*/}
 
-You should use [`memo`](reference/react/memo) to prevent a component re-rendering if its props are unchanged.
+You should use [`memo`](/reference/react/memo) to prevent a component re-rendering if its props are unchanged.
 
 ```js
 'use client';

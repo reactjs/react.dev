@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {useEffect, useRef} from 'react';
+import {useEffect, useEffectEvent} from 'react';
 import {useSandpack} from '@codesandbox/sandpack-react/unstyled';
 
 /**
@@ -15,18 +15,14 @@ import {useSandpack} from '@codesandbox/sandpack-react/unstyled';
  */
 export function RscFileBridge() {
   const {sandpack, dispatch, listen} = useSandpack();
-  const filesRef = useRef(sandpack.files);
-
-  // TODO: fix this with useEffectEvent
-  // eslint-disable-next-line react-compiler/react-compiler
-  filesRef.current = sandpack.files;
+  const getFiles = useEffectEvent(() => sandpack.files);
 
   useEffect(() => {
     const unsubscribe = listen((msg: any) => {
       if (msg.type !== 'done') return;
 
       const files: Record<string, string> = {};
-      for (const [path, file] of Object.entries(filesRef.current)) {
+      for (const [path, file] of Object.entries(getFiles())) {
         files[path] = file.code;
       }
 

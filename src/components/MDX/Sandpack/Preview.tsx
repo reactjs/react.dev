@@ -9,7 +9,6 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-// eslint-disable-next-line react-compiler/react-compiler
 /* eslint-disable react-hooks/exhaustive-deps */
 import {useRef, useState, useEffect, useMemo, useId} from 'react';
 import {useSandpack, SandpackStack} from '@codesandbox/sandpack-react/unstyled';
@@ -36,6 +35,25 @@ function useDebounced(value: any): any {
     }, 300);
   }, [value]);
   return saved;
+}
+
+function suppressRedundantSrcNavigation(iframe: HTMLIFrameElement) {
+  const descriptor = Object.getOwnPropertyDescriptor(
+    HTMLIFrameElement.prototype,
+    'src'
+  );
+  if (!descriptor?.get) {
+    return () => {};
+  }
+
+  // Sandpack navigates with location.replace(), then assigns the same URL to
+  // iframe.src. The second navigation adds a child-frame browser history entry.
+  Object.defineProperty(iframe, 'src', {
+    configurable: true,
+    get: () => descriptor.get!.call(iframe),
+    set: () => {},
+  });
+  return () => delete (iframe as {src?: string}).src;
 }
 
 export function Preview({
@@ -85,12 +103,13 @@ export function Preview({
     }
   }
 
-  if (rawError != null && rawError.title === 'Runtime Exception') {
-    rawError.title = 'Runtime Error';
-  }
+  const normalizedError =
+    rawError?.title === 'Runtime Exception'
+      ? {...rawError, title: 'Runtime Error'}
+      : rawError;
 
   // It changes too fast, causing flicker.
-  const error = useDebounced(rawError);
+  const error = useDebounced(normalizedError);
 
   const clientId = useId();
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
@@ -99,10 +118,12 @@ export function Preview({
 
   useEffect(function createBundler() {
     const iframeElement = iframeRef.current!;
+    const restoreSrcNavigation = suppressRedundantSrcNavigation(iframeElement);
     registerBundler(iframeElement, clientId);
 
     return () => {
       unregisterBundler(clientId);
+      restoreSrcNavigation();
     };
   }, []);
 

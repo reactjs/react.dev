@@ -9,9 +9,12 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
+'use client';
+
 import {
   createContext,
   memo,
+  use,
   useState,
   useContext,
   useId,
@@ -88,24 +91,33 @@ function FullBleed({children}) {
 }
 
 function CurrentTime() {
-  const [date, setDate] = useState(new Date());
-  const currentTime = date.toLocaleTimeString([], {
+  const [date, setDate] = useState(null);
+
+  useEffect(() => {
+    const msPerMinute = 60 * 1000;
+    let timeout;
+
+    function updateDate() {
+      setDate(new Date());
+      const now = Date.now();
+      const nextMinute = (Math.floor(now / msPerMinute) + 1) * msPerMinute;
+      timeout = setTimeout(updateDate, nextMinute - now);
+    }
+
+    updateDate();
+    return () => clearTimeout(timeout);
+  }, []);
+
+  const currentTime = date?.toLocaleTimeString([], {
     hour: 'numeric',
     minute: 'numeric',
   });
-  useEffect(() => {
-    const msPerMinute = 60 * 1000;
-    let nextMinute = Math.floor(+date / msPerMinute + 1) * msPerMinute;
 
-    const timeout = setTimeout(() => {
-      if (Date.now() > nextMinute) {
-        setDate(new Date());
-      }
-    }, nextMinute - Date.now());
-    return () => clearTimeout(timeout);
-  }, [date]);
-
-  return <span suppressHydrationWarning>{currentTime}</span>;
+  return (
+    <span className={date === null ? 'invisible' : undefined}>
+      {currentTime ?? '00:00'}
+    </span>
+  );
 }
 
 const blogSidebar = sidebarBlog.routes[1];
@@ -2357,30 +2369,6 @@ function WebIcons() {
   );
 }
 
-// TODO: upgrade React and use the built-in version.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      (result) => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      (reason) => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      }
-    );
-    throw promise;
-  }
-}
-
 let confCache = new Map();
 let talksCache = new Map();
 const loadConfDelay = 250;
@@ -2390,23 +2378,38 @@ function fetchConf(slug) {
   if (confCache.has(slug)) {
     return confCache.get(slug);
   }
+  const isInitialConference = slug === 'react-conf-2021';
+  let initialValue;
   const promise = new Promise((resolve) => {
-    setTimeout(() => {
+    const complete = (value) => {
+      initialValue = value;
+      resolve(value);
+    };
+    const load = () => {
       if (slug === 'react-conf-2021') {
-        resolve({
+        complete({
           id: 0,
           cover: reactConf2021Cover,
           name: 'React Conf 2021',
         });
       } else if (slug === 'react-conf-2019') {
-        resolve({
+        complete({
           id: 1,
           cover: reactConf2019Cover,
           name: 'React Conf 2019',
         });
       }
-    }, loadConfDelay);
+    };
+    if (isInitialConference) {
+      load();
+    } else {
+      setTimeout(load, loadConfDelay);
+    }
   });
+  if (isInitialConference) {
+    promise.status = 'fulfilled';
+    promise.value = initialValue;
+  }
   confCache.set(slug, promise);
   return promise;
 }
@@ -2415,10 +2418,16 @@ function fetchTalks(confId) {
   if (talksCache.has(confId)) {
     return talksCache.get(confId);
   }
+  const isInitialConference = confId === 0;
+  let initialValue;
   const promise = new Promise((resolve) => {
-    setTimeout(() => {
+    const complete = (value) => {
+      initialValue = value;
+      resolve(value);
+    };
+    const load = () => {
       if (confId === 0) {
-        resolve([
+        complete([
           {
             id: 'conf-2021-0',
             title: 'React 18 Keynote',
@@ -2600,7 +2609,7 @@ function fetchTalks(confId) {
           },
         ]);
       } else if (confId === 1) {
-        resolve([
+        complete([
           {
             id: 'conf-2019-0',
             title: 'Keynote (Part 1)',
@@ -2797,8 +2806,17 @@ function fetchTalks(confId) {
           },
         ]);
       }
-    }, loadTalksDelay);
+    };
+    if (isInitialConference) {
+      load();
+    } else {
+      setTimeout(load, loadTalksDelay);
+    }
   });
+  if (isInitialConference) {
+    promise.status = 'fulfilled';
+    promise.value = initialValue;
+  }
   talksCache.set(confId, promise);
   return promise;
 }

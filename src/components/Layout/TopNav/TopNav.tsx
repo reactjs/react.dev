@@ -5,6 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+'use client';
+
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
@@ -21,7 +23,7 @@ import Image from 'next/image';
 import * as React from 'react';
 import cn from 'classnames';
 import NextLink from 'next/link';
-import {useRouter} from 'next/router';
+import {usePathname} from 'next/navigation';
 import {disableBodyScroll, enableBodyScroll} from 'body-scroll-lock';
 
 import {IconClose} from 'components/Icon/IconClose';
@@ -30,7 +32,7 @@ import {IconSearch} from 'components/Icon/IconSearch';
 import {Search} from 'components/Search';
 import {Logo} from '../../Logo';
 import {SidebarRouteTree} from '../Sidebar';
-import type {RouteItem} from '../getRouteMeta';
+import {getRouteMeta, type RouteItem} from '../getRouteMeta';
 import {siteConfig} from 'siteConfig';
 import BrandMenu from './BrandMenu';
 
@@ -157,18 +159,23 @@ function Kbd(props: {children?: React.ReactNode; wide?: boolean}) {
 
 export default function TopNav({
   routeTree,
-  breadcrumbs,
   section,
 }: {
   routeTree: RouteItem;
-  breadcrumbs: RouteItem[];
   section: 'learn' | 'reference' | 'community' | 'blog' | 'home' | 'unknown';
 }) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const asPath = usePathname() || '/';
+  const [openMenuPath, setOpenMenuPath] = useState<string | null>(null);
   const [showSearch, setShowSearch] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const scrollParentRef = useRef<HTMLDivElement>(null);
-  const {asPath} = useRouter();
+  // Deriving from the path hides the menu as soon as a navigation commits.
+  // Forget the path afterwards, so going Back doesn't reopen the menu.
+  if (openMenuPath !== null && openMenuPath !== asPath) {
+    setOpenMenuPath(null);
+  }
+  const isMenuOpen = openMenuPath === asPath;
+  const {breadcrumbs} = getRouteMeta(asPath, routeTree);
 
   // HACK. Fix up the data structures instead.
   if ((routeTree as any).routes.length === 1) {
@@ -186,11 +193,6 @@ export default function TopNav({
     }
   }, [isMenuOpen]);
 
-  // Close the overlay on any navigation.
-  useEffect(() => {
-    setIsMenuOpen(false);
-  }, [asPath]);
-
   // Also close the overlay if the window gets resized past mobile layout.
   // (This is also important because we don't want to keep the body locked!)
   useEffect(() => {
@@ -198,7 +200,7 @@ export default function TopNav({
 
     function closeIfNeeded() {
       if (!media.matches) {
-        setIsMenuOpen(false);
+        setOpenMenuPath(null);
       }
     }
 
@@ -260,7 +262,7 @@ export default function TopNav({
               <button
                 type="button"
                 aria-label="Menu"
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                onClick={() => setOpenMenuPath(isMenuOpen ? null : asPath)}
                 className={cn(
                   'active:scale-95 transition-transform flex lg:hidden w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link',
                   {

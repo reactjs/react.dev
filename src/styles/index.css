@@ -463,10 +463,6 @@
     color: #58c4dc !important; /* blue-40 */
   }
 
-  .text-code {
-    font-size: calc(1em - 10%) !important;
-  }
-
   .text-gradient {
     background-clip: text;
     -webkit-background-clip: text;

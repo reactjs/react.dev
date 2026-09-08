@@ -1,1 +1,2 @@
 src/content/**/*.md
+src/components/MDX/Sandpack/sandpack-rsc/sandbox-code/src/worker-bundle.dist.js

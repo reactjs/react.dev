@@ -125,6 +125,8 @@ const useLoadingOverlayState = (
     let fadeTimeout: ReturnType<typeof setTimeout>;
 
     if (state === 'PRE_FADING' && !dependenciesLoading) {
+      // This effect advances Sandpack's transient loading state machine.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setState('FADING');
     } else if (state === 'FADING') {
       fadeTimeout = setTimeout(

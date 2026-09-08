@@ -5,6 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+'use client';
+
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */

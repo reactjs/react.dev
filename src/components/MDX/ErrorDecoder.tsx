@@ -5,6 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+'use client';
+
 import {useEffect, useState} from 'react';
 import {useErrorDecoderParams} from '../ErrorDecoderContext';
 import cn from 'classnames';
@@ -103,6 +105,8 @@ export default function ErrorDecoder() {
       }
     }
 
+    // Query arguments only exist in the browser, so hydration completes this value.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMessage(urlify(replaceArgs(message, args, '[missing argument]')));
     setIsReady(true);
   }, [errorCode, hasParams, errorMessage]);

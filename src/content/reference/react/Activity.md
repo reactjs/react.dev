@@ -181,7 +181,7 @@ Changing `mode` preserves the state of the children. Removing the boundary or ch
 
 ### Preserving DOM state while content is hidden {/*restoring-the-dom-of-hidden-components*/}
 
-Because Activity boundaries hide their children without removing them, the children's DOM is also preserved. This is useful for maintaining state held by the browser in DOM nodes.
+In React DOM, an Activity boundary hides its children without removing their DOM nodes. This preserves state held by the browser in those nodes.
 
 The Contact tab in the following example contains an uncontrolled `<textarea>`. Enter a draft, switch to the Home tab, and then return to Contact. The draft is lost because conditional rendering removes `<Contact>` and its `<textarea>` from the DOM.
 
@@ -345,7 +345,7 @@ Activity also preserves other browser-managed state, such as scroll position and
 
 #### Removing the video resets its playback position {/*removing-the-video-resets-its-playback-position*/}
 
-This version conditionally renders the active tab. Switching to Home removes the `<video>` element from the DOM, so playback starts from the beginning when you return to Video.
+The following example conditionally renders the active tab. Play the video, switch to Home, return to Video, and then select **Play**. Switching to Home removes the `<video>` element from the DOM, so playback starts from the beginning.
 
 <Sandpack>
 
@@ -422,7 +422,7 @@ button {
 
 #### Hiding the video preserves its playback position {/*hiding-the-video-preserves-its-playback-position*/}
 
-This version renders both tabs inside Activity boundaries. Switching to Home hides the `<video>` element without removing it, so playback continues from the same position when you return to Video and select **Play** again.
+The following example renders both tabs inside Activity boundaries. Play the video, switch to Home, return to Video, and then select **Play**. Switching to Home hides the `<video>` element without removing it, so playback continues from the same position.
 
 <Sandpack>
 
@@ -509,7 +509,7 @@ The ref provides access to the `<video>` DOM node. It does not store the playbac
 
 ### Pre-rendering content that is likely to become visible {/*pre-rendering-content-thats-likely-to-become-visible*/}
 
-An Activity boundary can also prepare content before the user sees it. Content inside a hidden boundary renders at a lower priority without running Effects created with `useEffect` or `useLayoutEffect`. This lets the content load code and render-time data without delaying updates to visible content:
+You can use an Activity boundary to prepare content before the user sees it. Content inside a hidden boundary renders at a lower priority without running Effects created with `useEffect` or `useLayoutEffect`. This lets the content load code and render-time data without delaying updates to visible content:
 
 ```js
 <Suspense fallback={<Loading />}>
@@ -719,7 +719,7 @@ The data source must integrate with Suspense. For example, the component can rea
 
 ### Improving hydration performance {/*speeding-up-interactions-during-page-load*/}
 
-Activity boundaries also divide server-rendered pages into units that React can hydrate independently. This is related to the selective hydration behavior of [`<Suspense>`](/reference/react/Suspense), but it does not require displaying a fallback in the initial UI.
+During hydration, Activity boundaries divide server-rendered pages into units that React can hydrate independently. This is related to the selective hydration behavior of [`<Suspense>`](/reference/react/Suspense), but it does not require displaying a fallback in the initial UI.
 
 For example, without a boundary React hydrates this page as one unit:
 
@@ -813,7 +813,7 @@ React runs the cleanup when an enclosing Activity boundary becomes hidden. Becau
 
 The `useLayoutEffect` cleanup runs as part of hiding the UI. A cleanup from `useEffect` can run later if, for example, a Suspense boundary suspends or a View Transition is in progress.
 
-The video example above includes this cleanup while demonstrating that Activity preserves the `<video>` element's playback position.
+The [video comparison](#examples-preserving-media-state) includes this cleanup while demonstrating that Activity preserves the `<video>` element's playback position.
 
 ---
 

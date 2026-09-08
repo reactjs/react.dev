@@ -67,7 +67,7 @@ Activity is useful when part of the UI may become hidden and visible again. Unli
 
 Use an Activity boundary when preserving that work is valuable—for example, for a tab the user is likely to revisit or a panel that can prepare data in the background. A hidden boundary retains its state and DOM nodes, so it continues using memory. If the content is unlikely to become visible again, conditionally rendering it may be preferable because unmounting allows React and the browser to release its resources.
 
-### Preserving state in a hidden sidebar {/*restoring-the-state-of-hidden-components*/}
+### Preserving state while content is hidden {/*restoring-the-state-of-hidden-components*/}
 
 When this condition becomes false, React removes `<Sidebar>` from the tree and discards its state:
 
@@ -172,11 +172,11 @@ Changing `mode` preserves the state of the children. Removing the boundary or ch
 
 ---
 
-### Preserving DOM state in an input {/*restoring-the-dom-of-hidden-components*/}
+### Preserving DOM state while content is hidden {/*restoring-the-dom-of-hidden-components*/}
 
 An Activity boundary also preserves state held by the browser in DOM nodes. This includes an uncontrolled input's current value, scroll position, and media playback position.
 
-In this example, enter a draft, hide the contact form, and then show it again. The `<textarea>` value remains because its DOM node was hidden rather than removed.
+In this example, enter a draft in the Contact section, switch sections, and then return to Contact. The `<textarea>` value remains because its DOM node was hidden rather than removed.
 
 <Sandpack>
 
@@ -184,27 +184,71 @@ In this example, enter a draft, hide the contact form, and then show it again. T
 import { Activity, useState } from 'react';
 
 export default function App() {
-  const [isShowingContact, setIsShowingContact] = useState(true);
+  const [activeSection, setActiveSection] = useState('contact');
 
   return (
     <>
-      <button
-        onClick={() => setIsShowingContact(showing => !showing)}
+      <div
+        aria-label='Profile sections'
+        className='section-buttons'
+        role='group'
       >
-        {isShowingContact ? 'Hide' : 'Show'} contact form
-      </button>
-      <Activity mode={isShowingContact ? 'visible' : 'hidden'}>
-        <p>
-          <label htmlFor='message'>Message</label>
-          <textarea id='message' />
-        </p>
+        <SectionButton
+          isActive={activeSection === 'home'}
+          onClick={() => setActiveSection('home')}
+        >
+          Home
+        </SectionButton>
+        <SectionButton
+          isActive={activeSection === 'contact'}
+          onClick={() => setActiveSection('contact')}
+        >
+          Contact
+        </SectionButton>
+      </div>
+
+      <Activity
+        mode={activeSection === 'home' ? 'visible' : 'hidden'}
+      >
+        <Home />
+      </Activity>
+      <Activity
+        mode={activeSection === 'contact' ? 'visible' : 'hidden'}
+      >
+        <Contact />
       </Activity>
     </>
+  );
+}
+
+function SectionButton({ isActive, onClick, children }) {
+  return (
+    <button aria-pressed={isActive} onClick={onClick}>
+      {children}
+    </button>
+  );
+}
+
+function Home() {
+  return <p>Welcome to my profile!</p>;
+}
+
+function Contact() {
+  return (
+    <p>
+      <label htmlFor='message'>Message</label>
+      <textarea id='message' />
+    </p>
   );
 }
 ```
 
 ```css
+.section-buttons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
 label,
 textarea {
   display: block;
@@ -217,70 +261,6 @@ textarea {
 </Sandpack>
 
 Preserving DOM state also means that DOM behavior can continue while content is hidden. See [Troubleshooting](#my-hidden-components-have-unwanted-side-effects) for DOM behavior that requires explicit cleanup.
-
----
-
-### Preserving video playback while content is hidden {/*preserving-video-playback-while-content-is-hidden*/}
-
-Browser-managed state in DOM nodes also includes a video's playback position. Play the video, hide it, and then show it again. The video pauses while hidden and returns at the same playback position.
-
-<Sandpack>
-
-```js
-import {
-  Activity,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from 'react';
-
-export default function App() {
-  const [isShowingVideo, setIsShowingVideo] = useState(true);
-
-  return (
-    <>
-      <button onClick={() => setIsShowingVideo(showing => !showing)}>
-        {isShowingVideo ? 'Hide' : 'Show'} video
-      </button>
-      <Activity mode={isShowingVideo ? 'visible' : 'hidden'}>
-        <VideoPlayer />
-      </Activity>
-    </>
-  );
-}
-
-function VideoPlayer() {
-  const ref = useRef(null);
-
-  useLayoutEffect(() => {
-    const video = ref.current;
-    return () => video.pause();
-  }, []);
-
-  return (
-    <video
-      aria-label='Big Buck Bunny video'
-      controls
-      playsInline
-      ref={ref}
-      src='https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4'
-    />
-  );
-}
-```
-
-```css
-video {
-  aspect-ratio: 16 / 9;
-  margin-top: 12px;
-  max-width: 100%;
-  width: 400px;
-}
-```
-
-</Sandpack>
-
-The cleanup pauses playback when the boundary becomes hidden. Because Activity preserves the `<video>` DOM node, it does not reset the playback position. See [Troubleshooting](#my-hidden-components-have-unwanted-side-effects) for why the cleanup is necessary.
 
 ---
 
@@ -500,7 +480,84 @@ React runs the cleanup when an enclosing Activity boundary becomes hidden. Becau
 
 The `useLayoutEffect` cleanup runs as part of hiding the UI. A cleanup from `useEffect` can run later if, for example, a Suspense boundary suspends or a View Transition is in progress.
 
-See [Preserving video playback while content is hidden](#preserving-video-playback-while-content-is-hidden) for a complete example.
+This complete example pauses the video when you switch to Home while preserving its playback position. When you return to Video, playback can continue from the same position without recreating the element or downloading it again.
+
+<Sandpack>
+
+```js src/App.js active
+import {
+  Activity,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react';
+
+export default function App() {
+  const [activeTab, setActiveTab] = useState('video');
+
+  return (
+    <>
+      <div aria-label='Media sections' role='group'>
+        <button
+          aria-pressed={activeTab === 'home'}
+          onClick={() => setActiveTab('home')}
+        >
+          Home
+        </button>
+        <button
+          aria-pressed={activeTab === 'video'}
+          onClick={() => setActiveTab('video')}
+        >
+          Video
+        </button>
+      </div>
+
+      <Activity mode={activeTab === 'home' ? 'visible' : 'hidden'}>
+        <p>Welcome home!</p>
+      </Activity>
+      <Activity mode={activeTab === 'video' ? 'visible' : 'hidden'}>
+        <VideoPlayer />
+      </Activity>
+    </>
+  );
+}
+
+function VideoPlayer() {
+  const ref = useRef(null);
+
+  useLayoutEffect(() => {
+    const video = ref.current;
+
+    return () => {
+      video.pause();
+    };
+  }, []);
+
+  return (
+    <video
+      aria-label='Big Buck Bunny video'
+      controls
+      playsInline
+      ref={ref}
+      src='https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4'
+    />
+  );
+}
+```
+
+```css
+button {
+  margin-right: 8px;
+}
+video {
+  aspect-ratio: 16 / 9;
+  margin-top: 12px;
+  max-width: 100%;
+  width: 400px;
+}
+```
+
+</Sandpack>
 
 </Pitfall>
 

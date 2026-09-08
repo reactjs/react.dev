@@ -179,45 +179,175 @@ Changing `mode` preserves the state of the children. Removing the boundary or ch
 
 An Activity boundary also preserves state held by the browser in DOM nodes.
 
-For example, enter a draft in the contact form, hide it, and then show it again. The `<textarea>` value remains because its DOM node was hidden rather than removed.
+The Contact tab in the following examples contains an uncontrolled `<textarea>`. Enter a draft, switch to the Home tab, and then return to Contact to compare the behavior with and without Activity.
+
+<Recipes titleText="The difference between removing and hiding a form" titleId="examples-preserving-dom-state">
+
+#### Removing the form resets its state {/*removing-the-form-resets-its-state*/}
+
+This version conditionally renders the active tab. Switching to Home removes `<Contact>` and its `<textarea>` from the DOM, so the draft is lost.
 
 <Sandpack>
 
-```js
-import { Activity, useState } from 'react';
+```js src/App.js active
+import { useState } from 'react';
+import Contact from './Contact.js';
+import Home from './Home.js';
+import TabButton from './TabButton.js';
 
 export default function App() {
-  const [isShowingContact, setIsShowingContact] = useState(true);
+  const [activeTab, setActiveTab] = useState('contact');
 
   return (
     <>
-      <button onClick={() => setIsShowingContact(showing => !showing)}>
-        {isShowingContact ? 'Hide' : 'Show'} contact form
-      </button>
-      <Activity mode={isShowingContact ? 'visible' : 'hidden'}>
-        <p>
-          <label htmlFor="message">Message</label>
-          <textarea id="message" />
-        </p>
+      <TabButton
+        isActive={activeTab === 'home'}
+        onClick={() => setActiveTab('home')}
+      >
+        Home
+      </TabButton>
+      <TabButton
+        isActive={activeTab === 'contact'}
+        onClick={() => setActiveTab('contact')}
+      >
+        Contact
+      </TabButton>
+      <hr />
+      {activeTab === 'home' && <Home />}
+      {activeTab === 'contact' && <Contact />}
+    </>
+  );
+}
+```
+
+```js src/TabButton.js hidden
+export default function TabButton({ isActive, onClick, children }) {
+  if (isActive) {
+    return <b>{children}</b>;
+  }
+
+  return <button onClick={onClick}>{children}</button>;
+}
+```
+
+```js src/Home.js hidden
+export default function Home() {
+  return <p>Welcome to my profile!</p>;
+}
+```
+
+```js src/Contact.js hidden
+export default function Contact() {
+  return (
+    <div>
+      <p>Send me a message!</p>
+      <textarea aria-label="Message" />
+      <p>You can find me online here:</p>
+      <ul>
+        <li>admin@mysite.com</li>
+        <li>+123456789</li>
+      </ul>
+    </div>
+  );
+}
+```
+
+```css
+button,
+b {
+  margin-right: 10px;
+}
+```
+
+</Sandpack>
+
+<Solution />
+
+#### Hiding the form preserves its state {/*hiding-the-form-preserves-its-state*/}
+
+This version renders both tabs in Activity boundaries. Switching tabs hides `<Contact>` without removing its DOM nodes, so the draft remains available when the tab becomes visible again.
+
+<Sandpack>
+
+```js src/App.js active
+import { Activity, useState } from 'react';
+import Contact from './Contact.js';
+import Home from './Home.js';
+import TabButton from './TabButton.js';
+
+export default function App() {
+  const [activeTab, setActiveTab] = useState('contact');
+
+  return (
+    <>
+      <TabButton
+        isActive={activeTab === 'home'}
+        onClick={() => setActiveTab('home')}
+      >
+        Home
+      </TabButton>
+      <TabButton
+        isActive={activeTab === 'contact'}
+        onClick={() => setActiveTab('contact')}
+      >
+        Contact
+      </TabButton>
+      <hr />
+      <Activity mode={activeTab === 'home' ? 'visible' : 'hidden'}>
+        <Home />
+      </Activity>
+      <Activity mode={activeTab === 'contact' ? 'visible' : 'hidden'}>
+        <Contact />
       </Activity>
     </>
   );
 }
 ```
 
-```css
-label,
-textarea {
-  display: block;
+```js src/TabButton.js hidden
+export default function TabButton({ isActive, onClick, children }) {
+  if (isActive) {
+    return <b>{children}</b>;
+  }
+
+  return <button onClick={onClick}>{children}</button>;
 }
-textarea {
-  margin-top: 4px;
+```
+
+```js src/Home.js hidden
+export default function Home() {
+  return <p>Welcome to my profile!</p>;
+}
+```
+
+```js src/Contact.js hidden
+export default function Contact() {
+  return (
+    <div>
+      <p>Send me a message!</p>
+      <textarea aria-label="Message" />
+      <p>You can find me online here:</p>
+      <ul>
+        <li>admin@mysite.com</li>
+        <li>+123456789</li>
+      </ul>
+    </div>
+  );
+}
+```
+
+```css
+button,
+b {
+  margin-right: 10px;
 }
 ```
 
 </Sandpack>
 
-The current value of an uncontrolled field belongs to its DOM node rather than React state. Activity preserves the node, so the value remains available when the boundary becomes visible again.
+<Solution />
+
+</Recipes>
 
 Activity also preserves other browser-managed state, such as scroll position and media playback position. In this example, play the video, hide it, and then show it again. When you play it again, the video continues from the same position.
 

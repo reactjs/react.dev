@@ -57,11 +57,10 @@ function TabContainer() {
   state updates that happen while it executes as Transitions. If you try to
   perform state updates in a `setTimeout`, for example, they won't be marked as
   Transitions. If the function throws an error or returns a rejected Promise,
-  React reports the error as uncaught. Unlike the `startTransition` function
-  returned by
-  [`useTransition`](/reference/react/useTransition#displaying-an-error-to-users-with-error-boundary),
-  the standalone `startTransition` function is not associated with a component,
-  so an Error Boundary does not handle these errors.
+  React reports the error as uncaught because the standalone `startTransition`
+  function is not associated with a component. [Learn how to display errors
+  from `useTransition` with an Error
+  Boundary.](/reference/react/useTransition#displaying-an-error-to-users-with-error-boundary)
 
 * You must wrap any state updates after any async requests in another `startTransition` to mark them as Transitions. This is a known limitation that we will fix in the future (see [Troubleshooting](/reference/react/useTransition#react-doesnt-treat-my-state-update-after-await-as-a-transition)).
 
@@ -102,11 +101,8 @@ With a Transition, your UI stays responsive in the middle of a re-render. For ex
 
 The standalone `startTransition` and the function returned by
 [`useTransition`](/reference/react/useTransition) both mark state updates as
-Transitions. The standalone function does not provide the `isPending` flag and
-is not associated with a component. If the function passed to it throws an
-error or returns a rejected Promise, React reports the error as uncaught instead
-of allowing an Error Boundary to handle it. Unlike `useTransition`, the
-standalone `startTransition` is not a Hook and can be called outside components.
+Transitions. Unlike `useTransition`, the standalone function does not provide
+the `isPending` flag. It is not a Hook, so you can call it outside components.
 [See Caveats.](#caveats)
 
 [Learn about Transitions and see examples on the `useTransition` page.](/reference/react/useTransition)

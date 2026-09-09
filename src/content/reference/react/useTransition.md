@@ -1567,12 +1567,7 @@ main {
 
 ### Displaying an error to users with an error boundary {/*displaying-an-error-to-users-with-error-boundary*/}
 
-The `startTransition` function returned by `useTransition` is associated with
-the component that called the Hook. If the Action passed to `startTransition`
-throws an error or returns a rejected Promise, the nearest
-[Error Boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary)
-can handle the error. Wrap the component that calls `useTransition` in an Error
-Boundary to display a fallback for these errors.
+If a function passed to `startTransition` throws an error or returns a rejected Promise, you can display an error to your user with an [error boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). To use an error boundary, wrap the component where you are calling the `useTransition` in an error boundary. Once the function passed to `startTransition` errors, the fallback for the error boundary will be displayed.
 
 <Sandpack>
 

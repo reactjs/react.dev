@@ -9,6 +9,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
+import * as React from 'react';
 import {useRef, useLayoutEffect, Fragment} from 'react';
 
 import cn from 'classnames';
@@ -33,7 +34,7 @@ function CollapseWrapper({
 }: {
   isExpanded: boolean;
   duration: number;
-  children: any;
+  children: React.ReactNode;
 }) {
   const ref = useRef<HTMLDivElement | null>(null);
   const timeoutRef = useRef<number | null>(null);

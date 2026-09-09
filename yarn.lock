@@ -7140,10 +7140,10 @@ react-remove-scroll@2.5.5:
     use-callback-ref "^1.3.0"
     use-sidecar "^1.1.2"
 
-react-server-dom-webpack@^19.2.4:
-  version "19.2.4"
-  resolved "https://registry.yarnpkg.com/react-server-dom-webpack/-/react-server-dom-webpack-19.2.4.tgz#2c0e5d3b4be09428a1e5fb25bde7d00e804ef4f4"
-  integrity sha512-zEhkWv6RhXDctC2N7yEUHg3751nvFg81ydHj8LTTZuukF/IF1gcOKqqAL6Ds+kS5HtDVACYPik0IvzkgYXPhlQ==
+react-server-dom-webpack@^19.3.0:
+  version "19.3.0"
+  resolved "https://registry.npmjs.org/react-server-dom-webpack/-/react-server-dom-webpack-19.3.0.tgz#f30eaac50578db6f9aa5a38ece7c28d17de05271"
+  integrity sha512-ymt9RkvWtW4OpIhWf1wj4u5CxnBaVbDCkz/bw3/QFmOE7+/wg8C30uiJ/QqkEdWn/UqT5c7/rOUW/eWYMwceCg==
   dependencies:
     acorn-loose "^8.3.0"
     neo-async "^2.6.1"

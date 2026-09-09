@@ -211,8 +211,8 @@ button:hover {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "^19.3.0",
-    "react-dom": "^19.3.0",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   }
 }
@@ -546,8 +546,8 @@ button:hover {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "^19.3.0",
-    "react-dom": "^19.3.0",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   }
 }
@@ -797,8 +797,8 @@ button:hover {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "^19.3.0",
-    "react-dom": "^19.3.0",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   }
 }
@@ -1048,8 +1048,8 @@ button:hover {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "^19.3.0",
-    "react-dom": "^19.3.0",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   }
 }
@@ -1301,8 +1301,8 @@ img {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "^19.3.0",
-    "react-dom": "^19.3.0",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   }
 }
@@ -1476,8 +1476,8 @@ export default function InView({ onChange, children }) {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "^19.3.0",
-    "react-dom": "^19.3.0",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   }
 }
@@ -1651,8 +1651,8 @@ iframe {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "^19.3.0",
-    "react-dom": "^19.3.0",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   }
 }
@@ -1791,8 +1791,8 @@ iframe {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "^19.3.0",
-    "react-dom": "^19.3.0",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   }
 }
@@ -1906,44 +1906,44 @@ This is especially useful for Contexts that solely exist to allow Server Compone
 ## Changelog {/*changelog*/}
 
 Other notable changes
-- `react`: Render Transitions independently instead of entangling them into a single render, so a slow Transition no longer holds up unrelated ones [#37290](https://github.com/facebook/react/pull/37290)
-- `react`: Add a warning when `use` is used incorrectly in a conditional [#37104](https://github.com/facebook/react/pull/37104)
-- `react`: Rename "form state" to "action state" in `useActionState` error messages [#35790](https://github.com/facebook/react/pull/35790)
-- `react-dom`: Add support for `onFullscreenChange` and `onFullscreenError` events [#34621](https://github.com/facebook/react/pull/34621)
-- `react-dom`: Add support for the `maskType` SVG property [#35921](https://github.com/facebook/react/pull/35921)
-- `react-dom`: Support `fetchPriority` for module resources [#36835](https://github.com/facebook/react/pull/36835)
-- `react-dom`: Fire `onReset` when React automatically resets a form after a Server Action [#35176](https://github.com/facebook/react/pull/35176)
-- `react-dom`: Include the `submitter` in `submit` events [#35590](https://github.com/facebook/react/pull/35590)
-- `react-dom`: Recognize `credentialless` as a boolean attribute on iframes [#36148](https://github.com/facebook/react/pull/36148)
-- `react-dom`: Batch updates from `resize` events until the next frame [#35117](https://github.com/facebook/react/pull/35117)
-- `react-server`: Transport `Error.cause` [#35810](https://github.com/facebook/react/pull/35810) and `AggregateError.errors` [#36156](https://github.com/facebook/react/pull/36156) to the client
-- `react-server`: Add support for `<Activity>` in Flight [#34697](https://github.com/facebook/react/pull/34697)
+- `react`: Render Transitions independently instead of entangling them into a single render, so a slow Transition no longer holds up unrelated ones [#37290](https://github.com/react/react/pull/37290)
+- `react`: Add a warning when `use` is used incorrectly in a conditional [#37104](https://github.com/react/react/pull/37104)
+- `react`: Rename "form state" to "action state" in `useActionState` error messages [#35790](https://github.com/react/react/pull/35790)
+- `react-dom`: Add support for `onFullscreenChange` and `onFullscreenError` events [#34621](https://github.com/react/react/pull/34621)
+- `react-dom`: Add support for the `maskType` SVG property [#35921](https://github.com/react/react/pull/35921)
+- `react-dom`: Support `fetchPriority` for module resources [#36835](https://github.com/react/react/pull/36835)
+- `react-dom`: Fire `onReset` when React automatically resets a form after a Server Action [#35176](https://github.com/react/react/pull/35176)
+- `react-dom`: Include the `submitter` in `submit` events [#35590](https://github.com/react/react/pull/35590)
+- `react-dom`: Recognize `credentialless` as a boolean attribute on iframes [#36148](https://github.com/react/react/pull/36148)
+- `react-dom`: Batch updates from `resize` events until the next frame [#35117](https://github.com/react/react/pull/35117)
+- `react-server`: Transport `Error.cause` [#35810](https://github.com/react/react/pull/35810) and `AggregateError.errors` [#36156](https://github.com/react/react/pull/36156) to the client
+- `react-server`: Add support for `<Activity>` in Flight [#34697](https://github.com/react/react/pull/34697)
 
 Notable bug fixes
 
-- `react`: Fix `useDeferredValue` getting stuck on an old value [#36134](https://github.com/facebook/react/pull/36134)
-- `react`: Fix context propagation into Suspense fallbacks [#36160](https://github.com/facebook/react/pull/36160) and through suspended Suspense boundaries [#35839](https://github.com/facebook/react/pull/35839)
-- `react`: Fix a hang when updating a dehydrated Suspense boundary inside a hidden tree [#37135](https://github.com/facebook/react/pull/37135)
-- `react`: Fix `useSyncExternalStore` missing store mutations that happened while an `<Activity>` tree was hidden [#36947](https://github.com/facebook/react/pull/36947)
-- `react`: Fix `useEffectEvent` to read the latest values in `forwardRef` and `memo` components [#34831](https://github.com/facebook/react/pull/34831)
-- `react`: Fix form status resetting when component state is updated [#34075](https://github.com/facebook/react/pull/34075)
-- `react`: Fix several Fast Refresh bugs with `lazy`, `memo`, and edits that change a component's kind [#36965](https://github.com/facebook/react/pull/36965), [#36964](https://github.com/facebook/react/pull/36964), [#36963](https://github.com/facebook/react/pull/36963), [#36950](https://github.com/facebook/react/pull/36950)
-- `react`: Fix a bug where `<title>` was still hoisted to `<head>` after the `<Activity>` containing the `<title>` changed mode from `visible` to `hidden` [#34983](https://github.com/facebook/react/pull/34983)
-- `react`: Don't let errors escape a hidden `<Activity>` [#35074](https://github.com/facebook/react/pull/35074)
-- `react`: Hide portal contents rendered inside a hidden `<Activity>` [#35091](https://github.com/facebook/react/pull/35091)
-- `react`: Don't reference the internal `<Offscreen>` type in error messages [#35763](https://github.com/facebook/react/pull/35763)
-- `react-dom`: Fix focus for delegated and already-focused elements [#36010](https://github.com/facebook/react/pull/36010)
-- `react-dom`: Fix a `FragmentInstance` listener leak by normalizing capture options per the DOM spec [#36047](https://github.com/facebook/react/pull/36047)
-- `react-dom`: Fix a `<ViewTransition>` crash in Mobile Safari [#35337](https://github.com/facebook/react/pull/35337)
-- `react-dom`: Fix a `<ViewTransition>` crash with `SuspenseList` [#35520](https://github.com/facebook/react/pull/35520)
-- `react-dom`: Update `defaultValue` for `type="number"` inputs to match other input types [#36980](https://github.com/facebook/react/pull/36980)
-- `react-dom`: Avoid setting `innerHTML` when it hasn't changed [#36949](https://github.com/facebook/react/pull/36949)
-- `react-dom`: Fix a false-positive hydration mismatch on `nonce` attributes [#37030](https://github.com/facebook/react/pull/37030)
-- `react-dom`: Fix `react-dom/server` hanging on Deno [#35235](https://github.com/facebook/react/pull/35235)
-- `react-server`: Fix dropped `FormData` entries in `decodeReplyFromBusboy` [#36468](https://github.com/facebook/react/pull/36468)
-- `react-server`: Fix a stack overflow with deep async chains [#35612](https://github.com/facebook/react/pull/35612) and a `RangeError` from exponential debug info growth [#37481](https://github.com/facebook/react/pull/37481)
+- `react`: Fix `useDeferredValue` getting stuck on an old value [#36134](https://github.com/react/react/pull/36134)
+- `react`: Fix context propagation into Suspense fallbacks [#36160](https://github.com/react/react/pull/36160) and through suspended Suspense boundaries [#35839](https://github.com/react/react/pull/35839)
+- `react`: Fix a hang when updating a dehydrated Suspense boundary inside a hidden tree [#37135](https://github.com/react/react/pull/37135)
+- `react`: Fix `useSyncExternalStore` missing store mutations that happened while an `<Activity>` tree was hidden [#36947](https://github.com/react/react/pull/36947)
+- `react`: Fix `useEffectEvent` to read the latest values in `forwardRef` and `memo` components [#34831](https://github.com/react/react/pull/34831)
+- `react`: Fix form status resetting when component state is updated [#34075](https://github.com/react/react/pull/34075)
+- `react`: Fix several Fast Refresh bugs with `lazy`, `memo`, and edits that change a component's kind [#36965](https://github.com/react/react/pull/36965), [#36964](https://github.com/react/react/pull/36964), [#36963](https://github.com/react/react/pull/36963), [#36950](https://github.com/react/react/pull/36950)
+- `react`: Fix a bug where `<title>` was still hoisted to `<head>` after the `<Activity>` containing the `<title>` changed mode from `visible` to `hidden` [#34983](https://github.com/react/react/pull/34983)
+- `react`: Don't let errors escape a hidden `<Activity>` [#35074](https://github.com/react/react/pull/35074)
+- `react`: Hide portal contents rendered inside a hidden `<Activity>` [#35091](https://github.com/react/react/pull/35091)
+- `react`: Don't reference the internal `<Offscreen>` type in error messages [#35763](https://github.com/react/react/pull/35763)
+- `react-dom`: Fix focus for delegated and already-focused elements [#36010](https://github.com/react/react/pull/36010)
+- `react-dom`: Fix a `FragmentInstance` listener leak by normalizing capture options per the DOM spec [#36047](https://github.com/react/react/pull/36047)
+- `react-dom`: Fix a `<ViewTransition>` crash in Mobile Safari [#35337](https://github.com/react/react/pull/35337)
+- `react-dom`: Fix a `<ViewTransition>` crash with `SuspenseList` [#35520](https://github.com/react/react/pull/35520)
+- `react-dom`: Update `defaultValue` for `type="number"` inputs to match other input types [#36980](https://github.com/react/react/pull/36980)
+- `react-dom`: Avoid setting `innerHTML` when it hasn't changed [#36949](https://github.com/react/react/pull/36949)
+- `react-dom`: Fix a false-positive hydration mismatch on `nonce` attributes [#37030](https://github.com/react/react/pull/37030)
+- `react-dom`: Fix `react-dom/server` hanging on Deno [#35235](https://github.com/react/react/pull/35235)
+- `react-server`: Fix dropped `FormData` entries in `decodeReplyFromBusboy` [#36468](https://github.com/react/react/pull/36468)
+- `react-server`: Fix a stack overflow with deep async chains [#35612](https://github.com/react/react/pull/35612) and a `RangeError` from exponential debug info growth [#37481](https://github.com/react/react/pull/37481)
 
-For a full list of changes, please see the [Changelog](https://github.com/facebook/react/blob/main/CHANGELOG.md).
+For a full list of changes, please see the [Changelog](https://github.com/react/react/blob/main/CHANGELOG.md).
 
 ---
 

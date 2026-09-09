@@ -51,17 +51,17 @@ function TabContainer() {
 
 * `startTransition` does not provide a way to track whether a Transition is pending. To show a pending indicator while the Transition is ongoing, you need [`useTransition`](/reference/react/useTransition) instead.
 
-* The standalone `startTransition` function is not associated with a component.
-  If the `action` throws an error or returns a rejected Promise, React reports
-  the error as uncaught, and an Error Boundary does not handle it. In contrast,
-  the `startTransition` function returned by
-  [`useTransition`](/reference/react/useTransition#displaying-an-error-to-users-with-error-boundary)
-  is associated with a component, so the nearest Error Boundary can handle
-  these errors.
-
 * You can wrap an update into a Transition only if you have access to the `set` function of that state. If you want to start a Transition in response to some prop or a custom Hook return value, try [`useDeferredValue`](/reference/react/useDeferredValue) instead.
 
-* The function you pass to `startTransition` is called immediately, marking all state updates that happen while it executes as Transitions. If you try to perform state updates in a `setTimeout`, for example, they won't be marked as Transitions.
+* The function you pass to `startTransition` is called immediately, marking all
+  state updates that happen while it executes as Transitions. If you try to
+  perform state updates in a `setTimeout`, for example, they won't be marked as
+  Transitions. If the function throws an error or returns a rejected Promise,
+  React reports the error as uncaught. Unlike the `startTransition` function
+  returned by
+  [`useTransition`](/reference/react/useTransition#displaying-an-error-to-users-with-error-boundary),
+  the standalone `startTransition` function is not associated with a component,
+  so an Error Boundary does not handle these errors.
 
 * You must wrap any state updates after any async requests in another `startTransition` to mark them as Transitions. This is a known limitation that we will fix in the future (see [Troubleshooting](/reference/react/useTransition#react-doesnt-treat-my-state-update-after-await-as-a-transition)).
 
@@ -103,9 +103,11 @@ With a Transition, your UI stays responsive in the middle of a re-render. For ex
 The standalone `startTransition` and the function returned by
 [`useTransition`](/reference/react/useTransition) both mark state updates as
 Transitions. The standalone function does not provide the `isPending` flag and
-is not associated with a component, so an Error Boundary cannot handle errors
-from its Action. Unlike `useTransition`, the standalone `startTransition` is not
-a Hook and can be called outside components. [See Caveats.](#caveats)
+is not associated with a component. If the function passed to it throws an
+error or returns a rejected Promise, React reports the error as uncaught instead
+of allowing an Error Boundary to handle it. Unlike `useTransition`, the
+standalone `startTransition` is not a Hook and can be called outside components.
+[See Caveats.](#caveats)
 
 [Learn about Transitions and see examples on the `useTransition` page.](/reference/react/useTransition)
 

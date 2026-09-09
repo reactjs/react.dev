@@ -387,7 +387,7 @@ function ChatRoom({ roomId }) { // Props change over time
     return () => {
       connection.disconnect();
     };
-  }, [roomId, serverUrl]); // So you tell React that this Effect "depends on" on props and state
+  }, [roomId, serverUrl]); // So you tell React that this Effect "depends on" props and state
   // ...
 }
 ```

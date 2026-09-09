@@ -47,8 +47,8 @@ A Suspense boundary waits for its content to be ready before revealing it. Any o
 - Reading a Promise with [`use`](/reference/react/use), including data streamed from [Server Components](/reference/rsc/server-components) or loaded through a [Suspense-enabled framework](#suspense-enabled-frameworks).
 - Loading a stylesheet rendered with [`<link rel="stylesheet">` and a `precedence` prop.](/reference/react-dom/components/link#special-rendering-behavior) React blocks the boundary until the stylesheet loads, up to a timeout. [See an example below.](#waiting-for-a-stylesheet-to-load)
 - Waiting for a large boundary's HTML to arrive during streaming server rendering. Sending HTML takes time, so a boundary with enough content activates even when nothing in it suspends. React reveals the content as the HTML arrives.
-- <CanaryBadge /> Loading fonts. Suspense doesn't wait for fonts by default, but a [`<ViewTransition>`](/reference/react/ViewTransition) update waits for new fonts to load, up to a timeout, so text doesn't flash with a fallback font. [See an example below.](#waiting-for-a-font-to-load)
-- <CanaryBadge /> Loading images. Suspense doesn't wait for images by default, but during a [`<ViewTransition>`](/reference/react/ViewTransition) update, React blocks the boundary until the image loads, up to a timeout. Adding an `onLoad` handler opts a specific image out. [See an example below.](#waiting-for-an-image-to-load)
+- Loading fonts. Suspense doesn't wait for fonts by default, but a [`<ViewTransition>`](/reference/react/ViewTransition) update waits for new fonts to load, up to a timeout, so text doesn't flash with a fallback font. [See an example below.](#waiting-for-a-font-to-load)
+- Loading images. Suspense doesn't wait for images by default, but during a [`<ViewTransition>`](/reference/react/ViewTransition) update, React blocks the boundary until the image loads, up to a timeout. Adding an `onLoad` handler opts a specific image out. [See an example below.](#waiting-for-an-image-to-load)
 - <ExperimentalBadge /> Performing CPU-bound render work inside a [`<Suspense defer>`](#props) boundary.
 
 <Note>
@@ -2382,7 +2382,7 @@ The server HTML will include the loading indicator. It will be replaced by the `
 
 ---
 
-### <CanaryBadge /> Providing a fallback for browser-only content {/*providing-a-fallback-for-browser-only-content*/}
+### Providing a fallback for browser-only content {/*providing-a-fallback-for-browser-only-content*/}
 
 A Suspense boundary can provide a fallback for a browser-only component. Wrap the component in `<Suspense>` and call [`use(browser())`](/reference/react/use#use-browser) inside it.
 
@@ -2515,8 +2515,8 @@ iframe {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eb8feb71-20260814",
-    "react-dom": "19.3.0-canary-eb8feb71-20260814",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   },
   "scripts": {
@@ -2661,7 +2661,7 @@ hr {
 
 ---
 
-### <CanaryBadge /> Animating from Suspense content {/*animating-from-suspense-content*/}
+### Animating from Suspense content {/*animating-from-suspense-content*/}
 
 Suspense composes with [`<ViewTransition>`](/reference/react/ViewTransition) to animate the swap from the fallback to the content. Wrap the boundary in a `<ViewTransition>`, and React treats the swap as an update, cross-fading between the fallback and the content by default:
 
@@ -2880,8 +2880,8 @@ button:hover {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eb8feb71-20260814",
-    "react-dom": "19.3.0-canary-eb8feb71-20260814",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   }
 }
@@ -2899,7 +2899,7 @@ Where you place the `<ViewTransition>` relative to the boundary determines wheth
 
 ---
 
-### <CanaryBadge /> Waiting for a font to load {/*waiting-for-a-font-to-load*/}
+### Waiting for a font to load {/*waiting-for-a-font-to-load*/}
 
 When a [`<ViewTransition>`](/reference/react/ViewTransition) animates a Suspense boundary's reveal, React waits for new fonts the content introduces, up to a timeout, so the text doesn't flash with a fallback font. This only happens during a `<ViewTransition>` update.
 
@@ -3038,8 +3038,8 @@ hr {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eb8feb71-20260814",
-    "react-dom": "19.3.0-canary-eb8feb71-20260814",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   }
 }
@@ -3049,7 +3049,7 @@ hr {
 
 ---
 
-### <CanaryBadge /> Waiting for an image to load {/*waiting-for-an-image-to-load*/}
+### Waiting for an image to load {/*waiting-for-an-image-to-load*/}
 
 When a [`<ViewTransition>`](/reference/react/ViewTransition) animates a Suspense boundary's reveal, React waits for visible images to load, up to a timeout, so the animation doesn't start with a half-loaded image. This only happens during a `<ViewTransition>` update. Adding an `onLoad` handler opts a specific image out, even inside a `<ViewTransition>`.
 
@@ -3171,8 +3171,8 @@ hr {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eb8feb71-20260814",
-    "react-dom": "19.3.0-canary-eb8feb71-20260814",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   }
 }
@@ -3182,7 +3182,7 @@ hr {
 
 ---
 
-### <CanaryBadge /> Coordinating fonts, images, and stylesheets {/*coordinating-fonts-images-and-stylesheets*/}
+### Coordinating fonts, images, and stylesheets {/*coordinating-fonts-images-and-stylesheets*/}
 
 A Suspense boundary can wait for data, stylesheets, fonts, and images at once. Waiting for fonts and images only happens during a [`<ViewTransition>`](/reference/react/ViewTransition) update. In the example below, the `ProfileCard` component suspends while its data loads, and renders a stylesheet with `precedence`, text in a new font, and a portrait. React keeps the skeleton visible while the data and the stylesheet load. The `<ViewTransition>` reveal then waits for the font and the image, so the card appears complete.
 
@@ -3388,8 +3388,8 @@ hr {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eb8feb71-20260814",
-    "react-dom": "19.3.0-canary-eb8feb71-20260814",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   }
 }

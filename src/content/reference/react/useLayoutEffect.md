@@ -734,7 +734,7 @@ However, if you're running into this problem, you have a few different options:
 
 - Replace `useLayoutEffect` with [`useEffect`.](/reference/react/useEffect) This tells React that it's okay to display the initial render result without blocking the paint (because the original HTML will become visible before your Effect runs).
 
-- <CanaryBadge /> Alternatively, call [`use(browser())`](/reference/react/use#use-browser) to mark the component as browser-only. React will replace its content up to the closest [`<Suspense>`](/reference/react/Suspense) boundary with a loading fallback (for example, a spinner or a glimmer) during server rendering.
+- Alternatively, call [`use(browser())`](/reference/react/use#use-browser) to mark the component as browser-only. React will replace its content up to the closest [`<Suspense>`](/reference/react/Suspense) boundary with a loading fallback (for example, a spinner or a glimmer) during server rendering.
 
 - Alternatively, [mark your component as client-only.](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-client-only-content) This tells React to replace its content up to the closest `<Suspense>` boundary with a loading fallback during server rendering.
 

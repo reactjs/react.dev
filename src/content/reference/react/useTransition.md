@@ -1744,8 +1744,8 @@ This is a JavaScript limitation due to React losing the scope of the async conte
 ### I want to call `useTransition` from outside a component {/*i-want-to-call-usetransition-from-outside-a-component*/}
 
 You can't call `useTransition` outside a component because it's a Hook. In this
-case, use the standalone [`startTransition`](/reference/react/startTransition)
-function instead. It marks state updates as Transitions but does not provide the
+case, the standalone [`startTransition`](/reference/react/startTransition)
+function can mark state updates as Transitions. It does not provide the
 `isPending` flag. Because the standalone function is not associated with a
 component, an Error Boundary cannot handle errors from its Action.
 

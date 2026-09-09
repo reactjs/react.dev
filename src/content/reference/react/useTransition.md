@@ -1567,7 +1567,12 @@ main {
 
 ### Displaying an error to users with an error boundary {/*displaying-an-error-to-users-with-error-boundary*/}
 
-The `startTransition` function returned by `useTransition` is associated with the component that called the Hook. If a function passed to it throws an error, React sends the error to the nearest [error boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). Wrap the component that calls `useTransition` in an error boundary to display a fallback when an Action throws.
+The `startTransition` function returned by `useTransition` is associated with
+the component that called the Hook. If the Action passed to `startTransition`
+throws an error or returns a rejected Promise, the nearest
+[Error Boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary)
+can handle the error. Wrap the component that calls `useTransition` in an Error
+Boundary to display a fallback for these errors.
 
 <Sandpack>
 
@@ -1738,7 +1743,11 @@ This is a JavaScript limitation due to React losing the scope of the async conte
 
 ### I want to call `useTransition` from outside a component {/*i-want-to-call-usetransition-from-outside-a-component*/}
 
-You can't call `useTransition` outside a component because it's a Hook. In this case, use the standalone [`startTransition`](/reference/react/startTransition) function instead. It can mark state updates as Transitions, but it is not associated with a component. This means it cannot provide an `isPending` indicator or send errors to the nearest Error Boundary.
+You can't call `useTransition` outside a component because it's a Hook. In this
+case, use the standalone [`startTransition`](/reference/react/startTransition)
+function instead. It marks state updates as Transitions but does not provide the
+`isPending` flag. Because the standalone function is not associated with a
+component, an Error Boundary cannot handle errors from its Action.
 
 ---
 

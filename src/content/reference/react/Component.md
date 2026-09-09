@@ -573,7 +573,7 @@ You should write the `render` method as a pure function, meaning that it should 
 
 #### Returns {/*render-returns*/}
 
-`render` can return any valid React node. This includes React elements such as `<div />`, strings, numbers, [portals](/reference/react-dom/createPortal), empty nodes (`null`, `undefined`, `true`, and `false`), and arrays of React nodes.
+`render` can return any valid React node. This includes React elements such as `<div />`, strings, numbers, [portals](/reference/react-dom/createPortal), empty nodes (`null`, `undefined`, `true`, and `false`), arrays of React nodes, and iterables of React nodes.
 
 #### Caveats {/*render-caveats*/}
 
@@ -582,6 +582,8 @@ You should write the `render` method as a pure function, meaning that it should 
 - `render` will not get called if [`shouldComponentUpdate`](#shouldcomponentupdate) is defined and returns `false`.
 
 - When [Strict Mode](/reference/react/StrictMode) is on, React will call `render` twice in development and then throw away one of the results. This helps you notice the accidental side effects that need to be moved out of the `render` method.
+
+- If you return an iterator from `render`, make sure each render creates a fresh iterator. Iterators are consumed on use, so a reused iterator may already be empty. When possible, prefer returning an array or another reusable iterable.
 
 - There is no one-to-one correspondence between the `render` call and the subsequent `componentDidMount` or `componentDidUpdate` call. Some of the `render` call results may be discarded by React when it's beneficial.
 

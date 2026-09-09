@@ -51,6 +51,8 @@ function TabContainer() {
 
 * `startTransition` does not provide a way to track whether a Transition is pending. To show a pending indicator while the Transition is ongoing, you need [`useTransition`](/reference/react/useTransition) instead.
 
+* The standalone `startTransition` function is not associated with a component. If the `action` throws an error or returns a rejected Promise, React reports the error as uncaught instead of sending it to an Error Boundary. To send errors to the nearest Error Boundary, use the `startTransition` function returned by [`useTransition`](/reference/react/useTransition#displaying-an-error-to-users-with-an-error-boundary).
+
 * You can wrap an update into a Transition only if you have access to the `set` function of that state. If you want to start a Transition in response to some prop or a custom Hook return value, try [`useDeferredValue`](/reference/react/useDeferredValue) instead.
 
 * The function you pass to `startTransition` is called immediately, marking all state updates that happen while it executes as Transitions. If you try to perform state updates in a `setTimeout`, for example, they won't be marked as Transitions.
@@ -92,7 +94,7 @@ With a Transition, your UI stays responsive in the middle of a re-render. For ex
 
 <Note>
 
-`startTransition` is very similar to [`useTransition`](/reference/react/useTransition), except that it does not provide the `isPending` flag to track whether a Transition is ongoing. You can call `startTransition` when `useTransition` is not available. For example, `startTransition` works outside components, such as from a data library.
+Unlike the `startTransition` function returned by [`useTransition`](/reference/react/useTransition), the standalone `startTransition` does not provide the `isPending` flag and is not associated with a component. This means React cannot identify which Error Boundary should handle errors thrown by the `action`, so it reports them as uncaught. You can call the standalone `startTransition` when `useTransition` is not available, such as from a data library outside a component.
 
 [Learn about Transitions and see examples on the `useTransition` page.](/reference/react/useTransition)
 

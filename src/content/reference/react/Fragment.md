@@ -511,8 +511,8 @@ export default function App() {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "^19.3.0",
-    "react-dom": "^19.3.0",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   }
 }
@@ -620,8 +620,8 @@ label {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "^19.3.0",
-    "react-dom": "^19.3.0",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   }
 }
@@ -716,8 +716,8 @@ p {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "^19.3.0",
-    "react-dom": "^19.3.0",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   }
 }
@@ -828,8 +828,8 @@ export default function Card({ title }) {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "^19.3.0",
-    "react-dom": "^19.3.0",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   }
 }
@@ -1018,8 +1018,8 @@ export default function Card({ title, className }) {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "^19.3.0",
-    "react-dom": "^19.3.0",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   }
 }

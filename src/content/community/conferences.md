@@ -25,6 +25,16 @@ October 21-23,  2026. In-person in Athens
 
 [Website](https://athens.cityjsconf.org/) - [Twitter](https://x.com/cityjsconf) - [Bluesky](https://bsky.app/profile/cityjsconf.bsky.social)
 
+### React Advanced London 2026 {/*react-advanced-london-2026*/}
+October 23 & 26, 2026. In-person in London, UK + online (hybrid event)
+
+[Website](https://reactadvanced.com/) - [Twitter](https://x.com/reactadvanced) - [LinkedIn](https://www.linkedin.com/showcase/react-advanced-london/)
+
+### React Summit US 2026 {/*react-summit-us-2026*/}
+November 17 & 20, 2026. In-person in New York, USA + online (hybrid event)
+
+[Website](https://reactsummit.us/) - [Twitter](https://x.com/reactsummit) - [LinkedIn](https://www.linkedin.com/showcase/reactsummit)
+
 
 ## Past Conferences {/*past-conferences*/}
 

@@ -114,8 +114,7 @@
         },
         {
           "title": "<ViewTransition>",
-          "path": "/reference/react/ViewTransition",
-          "version": "canary"
+          "path": "/reference/react/ViewTransition"
         }
       ]
     },
@@ -129,8 +128,7 @@
         },
         {
           "title": "addTransitionType",
-          "path": "/reference/react/addTransitionType",
-          "version": "canary"
+          "path": "/reference/react/addTransitionType"
         },
         {
           "title": "cache",
@@ -250,8 +248,7 @@
       "routes": [
         {
           "title": "browser",
-          "path": "/reference/react-dom/browser",
-          "version": "canary"
+          "path": "/reference/react-dom/browser"
         },
         {
           "title": "createPortal",

@@ -1035,7 +1035,7 @@ You can copy-paste the JSX from the outer `map` into a new `Recipe` component an
 ```js
 import { recipes } from './data.js';
 
-function Recipe({ id, name, ingredients }) {
+function Recipe({ name, ingredients }) {
   return (
     <div>
       <h2>{name}</h2>

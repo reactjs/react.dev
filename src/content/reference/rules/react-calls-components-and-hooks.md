@@ -11,7 +11,7 @@ React is responsible for rendering components and Hooks when necessary to optimi
 ---
 
 ## Never call component functions directly {/*never-call-component-functions-directly*/}
-Components should only be used in JSX. Don't call them as regular functions. React should call it.
+In JSX, components should only be used. Don't call them as regular functions. React should call it.
 
 React must decide when your component function is called [during rendering](/reference/rules/components-and-hooks-must-be-pure#how-does-react-run-your-code). In React, you do this using JSX.
 

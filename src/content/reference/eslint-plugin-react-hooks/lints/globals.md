@@ -67,7 +67,7 @@ function Component() {
   );
 }
 
-// ✅ Use context for global values
+// ✅ Use Context for global values
 function Component() {
   const user = useContext(UserContext);
   return <div>User: {user.id}</div>;

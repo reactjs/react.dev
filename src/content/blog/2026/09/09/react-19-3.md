@@ -1907,6 +1907,7 @@ This is especially useful for Contexts that solely exist to allow Server Compone
 
 Other notable changes
 - `react`: Render Transitions independently instead of entangling them into a single render, so a slow Transition no longer holds up unrelated ones [#37290](https://github.com/react/react/pull/37290)
+- `react-dom`: Double invoke Effects in Strict Mode during hydration, matching client-rendered roots [#35961](https://github.com/react/react/pull/35961)
 - `react`: Add a warning when `use` is used incorrectly in a conditional [#37104](https://github.com/react/react/pull/37104)
 - `react`: Rename "form state" to "action state" in `useActionState` error messages [#35790](https://github.com/react/react/pull/35790)
 - `react-dom`: Add support for `onFullscreenChange` and `onFullscreenError` events [#34621](https://github.com/react/react/pull/34621)

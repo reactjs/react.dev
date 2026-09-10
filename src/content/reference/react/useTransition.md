@@ -1742,7 +1742,7 @@ You can't call `useTransition` outside a component because it's a Hook. In this
 case, the standalone [`startTransition`](/reference/react/startTransition)
 function can mark state updates as Transitions. It does not provide the
 `isPending` flag. Because the standalone function is not associated with a
-component, an Error Boundary cannot handle errors from its Action.
+component, an Error Boundary cannot handle errors from its Transition.
 
 ---
 

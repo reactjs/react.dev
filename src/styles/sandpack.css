@@ -470,7 +470,7 @@ html.dark .sandpack--playground .sp-overlay {
 
 .sandpack .sp-layout > .sp-stack:nth-child(1) {
   /* Force vertical if there isn't enough space. */
-  min-width: 431px;
+  min-width: 389px;
   /* No min height on mobile because we know code in advance. */
   /* Max height is needed to avoid too long files. */
   max-height: 40vh;
@@ -478,7 +478,7 @@ html.dark .sandpack--playground .sp-overlay {
 
 .sandpack .sp-layout > .sp-stack:nth-child(2) {
   /* Force vertical if there isn't enough space. */
-  min-width: 431px;
+  min-width: 389px;
   /* Keep preview a fixed size on mobile to avoid jumps. */
   /* This is because we don't know its content in advance. */
   min-height: 40vh;

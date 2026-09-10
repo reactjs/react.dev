@@ -762,10 +762,10 @@ function ItemList({ artworks, onToggle }) {
 
 </Sandpack>
 
-Note how with Immer, **mutation like `artwork.seen = nextSeen` is now okay:**
+Note how with Immer, a **mutation like `artwork.seen = nextSeen` is now okay:**
 
 ```js
-updateMyTodos(draft => {
+updateYourList(draft => {
   const artwork = draft.find(a => a.id === artworkId);
   artwork.seen = nextSeen;
 });

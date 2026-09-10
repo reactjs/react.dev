@@ -894,8 +894,8 @@ h1 {
 
 </Sandpack>
 
-* Initially, `isPlayerA` is `true`. So the first position contains `Counter` state, and the second one is empty.
-* When you click the "Next player" button the first position clears but the second one now contains a `Counter`.
+* Initially, `isPlayerA` is `true`. The first position contains a `Counter` and the second position contains a `false` value. The `false` value occupies a position in the render tree even though it doesn't appear on the screen.
+* When you click the "Next player" button, the first position is replaced by a `false` value and the second one now contains a `Counter`.
 
 <DiagramGroup>
 

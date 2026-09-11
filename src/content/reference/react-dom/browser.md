@@ -206,7 +206,7 @@ iframe {
 
 <Note>
 
-In a React Server Components app, `use(browser())` must be called from a Client Component. If your framework uses Server Components by default, add the [`'use client'`](/reference/rsc/use-client) directive to that file or move the call to a child Client Component:
+`use(browser())` must be called from a Client Component. If your framework uses Server Components by default, add the [`'use client'`](/reference/rsc/use-client) directive to that file or move the call to a child Client Component:
 
 ```js {1}
 'use client';

@@ -47,7 +47,7 @@ During server rendering, `use(browser())` stops rendering the component and leav
 #### Caveats {/*caveats*/}
 
 * `use(browser())` must be inside a `<Suspense>` boundary during server rendering. Without one, the server render fails.
-* In a React Server Components app, `use(browser())` must be called from a [Client Component](/reference/rsc/use-client), not a [Server Component](/reference/rsc/server-components).
+* `use(browser())` must be called from a [Client Component](/reference/rsc/use-client), not a [Server Component](/reference/rsc/server-components).
 * Calling `browser()` by itself has no effect. To mark a component as browser-only, pass the value returned by `browser` to `use`. Do not throw it.
 
 ---

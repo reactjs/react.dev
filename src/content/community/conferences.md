@@ -25,14 +25,14 @@ October 21-23,  2026. In-person in Athens
 
 [Website](https://athens.cityjsconf.org/) - [Twitter](https://x.com/cityjsconf) - [Bluesky](https://bsky.app/profile/cityjsconf.bsky.social)
 
-
-## Past Conferences {/*past-conferences*/}
-
-
 ### React Conf Japan 2027 {/*react-conf-japan-2027*/}
 April 24,  2027. In-person in Tokyo, Japan
 
 [Website](https://reactconf.jp/) - [Twitter](https://x.com/reactconfjp)
+
+
+## Past Conferences {/*past-conferences*/}
+
 
 ### CityJS London 2026 {/*cityjs-london-2026*/}
 April 14-17,  2026. In-person in London

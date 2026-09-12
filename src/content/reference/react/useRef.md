@@ -140,7 +140,8 @@ This example uses a combination of state and refs. Both `startTime` and `now` ar
 <Sandpack>
 
 ```js
-import { useState, useRef } from 'react';
+
+import { useState, useRef, useEffect } from 'react';
 
 export default function Stopwatch() {
   const [startTime, setStartTime] = useState(null);
@@ -165,6 +166,13 @@ export default function Stopwatch() {
   if (startTime != null && now != null) {
     secondsPassed = (now - startTime) / 1000;
   }
+
+  // clear interval when component unmounts
+  useEffect(()=>{
+    return ()=>{
+      handleStop();
+    }
+  },[])
 
   return (
     <>

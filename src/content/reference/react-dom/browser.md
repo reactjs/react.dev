@@ -47,7 +47,7 @@ During server rendering, `use(browser())` stops rendering the component and leav
 #### Caveats {/*caveats*/}
 
 * `use(browser())` must be inside a `<Suspense>` boundary during server rendering. Without one, the server render fails.
-* In a React Server Components app, `use(browser())` must be called from a [Client Component](/reference/rsc/use-client), not a [Server Component](/reference/rsc/server-components).
+* `use(browser())` must be called from a [Client Component](/reference/rsc/use-client), not a [Server Component](/reference/rsc/server-components).
 * Calling `browser()` by itself has no effect. To mark a component as browser-only, pass the value returned by `browser` to `use`. Do not throw it.
 
 ---
@@ -206,7 +206,7 @@ iframe {
 
 <Note>
 
-In a React Server Components app, `use(browser())` must be called from a Client Component. If your framework uses Server Components by default, add the [`'use client'`](/reference/rsc/use-client) directive to that file or move the call to a child Client Component:
+`use(browser())` must be called from a Client Component. If your framework uses Server Components by default, add the [`'use client'`](/reference/rsc/use-client) directive to that file or move the call to a child Client Component:
 
 ```js {1}
 'use client';

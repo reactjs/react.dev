@@ -2439,7 +2439,7 @@ textarea {
 
 <Solution>
 
-Dispatching an action calls a reducer with the current state and the action, and stores the result as the next state. This is what it looks like in code:
+To implement this Hook, define a `dispatch` function. It receives an action and tells React how to calculate the next state from the previous state. This is what it looks like in code:
 
 <Sandpack>
 
@@ -2527,8 +2527,7 @@ export function useReducer(reducer, initialState) {
   const [state, setState] = useState(initialState);
 
   function dispatch(action) {
-    const nextState = reducer(state, action);
-    setState(nextState);
+    setState((prevState) => reducer(prevState, action));
   }
 
   return [state, dispatch];
@@ -2614,15 +2613,24 @@ textarea {
 
 </Sandpack>
 
-Though it doesn't matter in most cases, a slightly more accurate implementation looks like this:
+Because the reducer calculates new state from previous state, pass an updater function to `setState` whenever possible. React will call it with the previous state. Naming its parameter `prevState` makes this clear:
 
 ```js
 function dispatch(action) {
-  setState((s) => reducer(s, action));
+  setState((prevState) => reducer(prevState, action));
 }
 ```
 
-This is because the dispatched actions are queued until the next render, [similar to the updater functions.](/learn/queueing-a-series-of-state-updates)
+You might instead calculate the next state directly from `state`:
+
+```js
+function dispatch(action) {
+  const nextState = reducer(state, action);
+  setState(nextState);
+}
+```
+
+This works if you dispatch only one action before React renders again. However, React can batch multiple updates. In that case, every call to `dispatch` reads the same `state` value from the current render, so later actions can overwrite the result of earlier ones. Passing an updater function lets React apply each queued action to the state produced by the previous action, [similar to updater functions.](/learn/queueing-a-series-of-state-updates)
 
 </Solution>
 

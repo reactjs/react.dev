@@ -425,8 +425,8 @@ button:hover {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-f1f7ed2a-20260904",
-    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
     "react-scripts": "latest"
   }
 }
@@ -565,8 +565,8 @@ function Counter() {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-f1f7ed2a-20260904",
-    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
     "react-scripts": "latest"
   }
 }
@@ -789,8 +789,8 @@ button:hover {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-f1f7ed2a-20260904",
-    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
     "react-scripts": "latest"
   }
 }
@@ -1023,8 +1023,8 @@ button:hover {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-f1f7ed2a-20260904",
-    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
     "react-scripts": "latest"
   }
 }
@@ -1224,8 +1224,8 @@ button:hover {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-f1f7ed2a-20260904",
-    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
     "react-scripts": "latest"
   }
 }
@@ -1486,8 +1486,8 @@ button:hover {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-f1f7ed2a-20260904",
-    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
     "react-scripts": "latest"
   }
 }
@@ -1717,8 +1717,8 @@ button:hover {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-f1f7ed2a-20260904",
-    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
     "react-scripts": "latest"
   }
 }
@@ -1963,8 +1963,8 @@ button:hover {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-f1f7ed2a-20260904",
-    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
     "react-scripts": "latest"
   }
 }
@@ -2292,8 +2292,8 @@ button:hover {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-f1f7ed2a-20260904",
-    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
     "react-scripts": "latest"
   }
 }
@@ -2518,8 +2518,8 @@ button:hover {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-f1f7ed2a-20260904",
-    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
     "react-scripts": "latest"
   }
 }
@@ -2763,8 +2763,8 @@ button:hover {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-f1f7ed2a-20260904",
-    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
     "react-scripts": "latest"
   }
 }

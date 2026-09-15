@@ -41,10 +41,74 @@ export default function MyApp({Component, pageProps}: AppProps) {
       // However, we *also* don't want Safari grey screen during the back swipe gesture.
       // Seems like it doesn't hurt to enable auto restore *and* Next.js logic at the same time.
       history.scrollRestoration = 'auto';
-    } else {
-      // For other browsers, let Next.js set scrollRestoration to 'manual'.
-      // It seems to work better for Chrome and Firefox which don't animate the back swipe.
+      return;
     }
+
+    // For other browsers, Next.js keeps scrollRestoration as 'manual'.
+    // That breaks the browser back button after in-page hash navigations
+    // (/page -> /page#section -> back): the URL updates but scroll stays put.
+    // Save the pre-hash scroll on the current history entry, then restore it
+    // when the user navigates back to a hash-less URL on the same page.
+    // See https://github.com/reactjs/react.dev/issues/787
+    const SCROLL_KEY = '__reactDevHashScrollY';
+
+    const saveScrollBeforeHashNavigation = (event: MouseEvent) => {
+      const target = event.target;
+      if (!(target instanceof Element)) {
+        return;
+      }
+      const anchor = target.closest('a');
+      if (!anchor) {
+        return;
+      }
+      const href = anchor.getAttribute('href');
+      if (!href || !href.startsWith('#') || href === '#') {
+        return;
+      }
+      // Ignore modified clicks / new tabs — those don't use history the same way.
+      if (
+        event.defaultPrevented ||
+        event.button !== 0 ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey
+      ) {
+        return;
+      }
+      history.replaceState(
+        Object.assign({}, history.state, {[SCROLL_KEY]: window.scrollY}),
+        ''
+      );
+    };
+
+    const restoreScrollAfterHashBack = (event: PopStateEvent) => {
+      if (window.location.hash) {
+        return;
+      }
+      const state = event.state as {[SCROLL_KEY]?: number} | null;
+      const scrollY = state?.[SCROLL_KEY];
+      if (typeof scrollY !== 'number') {
+        return;
+      }
+      // Defer so we run after any competing scroll resets from the router.
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          window.scrollTo(0, scrollY);
+        });
+      });
+    };
+
+    document.addEventListener('click', saveScrollBeforeHashNavigation, true);
+    window.addEventListener('popstate', restoreScrollAfterHashBack);
+    return () => {
+      document.removeEventListener(
+        'click',
+        saveScrollBeforeHashNavigation,
+        true
+      );
+      window.removeEventListener('popstate', restoreScrollAfterHashBack);
+    };
   }, []);
 
   useEffect(() => {

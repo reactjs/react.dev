@@ -190,11 +190,11 @@ const [index, setIndex] = useState(0);
 
 > The `[` and `]` syntax here is called [array destructuring](https://javascript.info/destructuring-assignment) and it lets you read values from an array. The array returned by `useState` always has exactly two items.
 
-This is how they work together in `handleClick`:
+This is how they work together in `handleClick` (`% sculptureList.length` is used to return to the first item when the index exceeds the list index):
 
 ```js
 function handleClick() {
-  setIndex(index + 1);
+  setIndex((index + 1) % sculptureList.length);
 }
 ```
 
@@ -210,7 +210,7 @@ export default function Gallery() {
   const [index, setIndex] = useState(0);
 
   function handleClick() {
-    setIndex(index + 1);
+    setIndex((index + 1) % sculptureList.length);
   }
 
   let sculpture = sculptureList[index];
@@ -394,7 +394,7 @@ export default function Gallery() {
   const [showMore, setShowMore] = useState(false);
 
   function handleNextClick() {
-    setIndex(index + 1);
+    setIndex((index + 1) % sculptureList.length);
   }
 
   function handleMoreClick() {
@@ -759,7 +759,7 @@ export default function Gallery() {
   const [showMore, setShowMore] = useState(false);
 
   function handleNextClick() {
-    setIndex(index + 1);
+    setIndex((index + 1) % sculptureList.length);
   }
 
   function handleMoreClick() {
@@ -930,7 +930,7 @@ export default function Gallery() {
   const [showMore, setShowMore] = useState(false);
 
   function handleNextClick() {
-    setIndex(index + 1);
+    setIndex((index + 1) % sculptureList.length);
   }
 
   function handleMoreClick() {
@@ -1082,7 +1082,7 @@ export default function Gallery() {
 
   function handleNextClick() {
     if (hasNext) {
-      setIndex(index + 1);
+      setIndex((index + 1) % sculptureList.length);
     }
   }
 

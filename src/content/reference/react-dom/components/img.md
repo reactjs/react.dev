@@ -49,7 +49,7 @@ To display an image, render the [built-in browser `<img>` component](https://dev
 
 #### Caveats {/*caveats*/}
 
-* Do not pass an empty string to `src`. React warns in development and omits the attribute. To render no image, omit the `<img>` or pass `null` to `src`.
+* Do not pass an empty string to `src`. It may cause the browser to request the current page again. React warns in development and omits the attribute. To render no image, omit the `<img>` or pass `null` to `src`.
 * `<img>` cannot have children or use `dangerouslySetInnerHTML`. React throws an error if you pass either.
 * `fetchPriority="low"` does not stop React from waiting for the image to load and decode during a client-rendered View Transition update. Use `loading="lazy"` or an `onLoad` handler to opt out of that behavior.
 

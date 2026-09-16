@@ -36,6 +36,22 @@ November 17 & 20, 2026. In-person in New York, USA + online (hybrid event)
 [Website](https://reactsummit.us/) - [Twitter](https://x.com/reactsummit) - [LinkedIn](https://www.linkedin.com/showcase/reactsummit)
 
 
+### React Day Berlin 2026 {/*react-day-berlin-2026*/}
+December 4 & 7, 2026. In-person in Berlin, Germany + online (hybrid event)
+
+[Website](https://reactday.berlin/) - [Twitter](https://x.com/reactdayberlin)
+
+### React Summit Asia 2027 {/*react-summit-asia-2027*/}
+April 14 & 19, 2027. In-person in Singapore + online (hybrid event)
+
+[Website](https://reactsummit.asia/) - [Twitter](https://x.com/reactsummit)
+
+### React Summit 2027 {/*react-summit-2027*/}
+May 21 & 25, 2027. In-person in Amsterdam, Netherlands + online (hybrid event)
+
+[Website](https://reactsummit.com/) - [Twitter](https://x.com/reactsummit)
+
+
 ## Past Conferences {/*past-conferences*/}
 
 

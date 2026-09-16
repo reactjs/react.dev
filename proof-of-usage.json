@@ -1,0 +1,15 @@
+{
+  "pou": "1.0",
+  "work": "https://github.com/reactjs/react.dev",
+  "record": {
+    "path": "PROOF_OF_USAGE.md",
+    "branch": "main",
+    "format": "markdown"
+  },
+  "transports": [
+    {
+      "type": "pull_request"
+    }
+  ],
+  "basis": "licence"
+}

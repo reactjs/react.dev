@@ -42,7 +42,7 @@ December 4 & 7, 2026. In-person in Berlin, Germany + online (hybrid event)
 [Website](https://reactday.berlin/) - [Twitter](https://x.com/reactdayberlin)
 
 ### React Summit Asia 2027 {/*react-summit-asia-2027*/}
-April 14 & 19, 2027. In-person in Singapore + online (hybrid event)
+April 15 & 19, 2027. In-person in Singapore + online (hybrid event)
 
 [Website](https://reactsummit.asia/) - [Twitter](https://x.com/reactsummit)
 

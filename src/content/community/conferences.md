@@ -35,7 +35,6 @@ November 17 & 20, 2026. In-person in New York, USA + online (hybrid event)
 
 [Website](https://reactsummit.us/) - [Twitter](https://x.com/reactsummit) - [LinkedIn](https://www.linkedin.com/showcase/reactsummit)
 
-
 ### React Day Berlin 2026 {/*react-day-berlin-2026*/}
 December 4 & 7, 2026. In-person in Berlin, Germany + online (hybrid event)
 

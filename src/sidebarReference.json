@@ -221,6 +221,10 @@
           "path": "/reference/react-dom/components/textarea"
         },
         {
+          "title": "<img>",
+          "path": "/reference/react-dom/components/img"
+        },
+        {
           "title": "<link>",
           "path": "/reference/react-dom/components/link"
         },

@@ -95,7 +95,7 @@ function SubmitButton({ submitAction }) {
 
 #### Parameters {/*starttransition-parameters*/}
 
-* `action`: A function that updates some state by calling one or more [`set` functions](/reference/react/useState#setstate). React calls `action` immediately with no parameters and marks all state updates scheduled synchronously during the `action` function call as Transitions. Any async calls that are awaited in the `action` will be included in the Transition, but currently require wrapping any `set` functions after the `await` in an additional `startTransition` (see [Troubleshooting](#react-doesnt-treat-my-state-update-after-await-as-a-transition)). State updates marked as Transitions will be [non-blocking](#perform-non-blocking-updates-with-actions) and [will not display unwanted loading indicators](#preventing-unwanted-loading-indicators).
+* `action`: A function that updates some state by calling one or more [`set` functions](/reference/react/useState#setstate). The function can be synchronous or asynchronous. React calls `action` immediately with no parameters and marks all state updates scheduled during the `action` as Transitions, including updates after `await`. State updates marked as Transitions will be [non-blocking](#perform-non-blocking-updates-with-actions) and [will not display unwanted loading indicators](#preventing-unwanted-loading-indicators).
 
 #### Returns {/*starttransition-returns*/}
 
@@ -108,8 +108,6 @@ function SubmitButton({ submitAction }) {
 * You can wrap an update into a Transition only if you have access to the `set` function of that state. If you want to start a Transition in response to some prop or a custom Hook value, try [`useDeferredValue`](/reference/react/useDeferredValue) instead.
 
 * The function you pass to `startTransition` is called immediately, marking all state updates that happen while it executes as Transitions. If you try to perform state updates in a `setTimeout`, for example, they won't be marked as Transitions.
-
-* You must wrap any state updates after any async requests in another `startTransition` to mark them as Transitions. This is a known limitation that we will fix in the future (see [Troubleshooting](#react-doesnt-treat-my-state-update-after-await-as-a-transition)).
 
 * The `startTransition` function has a stable identity, so you will often see it omitted from Effect dependencies, but including it will not cause the Effect to fire. If the linter lets you omit a dependency without errors, it is safe to do. [Learn more about removing Effect dependencies.](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
 
@@ -1684,7 +1682,7 @@ startTransition(() => {
 });
 ```
 
-The function you pass to `startTransition` must be synchronous. You can't mark an update as a Transition like this:
+The function you pass to `startTransition` is called immediately, but updates must be scheduled *during* that call. You can't mark an update as a Transition if you defer it with `setTimeout`:
 
 ```js
 startTransition(() => {
@@ -1710,17 +1708,31 @@ setTimeout(() => {
 
 ### React doesn't treat my state update after `await` as a Transition {/*react-doesnt-treat-my-state-update-after-await-as-a-transition*/}
 
-When you use `await` inside a `startTransition` function, the state updates that happen after the `await` are not marked as Transitions. You must wrap state updates after each `await` in a `startTransition` call:
+In React 19, the `startTransition` function returned by `useTransition` supports async Actions. State updates after `await` are automatically included in the Transition:
 
 ```js
+const [isPending, startTransition] = useTransition();
+
 startTransition(async () => {
   await someAsyncFunction();
-  // ❌ Not using startTransition after await
+  // ✅ Updates after await are part of the Transition
   setPage('/about');
 });
 ```
 
-However, this works instead:
+This limitation only applies to the standalone [`startTransition`](/reference/react/startTransition) function. When you use it outside a component, state updates after `await` are not automatically marked as Transitions. Wrap them in another `startTransition` call:
+
+```js
+import { startTransition } from 'react';
+
+startTransition(async () => {
+  await someAsyncFunction();
+  // ❌ Not marked as a Transition with standalone startTransition
+  setPage('/about');
+});
+```
+
+This works instead:
 
 ```js
 startTransition(async () => {
@@ -1731,8 +1743,6 @@ startTransition(async () => {
   });
 });
 ```
-
-This is a JavaScript limitation due to React losing the scope of the async context. In the future, when [AsyncContext](https://github.com/tc39/proposal-async-context) is available, this limitation will be removed.
 
 ---
 

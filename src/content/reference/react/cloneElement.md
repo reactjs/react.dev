@@ -393,9 +393,9 @@ This pattern is preferred to `cloneElement` because it is more explicit.
 
 ---
 
-### Passing data through context {/*passing-data-through-context*/}
+### Passing data through Context {/*passing-data-through-context*/}
 
-Another alternative to `cloneElement` is to [pass data through context.](/learn/passing-data-deeply-with-context)
+Another alternative to `cloneElement` is to [pass data through Context.](/learn/passing-data-deeply-with-context)
 
 
 For example, you can call [`createContext`](/reference/react/createContext) to define a `HighlightContext`:
@@ -421,7 +421,7 @@ export default function List({ items, renderItem }) {
       })}
 ```
 
-With this approach, `Row` does not need to receive an `isHighlighted` prop at all. Instead, it reads the context:
+With this approach, `Row` does not need to receive an `isHighlighted` prop at all. Instead, it reads the Context:
 
 ```js src/Row.js {2}
 export default function Row({ title }) {
@@ -440,7 +440,7 @@ This allows the calling component to not know or worry about passing `isHighligh
 />
 ```
 
-Instead, `List` and `Row` coordinate the highlighting logic through context.
+Instead, `List` and `Row` coordinate the highlighting logic through Context.
 
 <Sandpack>
 
@@ -550,7 +550,7 @@ button {
 
 </Sandpack>
 
-[Learn more about passing data through context.](/reference/react/useContext#passing-data-deeply-into-the-tree)
+[Learn more about passing data through Context.](/reference/react/useContext#passing-data-deeply-into-the-tree)
 
 ---
 

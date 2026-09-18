@@ -25,6 +25,31 @@ October 21-23,  2026. In-person in Athens
 
 [Website](https://athens.cityjsconf.org/) - [Twitter](https://x.com/cityjsconf) - [Bluesky](https://bsky.app/profile/cityjsconf.bsky.social)
 
+### React Advanced London 2026 {/*react-advanced-london-2026*/}
+October 23 & 26, 2026. In-person in London, UK + online (hybrid event)
+
+[Website](https://reactadvanced.com/) - [Twitter](https://x.com/reactadvanced) - [LinkedIn](https://www.linkedin.com/showcase/react-advanced-london/)
+
+### React Summit US 2026 {/*react-summit-us-2026*/}
+November 17 & 20, 2026. In-person in New York, USA + online (hybrid event)
+
+[Website](https://reactsummit.us/) - [Twitter](https://x.com/reactsummit) - [LinkedIn](https://www.linkedin.com/showcase/reactsummit)
+
+### React Day Berlin 2026 {/*react-day-berlin-2026*/}
+December 4 & 7, 2026. In-person in Berlin, Germany + online (hybrid event)
+
+[Website](https://reactday.berlin/) - [Twitter](https://x.com/reactdayberlin) - [LinkedIn](https://www.linkedin.com/showcase/react-day-berlin/)
+
+### React Summit Asia 2027 {/*react-summit-asia-2027*/}
+April 15 & 19, 2027. In-person in Singapore + online (hybrid event)
+
+[Website](https://reactsummit.asia/) - [Twitter](https://x.com/reactsummit) - [LinkedIn](https://www.linkedin.com/showcase/reactsummit)
+
+### React Summit 2027 {/*react-summit-2027*/}
+May 21 & 25, 2027. In-person in Amsterdam, Netherlands + online (hybrid event)
+
+[Website](https://reactsummit.com/) - [Twitter](https://x.com/reactsummit) - [LinkedIn](https://www.linkedin.com/showcase/reactsummit)
+
 
 ## Past Conferences {/*past-conferences*/}
 

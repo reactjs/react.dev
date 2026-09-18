@@ -554,7 +554,7 @@ However, if you [think from the Effect's perspective,](#thinking-from-the-effect
 
 Props and state aren't the only reactive values. Values that you calculate from them are also reactive. If the props or state change, your component will re-render, and the values calculated from them will also change. This is why all variables from the component body used by the Effect should be in the Effect dependency list.
 
-Let's say that the user can pick a chat server in the dropdown, but they can also configure a default server in settings. Suppose you've already put the settings state in a [context](/learn/scaling-up-with-reducer-and-context) so you read the `settings` from that context. Now you calculate the `serverUrl` based on the selected server from props and the default server:
+Let's say that the user can pick a chat server in the dropdown, but they can also configure a default server in settings. Suppose you've already put the settings state in a [Context](/learn/scaling-up-with-reducer-and-context) so you read the `settings` from that Context. Now you calculate the `serverUrl` based on the selected server from props and the default server:
 
 ```js {3,5,10}
 function ChatRoom({ roomId, selectedServerUrl }) { // roomId is reactive

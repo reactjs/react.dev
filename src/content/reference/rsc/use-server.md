@@ -5,7 +5,7 @@ titleForTitleTag: "'use server' directive"
 
 <RSC>
 
-`'use server'` is for use with [using React Server Components](/reference/rsc/server-components).
+`'use server'` is for use with [React Server Components](/reference/rsc/server-components).
 
 </RSC>
 
@@ -139,7 +139,7 @@ To update the UI based on the result of a Server Function while supporting progr
 // requestUsername.js
 'use server';
 
-export default async function requestUsername(formData) {
+export default async function requestUsername(prevState, formData) {
   const username = formData.get('username');
   if (canRequest(username)) {
     // ...
@@ -199,7 +199,7 @@ function LikeButton() {
   return (
     <>
       <p>Total Likes: {likeCount}</p>
-      <button onClick={onClick} disabled={isPending}>Like</button>;
+      <button onClick={onClick} disabled={isPending}>Like</button>
     </>
   );
 }

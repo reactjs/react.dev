@@ -8,12 +8,9 @@ The Suspense panel in React Developer Tools lets you inspect [`<Suspense>`](/ref
 
 </Intro>
 
-{/* TODO: Replace the screenshot placeholders before marking this PR ready. */}
+The Suspense panel combines a minimap of the Suspense boundaries on the page with an inspector and reveal timeline. Use it to select boundaries, inspect the work they waited for, preview their fallbacks, and replay the order in which their content appeared.
 
-<div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
-  <img className="w-full light-image" src="/images/docs/suspense-panel/overview.png" alt="The Suspense panel showing a minimap of the page's boundaries, details for a selected boundary, and the reveal timeline." />
-  <img className="w-full dark-image" src="/images/docs/suspense-panel/overview.dark.png" alt="The Suspense panel showing a minimap of the page's boundaries, details for a selected boundary, and the reveal timeline." />
-</div>
+{/* TODO: Replace the screenshot placeholders before marking this PR ready. */}
 
 <InlineToc />
 
@@ -46,6 +43,11 @@ The examples on this page run inside embedded frames. The screenshots show how e
 The panel has a minimap and reveal timeline on the left and an inspector on the right. Drag the divider to resize them. You can also hide the inspector from the toolbar. DevTools remembers the layout between sessions.
 
 The toolbar also includes controls for selecting a Suspense boundary from the page, navigating through nested boundaries, filtering the minimap, and opening the React Developer Tools settings.
+
+<div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
+  <img className="light-image" src="/images/docs/suspense-panel/overview.png" alt="The Suspense panel showing a minimap of the page's boundaries, details for a selected boundary, and the reveal timeline." />
+  <img className="dark-image" src="/images/docs/suspense-panel/overview.dark.png" alt="The Suspense panel showing a minimap of the page's boundaries, details for a selected boundary, and the reveal timeline." />
+</div>
 
 ### Inspecting Suspense boundaries {/*inspecting-suspense-boundaries*/}
 

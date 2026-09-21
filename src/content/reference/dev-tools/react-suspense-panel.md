@@ -8,10 +8,6 @@ The Suspense panel in React Developer Tools lets you inspect [`<Suspense>`](/ref
 
 </Intro>
 
-The Suspense panel combines a minimap of the Suspense boundaries on the page with an inspector and reveal timeline. Use it to select boundaries, inspect the work they waited for, preview their fallbacks, and replay the order in which their content appeared.
-
-{/* TODO: Replace the screenshot placeholders before marking this PR ready. */}
-
 <InlineToc />
 
 ---
@@ -32,7 +28,9 @@ The panel itself does not require React Canary. For complete information about w
 
 </Note>
 
-The examples on this page run inside embedded frames. The screenshots show how each example appears in the Suspense panel. To inspect an example interactively, fork it and open its preview as a separate page. The examples use small Promise caches to demonstrate suspension. In an app, use a [Suspense-enabled framework or data source](/reference/react/Suspense#suspense-enabled-frameworks).
+The examples on this page run inside embedded frames. The screenshots show how each example appears in the Suspense panel. To inspect an example interactively, fork it and open its preview as a separate page.
+
+The examples use small Promise caches to demonstrate suspension. In an app, use a [Suspense-enabled framework or data source](/reference/react/Suspense#suspense-enabled-frameworks).
 
 ---
 
@@ -40,18 +38,20 @@ The examples on this page run inside embedded frames. The screenshots show how e
 
 ### Navigating the panel {/*navigating-the-panel*/}
 
-The panel has a minimap and reveal timeline on the left and an inspector on the right. Drag the divider to resize them. You can also hide the inspector from the toolbar. DevTools remembers the layout between sessions.
+The panel has a minimap and reveal timeline on the left and an inspector on the right. Drag the divider to resize them. You can also hide the inspector from the toolbar. The panel remembers the layout between sessions.
 
 The toolbar also includes controls for selecting a Suspense boundary from the page, navigating through nested boundaries, filtering the minimap, and opening the React Developer Tools settings.
 
+{/* TODO: Replace the screenshot placeholders before marking this PR ready. */}
+
 <div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
-  <img className="light-image" src="/images/docs/suspense-panel/overview.png" alt="The Suspense panel showing a minimap of the page's boundaries, details for a selected boundary, and the reveal timeline." />
-  <img className="dark-image" src="/images/docs/suspense-panel/overview.dark.png" alt="The Suspense panel showing a minimap of the page's boundaries, details for a selected boundary, and the reveal timeline." />
+  <img className="w-full light-image" src="/images/docs/suspense-panel/overview.png" alt="The Suspense panel showing a minimap of the page's boundaries, details for a selected boundary, and the reveal timeline." />
+  <img className="w-full dark-image" src="/images/docs/suspense-panel/overview.dark.png" alt="The Suspense panel showing a minimap of the page's boundaries, details for a selected boundary, and the reveal timeline." />
 </div>
 
 ### Inspecting Suspense boundaries {/*inspecting-suspense-boundaries*/}
 
-The main view is a minimap of the Suspense boundaries on the page. Each outlined region represents the content inside a boundary and matches its position on the page. Blue boundaries rendered on the client, green boundaries rendered on the server, and yellow boundaries rendered in another named environment.
+The main view is a minimap of the Suspense boundaries on the page. Each outlined region represents the content inside a boundary and matches its position on the page. Blue indicates client-rendered boundaries, green indicates server-rendered boundaries, and yellow indicates boundaries rendered in another named environment. The timeline label shows the environment's name.
 
 This example contains an outer boundary for the artist details and a nested boundary for the albums:
 
@@ -184,9 +184,16 @@ function wait(ms) {
 
 </Sandpack>
 
-Hover over a region in the minimap to highlight its content on the page. Select a region to inspect that boundary. Double-click it to alternate between the timeline steps immediately before and after React revealed its content. Select the minimap background to inspect the root, or double-click it to return to the initial paint. For nested boundaries, use the breadcrumbs above the minimap to move through their hierarchy.
+Use the minimap to find and inspect boundaries:
 
-You can also select **Inspect Suspense Nodes** in the toolbar, and then select content on the page. DevTools selects the nearest Suspense boundary.
+- Hover over a region to highlight its content on the page.
+- Select a region to inspect that boundary.
+- Double-click a region to alternate between the timeline steps immediately before and after React revealed its content.
+- Select the minimap background to inspect the root, or double-click it to return to the initial paint.
+
+For nested boundaries, use the breadcrumbs above the minimap to move through their hierarchy.
+
+You can also select **Inspect Suspense Nodes** in the toolbar, then select content on the page. The panel selects the nearest Suspense boundary.
 
 <div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
   <img className="w-full light-image" src="/images/docs/suspense-panel/boundary-map.png" alt="Nested Suspense boundaries in the panel minimap." />
@@ -279,11 +286,13 @@ async function getBiography() {
 
 </Sandpack>
 
-With a development build of React 19.2 or later, DevTools can show causes such as `lazy`, Promises read with `use`, and resources including stylesheets, fonts, and images. Each cause includes a time bar. Hover over it to see how long the work took and, for a resource, its size. Expand a cause to inspect where the work started and where React awaited it, the Components involved, and the resolved or rejected value. Consecutive causes with the same name are grouped together.
+The **Suspended by** section can show causes such as Components loaded with `lazy`, Promises read with `use`, and resources including stylesheets, fonts, and images.
 
-While a boundary is still waiting, the inspector displays **suspended...** until the cause finishes loading. If React could not retain the information needed to identify a cause, the inspector explains whether this is because of the React version, a production build, or a Promise thrown without `use`.
+Each cause includes a time bar. Hover over it to see how long the work took and, for a resource, its size. Expand a cause to inspect where the work started and where React awaited it, the Components involved, and the resolved or rejected value. Consecutive causes with the same name are grouped together.
 
 Select the clipboard button in the **Suspended by** heading to copy all suspension data.
+
+While a boundary is still waiting, the inspector displays **suspended...** until the work completes. If React could not retain the information needed to identify a cause, the inspector explains whether this is because of the React version, a production build, or a Promise thrown without `use`.
 
 <div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
   <img className="w-full light-image" src="/images/docs/suspense-panel/suspended-by.png" alt="The Suspended by section for a selected Suspense boundary." />
@@ -417,7 +426,7 @@ async function loadProfile() {
 
 </Sandpack>
 
-The suspend control is disabled while the boundary is waiting for its content to load.
+**Suspend the selected component** is disabled while the boundary is waiting for its content to load.
 
 <div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
   <img className="w-full light-image" src="/images/docs/suspense-panel/forced-fallback.png" alt="A selected Suspense boundary displaying its fallback after it was suspended from the panel." />
@@ -667,6 +676,6 @@ If the page contains a boundary but it does not appear, turn off **Unique Suspen
 
 ### I can't see what caused a boundary to suspend {/*i-cant-see-what-caused-a-boundary-to-suspend*/}
 
-Use a development build of React 19.2 or later to see complete information about suspension causes. Production builds and older versions of React may not retain all the debugging information that the panel needs.
+If some cause information is missing, inspect a development build of React 19.2 or later.
 
-If the inspector says that something threw a Promise, DevTools cannot identify the cause as precisely. If you control the data source, provide the Promise to [`use`](/reference/react/use) instead of throwing it directly.
+If the inspector says that something threw a Promise, it cannot show exactly which work suspended the boundary. If you control the data source, provide the Promise to [`use`](/reference/react/use) instead of throwing it directly.

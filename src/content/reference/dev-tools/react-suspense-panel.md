@@ -8,17 +8,11 @@ The Suspense panel in React Developer Tools lets you inspect [`<Suspense>`](/ref
 
 </Intro>
 
-<Canary>
-
-The Suspense panel is currently available in the React Developer Tools extension for Chrome when it connects to a development build of React 19.3 Canary. It is not available for production builds. Other browser integrations may not include it yet.
-
-</Canary>
-
 {/* TODO: Replace the screenshot placeholders before marking this PR ready. */}
 
 <div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
-  <img className="w-full light-image" src="/images/docs/suspense-panel/overview.png" alt="The Suspense panel showing a map of the page's boundaries, details for a selected boundary, and the reveal timeline." />
-  <img className="w-full dark-image" src="/images/docs/suspense-panel/overview.dark.png" alt="The Suspense panel showing a map of the page's boundaries, details for a selected boundary, and the reveal timeline." />
+  <img className="w-full light-image" src="/images/docs/suspense-panel/overview.png" alt="The Suspense panel showing a minimap of the page's boundaries, details for a selected boundary, and the reveal timeline." />
+  <img className="w-full dark-image" src="/images/docs/suspense-panel/overview.dark.png" alt="The Suspense panel showing a minimap of the page's boundaries, details for a selected boundary, and the reveal timeline." />
 </div>
 
 <InlineToc />
@@ -29,21 +23,33 @@ The Suspense panel is currently available in the React Developer Tools extension
 
 To open the Suspense panel:
 
-1. [Install React Developer Tools for Chrome](/learn/react-developer-tools#browser-extension).
-2. Open a page that uses a development build of React 19.3 Canary.
-3. Open the browser developer tools and select **Suspense ⚛**.
+1. Install React Developer Tools 8.0 or later for Chrome, or update an existing installation. See the [browser extension installation instructions](/learn/react-developer-tools#browser-extension).
+2. Open a page built with React.
+3. Open the browser developer tools and select **Suspense**.
 
 If the panel does not appear, reload the page with the browser developer tools open.
 
-The examples on this page run inside embedded frames. The screenshots show how each example appears in the Suspense panel. To inspect an example interactively, fork it and open its preview as a separate page.
+<Note>
+
+The panel itself does not require React Canary. For complete information about what caused a boundary to suspend, use a development build of React 19.2 or later. The panel can also inspect older versions of React and production builds, but information about some causes may be unavailable. In these cases, the inspector explains why it cannot show the exact cause.
+
+</Note>
+
+The examples on this page run inside embedded frames. The screenshots show how each example appears in the Suspense panel. To inspect an example interactively, fork it and open its preview as a separate page. The examples use small Promise caches to demonstrate suspension. In an app, use a [Suspense-enabled framework or data source](/reference/react/Suspense#suspense-enabled-frameworks).
 
 ---
 
 ## Panel features {/*panel-features*/}
 
+### Navigating the panel {/*navigating-the-panel*/}
+
+The panel has a minimap and reveal timeline on the left and an inspector on the right. Drag the divider to resize them. You can also hide the inspector from the toolbar. DevTools remembers the layout between sessions.
+
+The toolbar also includes controls for selecting a Suspense boundary from the page, navigating through nested boundaries, filtering the minimap, and opening the React Developer Tools settings.
+
 ### Inspecting Suspense boundaries {/*inspecting-suspense-boundaries*/}
 
-The main view is a scaled map of the Suspense boundaries on the page. Each outlined region represents the content inside a boundary.
+The main view is a minimap of the Suspense boundaries on the page. Each outlined region represents the content inside a boundary and matches its position on the page. Blue boundaries rendered on the client, green boundaries rendered on the server, and yellow boundaries rendered in another named environment.
 
 This example contains an outer boundary for the artist details and a nested boundary for the albums:
 
@@ -164,8 +170,8 @@ function wait(ms) {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eb8feb71-20260814",
-    "react-dom": "19.3.0-canary-eb8feb71-20260814",
+    "react": "latest",
+    "react-dom": "latest",
     "react-scripts": "latest"
   },
   "scripts": {
@@ -176,18 +182,18 @@ function wait(ms) {
 
 </Sandpack>
 
-Hover over a region in the map to highlight its content on the page. Select a region to inspect that boundary. For nested boundaries, use the breadcrumbs above the map to move through their hierarchy.
+Hover over a region in the minimap to highlight its content on the page. Select a region to inspect that boundary. Double-click it to alternate between the timeline steps immediately before and after React revealed its content. Select the minimap background to inspect the root, or double-click it to return to the initial paint. For nested boundaries, use the breadcrumbs above the minimap to move through their hierarchy.
 
-You can also select the inspect button in the panel, and then select content on the page.
+You can also select **Inspect Suspense Nodes** in the toolbar, and then select content on the page. DevTools selects the nearest Suspense boundary.
 
 <div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
-  <img className="w-full light-image" src="/images/docs/suspense-panel/boundary-map.png" alt="Nested Suspense boundaries in the panel map." />
-  <img className="w-full dark-image" src="/images/docs/suspense-panel/boundary-map.dark.png" alt="Nested Suspense boundaries in the panel map." />
+  <img className="w-full light-image" src="/images/docs/suspense-panel/boundary-map.png" alt="Nested Suspense boundaries in the panel minimap." />
+  <img className="w-full dark-image" src="/images/docs/suspense-panel/boundary-map.dark.png" alt="Nested Suspense boundaries in the panel minimap." />
 </div>
 
 ### Finding what caused a boundary to suspend {/*finding-what-caused-a-boundary-to-suspend*/}
 
-After you select a boundary, the inspector shows whether it is suspended and which Components rendered it. The **Suspended by** section shows the work that caused it to suspend.
+After you select a boundary, the inspector shows whether it is suspended and which Components rendered the boundary. The **Suspended by** section lists the work that caused it to suspend.
 
 In this example, one boundary waits for a Promise read with [`use`](/reference/react/use), while another waits for a Component loaded with [`lazy`](/reference/react/lazy):
 
@@ -259,8 +265,8 @@ async function getBiography() {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eb8feb71-20260814",
-    "react-dom": "19.3.0-canary-eb8feb71-20260814",
+    "react": "latest",
+    "react-dom": "latest",
     "react-scripts": "latest"
   },
   "scripts": {
@@ -271,7 +277,11 @@ async function getBiography() {
 
 </Sandpack>
 
-Development builds can show causes such as `lazy`, Promises read with `use`, and resources including stylesheets, fonts, and images. Expand a cause to inspect the available details and timing.
+With a development build of React 19.2 or later, DevTools can show causes such as `lazy`, Promises read with `use`, and resources including stylesheets, fonts, and images. Each cause includes a time bar. Hover over it to see how long the work took and, for a resource, its size. Expand a cause to inspect where the work started and where React awaited it, the Components involved, and the resolved or rejected value. Consecutive causes with the same name are grouped together.
+
+While a boundary is still waiting, the inspector displays **suspended...** until the cause finishes loading. If React could not retain the information needed to identify a cause, the inspector explains whether this is because of the React version, a production build, or a Promise thrown without `use`.
+
+Select the clipboard button in the **Suspended by** heading to copy all suspension data.
 
 <div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
   <img className="w-full light-image" src="/images/docs/suspense-panel/suspended-by.png" alt="The Suspended by section for a selected Suspense boundary." />
@@ -280,7 +290,9 @@ Development builds can show causes such as `lazy`, Promises read with `use`, and
 
 ### Previewing a fallback {/*previewing-a-fallback*/}
 
-After this profile finishes loading, select its boundary in the panel. Use the suspend control in the inspector to replace the profile with its fallback. Use the control again to reveal the content.
+You can force a resolved Suspense boundary to display its fallback. This lets you inspect a loading state without changing the app's data or adding temporary code.
+
+After the profile in this example finishes loading, select its boundary in the minimap. Select **Suspend the selected component** in the inspector to replace the profile with its fallback. Select **Unsuspend the selected component** to reveal the content again.
 
 <Sandpack>
 
@@ -391,8 +403,8 @@ async function loadProfile() {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eb8feb71-20260814",
-    "react-dom": "19.3.0-canary-eb8feb71-20260814",
+    "react": "latest",
+    "react-dom": "latest",
     "react-scripts": "latest"
   },
   "scripts": {
@@ -403,7 +415,7 @@ async function loadProfile() {
 
 </Sandpack>
 
-The suspend control is not available while the boundary is already suspended. Forcing a boundary to suspend lets you check its loading state without changing the app's data or adding temporary code.
+The suspend control is disabled while the boundary is waiting for its content to load.
 
 <div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
   <img className="w-full light-image" src="/images/docs/suspense-panel/forced-fallback.png" alt="A selected Suspense boundary displaying its fallback after it was suspended from the panel." />
@@ -541,8 +553,8 @@ async function getData(url) {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eb8feb71-20260814",
-    "react-dom": "19.3.0-canary-eb8feb71-20260814",
+    "react": "latest",
+    "react-dom": "latest",
     "react-scripts": "latest"
   },
   "scripts": {
@@ -553,9 +565,9 @@ async function getData(url) {
 
 </Sandpack>
 
-Use the previous and next buttons or drag the timeline to move between steps. Select play to advance through the steps automatically. The panel updates the inspected page to show the fallbacks and content that were visible at each step.
+Use the previous and next buttons, select a timeline marker, or drag the timeline to move between steps. Select **Play** to advance through the steps automatically. The panel updates the inspected page to show the fallbacks and content that were visible at each step. Boundary reveals also replay their View Transitions.
 
-The timeline previews the reveal sequence. It is not a performance recording and does not represent how long each boundary took to load.
+The distance between steps represents their reveal order, not elapsed time. To inspect how long work took, select a boundary and inspect the time bars in **Suspended by**.
 
 <div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
   <img className="w-full light-image" src="/images/docs/suspense-panel/reveal-timeline.png" alt="The Suspense panel timeline showing the initial paint and the order in which boundaries revealed their content." />
@@ -564,9 +576,9 @@ The timeline previews the reveal sequence. It is not a performance recording and
 
 ### Showing all boundaries {/*showing-all-boundaries*/}
 
-By default, the panel hides boundaries that do not suspend independently. This includes a boundary that never suspends and one that always reveals with its parent boundary.
+By default, the **Unique Suspenders** filter shows only boundaries with their own suspension causes. It hides boundaries that never suspended and boundaries that waited for exactly the same work as their parent.
 
-The boundary around the heading in this example never suspends. Turn off the boundary filter to include it in the map:
+The boundary around the heading in this example never suspends. Turn off **Unique Suspenders** to include it in the minimap:
 
 <Sandpack>
 
@@ -618,8 +630,8 @@ async function loadAlbums() {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eb8feb71-20260814",
-    "react-dom": "19.3.0-canary-eb8feb71-20260814",
+    "react": "latest",
+    "react-dom": "latest",
     "react-scripts": "latest"
   },
   "scripts": {
@@ -641,12 +653,18 @@ async function loadAlbums() {
 
 ### I don't see the Suspense panel {/*i-dont-see-the-suspense-panel*/}
 
-Check that you are using the React Developer Tools extension for Chrome and that the inspected page uses a development build of React 19.3 Canary. Reload the page after opening the browser developer tools so the extension can detect React.
+Update the React Developer Tools extension for Chrome to version 8.0 or later. In the React Developer Tools settings, check that **Hide Suspense tab** is turned off.
 
-Chrome keeps a custom developer tools panel after an extension creates it. This means the Suspense panel can remain visible if you navigate from a compatible app to a page that uses another version of React. Close and reopen the browser developer tools to check whether the current page supports the panel.
+After updating the extension or changing this setting, close and reopen the browser developer tools.
 
-### The panel does not show any boundaries {/*the-panel-does-not-show-any-boundaries*/}
+### I don't see any Suspense boundaries {/*i-dont-see-any-suspense-boundaries*/}
 
 The panel only shows boundaries rendered with [`<Suspense>`](/reference/react/Suspense). If the panel says that the root contains no Suspense nodes, check that the inspected page has rendered a boundary.
 
-If the page contains a boundary but it does not appear, turn off the boundary filter.
+If the page contains a boundary but it does not appear, turn off **Unique Suspenders**.
+
+### I can't see what caused a boundary to suspend {/*i-cant-see-what-caused-a-boundary-to-suspend*/}
+
+Use a development build of React 19.2 or later to see complete information about suspension causes. Production builds and older versions of React may not retain all the debugging information that the panel needs.
+
+If the inspector says that something threw a Promise, DevTools cannot identify the cause as precisely. If you control the data source, provide the Promise to [`use`](/reference/react/use) instead of throwing it directly.

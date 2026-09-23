@@ -160,40 +160,60 @@ function ProfilePlaceholder() {
   );
 }
 
-export default function App() {
-  const [viewTransitionSrc, setViewTransitionSrc] = useState(null);
-  const [plainSrc, setPlainSrc] = useState(null);
+function ProfileInViewTransition({ src }) {
+  return (
+    <ViewTransition>
+      <Suspense fallback={<ProfilePlaceholder />}>
+        <Profile src={src} />
+      </Suspense>
+    </ViewTransition>
+  );
+}
+
+function ProfileWithViewTransition() {
+  const [src, setSrc] = useState(null);
   return (
     <>
       <button
         onClick={() => {
           startTransition(() => {
-            setViewTransitionSrc(freshImageUrl());
+            setSrc(freshImageUrl());
           });
         }}>
         Show profile with View Transition
       </button>
-      {viewTransitionSrc && (
-        <ViewTransition>
-          <Suspense fallback={<ProfilePlaceholder />}>
-            <Profile src={viewTransitionSrc} />
-          </Suspense>
-        </ViewTransition>
-      )}
-      <hr />
+      {src && <ProfileInViewTransition src={src} />}
+    </>
+  );
+}
+
+function ProfileWithoutViewTransition() {
+  const [src, setSrc] = useState(null);
+  return (
+    <>
       <button
         onClick={() => {
           startTransition(() => {
-            setPlainSrc(freshImageUrl());
+            setSrc(freshImageUrl());
           });
         }}>
         Show profile without View Transition
       </button>
-      {plainSrc && (
+      {src && (
         <Suspense fallback={<ProfilePlaceholder />}>
-          <Profile src={plainSrc} />
+          <Profile src={src} />
         </Suspense>
       )}
+    </>
+  );
+}
+
+export default function App() {
+  return (
+    <>
+      <ProfileWithViewTransition />
+      <hr />
+      <ProfileWithoutViewTransition />
     </>
   );
 }

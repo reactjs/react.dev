@@ -129,7 +129,7 @@ During a client-rendered [`<ViewTransition>`](/reference/react/ViewTransition) u
 
 When a Suspense boundary reveals streamed content inside a `<ViewTransition>`, React may also wait for visible images with a non-empty `src` that do not have `loading="lazy"`. React stops waiting after a timeout so that a slow image does not block the update indefinitely.
 
-In this example, each button calls [`startTransition`](/reference/react/startTransition) to schedule its state update as a Transition. The first button renders the Suspense boundary inside a `<ViewTransition>`, so React shows a profile skeleton until the portrait has loaded. The second button renders the Suspense boundary outside a `<ViewTransition>`, so the card appears immediately and the browser displays the image after it loads:
+In this example, [`startTransition`](/reference/react/startTransition) marks both state updates as Transitions. Compare what happens when React renders the image inside and outside a `<ViewTransition>`:
 
 <Sandpack>
 

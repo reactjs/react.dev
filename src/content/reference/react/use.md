@@ -1548,12 +1548,15 @@ If `use` causes a suspend and `use` is no longer called after resuming, every la
 
 ```js
 function Album() {
+  const tracksPromise = fetchData('/tracks');
+  const promiseStatus = tracksPromise.status === 'fulfilled';
+
   // 🔴 First `use` is called and causes a suspend. When resuming the
-  // value for `cache.tracks` is used and `use` is no longer called
-  const tracks = cache.tracks ?? use(fetchData('/tracks'));
+  // Promise is settled and `use` is no longer called
+  const tracks = promiseStatus ? tracksPromise.value : use(tracksPromise);
 
   // Now the first `use(Promise)` call, so the Promise for the first
-  // position (`fetchData('/tracks')`) is passed to it
+  // position (`tracksPromise`) is passed to it
   const artist = use(fetchData('/artist'));
 }
 ```

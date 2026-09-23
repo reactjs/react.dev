@@ -1540,34 +1540,32 @@ See [caching Promises for Client Components](#caching-promises-for-client-compon
 
 ---
 
-### `use` returns the value of a different Promise {/*wrong-promise-value*/}
+### I get the value of a different Promise from `use` {/*wrong-promise-value*/}
 
-On the server, React matches each `use` call to its Promise by call order, not by the Promise itself. If a component suspends and runs again, React reuses the Promise already recorded at each position.
+On the server, React matches each `use` call to its Promise by call order, not by the Promise itself. A component suspends while the Promise passed to `use` is pending, then runs again once that Promise resolves. When resuming, React reuses the Promise already recorded at each position.
 
-If `use` is called conditionally, and the condition stops `use` from being called once its Promise resolves, the next `use` call takes the skipped position and receives the earlier Promise's value:
-
-```js
-function Album() {
-  // 🔴 Called on the first attempt, which resolves `tracksPromise`
-  // and sets `cache.tracks`. Skipped on the attempt after that.
-  const tracks = cache.tracks ?? use(tracksPromise);
-
-  // Now the 1st `use` call instead of the 2nd, so React returns
-  // the Promise recorded in that position: `tracksPromise`.
-  const artist = use(artistPromise);
-}
-```
-
-To fix this, move the `use` calls out of the conditions so the same `use` calls run in the same order on every attempt:
+If `use` causes a suspend and `use` is no longer called after resuming, every later `use` call with a Promise shifts up a position. This means `use` may be passed a Promise meant for a different callsite. This happens when a component stops calling `use` once its data is cached:
 
 ```js
 function Album() {
-  // ✅ Always the 1st and 2nd `use` calls
-  const loadedTracks = use(tracksPromise);
-  const artist = use(artistPromise);
+  // 🔴 First `use` is called and causes a suspend. When resuming the
+  // value for `cache.tracks` is used and `use` is no longer called
+  const tracks = cache.tracks ?? use(fetchData('/tracks'));
 
-  const tracks = cache.tracks ?? loadedTracks;
+  // Now the first `use(Promise)` call, so the Promise for the first
+  // position (`fetchData('/tracks')`) is passed to it
+  const artist = use(fetchData('/artist'));
 }
 ```
 
-This does not affect the browser.
+As described in [this pitfall](#conditional-use), always pass the Promise to `use` and let React read it:
+
+```js
+function Album() {
+  // ✅ Both Promises are always passed to `use`
+  const tracks = use(fetchData('/tracks'));
+  const artist = use(fetchData('/artist'));
+}
+```
+
+This does not affect `use` when called in the browser.

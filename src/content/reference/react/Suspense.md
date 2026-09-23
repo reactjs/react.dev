@@ -3053,21 +3053,23 @@ hr {
 
 When a [`<ViewTransition>`](/reference/react/ViewTransition) animates a Suspense boundary's reveal, React waits for visible images to load, up to a timeout, so the animation doesn't start with a half-loaded image. This only happens during a `<ViewTransition>` update. Adding an `onLoad` handler opts a specific image out, even inside a `<ViewTransition>`.
 
-In the example below, the Suspense boundary is wrapped in a `<ViewTransition>` and shows a profile skeleton until the portrait has loaded.
-
-For comparison, the second button performs the same update without React. Nothing waits for the image, so the card appears immediately and the image pops in when it loads:
+In this example, [`startTransition`](/reference/react/startTransition) marks both state updates as Transitions. Compare what happens when React renders the image inside and outside a `<ViewTransition>`:
 
 <Sandpack>
 
 ```js
-import { ViewTransition, Suspense, useState, startTransition } from 'react';
+import {
+  ViewTransition,
+  Suspense,
+  useState,
+  startTransition,
+} from 'react';
 import { freshImageUrl } from './image.js';
-import VanillaProfile from './VanillaProfile.js';
 
 function Profile({ src }) {
   return (
     <div className="card">
-      <img src={src} alt="Jack Pope" width={80} height={80} />
+      <img src={src} alt="" width={80} height={80} />
       <p>Jack Pope</p>
     </div>
   );
@@ -3083,47 +3085,39 @@ function ProfilePlaceholder() {
 }
 
 export default function App() {
-  const [src, setSrc] = useState(null);
+  const [viewTransitionSrc, setViewTransitionSrc] = useState(null);
+  const [plainSrc, setPlainSrc] = useState(null);
   return (
     <>
       <button
         onClick={() => {
           startTransition(() => {
-            setSrc(freshImageUrl());
+            setViewTransitionSrc(freshImageUrl());
           });
         }}>
-        Show profile
+        Show profile with View Transition
       </button>
-      {src && (
+      {viewTransitionSrc && (
         <ViewTransition>
           <Suspense fallback={<ProfilePlaceholder />}>
-            <Profile src={src} />
+            <Profile src={viewTransitionSrc} />
           </Suspense>
         </ViewTransition>
       )}
       <hr />
-      <VanillaProfile />
-    </>
-  );
-}
-```
-
-```js src/VanillaProfile.js
-import { useRef } from 'react';
-import { freshImageUrl } from './image.js';
-
-export default function VanillaProfile() {
-  const ref = useRef(null);
-  function show() {
-    ref.current.innerHTML = `<div class="card">
-      <img src="${freshImageUrl()}" alt="Jack Pope" width="80" height="80" />
-      <p>Jack Pope</p>
-    </div>`;
-  }
-  return (
-    <>
-      <button onClick={show}>Show profile (without React)</button>
-      <div ref={ref} />
+      <button
+        onClick={() => {
+          startTransition(() => {
+            setPlainSrc(freshImageUrl());
+          });
+        }}>
+        Show profile without View Transition
+      </button>
+      {plainSrc && (
+        <Suspense fallback={<ProfilePlaceholder />}>
+          <Profile src={plainSrc} />
+        </Suspense>
+      )}
     </>
   );
 }
@@ -3180,6 +3174,8 @@ hr {
 
 </Sandpack>
 
+Inside `<ViewTransition>`, React keeps the skeleton visible while it waits for the image, up to a timeout. Outside it, React does not wait for the image before committing the card.
+
 ---
 
 ### Coordinating fonts, images, and stylesheets {/*coordinating-fonts-images-and-stylesheets*/}
@@ -3202,7 +3198,7 @@ function ProfileCard({ resources }) {
     <>
       <link rel="stylesheet" href={resources.stylesheet} precedence="default" />
       <div className="profile-card">
-        <img src={resources.image} alt="Jack Pope" width={80} height={80} />
+        <img src={resources.image} alt="" width={80} height={80} />
         <div>
           <p className="name">Jack Pope</p>
           <p className="bio">{quote}</p>
@@ -3274,7 +3270,7 @@ export default function VanillaProfileCard() {
         .bio { margin: 0; font-family: 'Caveat', sans-serif; font-size: 20px; line-height: 26px; }
       </style>
       <div class="profile-card">
-        <img src="${freshImageUrl()}" alt="Jack Pope" width="80" height="80" />
+        <img src="${freshImageUrl()}" alt="" width="80" height="80" />
         <div>
           <p class="name">Jack Pope</p>
           <p class="bio">${quote}</p>

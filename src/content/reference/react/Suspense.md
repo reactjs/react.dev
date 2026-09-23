@@ -3053,7 +3053,7 @@ hr {
 
 When a [`<ViewTransition>`](/reference/react/ViewTransition) animates a Suspense boundary's reveal, React waits for visible images to load, up to a timeout, so the animation doesn't start with a half-loaded image. This only happens during a `<ViewTransition>` update. Adding an `onLoad` handler opts a specific image out, even inside a `<ViewTransition>`.
 
-In this example, [`startTransition`](/reference/react/startTransition) marks both state updates as Transitions. Compare what happens when React renders the image inside and outside a `<ViewTransition>`:
+The two buttons load a profile inside and outside a `<ViewTransition>`:
 
 <Sandpack>
 
@@ -3061,16 +3061,17 @@ In this example, [`startTransition`](/reference/react/startTransition) marks bot
 import {
   ViewTransition,
   Suspense,
+  use,
   useState,
-  startTransition,
 } from 'react';
-import { freshImageUrl } from './image.js';
+import { fetchProfile } from './data.js';
 
-function Profile({ src }) {
+function Profile({ profilePromise }) {
+  const profile = use(profilePromise);
   return (
     <div className="card">
-      <img src={src} alt="" width={80} height={80} />
-      <p>Jack Pope</p>
+      <img src={profile.image} alt="" width={80} height={80} />
+      <p>{profile.name}</p>
     </div>
   );
 }
@@ -3084,48 +3085,40 @@ function ProfilePlaceholder() {
   );
 }
 
-function ProfileInViewTransition({ src }) {
+function ProfileInViewTransition({ profilePromise }) {
   return (
     <ViewTransition>
       <Suspense fallback={<ProfilePlaceholder />}>
-        <Profile src={src} />
+        <Profile profilePromise={profilePromise} />
       </Suspense>
     </ViewTransition>
   );
 }
 
 function ProfileWithViewTransition() {
-  const [src, setSrc] = useState(null);
+  const [profilePromise, setProfilePromise] = useState(null);
   return (
     <>
-      <button
-        onClick={() => {
-          startTransition(() => {
-            setSrc(freshImageUrl());
-          });
-        }}>
+      <button onClick={() => setProfilePromise(fetchProfile())}>
         Show profile with View Transition
       </button>
-      {src && <ProfileInViewTransition src={src} />}
+      {profilePromise && (
+        <ProfileInViewTransition profilePromise={profilePromise} />
+      )}
     </>
   );
 }
 
 function ProfileWithoutViewTransition() {
-  const [src, setSrc] = useState(null);
+  const [profilePromise, setProfilePromise] = useState(null);
   return (
     <>
-      <button
-        onClick={() => {
-          startTransition(() => {
-            setSrc(freshImageUrl());
-          });
-        }}>
+      <button onClick={() => setProfilePromise(fetchProfile())}>
         Show profile without View Transition
       </button>
-      {src && (
+      {profilePromise && (
         <Suspense fallback={<ProfilePlaceholder />}>
-          <Profile src={src} />
+          <Profile profilePromise={profilePromise} />
         </Suspense>
       )}
     </>
@@ -3143,11 +3136,15 @@ export default function App() {
 }
 ```
 
-```js src/image.js hidden
-// Add a unique parameter so the image isn't cached,
-// and every run shows the loading state.
-export function freshImageUrl() {
-  return 'https://react.dev/images/team/jack-pope.jpg?t=' + Date.now();
+```js src/data.js hidden
+export async function fetchProfile() {
+  // Add a fake delay so the Suspense fallback is visible.
+  await new Promise(resolve => setTimeout(resolve, 1000));
+  return {
+    name: 'Jack Pope',
+    // Add a unique parameter so the image isn't cached.
+    image: 'https://react.dev/images/team/jack-pope.jpg?t=' + Date.now(),
+  };
 }
 ```
 
@@ -3185,8 +3182,8 @@ hr {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-f1f7ed2a-20260904",
-    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
     "react-scripts": "latest"
   }
 }
@@ -3194,7 +3191,7 @@ hr {
 
 </Sandpack>
 
-Inside `<ViewTransition>`, React keeps the skeleton visible while it waits for the image, up to a timeout. Outside it, React does not wait for the image before committing the card.
+When the Promise resolves, React retries rendering the suspended content. This retry activates the enclosing `<ViewTransition>`, so this example does not need `startTransition`. Inside `<ViewTransition>`, React keeps the skeleton visible while it waits for the image, up to a timeout. Outside it, React does not wait for the image before committing the card.
 
 ---
 

@@ -2910,7 +2910,7 @@ For comparison, the second button performs the same update without React. Nothin
 <Sandpack>
 
 ```js
-import { ViewTransition, Suspense, use, useState, startTransition } from 'react';
+import { ViewTransition, Suspense, use, useState } from 'react';
 import { fetchQuote } from './data.js';
 import { freshFontUrl } from './font.js';
 import VanillaQuote from './VanillaQuote.js';
@@ -2935,12 +2935,7 @@ export default function App() {
   const [fontSrc, setFontSrc] = useState(null);
   return (
     <>
-      <button
-        onClick={() => {
-          startTransition(() => {
-            setFontSrc(freshFontUrl());
-          });
-        }}>
+      <button onClick={() => setFontSrc(freshFontUrl())}>
         Show quote
       </button>
       {fontSrc && (
@@ -3038,14 +3033,16 @@ hr {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-f1f7ed2a-20260904",
-    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
     "react-scripts": "latest"
   }
 }
 ```
 
 </Sandpack>
+
+When the Promise resolves, React retries rendering the suspended content. This retry activates the enclosing `<ViewTransition>`, so this example does not need `startTransition`.
 
 ---
 
@@ -3204,7 +3201,7 @@ For comparison, the version without React loads the same data and shows every re
 <Sandpack>
 
 ```js
-import { ViewTransition, Suspense, use, useState, startTransition } from 'react';
+import { ViewTransition, Suspense, use, useState } from 'react';
 import { fetchQuote } from './data.js';
 import { freshStylesheetUrl, freshImageUrl } from './resources.js';
 import VanillaProfileCard from './VanillaProfileCard.js';
@@ -3243,12 +3240,10 @@ export default function App() {
     <>
       <button
         onClick={() => {
-          startTransition(() => {
-            setResources({
-              quotePromise: fetchQuote(),
-              stylesheet: freshStylesheetUrl(),
-              image: freshImageUrl(),
-            });
+          setResources({
+            quotePromise: fetchQuote(),
+            stylesheet: freshStylesheetUrl(),
+            image: freshImageUrl(),
           });
         }}>
         Show profile
@@ -3401,14 +3396,16 @@ hr {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-f1f7ed2a-20260904",
-    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
     "react-scripts": "latest"
   }
 }
 ```
 
 </Sandpack>
+
+When the Promise resolves, React retries rendering the suspended content. This retry activates the enclosing `<ViewTransition>`, so this example does not need `startTransition`.
 
 ---
 

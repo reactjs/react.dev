@@ -145,7 +145,7 @@ import { freshImageUrl } from './image.js';
 function Profile({ src }) {
   return (
     <div className="card">
-      <img src={src} alt="Jack Pope" width={80} height={80} />
+      <img src={src} alt="" width={80} height={80} />
       <p>Jack Pope</p>
     </div>
   );

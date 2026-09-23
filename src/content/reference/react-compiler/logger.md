@@ -102,8 +102,9 @@ Get specific information about compilation failures:
           console.error(`Details: ${event.detail.description}`);
         }
 
-        if (event.detail.loc) {
-          const { line, column } = event.detail.loc.start;
+        const loc = event.detail.primaryLocation?.() || event.detail.loc;
+        if (loc) {
+          const { line, column } = loc.start;
           console.error(`Location: Line ${line}, Column ${column}`);
         }
 

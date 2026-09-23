@@ -249,3 +249,5 @@ hr {
 ```
 
 </Sandpack>
+
+Inside `<ViewTransition>`, React keeps the skeleton visible while it waits for the image, up to a timeout. Outside it, React does not wait for the image before committing the card.

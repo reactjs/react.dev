@@ -114,6 +114,121 @@ This state is called the "optimistic" because it is used to immediately present 
 
 There's no extra render to "clear" the optimistic state. The optimistic and real state converge in the same render when the Transition completes.
 
+Here's what it looks like in the [React Performance Tracks](/reference/dev-tools/react-performance-tracks)
+
+<PerformanceTracks data={{
+  "duration": 10103,
+  "tracks": {
+    "scheduler": {
+      "blocking": [
+        {
+          "type": "event",
+          "name": "click",
+          "start": 0,
+          "duration": 76
+        },
+        {
+          "type": "update",
+          "start": 76,
+          "duration": 2,
+          "annotation": "Action starts"
+        },
+        {
+          "type": "render",
+          "start": 78,
+          "duration": 4,
+        },
+        {
+          "type": "commit",
+          "start": 82,
+          "duration": 7,
+          "annotation": "Optimistic renders"
+        },
+        {
+          "type": "waiting",
+          "start": 89,
+          "duration": 5
+        }
+      ],
+      "transition": [
+        {
+          "type": "event",
+          "name": "click",
+          "start": 0,
+          "duration": 77
+        },
+        {
+          "type": "action",
+          "start": 77,
+          "duration": 22,
+        },
+        {
+          "type": "suspended",
+          "start": 99,
+          "duration": 9981,
+          "annotation": "Then transition"
+        },
+        {
+          "type": "update",
+          "start": 10080,
+          "duration": 1
+        },
+        {
+          "type": "render",
+          "start": 10081,
+          "duration": 6,
+          
+        },
+        {
+          "type": "commit",
+          "start": 10087,
+          "duration": 3
+        },
+        {
+          "type": "waiting",
+          "name": "Waiting for Paint",
+          "start": 10090,
+          "duration": 11
+        },
+        {
+          "type": "remaining-effects",
+          "start": 10101,
+          "duration": 2
+        }
+      ],
+      "suspense": [],
+      "idle": []
+    },
+    "components": [
+      {
+        "type": "render",
+        "name": "Button",
+        "start": 81,
+        "duration": 1
+      },
+      {
+        "type": "render",
+        "name": "App",
+        "start": 10083,
+        "duration": 4
+      },
+      {
+        "type": "render",
+        "name": "​Button",
+        "start": 10085,
+        "duration": 1,
+        "depth": 1
+      },
+      {
+        "type": "mount",
+        "start": 10086,
+        "duration": 1,
+        "depth": 1
+      }
+    ]
+  }
+}} />
+
 <Note>
 
 #### Optimistic state is temporary {/*optimistic-state-is-temporary*/}

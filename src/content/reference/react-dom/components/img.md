@@ -129,16 +129,18 @@ During a client-rendered [`<ViewTransition>`](/reference/react/ViewTransition) u
 
 When a Suspense boundary reveals streamed content inside a `<ViewTransition>`, React may also wait for visible images with a non-empty `src` that do not have `loading="lazy"`. React stops waiting after a timeout so that a slow image does not block the update indefinitely.
 
-In this example, the Suspense boundary is wrapped in a `<ViewTransition>` and shows a profile skeleton until the portrait has loaded.
-
-For comparison, the second button inserts the same card directly into the DOM. The card appears immediately, and the browser displays the image after it loads:
+In this example, each button calls [`startTransition`](/reference/react/startTransition) to schedule its state update as a Transition. The first button renders the Suspense boundary inside a `<ViewTransition>`, so React shows a profile skeleton until the portrait has loaded. The second button renders the Suspense boundary outside a `<ViewTransition>`, so the card appears immediately and the browser displays the image after it loads:
 
 <Sandpack>
 
 ```js
-import { ViewTransition, Suspense, useState, startTransition } from 'react';
+import {
+  ViewTransition,
+  Suspense,
+  useState,
+  startTransition,
+} from 'react';
 import { freshImageUrl } from './image.js';
-import VanillaProfile from './VanillaProfile.js';
 
 function Profile({ src }) {
   return (
@@ -159,47 +161,39 @@ function ProfilePlaceholder() {
 }
 
 export default function App() {
-  const [src, setSrc] = useState(null);
+  const [viewTransitionSrc, setViewTransitionSrc] = useState(null);
+  const [plainSrc, setPlainSrc] = useState(null);
   return (
     <>
       <button
         onClick={() => {
           startTransition(() => {
-            setSrc(freshImageUrl());
+            setViewTransitionSrc(freshImageUrl());
           });
         }}>
-        Show profile
+        Show profile with View Transition
       </button>
-      {src && (
+      {viewTransitionSrc && (
         <ViewTransition>
           <Suspense fallback={<ProfilePlaceholder />}>
-            <Profile src={src} />
+            <Profile src={viewTransitionSrc} />
           </Suspense>
         </ViewTransition>
       )}
       <hr />
-      <VanillaProfile />
-    </>
-  );
-}
-```
-
-```js src/VanillaProfile.js
-import { useRef } from 'react';
-import { freshImageUrl } from './image.js';
-
-export default function VanillaProfile() {
-  const ref = useRef(null);
-  function show() {
-    ref.current.innerHTML = `<div class="card">
-      <img src="${freshImageUrl()}" alt="Jack Pope" width="80" height="80" />
-      <p>Jack Pope</p>
-    </div>`;
-  }
-  return (
-    <>
-      <button onClick={show}>Show profile (direct DOM update)</button>
-      <div ref={ref} />
+      <button
+        onClick={() => {
+          startTransition(() => {
+            setPlainSrc(freshImageUrl());
+          });
+        }}>
+        Show profile without View Transition
+      </button>
+      {plainSrc && (
+        <Suspense fallback={<ProfilePlaceholder />}>
+          <Profile src={plainSrc} />
+        </Suspense>
+      )}
     </>
   );
 }

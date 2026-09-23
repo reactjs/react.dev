@@ -129,23 +129,18 @@ During a client-rendered [`<ViewTransition>`](/reference/react/ViewTransition) u
 
 When a Suspense boundary reveals streamed content inside a `<ViewTransition>`, React may also wait for visible images with a non-empty `src` that do not have `loading="lazy"`. React stops waiting after a timeout so that a slow image does not block the update indefinitely.
 
-In this example, [`startTransition`](/reference/react/startTransition) marks both state updates as Transitions. Compare what happens when React renders the image inside and outside a `<ViewTransition>`:
+Because React does not wait for images during synchronous updates, this example wraps both state updates in [`startTransition`](/reference/react/startTransition). Compare what happens when React renders the image inside and outside a `<ViewTransition>`:
 
 <Sandpack>
 
 ```js
-import {
-  ViewTransition,
-  Suspense,
-  useState,
-  startTransition,
-} from 'react';
+import { ViewTransition, Suspense, useState, startTransition } from 'react';
 import { freshImageUrl } from './image.js';
 
 function Profile({ src }) {
   return (
     <div className="card">
-      <img src={src} alt="" width={80} height={80} />
+      <img src={src} alt="Jack Pope" width={80} height={80} />
       <p>Jack Pope</p>
     </div>
   );
@@ -170,27 +165,23 @@ function ProfileInViewTransition({ src }) {
   );
 }
 
-function ProfileWithViewTransition() {
+export default function App() {
+  const [viewTransitionSrc, setViewTransitionSrc] = useState(null);
   const [src, setSrc] = useState(null);
   return (
     <>
       <button
         onClick={() => {
           startTransition(() => {
-            setSrc(freshImageUrl());
+            setViewTransitionSrc(freshImageUrl());
           });
         }}>
         Show profile with View Transition
       </button>
-      {src && <ProfileInViewTransition src={src} />}
-    </>
-  );
-}
-
-function ProfileWithoutViewTransition() {
-  const [src, setSrc] = useState(null);
-  return (
-    <>
+      {viewTransitionSrc && (
+        <ProfileInViewTransition src={viewTransitionSrc} />
+      )}
+      <hr />
       <button
         onClick={() => {
           startTransition(() => {
@@ -204,16 +195,6 @@ function ProfileWithoutViewTransition() {
           <Profile src={src} />
         </Suspense>
       )}
-    </>
-  );
-}
-
-export default function App() {
-  return (
-    <>
-      <ProfileWithViewTransition />
-      <hr />
-      <ProfileWithoutViewTransition />
     </>
   );
 }
@@ -270,4 +251,4 @@ hr {
 
 </Sandpack>
 
-Inside `<ViewTransition>`, React keeps the skeleton visible while it waits for the image, up to a timeout. Outside it, React does not wait for the image before committing the card.
+Inside `<ViewTransition>`, React waits for the image before committing the card, up to a timeout. Outside it, React commits the card without waiting for the image.

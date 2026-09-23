@@ -2910,7 +2910,7 @@ For comparison, the second button performs the same update without React. Nothin
 <Sandpack>
 
 ```js
-import { ViewTransition, Suspense, use, useState } from 'react';
+import { ViewTransition, Suspense, use, useState, startTransition } from 'react';
 import { fetchQuote } from './data.js';
 import { freshFontUrl } from './font.js';
 import VanillaQuote from './VanillaQuote.js';
@@ -2935,7 +2935,12 @@ export default function App() {
   const [fontSrc, setFontSrc] = useState(null);
   return (
     <>
-      <button onClick={() => setFontSrc(freshFontUrl())}>
+      <button
+        onClick={() => {
+          startTransition(() => {
+            setFontSrc(freshFontUrl());
+          });
+        }}>
         Show quote
       </button>
       {fontSrc && (
@@ -3033,8 +3038,8 @@ hr {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0",
-    "react-dom": "19.3.0",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   }
 }
@@ -3042,33 +3047,28 @@ hr {
 
 </Sandpack>
 
-When the Promise resolves, React retries rendering the suspended content. This retry activates the enclosing `<ViewTransition>`, so this example does not need `startTransition`.
-
 ---
 
 ### Waiting for an image to load {/*waiting-for-an-image-to-load*/}
 
 When a [`<ViewTransition>`](/reference/react/ViewTransition) animates a Suspense boundary's reveal, React waits for visible images to load, up to a timeout, so the animation doesn't start with a half-loaded image. This only happens during a `<ViewTransition>` update. Adding an `onLoad` handler opts a specific image out, even inside a `<ViewTransition>`.
 
-The two buttons load a profile inside and outside a `<ViewTransition>`:
+In the example below, the Suspense boundary is wrapped in a `<ViewTransition>` and shows a profile skeleton until the portrait has loaded.
+
+For comparison, the second button performs the same update outside a `<ViewTransition>`. When the Promise resolves, React reveals the card without waiting for the image, so the image may pop in after the card appears:
 
 <Sandpack>
 
 ```js
-import {
-  ViewTransition,
-  Suspense,
-  use,
-  useState,
-} from 'react';
-import { fetchProfile } from './data.js';
+import { ViewTransition, Suspense, use, useState } from 'react';
+import { fetchImageSrc } from './image.js';
 
-function Profile({ profilePromise }) {
-  const profile = use(profilePromise);
+function Profile({ srcPromise }) {
+  const src = use(srcPromise);
   return (
     <div className="card">
-      <img src={profile.image} alt="" width={80} height={80} />
-      <p>{profile.name}</p>
+      <img src={src} alt="Jack Pope" width={80} height={80} />
+      <p>Jack Pope</p>
     </div>
   );
 }
@@ -3082,66 +3082,47 @@ function ProfilePlaceholder() {
   );
 }
 
-function ProfileInViewTransition({ profilePromise }) {
+function ProfileInViewTransition({ srcPromise }) {
   return (
     <ViewTransition>
       <Suspense fallback={<ProfilePlaceholder />}>
-        <Profile profilePromise={profilePromise} />
+        <Profile srcPromise={srcPromise} />
       </Suspense>
     </ViewTransition>
   );
 }
 
-function ProfileWithViewTransition() {
-  const [profilePromise, setProfilePromise] = useState(null);
+export default function App() {
+  const [transitionSrcPromise, setTransitionSrcPromise] = useState(null);
+  const [srcPromise, setSrcPromise] = useState(null);
   return (
     <>
-      <button onClick={() => setProfilePromise(fetchProfile())}>
+      <button onClick={() => setTransitionSrcPromise(fetchImageSrc())}>
         Show profile with View Transition
       </button>
-      {profilePromise && (
-        <ProfileInViewTransition profilePromise={profilePromise} />
+      {transitionSrcPromise && (
+        <ProfileInViewTransition srcPromise={transitionSrcPromise} />
       )}
-    </>
-  );
-}
-
-function ProfileWithoutViewTransition() {
-  const [profilePromise, setProfilePromise] = useState(null);
-  return (
-    <>
-      <button onClick={() => setProfilePromise(fetchProfile())}>
+      <hr />
+      <button onClick={() => setSrcPromise(fetchImageSrc())}>
         Show profile without View Transition
       </button>
-      {profilePromise && (
+      {srcPromise && (
         <Suspense fallback={<ProfilePlaceholder />}>
-          <Profile profilePromise={profilePromise} />
+          <Profile srcPromise={srcPromise} />
         </Suspense>
       )}
     </>
   );
 }
-
-export default function App() {
-  return (
-    <>
-      <ProfileWithViewTransition />
-      <hr />
-      <ProfileWithoutViewTransition />
-    </>
-  );
-}
 ```
 
-```js src/data.js hidden
-export async function fetchProfile() {
+```js src/image.js hidden
+export async function fetchImageSrc() {
   // Add a fake delay so the Suspense fallback is visible.
   await new Promise(resolve => setTimeout(resolve, 1000));
-  return {
-    name: 'Jack Pope',
-    // Add a unique parameter so the image isn't cached.
-    image: 'https://react.dev/images/team/jack-pope.jpg?t=' + Date.now(),
-  };
+  // Add a unique parameter so the image isn't cached.
+  return 'https://react.dev/images/team/jack-pope.jpg?t=' + Date.now();
 }
 ```
 
@@ -3179,8 +3160,8 @@ hr {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0",
-    "react-dom": "19.3.0",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   }
 }
@@ -3188,7 +3169,7 @@ hr {
 
 </Sandpack>
 
-When the Promise resolves, React retries rendering the suspended content. This retry activates the enclosing `<ViewTransition>`, so this example does not need `startTransition`. Inside `<ViewTransition>`, React keeps the skeleton visible while it waits for the image, up to a timeout. Outside it, React does not wait for the image before committing the card.
+When the Promise resolves, React retries rendering the suspended content. This retry activates the enclosing `<ViewTransition>`, so this example does not need `startTransition`.
 
 ---
 
@@ -3201,7 +3182,7 @@ For comparison, the version without React loads the same data and shows every re
 <Sandpack>
 
 ```js
-import { ViewTransition, Suspense, use, useState } from 'react';
+import { ViewTransition, Suspense, use, useState, startTransition } from 'react';
 import { fetchQuote } from './data.js';
 import { freshStylesheetUrl, freshImageUrl } from './resources.js';
 import VanillaProfileCard from './VanillaProfileCard.js';
@@ -3212,7 +3193,7 @@ function ProfileCard({ resources }) {
     <>
       <link rel="stylesheet" href={resources.stylesheet} precedence="default" />
       <div className="profile-card">
-        <img src={resources.image} alt="" width={80} height={80} />
+        <img src={resources.image} alt="Jack Pope" width={80} height={80} />
         <div>
           <p className="name">Jack Pope</p>
           <p className="bio">{quote}</p>
@@ -3240,10 +3221,12 @@ export default function App() {
     <>
       <button
         onClick={() => {
-          setResources({
-            quotePromise: fetchQuote(),
-            stylesheet: freshStylesheetUrl(),
-            image: freshImageUrl(),
+          startTransition(() => {
+            setResources({
+              quotePromise: fetchQuote(),
+              stylesheet: freshStylesheetUrl(),
+              image: freshImageUrl(),
+            });
           });
         }}>
         Show profile
@@ -3282,7 +3265,7 @@ export default function VanillaProfileCard() {
         .bio { margin: 0; font-family: 'Caveat', sans-serif; font-size: 20px; line-height: 26px; }
       </style>
       <div class="profile-card">
-        <img src="${freshImageUrl()}" alt="" width="80" height="80" />
+        <img src="${freshImageUrl()}" alt="Jack Pope" width="80" height="80" />
         <div>
           <p class="name">Jack Pope</p>
           <p class="bio">${quote}</p>
@@ -3396,16 +3379,14 @@ hr {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0",
-    "react-dom": "19.3.0",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   }
 }
 ```
 
 </Sandpack>
-
-When the Promise resolves, React retries rendering the suspended content. This retry activates the enclosing `<ViewTransition>`, so this example does not need `startTransition`.
 
 ---
 

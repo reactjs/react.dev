@@ -252,4 +252,4 @@ hr {
 
 </Sandpack>
 
-Inside `<ViewTransition>`, React waits for the image before revealing the card. Outside it, React reveals the card without waiting for the image.
+With `<ViewTransition>`, React keeps the skeleton visible for up to 500 ms while the image loads, so the card can be revealed with its image already in place. Without `<ViewTransition>`, Suspense stops showing the skeleton as soon as the Promise resolves. If the image is still loading, the card appears first and the image pops in afterward.

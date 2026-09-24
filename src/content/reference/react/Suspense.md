@@ -3053,7 +3053,7 @@ hr {
 
 When a Suspense boundary reveals content inside a [`<ViewTransition>`](/reference/react/ViewTransition), React waits up to 500 ms for visible images to load before starting the animation. An `onLoad` handler opts an image out.
 
-Compare the same boundary inside and outside a `<ViewTransition>`. Inside, React keeps the profile skeleton visible until the image is ready. Outside, React reveals the card when the Promise resolves, so the image may appear afterward:
+Compare the same boundary inside and outside a `<ViewTransition>`. Inside, React keeps the profile skeleton visible for up to 500 ms while the image loads, so the card can be revealed with its image already in place. Outside, Suspense stops showing the skeleton as soon as the Promise resolves. If the image is still loading, the card appears first and the image pops in afterward:
 
 <Sandpack>
 

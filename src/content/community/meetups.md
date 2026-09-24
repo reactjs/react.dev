@@ -55,6 +55,7 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 * [Aarhus](https://www.meetup.com/Aarhus-ReactJS-Meetup/)
 
 ## England (UK) {/*england-uk*/}
+* [Liverpool ReactJS](https://www.meetup.com/liverpool-reactjs-meetup-group/)
 * [Manchester](https://www.meetup.com/Manchester-React-User-Group/)
 * [React.JS Girls London](https://www.meetup.com/ReactJS-Girls-London/)
 * [React Advanced London](https://guild.host/react-advanced-london)

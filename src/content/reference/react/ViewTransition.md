@@ -1253,9 +1253,9 @@ It's important to properly use keys to preserve identity when reordering lists. 
 
 ### Animating from Suspense content {/*animating-from-suspense-content*/}
 
-`<ViewTransition>` can animate the reveal of a Suspense boundary. When content suspends inside a new boundary, React first shows the fallback. When the content is ready, the enclosing `<ViewTransition>` animates the reveal.
+Like any Transition, React waits for data and new CSS (`<link rel="stylesheet" precedence="...">`) before running the animation. `<ViewTransition>` also waits up to 500 ms for new fonts to load so they don't flicker in after the animation starts. For the same reason, it waits for images to load. See examples of [waiting for a font](/reference/react/Suspense#waiting-for-a-font-to-load) and [waiting for an image](/reference/react/Suspense#waiting-for-an-image-to-load) on the Suspense page.
 
-Before starting the animation, React also waits for new stylesheets, fonts, and images introduced by the content to load, up to their respective timeouts. This prevents them from appearing partway through the animation. See examples of [waiting for a font](/reference/react/Suspense#waiting-for-a-font-to-load) and [waiting for an image](/reference/react/Suspense#waiting-for-an-image-to-load) on the Suspense page.
+If the content is inside a new Suspense boundary, React first shows the fallback. After the boundary finishes loading, `<ViewTransition>` animates the reveal to the content.
 
 There are two ways to animate Suspense boundaries depending on where you place the `<ViewTransition>`:
 
@@ -1315,7 +1315,7 @@ export function VideoPlaceholder() {
 ```
 
 ```js
-import {ViewTransition, useState, Suspense} from 'react';
+import { ViewTransition, Suspense, useState } from 'react';
 import {Video, VideoPlaceholder} from './Video';
 import {useLazyVideoData} from './data';
 
@@ -1481,8 +1481,8 @@ button:hover {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-f1f7ed2a-20260904",
-    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
     "react-scripts": "latest"
   }
 }

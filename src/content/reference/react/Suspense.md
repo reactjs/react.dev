@@ -3051,16 +3051,19 @@ hr {
 
 ### Waiting for an image to load {/*waiting-for-an-image-to-load*/}
 
-A Suspense boundary can reveal its content inside a [`<ViewTransition>`](/reference/react/ViewTransition). During that reveal, React waits for visible images to load, up to a timeout, so the animation doesn't start with a half-loaded image. Adding an `onLoad` handler opts a specific image out.
+When a Suspense boundary reveals content inside a [`<ViewTransition>`](/reference/react/ViewTransition), React waits up to a timeout for visible images to load before starting the animation. An `onLoad` handler opts an image out.
 
-In the example below, the Suspense boundary is wrapped in a `<ViewTransition>` and shows a profile skeleton until the portrait has loaded.
-
-For comparison, the second button performs the same update outside a `<ViewTransition>`. When the Promise resolves, React reveals the card without waiting for the image, so the image may pop in after the card appears:
+Compare the same boundary inside and outside a `<ViewTransition>`. Inside, React keeps the profile skeleton visible until the image is ready. Outside, React reveals the card when the Promise resolves, so the image may appear afterward:
 
 <Sandpack>
 
 ```js
-import { ViewTransition, Suspense, use, useState } from 'react';
+import {
+  ViewTransition,
+  Suspense,
+  use,
+  useState,
+} from 'react';
 import { fetchImageSrc } from './image.js';
 
 function Profile({ srcPromise }) {
@@ -3082,26 +3085,22 @@ function ProfilePlaceholder() {
   );
 }
 
-function ProfileInViewTransition({ srcPromise }) {
-  return (
-    <ViewTransition>
-      <Suspense fallback={<ProfilePlaceholder />}>
-        <Profile srcPromise={srcPromise} />
-      </Suspense>
-    </ViewTransition>
-  );
-}
-
 export default function App() {
-  const [transitionSrcPromise, setTransitionSrcPromise] = useState(null);
+  const [transitionSrcPromise, setTransitionSrcPromise] =
+    useState(null);
   const [srcPromise, setSrcPromise] = useState(null);
   return (
     <>
-      <button onClick={() => setTransitionSrcPromise(fetchImageSrc())}>
+      <button
+        onClick={() => setTransitionSrcPromise(fetchImageSrc())}>
         Show profile with View Transition
       </button>
       {transitionSrcPromise && (
-        <ProfileInViewTransition srcPromise={transitionSrcPromise} />
+        <ViewTransition>
+          <Suspense fallback={<ProfilePlaceholder />}>
+            <Profile srcPromise={transitionSrcPromise} />
+          </Suspense>
+        </ViewTransition>
       )}
       <hr />
       <button onClick={() => setSrcPromise(fetchImageSrc())}>
@@ -3119,7 +3118,7 @@ export default function App() {
 
 ```js src/image.js hidden
 export async function fetchImageSrc() {
-  // Add a fake delay so the Suspense fallback is visible.
+  // Delay the response so the Suspense fallback is visible.
   await new Promise(resolve => setTimeout(resolve, 1000));
   // Add a unique parameter so the image isn't cached.
   return 'https://react.dev/images/team/jack-pope.jpg?t=' + Date.now();
@@ -3160,8 +3159,8 @@ hr {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-f1f7ed2a-20260904",
-    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
     "react-scripts": "latest"
   }
 }

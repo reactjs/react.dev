@@ -563,6 +563,41 @@ To load React 19 with a script tag, we recommend using an ESM-based CDN such as 
 </script>
 ```
 
+### Support for Document Metadata {/*support-for-document-metadata*/}
+
+React 19 added support for rendering metadata tags like `<title>`, `<meta>`, and `<link>` natively in your component tree, and they will automatically be hoisted to the document `<head>`.
+
+<Pitfall>
+
+#### `<html>` and `<body>` tags are not supported for hoisting {/*html-and-body-not-supported*/}
+
+While React 19 hoists `<title>`, `<meta>`, and `<link>` tags automatically, it does **not** support rendering `<html>` or `<body>` tags inside a `createRoot` component tree.
+
+If you are migrating from `react-helmet` and render `<html>` or `<body>` directly in JSX, this will cause a **terminal infinite loop** (browser freeze) during event propagation such as input focus.
+```js
+// 🚩 Do not do this — causes infinite loop
+function App() {
+  return (
+    <>
+      <html lang="en" />
+      <body className="dark" />
+      <main>...</main>
+    </>
+  );
+}
+```
+
+Instead, set attributes on `<html>` and `<body>` in your HTML file or server template:
+```html
+<html lang="en">
+  <body class="dark">
+    <div id="root"></div>
+  </body>
+</html>
+```
+
+</Pitfall>
+
 ### Libraries depending on React internals may block upgrades {/*libraries-depending-on-react-internals-may-block-upgrades*/}
 
 This release includes changes to React internals that may impact libraries that ignore our pleas to not use internals like `SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED`. These changes are necessary to land improvements in React 19, and will not break libraries that follow our guidelines.

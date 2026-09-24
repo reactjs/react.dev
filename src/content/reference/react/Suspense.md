@@ -2903,50 +2903,57 @@ Where you place the `<ViewTransition>` relative to the boundary determines wheth
 
 When a [`<ViewTransition>`](/reference/react/ViewTransition) animates a Suspense boundary's reveal, React waits up to 500 ms for new fonts the content introduces so the text doesn't flash with a fallback font. This only happens during a `<ViewTransition>` update.
 
-In the example below, the Suspense boundary is wrapped in a `<ViewTransition>`, and the `Quote` component suspends while its data loads. Rendering the quote starts its font download. React keeps the fallback visible while the font loads. If it loads within the 500 ms limit, the quote appears already in its font.
+In the example below, the Suspense boundary is wrapped in a `<ViewTransition>`, and the `Quote` component suspends while its data loads. Rendering the quote loads a stylesheet that introduces the font. React keeps the fallback visible while the stylesheet and font load. If the font loads within the 500 ms limit, the quote appears already in its font.
 
 For comparison, the second button performs the same update without React. Nothing waits for the font, so the text appears in a fallback font first and then switches:
 
 <Sandpack>
 
 ```js
-import { ViewTransition, Suspense, use, useState, startTransition } from 'react';
+import {
+  ViewTransition,
+  Suspense,
+  use,
+  useState,
+  startTransition,
+} from 'react';
 import { fetchQuote } from './data.js';
-import { freshFontUrl } from './font.js';
+import {
+  freshFontUrl,
+  freshStylesheetUrl,
+} from './font.js';
 import VanillaQuote from './VanillaQuote.js';
 
-function Quote({ fontSrc }) {
+function Quote({ stylesheet }) {
   const quote = use(fetchQuote());
   return (
     <>
-      <style href={fontSrc} precedence="default">
-        {`@font-face {
-          font-family: 'Fancy';
-          src: url(${fontSrc}) format('woff2');
-          font-display: swap;
-        }`}
-      </style>
+      <link
+        rel="stylesheet"
+        href={stylesheet}
+        precedence="default"
+      />
       <p className="quote fancy">{quote}</p>
     </>
   );
 }
 
 export default function App() {
-  const [fontSrc, setFontSrc] = useState(null);
+  const [stylesheet, setStylesheet] = useState(null);
   return (
     <>
       <button
         onClick={() => {
           startTransition(() => {
-            setFontSrc(freshFontUrl());
+            setStylesheet(freshStylesheetUrl());
           });
         }}>
         Show quote
       </button>
-      {fontSrc && (
+      {stylesheet && (
         <ViewTransition>
           <Suspense fallback={<p className="quote">⌛ Loading quote...</p>}>
-            <Quote fontSrc={fontSrc} />
+            <Quote stylesheet={stylesheet} />
           </Suspense>
         </ViewTransition>
       )}
@@ -2983,9 +2990,17 @@ export default function VanillaQuote() {
 ```
 
 ```js src/font.js hidden
-// Add a unique parameter so the font isn't cached,
-// and every run shows the loading state.
+export function freshStylesheetUrl() {
+  // Add a unique parameter so the stylesheet isn't cached.
+  return (
+    'https://fonts.googleapis.com/css2?family=Caveat&display=swap' +
+    '&t=' +
+    Date.now()
+  );
+}
+
 export function freshFontUrl() {
+  // Add a unique parameter so the font isn't cached.
   return (
     'https://fonts.gstatic.com/s/caveat/v23/WnznHAc5bAfYB2QRah7pcpNvOx-pjfJ9eIWpYT5Kmgq3sw.woff2' +
     '?t=' +
@@ -3025,7 +3040,7 @@ export function fetchQuote() {
   margin-top: 1em;
 }
 .fancy {
-  font-family: 'Fancy', sans-serif;
+  font-family: 'Caveat', sans-serif;
 }
 .vanilla-fancy {
   font-family: 'VanillaFancy', sans-serif;

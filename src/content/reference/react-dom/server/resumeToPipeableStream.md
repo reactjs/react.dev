@@ -16,7 +16,7 @@ const {pipe, abort} = await resumeToPipeableStream(reactNode, postponedState, op
 
 <Note>
 
-This API is specific to Node.js. Environments with [Web Streams,](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) like Deno and modern edge runtimes, should use [`resume`](/reference/react-dom/server/renderToReadableStream) instead.
+This API is specific to Node.js. Environments with [Web Streams,](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) like Deno and modern edge runtimes, should use [`resume`](/reference/react-dom/server/resume) instead.
 
 </Note>
 

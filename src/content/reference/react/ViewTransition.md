@@ -1253,7 +1253,7 @@ It's important to properly use keys to preserve identity when reordering lists. 
 
 ### Animating from Suspense content {/*animating-from-suspense-content*/}
 
-Like any Transition, React waits for data and new CSS (`<link rel="stylesheet" precedence="...">`) before running the animation. `<ViewTransition>` also waits up to 500 ms for new fonts to load so they don't flicker in after the animation starts. For the same reason, it waits for images to load. See examples of [waiting for a font](/reference/react/Suspense#waiting-for-a-font-to-load) and [waiting for an image](/reference/react/Suspense#waiting-for-an-image-to-load) on the Suspense page.
+Like any Transition, React waits for data and new CSS (`<link rel="stylesheet" precedence="...">`) before running the animation. `<ViewTransition>` also waits up to 500 ms for new fonts and visible images to load so they don't flicker in after the animation starts. See examples of [waiting for a font](/reference/react/Suspense#waiting-for-a-font-to-load) and [waiting for an image](/reference/react/Suspense#waiting-for-an-image-to-load) on the Suspense page.
 
 If the content is inside a new Suspense boundary, React first shows the fallback. After the boundary finishes loading, `<ViewTransition>` animates the reveal to the content.
 

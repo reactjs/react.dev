@@ -57,6 +57,7 @@ async function handleFormSubmit(e) {
 }
 
 function handleTextareaChange() {
+  hide(errorMessage);
   if (textarea.value.length === 0) {
     disable(button);
   } else {
@@ -414,6 +415,7 @@ export default function Form() {
   const [answer, setAnswer] = useState('');
   const [error, setError] = useState(null);
   const [status, setStatus] = useState('typing');
+  const showError = status === 'typing' && error && answer === error.failedAnswer;
 
   if (status === 'success') {
     return <h1>That's right!</h1>
@@ -427,7 +429,7 @@ export default function Form() {
       setStatus('success');
     } catch (err) {
       setStatus('typing');
-      setError(err);
+      setError({ message: err.message, failedAnswer: answer });
     }
   }
 
@@ -454,7 +456,7 @@ export default function Form() {
         }>
           Submit
         </button>
-        {error !== null &&
+        {showError &&
           <p className="Error">
             {error.message}
           </p>

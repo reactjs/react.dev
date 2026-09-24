@@ -117,7 +117,7 @@ const MyDocument = () => {
                     }
                   }
 
-                  var preferredTheme;
+                  let preferredTheme;
                   try {
                     preferredTheme = localStorage.getItem('theme');
                   } catch (err) { }
@@ -130,7 +130,7 @@ const MyDocument = () => {
                     } catch (err) { }
                   };
 
-                  var initialTheme = preferredTheme;
+                  let initialTheme = preferredTheme;
                   var darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
                   if (!initialTheme) {

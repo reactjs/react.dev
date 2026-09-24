@@ -3066,8 +3066,8 @@ import {
 } from 'react';
 import { fetchImageSrc } from './image.js';
 
-function Profile({ srcPromise }) {
-  const src = use(srcPromise);
+function Profile({ cacheKey }) {
+  const src = use(fetchImageSrc(cacheKey));
   return (
     <div className="card">
       <img src={src} alt="Jack Pope" width={80} height={80} />
@@ -3086,29 +3086,29 @@ function ProfilePlaceholder() {
 }
 
 export default function App() {
-  const [transitionSrcPromise, setTransitionSrcPromise] =
-    useState(null);
-  const [srcPromise, setSrcPromise] = useState(null);
+  const [showWithTransition, setShowWithTransition] =
+    useState(false);
+  const [showWithoutTransition, setShowWithoutTransition] =
+    useState(false);
   return (
     <>
-      <button
-        onClick={() => setTransitionSrcPromise(fetchImageSrc())}>
+      <button onClick={() => setShowWithTransition(true)}>
         Show profile with View Transition
       </button>
-      {transitionSrcPromise && (
+      {showWithTransition && (
         <ViewTransition>
           <Suspense fallback={<ProfilePlaceholder />}>
-            <Profile srcPromise={transitionSrcPromise} />
+            <Profile cacheKey="with-transition" />
           </Suspense>
         </ViewTransition>
       )}
       <hr />
-      <button onClick={() => setSrcPromise(fetchImageSrc())}>
+      <button onClick={() => setShowWithoutTransition(true)}>
         Show profile without View Transition
       </button>
-      {srcPromise && (
+      {showWithoutTransition && (
         <Suspense fallback={<ProfilePlaceholder />}>
-          <Profile srcPromise={srcPromise} />
+          <Profile cacheKey="without-transition" />
         </Suspense>
       )}
     </>
@@ -3117,7 +3117,17 @@ export default function App() {
 ```
 
 ```js src/image.js hidden
-export async function fetchImageSrc() {
+// Normally, the caching logic would be inside a framework.
+const cache = new Map();
+
+export function fetchImageSrc(cacheKey) {
+  if (!cache.has(cacheKey)) {
+    cache.set(cacheKey, loadImageSrc());
+  }
+  return cache.get(cacheKey);
+}
+
+async function loadImageSrc() {
   // Delay the response so the Suspense fallback is visible.
   await new Promise(resolve => setTimeout(resolve, 1000));
   // Add a unique parameter so the image isn't cached.

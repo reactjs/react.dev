@@ -47,8 +47,8 @@ A Suspense boundary waits for its content to be ready before revealing it. Any o
 - Reading a Promise with [`use`](/reference/react/use), including data streamed from [Server Components](/reference/rsc/server-components) or loaded through a [Suspense-enabled framework](#suspense-enabled-frameworks).
 - Loading a stylesheet rendered with [`<link rel="stylesheet">` and a `precedence` prop.](/reference/react-dom/components/link#special-rendering-behavior) React blocks the boundary until the stylesheet loads, up to a timeout. [See an example below.](#waiting-for-a-stylesheet-to-load)
 - Waiting for a large boundary's HTML to arrive during streaming server rendering. Sending HTML takes time, so a boundary with enough content activates even when nothing in it suspends. React reveals the content as the HTML arrives.
-- Loading fonts. Suspense doesn't wait for fonts by default, but a [`<ViewTransition>`](/reference/react/ViewTransition) update waits for new fonts to load, up to a timeout, so text doesn't flash with a fallback font. [See an example below.](#waiting-for-a-font-to-load)
-- Loading images. Suspense doesn't wait for images by default, but during a [`<ViewTransition>`](/reference/react/ViewTransition) update, React blocks the boundary until the image loads, up to a timeout. Adding an `onLoad` handler opts a specific image out. [See an example below.](#waiting-for-an-image-to-load)
+- Loading fonts. Suspense doesn't wait for fonts by default, but a [`<ViewTransition>`](/reference/react/ViewTransition) update waits up to 500 ms for new fonts to load so text doesn't flash with a fallback font. [See an example below.](#waiting-for-a-font-to-load)
+- Loading images. Suspense doesn't wait for images by default, but during a [`<ViewTransition>`](/reference/react/ViewTransition) update, React blocks the boundary for up to 500 ms while the image loads. Adding an `onLoad` handler opts a specific image out. [See an example below.](#waiting-for-an-image-to-load)
 - <ExperimentalBadge /> Performing CPU-bound render work inside a [`<Suspense defer>`](#props) boundary.
 
 <Note>
@@ -2901,52 +2901,59 @@ Where you place the `<ViewTransition>` relative to the boundary determines wheth
 
 ### Waiting for a font to load {/*waiting-for-a-font-to-load*/}
 
-When a [`<ViewTransition>`](/reference/react/ViewTransition) animates a Suspense boundary's reveal, React waits for new fonts the content introduces, up to a timeout, so the text doesn't flash with a fallback font. This only happens during a `<ViewTransition>` update.
+When a [`<ViewTransition>`](/reference/react/ViewTransition) animates a Suspense boundary's reveal, React waits up to 500 ms for new fonts the content introduces so the text doesn't flash with a fallback font. This only happens during a `<ViewTransition>` update.
 
-In the example below, the Suspense boundary is wrapped in a `<ViewTransition>`, and the `Quote` component suspends while its data loads. Rendering the quote starts its font download. React keeps the fallback visible until the font has loaded, so the quote appears already in its font.
+In the example below, the Suspense boundary is wrapped in a `<ViewTransition>`, and the `Quote` component suspends while its data loads. Rendering the quote loads a stylesheet that introduces the font. React keeps the fallback visible while the stylesheet and font load. If the font loads within the 500 ms limit, the quote appears already in its font.
 
 For comparison, the second button performs the same update without React. Nothing waits for the font, so the text appears in a fallback font first and then switches:
 
 <Sandpack>
 
 ```js
-import { ViewTransition, Suspense, use, useState, startTransition } from 'react';
+import {
+  ViewTransition,
+  Suspense,
+  use,
+  useState,
+  startTransition,
+} from 'react';
 import { fetchQuote } from './data.js';
-import { freshFontUrl } from './font.js';
+import {
+  freshFontUrl,
+  freshStylesheetUrl,
+} from './font.js';
 import VanillaQuote from './VanillaQuote.js';
 
-function Quote({ fontSrc }) {
+function Quote({ stylesheet }) {
   const quote = use(fetchQuote());
   return (
     <>
-      <style href={fontSrc} precedence="default">
-        {`@font-face {
-          font-family: 'Fancy';
-          src: url(${fontSrc}) format('truetype');
-          font-display: swap;
-        }`}
-      </style>
+      <link
+        rel="stylesheet"
+        href={stylesheet}
+        precedence="default"
+      />
       <p className="quote fancy">{quote}</p>
     </>
   );
 }
 
 export default function App() {
-  const [fontSrc, setFontSrc] = useState(null);
+  const [stylesheet, setStylesheet] = useState(null);
   return (
     <>
       <button
         onClick={() => {
           startTransition(() => {
-            setFontSrc(freshFontUrl());
+            setStylesheet(freshStylesheetUrl());
           });
         }}>
         Show quote
       </button>
-      {fontSrc && (
+      {stylesheet && (
         <ViewTransition>
           <Suspense fallback={<p className="quote">⌛ Loading quote...</p>}>
-            <Quote fontSrc={fontSrc} />
+            <Quote stylesheet={stylesheet} />
           </Suspense>
         </ViewTransition>
       )}
@@ -2967,7 +2974,7 @@ export default function VanillaQuote() {
     const style = document.createElement('style');
     style.textContent = `@font-face {
       font-family: 'VanillaFancy';
-      src: url(${freshFontUrl()}) format('truetype');
+      src: url(${freshFontUrl()}) format('woff2');
       font-display: swap;
     }`;
     document.head.appendChild(style);
@@ -2983,11 +2990,19 @@ export default function VanillaQuote() {
 ```
 
 ```js src/font.js hidden
-// Add a unique parameter so the font isn't cached,
-// and every run shows the loading state.
-export function freshFontUrl() {
+export function freshStylesheetUrl() {
+  // Add a unique parameter so the stylesheet isn't cached.
   return (
-    'https://raw.githubusercontent.com/google/fonts/main/ofl/caveat/Caveat%5Bwght%5D.ttf' +
+    'https://fonts.googleapis.com/css2?family=Caveat&display=swap' +
+    '&t=' +
+    Date.now()
+  );
+}
+
+export function freshFontUrl() {
+  // Add a unique parameter so the font isn't cached.
+  return (
+    'https://fonts.gstatic.com/s/caveat/v23/WnznHAc5bAfYB2QRah7pcpNvOx-pjfJ9eIWpYT5Kmgq3sw.woff2' +
     '?t=' +
     Date.now()
   );
@@ -3025,7 +3040,7 @@ export function fetchQuote() {
   margin-top: 1em;
 }
 .fancy {
-  font-family: 'Fancy', sans-serif;
+  font-family: 'Caveat', sans-serif;
 }
 .vanilla-fancy {
   font-family: 'VanillaFancy', sans-serif;
@@ -3038,8 +3053,8 @@ hr {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-f1f7ed2a-20260904",
-    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
     "react-scripts": "latest"
   }
 }
@@ -3051,20 +3066,23 @@ hr {
 
 ### Waiting for an image to load {/*waiting-for-an-image-to-load*/}
 
-When a [`<ViewTransition>`](/reference/react/ViewTransition) animates a Suspense boundary's reveal, React waits for visible images to load, up to a timeout, so the animation doesn't start with a half-loaded image. This only happens during a `<ViewTransition>` update. Adding an `onLoad` handler opts a specific image out, even inside a `<ViewTransition>`.
+When a Suspense boundary reveals content inside a [`<ViewTransition>`](/reference/react/ViewTransition), React waits up to 500 ms for visible images to load before starting the animation. An `onLoad` handler opts an image out.
 
-In the example below, the Suspense boundary is wrapped in a `<ViewTransition>` and shows a profile skeleton until the portrait has loaded.
-
-For comparison, the second button performs the same update without React. Nothing waits for the image, so the card appears immediately and the image pops in when it loads:
+Compare the same boundary inside and outside a `<ViewTransition>`. Inside, React keeps the profile skeleton visible for up to 500 ms while the image loads, so the card can be revealed with its image already in place. Outside, Suspense stops showing the skeleton as soon as the Promise resolves. If the image is still loading, the card appears first and the image pops in afterward:
 
 <Sandpack>
 
 ```js
-import { ViewTransition, Suspense, useState, startTransition } from 'react';
-import { freshImageUrl } from './image.js';
-import VanillaProfile from './VanillaProfile.js';
+import {
+  ViewTransition,
+  Suspense,
+  use,
+  useState,
+} from 'react';
+import { fetchImageSrc } from './image.js';
 
-function Profile({ src }) {
+function Profile({ cacheKey }) {
+  const src = use(fetchImageSrc(cacheKey));
   return (
     <div className="card">
       <img src={src} alt="Jack Pope" width={80} height={80} />
@@ -3083,56 +3101,51 @@ function ProfilePlaceholder() {
 }
 
 export default function App() {
-  const [src, setSrc] = useState(null);
+  const [showWithTransition, setShowWithTransition] =
+    useState(false);
+  const [showWithoutTransition, setShowWithoutTransition] =
+    useState(false);
   return (
     <>
-      <button
-        onClick={() => {
-          startTransition(() => {
-            setSrc(freshImageUrl());
-          });
-        }}>
-        Show profile
+      <button onClick={() => setShowWithTransition(true)}>
+        Show profile with View Transition
       </button>
-      {src && (
+      {showWithTransition && (
         <ViewTransition>
           <Suspense fallback={<ProfilePlaceholder />}>
-            <Profile src={src} />
+            <Profile cacheKey="with-transition" />
           </Suspense>
         </ViewTransition>
       )}
       <hr />
-      <VanillaProfile />
-    </>
-  );
-}
-```
-
-```js src/VanillaProfile.js
-import { useRef } from 'react';
-import { freshImageUrl } from './image.js';
-
-export default function VanillaProfile() {
-  const ref = useRef(null);
-  function show() {
-    ref.current.innerHTML = `<div class="card">
-      <img src="${freshImageUrl()}" alt="Jack Pope" width="80" height="80" />
-      <p>Jack Pope</p>
-    </div>`;
-  }
-  return (
-    <>
-      <button onClick={show}>Show profile (without React)</button>
-      <div ref={ref} />
+      <button onClick={() => setShowWithoutTransition(true)}>
+        Show profile without View Transition
+      </button>
+      {showWithoutTransition && (
+        <Suspense fallback={<ProfilePlaceholder />}>
+          <Profile cacheKey="without-transition" />
+        </Suspense>
+      )}
     </>
   );
 }
 ```
 
 ```js src/image.js hidden
-// Add a unique parameter so the image isn't cached,
-// and every run shows the loading state.
-export function freshImageUrl() {
+// Normally, the caching logic would be inside a framework.
+const cache = new Map();
+
+export function fetchImageSrc(cacheKey) {
+  if (!cache.has(cacheKey)) {
+    cache.set(cacheKey, loadImageSrc());
+  }
+  return cache.get(cacheKey);
+}
+
+async function loadImageSrc() {
+  // Delay the response so the Suspense fallback is visible.
+  await new Promise(resolve => setTimeout(resolve, 1000));
+  // Add a unique parameter so the image isn't cached.
   return 'https://react.dev/images/team/jack-pope.jpg?t=' + Date.now();
 }
 ```
@@ -3171,8 +3184,8 @@ hr {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-f1f7ed2a-20260904",
-    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
     "react-scripts": "latest"
   }
 }
@@ -3262,7 +3275,6 @@ import { freshStylesheetUrl, freshImageUrl } from './resources.js';
 export default function VanillaProfileCard() {
   const ref = useRef(null);
   async function show() {
-    const quote = await fetchQuote();
     const doc = ref.current.contentWindow.document;
     doc.open();
     doc.write(`
@@ -3272,17 +3284,34 @@ export default function VanillaProfileCard() {
         .profile-card img { border-radius: 50%; background: #dfe3e9; }
         .name { margin: 0 0 4px; font-family: 'Caveat', sans-serif; font-size: 22px; line-height: 28px; font-weight: bold; }
         .bio { margin: 0; font-family: 'Caveat', sans-serif; font-size: 20px; line-height: 26px; }
+        .avatar-placeholder { width: 80px; height: 80px; border-radius: 50%; background: #dfe3e9; }
+        .name-placeholder, .bio-placeholder { border-radius: 4px; background: #dfe3e9; color: transparent; }
+        .name-placeholder { width: 90px; }
+        .bio-placeholder { width: 220px; height: 52px; }
       </style>
+      <div class="profile-card">
+        <div class="avatar-placeholder"></div>
+        <div>
+          <p class="name name-placeholder">&nbsp;</p>
+          <p class="bio bio-placeholder">&nbsp;</p>
+        </div>
+      </div>
+    `);
+    doc.close();
+
+    const quote = await fetchQuote();
+    doc.body.innerHTML = `
       <div class="profile-card">
         <img src="${freshImageUrl()}" alt="Jack Pope" width="80" height="80" />
         <div>
           <p class="name">Jack Pope</p>
           <p class="bio">${quote}</p>
         </div>
-      </div>
-      <link rel="stylesheet" href="${freshStylesheetUrl()}">
-    `);
-    doc.close();
+      </div>`;
+    const stylesheet = doc.createElement('link');
+    stylesheet.rel = 'stylesheet';
+    stylesheet.href = freshStylesheetUrl();
+    doc.head.appendChild(stylesheet);
   }
   return (
     <>
@@ -3375,6 +3404,7 @@ hr {
 }
 .bio-placeholder {
   width: 220px;
+  height: 52px;
 }
 .vanilla-frame {
   display: block;
@@ -3388,8 +3418,8 @@ hr {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-f1f7ed2a-20260904",
-    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
     "react-scripts": "latest"
   }
 }

@@ -222,6 +222,102 @@ For historical reasons, [`aria-*`](https://developer.mozilla.org/docs/Web/Access
 
 </Pitfall>
 
+
+
+## How React Handles HTML Attributes {/*how-react-handles-html-attributes*/}
+
+JSX looks a lot like HTML, but a few attributes work slightly differently because JSX maps to JavaScript and DOM properties. This short reference explains the common differences and shows examples you can copy.
+
+### Attribute name differences {/*attribute-name-differences*/}
+
+Some HTML attribute names are either reserved words in JavaScript or differ from the DOM property names. Use the React/JSX name when writing JSX:
+
+```jsx
+{/* use `className` instead of `class` */}
+<div className="container" />
+
+{/* use `htmlFor` instead of `for` */}
+<label htmlFor="email">Email</label>
+```
+
+### Boolean attributes {/*boolean-attributes*/}
+
+In HTML, boolean attributes are represented by their presence. In JSX, you pass explicit boolean values—but JSX also supports the shorthand form (which means `true`):
+
+```html
+<!-- HTML -->
+<input disabled />
+```
+```jsx
+// JSX (explicit boolean)
+<input disabled={true} />
+
+// JSX (shorthand, equivalent to true)
+<input disabled />
+```
+
+### Inline styles {/*inline-styles*/}
+
+HTML uses a CSS string. JSX uses a JavaScript object with camelCased property names:
+```html
+<!-- HTML -->
+<div style="color: red; background: blue;"></div>
+```
+```jsx
+// JSX
+<div style={{ color: "red", background: "blue" }} />
+```
+Numeric values (like lineHeight, zIndex) can be written as numbers
+```jsx
+<div style={{ lineHeight: 1.5, zIndex: 10 }} />
+```
+
+### Data and ARIA attributes {/*data-and-aria-attributes*/}
+
+React preserves data-* and aria-* attributes exactly as they appear in HTML. These must remain dash-cased:
+```jsx
+<div
+  data-user-id="123"
+  data-active="true"
+  aria-label="Close Button"
+/>
+```
+These attributes are ideal for accessibility and for storing custom data.
+
+### Unknown or invalid attributes {/*unknown-or-invalid-attributes*/}
+
+React will not add invalid or unknown attributes to the DOM:
+```jsx
+// Ignored: not a valid DOM attribute
+<div customAttribute="hello" />
+
+// ✔ Correct: custom data attribute
+<div data-qa="alert-box" />
+```
+If you intentionally want to pass unknown props (for example, in wrapper components), use the spread operator:
+
+```jsx
+function Button({ children, ...rest }) {
+  return <button {...rest}>{children}</button>;
+}
+
+// usage
+<Button data-track="1" disabled>Click</Button>
+```
+
+### Tips & common gotchas {/*tips--common-gotchas*/}
+
+- Use DOM property names (`className`, `htmlFor`, `defaultValue`) in JSX.
+- Boolean attributes should use `true` or `false`, not strings.
+- `data-*` and `aria-*` attributes stay the same in JSX.
+- Invalid attributes are removed from the DOM—use `data-*` for custom values.
+- Always double-check `class` → `className`, `for` → `htmlFor`, and convert `style` to an object when moving HTML to JSX.
+
+
+
+
+
+
 ### Pro-tip: Use a JSX Converter {/*pro-tip-use-a-jsx-converter*/}
 
 Converting all these attributes in existing markup can be tedious! We recommend using a [converter](https://transform.tools/html-to-jsx) to translate your existing HTML and SVG to JSX. Converters are very useful in practice, but it's still worth understanding what is going on so that you can comfortably write JSX on your own.
@@ -351,3 +447,6 @@ export default function Bio() {
 </Solution>
 
 </Challenges>
+
+
+

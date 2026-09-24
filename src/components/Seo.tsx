@@ -59,7 +59,7 @@ export const Seo = withRouter(
     return (
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        {title != null && <title key="title">{pageTitle}</title>}
+        {title !== null && <title key="title">{pageTitle}</title>}
         {isHomePage && (
           // Let Google figure out a good description for each page.
           <meta name="description" key="description" content={description} />
@@ -81,10 +81,10 @@ export const Seo = withRouter(
         <meta property="fb:app_id" content="623268441017527" />
         <meta property="og:type" key="og:type" content="website" />
         <meta property="og:url" key="og:url" content={canonicalUrl} />
-        {title != null && (
+        {title !== null && (
           <meta property="og:title" content={pageTitle} key="og:title" />
         )}
-        {description != null && (
+        {description !== null && (
           <meta
             property="og:description"
             key="og:description"
@@ -103,14 +103,14 @@ export const Seo = withRouter(
         />
         <meta name="twitter:site" key="twitter:site" content="@reactjs" />
         <meta name="twitter:creator" key="twitter:creator" content="@reactjs" />
-        {title != null && (
+        {title !== null && (
           <meta
             name="twitter:title"
             key="twitter:title"
             content={twitterTitle}
           />
         )}
-        {description != null && (
+        {description !== null && (
           <meta
             name="twitter:description"
             key="twitter:description"

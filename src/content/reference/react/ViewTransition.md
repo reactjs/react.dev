@@ -1253,9 +1253,9 @@ It's important to properly use keys to preserve identity when reordering lists. 
 
 ### Animating from Suspense content {/*animating-from-suspense-content*/}
 
-Like any Transition, React waits for data and new CSS (`<link rel="stylesheet" precedence="...">`) before running the animation. In addition to this, ViewTransitions also wait up to 500ms for new fonts to load before starting the animation to avoid them flickering in later. For the same reason, an image wrapped in ViewTransition will wait for the image to load. See examples of [waiting for a font](/reference/react/Suspense#waiting-for-a-font-to-load) and [waiting for an image](/reference/react/Suspense#waiting-for-an-image-to-load) on the Suspense page.
+`<ViewTransition>` can animate the reveal of a Suspense boundary. When content suspends inside a new boundary, React first shows the fallback. When the content is ready, the enclosing `<ViewTransition>` animates the reveal.
 
-If it's inside a new Suspense boundary instance, then the fallback is shown first. After the Suspense boundary fully loads, it triggers the `<ViewTransition>` to animate the reveal to the content.
+Before starting the animation, React also waits for new stylesheets, fonts, and images introduced by the content to load, up to their respective timeouts. This prevents them from appearing partway through the animation. See examples of [waiting for a font](/reference/react/Suspense#waiting-for-a-font-to-load) and [waiting for an image](/reference/react/Suspense#waiting-for-an-image-to-load) on the Suspense page.
 
 There are two ways to animate Suspense boundaries depending on where you place the `<ViewTransition>`:
 
@@ -1315,7 +1315,7 @@ export function VideoPlaceholder() {
 ```
 
 ```js
-import {ViewTransition, useState, startTransition, Suspense} from 'react';
+import {ViewTransition, useState, Suspense} from 'react';
 import {Video, VideoPlaceholder} from './Video';
 import {useLazyVideoData} from './data';
 
@@ -1328,12 +1328,7 @@ export default function Component() {
   const [showItem, setShowItem] = useState(false);
   return (
     <>
-      <button
-        onClick={() => {
-          startTransition(() => {
-            setShowItem((prev) => !prev);
-          });
-        }}>
+      <button onClick={() => setShowItem((prev) => !prev)}>
         {showItem ? '➖' : '➕'}
       </button>
       {showItem ? (

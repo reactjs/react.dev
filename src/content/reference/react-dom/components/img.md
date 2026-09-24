@@ -134,7 +134,7 @@ Because React does not wait for images during synchronous updates, this example 
 <Sandpack>
 
 ```js
-import { ViewTransition, Suspense, useState, startTransition } from 'react';
+import { ViewTransition, useState, startTransition } from 'react';
 import { freshImageUrl } from './image.js';
 
 function Profile({ src }) {
@@ -146,21 +146,10 @@ function Profile({ src }) {
   );
 }
 
-function ProfilePlaceholder() {
-  return (
-    <div className="card">
-      <div className="avatar-placeholder" />
-      <p className="name-placeholder">&nbsp;</p>
-    </div>
-  );
-}
-
 function ProfileInViewTransition({ src }) {
   return (
     <ViewTransition>
-      <Suspense fallback={<ProfilePlaceholder />}>
-        <Profile src={src} />
-      </Suspense>
+      <Profile src={src} />
     </ViewTransition>
   );
 }
@@ -191,9 +180,7 @@ export default function App() {
         Show profile without View Transition
       </button>
       {src && (
-        <Suspense fallback={<ProfilePlaceholder />}>
-          <Profile src={src} />
-        </Suspense>
+        <Profile src={src} />
       )}
     </>
   );
@@ -222,17 +209,6 @@ export function freshImageUrl() {
 }
 .card p {
   font-weight: bold;
-}
-.avatar-placeholder {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: #dfe3e9;
-}
-.name-placeholder {
-  width: 90px;
-  border-radius: 4px;
-  background: #dfe3e9;
 }
 hr {
   margin: 16px 0;

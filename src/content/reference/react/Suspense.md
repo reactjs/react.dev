@@ -3051,7 +3051,7 @@ hr {
 
 ### Waiting for an image to load {/*waiting-for-an-image-to-load*/}
 
-When a [`<ViewTransition>`](/reference/react/ViewTransition) animates a Suspense boundary's reveal, React waits for visible images to load, up to a timeout, so the animation doesn't start with a half-loaded image. This only happens during a `<ViewTransition>` update. Adding an `onLoad` handler opts a specific image out, even inside a `<ViewTransition>`.
+A Suspense boundary can reveal its content inside a [`<ViewTransition>`](/reference/react/ViewTransition). During that reveal, React waits for visible images to load, up to a timeout, so the animation doesn't start with a half-loaded image. Adding an `onLoad` handler opts a specific image out.
 
 In the example below, the Suspense boundary is wrapped in a `<ViewTransition>` and shows a profile skeleton until the portrait has loaded.
 
@@ -3166,8 +3166,6 @@ hr {
 ```
 
 </Sandpack>
-
-When the Promise resolves, React retries rendering the suspended content. Because the Suspense boundary is wrapped in `<ViewTransition>`, React waits for the image before starting the animation.
 
 ---
 

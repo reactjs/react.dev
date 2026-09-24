@@ -119,7 +119,7 @@ if (isLoggedIn) {
 }
 ```
 
-Call the hook unconditionally, check condition inside:
+Call the hook unconditionally, check the condition inside:
 
 ```js
 // ✅ Condition inside hook

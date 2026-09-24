@@ -4,7 +4,7 @@ title: Updating Objects in State
 
 <Intro>
 
-State can hold any kind of JavaScript value, including objects. But you shouldn't change objects that you hold in the React state directly. Instead, when you want to update an object, you need to create a new one (or make a copy of an existing one), and then set the state to use that copy.
+State can hold any kind of JavaScript value, including objects. But you shouldn't change objects that you hold in the React state directly.This is because React does not detect direct mutations, so the UI will not update. Instead, when you want to update an object, you need to create a new one (or make a copy of an existing one), and then set the state to use that copy.
 
 </Intro>
 
@@ -45,7 +45,8 @@ Technically, it is possible to change the contents of _the object itself_. **Thi
 position.x = 5;
 ```
 
-However, although objects in React state are technically mutable, you should treat them **as if** they were immutable--like numbers, booleans, and strings. Instead of mutating them, you should always replace them.
+However, although objects in React state are technically mutable, you should treat them **as if** they were immutable--like numbers, booleans, and strings.This helps React correctly detect changes and update the UI as expected.
+Instead of mutating them, you should always replace them.
 
 ## Treat state as read-only {/*treat-state-as-read-only*/}
 

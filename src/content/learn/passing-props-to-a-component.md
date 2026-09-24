@@ -413,6 +413,22 @@ However, props are [immutable](https://en.wikipedia.org/wiki/Immutable_object)â€
 
 **Don't try to "change props".** When you need to respond to the user input (like changing the selected color), you will need to "set state", which you can learn about in [State: A Component's Memory.](/learn/state-a-components-memory)
 
+## Props Default to "True" {/*props-default-to-true*/}
+
+If you pass no value for a prop, it defaults to true. These two JSX expressions are equivalent:
+
+```
+<MyTextBox autocomplete />
+
+<MyTextBox autocomplete={true} />
+```
+
+In general, we donâ€™t recommend not passing a value for a prop, because it can be confused with the [ES6 object shorthand](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer) `foo` which is short for `{foo: foo}` rather than `{foo: true}`. This behavior is just there so that it matches the behavior of HTML.
+
+
+
+
+
 <Recap>
 
 * To pass props, add them to the JSX, just like you would with HTML attributes.

@@ -3119,6 +3119,8 @@ export default function App() {
 
 ```js src/image.js hidden
 export async function fetchImageSrc() {
+  // Add a fake delay so the Suspense fallback is visible.
+  await new Promise(resolve => setTimeout(resolve, 1000));
   // Add a unique parameter so the image isn't cached.
   return 'https://react.dev/images/team/jack-pope.jpg?t=' + Date.now();
 }

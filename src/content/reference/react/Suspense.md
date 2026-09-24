@@ -2903,7 +2903,7 @@ Where you place the `<ViewTransition>` relative to the boundary determines wheth
 
 When a [`<ViewTransition>`](/reference/react/ViewTransition) animates a Suspense boundary's reveal, React waits up to 500 ms for new fonts the content introduces so the text doesn't flash with a fallback font. This only happens during a `<ViewTransition>` update.
 
-In the example below, the Suspense boundary is wrapped in a `<ViewTransition>`, and the `Quote` component suspends while its data loads. Rendering the quote starts its font download. React keeps the fallback visible until the font has loaded, so the quote appears already in its font.
+In the example below, the Suspense boundary is wrapped in a `<ViewTransition>`, and the `Quote` component suspends while its data loads. Rendering the quote starts its font download. React keeps the fallback visible while the font loads. If it loads within the 500 ms limit, the quote appears already in its font.
 
 For comparison, the second button performs the same update without React. Nothing waits for the font, so the text appears in a fallback font first and then switches:
 
@@ -2922,7 +2922,7 @@ function Quote({ fontSrc }) {
       <style href={fontSrc} precedence="default">
         {`@font-face {
           font-family: 'Fancy';
-          src: url(${fontSrc}) format('truetype');
+          src: url(${fontSrc}) format('woff2');
           font-display: swap;
         }`}
       </style>
@@ -2967,7 +2967,7 @@ export default function VanillaQuote() {
     const style = document.createElement('style');
     style.textContent = `@font-face {
       font-family: 'VanillaFancy';
-      src: url(${freshFontUrl()}) format('truetype');
+      src: url(${freshFontUrl()}) format('woff2');
       font-display: swap;
     }`;
     document.head.appendChild(style);
@@ -2987,7 +2987,7 @@ export default function VanillaQuote() {
 // and every run shows the loading state.
 export function freshFontUrl() {
   return (
-    'https://raw.githubusercontent.com/google/fonts/main/ofl/caveat/Caveat%5Bwght%5D.ttf' +
+    'https://fonts.gstatic.com/s/caveat/v23/WnznHAc5bAfYB2QRah7pcpNvOx-pjfJ9eIWpYT5Kmgq3sw.woff2' +
     '?t=' +
     Date.now()
   );
@@ -3038,8 +3038,8 @@ hr {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-f1f7ed2a-20260904",
-    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
     "react-scripts": "latest"
   }
 }
@@ -3260,7 +3260,6 @@ import { freshStylesheetUrl, freshImageUrl } from './resources.js';
 export default function VanillaProfileCard() {
   const ref = useRef(null);
   async function show() {
-    const quote = await fetchQuote();
     const doc = ref.current.contentWindow.document;
     doc.open();
     doc.write(`
@@ -3270,17 +3269,34 @@ export default function VanillaProfileCard() {
         .profile-card img { border-radius: 50%; background: #dfe3e9; }
         .name { margin: 0 0 4px; font-family: 'Caveat', sans-serif; font-size: 22px; line-height: 28px; font-weight: bold; }
         .bio { margin: 0; font-family: 'Caveat', sans-serif; font-size: 20px; line-height: 26px; }
+        .avatar-placeholder { width: 80px; height: 80px; border-radius: 50%; background: #dfe3e9; }
+        .name-placeholder, .bio-placeholder { border-radius: 4px; background: #dfe3e9; color: transparent; }
+        .name-placeholder { width: 90px; }
+        .bio-placeholder { width: 220px; height: 52px; }
       </style>
+      <div class="profile-card">
+        <div class="avatar-placeholder"></div>
+        <div>
+          <p class="name name-placeholder">&nbsp;</p>
+          <p class="bio bio-placeholder">&nbsp;</p>
+        </div>
+      </div>
+    `);
+    doc.close();
+
+    const quote = await fetchQuote();
+    doc.body.innerHTML = `
       <div class="profile-card">
         <img src="${freshImageUrl()}" alt="Jack Pope" width="80" height="80" />
         <div>
           <p class="name">Jack Pope</p>
           <p class="bio">${quote}</p>
         </div>
-      </div>
-      <link rel="stylesheet" href="${freshStylesheetUrl()}">
-    `);
-    doc.close();
+      </div>`;
+    const stylesheet = doc.createElement('link');
+    stylesheet.rel = 'stylesheet';
+    stylesheet.href = freshStylesheetUrl();
+    doc.head.appendChild(stylesheet);
   }
   return (
     <>
@@ -3373,6 +3389,7 @@ hr {
 }
 .bio-placeholder {
   width: 220px;
+  height: 52px;
 }
 .vanilla-frame {
   display: block;
@@ -3386,8 +3403,8 @@ hr {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-f1f7ed2a-20260904",
-    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
     "react-scripts": "latest"
   }
 }

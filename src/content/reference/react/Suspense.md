@@ -3167,7 +3167,7 @@ hr {
 
 </Sandpack>
 
-When the Promise resolves, React retries rendering the suspended content. This retry activates the enclosing `<ViewTransition>`, so this example does not need `startTransition`.
+When the Promise resolves, React retries rendering the suspended content. Because the Suspense boundary is wrapped in `<ViewTransition>`, React waits for the image before starting the animation.
 
 ---
 

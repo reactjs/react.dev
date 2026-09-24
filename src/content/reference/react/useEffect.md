@@ -1416,6 +1416,24 @@ button { margin-left: 5px; }
 
 </Recipes>
 
+<Note>
+
+**Avoid placing objects or arrays**, defined inside the component directly into the dependency array. Because _non-primitive values_ receive a new reference on every render, this will cause your Effect to re-run unnecessarily, leading to _performance issues or infinite loops._  
+
+```js {4}
+
+function ChatRoom() {
+  useEffect(()=>{
+    // ...
+  }, [{ limit: 10 }])
+}
+
+```
+
+To use the non-primitives values in the dependency array try using `useMemo()` hook or moving them outside the component, see the section on **[Removing unnecessary object dependencies.](/reference/react/useEffect#removing-unnecessary-object-dependencies)**.
+
+</Note>
+
 ---
 
 ### Updating state based on previous state from an Effect {/*updating-state-based-on-previous-state-from-an-effect*/}

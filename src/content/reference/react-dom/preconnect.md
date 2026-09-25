@@ -40,7 +40,6 @@ The `preconnect` function provides the browser with a hint that it should open a
 
 * `href`: a string. The URL of the server you want to connect to.
 
-
 #### Returns {/*returns*/}
 
 `preconnect` returns nothing.

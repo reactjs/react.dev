@@ -51,7 +51,6 @@ The `preloadModule` function provides the browser with a hint that it should sta
   *  `integrity`: a string. A cryptographic hash of the module, to [verify its authenticity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity).
   *  `nonce`: a string. A cryptographic [nonce to allow the module](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) when using a strict Content Security Policy.
 
-
 #### Returns {/*returns*/}
 
 `preloadModule` returns nothing.

@@ -324,6 +324,8 @@ export default function EffectAlbums({ artistId }) {
 // Note: the way you would do data fetching depends on
 // the framework that you use together with Suspense.
 // Normally, the caching logic would be inside a framework.
+// This module-level cache is only suitable for this client-only demo.
+// Do not copy it into server environments.
 
 let cache = new Map();
 

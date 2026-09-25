@@ -140,7 +140,7 @@ In development builds, when you click on a component render entry, you can inspe
 
 The Server Requests track visualized all Promises that eventually end up in a React Server Component. This includes any `async` operations like calling `fetch` or async Node.js file operations.
 
-React will try to combine Promises that are started from inside third-party code into a single span representing the the duration of the entire operation blocking 1st party code.
+React will try to combine Promises that are started from inside third-party code into a single span representing the duration of the entire operation blocking 1st party code.
 For example, a third party library method called `getUser` that calls `fetch` internally multiple times will be represented as a single span called `getUser`, instead of showing multiple `fetch` spans.
 
 Clicking on spans will show you a stack trace of where the Promise was created as well as a view of the value that the Promise resolved to, if available.

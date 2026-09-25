@@ -501,6 +501,13 @@
     overflow: auto;
   }
 
+  html.dark {
+    table td,
+    table th {
+      border-color: #343a46;
+    }
+  }
+
   summary::-webkit-details-marker {
     display: none;
   }

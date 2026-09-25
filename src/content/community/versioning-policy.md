@@ -69,7 +69,7 @@ We have a pretty good track record for keeping React releases free of bugs, but 
 
 For these reasons, we reserve patch releases only for the most critical bugs and security vulnerabilities.
 
-If a release includes non-essential changes — such as internal refactors, changes to implementation details, performance improvements, or minor bugfixes — we will bump the minor version even when there are no new features.
+If a release includes non-essential changes—such as internal refactors, changes to implementation details, performance improvements, or minor bugfixes—we will bump the minor version even when there are no new features.
 
 ## All release channels {/*all-release-channels*/}
 

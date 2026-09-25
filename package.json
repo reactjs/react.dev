@@ -2,7 +2,7 @@
   "name": "react-dev",
   "version": "1.0.0",
   "private": true,
-  "license": "CC",
+  "license": "SEE LICENSE IN LICENSE-DOCS.md",
   "scripts": {
     "analyze": "ANALYZE=true next build",
     "dev": "next-remote-watch ./src/content",

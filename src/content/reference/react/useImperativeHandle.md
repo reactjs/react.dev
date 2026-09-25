@@ -6,6 +6,8 @@ title: useImperativeHandle
 
 `useImperativeHandle` is a React Hook that lets you customize the handle exposed as a [ref.](/learn/manipulating-the-dom-with-refs)
 
+You can think of the handle as the value a parent reads from the ref (for example, an object with methods).
+
 ```js
 useImperativeHandle(ref, createHandle, dependencies?)
 ```
@@ -60,6 +62,8 @@ Starting with React 19, [`ref` is available as a prop.](/blog/2024/12/05/react-1
 
 ### Exposing a custom ref handle to the parent component {/*exposing-a-custom-ref-handle-to-the-parent-component*/}
 
+By default, a ref passed to a component is forwarded to the underlying DOM node.
+
 To expose a DOM node to the parent element, pass in the `ref` prop to the node.
 
 ```js {2}
@@ -109,7 +113,7 @@ function MyInput({ ref }) {
 };
 ```
 
-Now, if the parent component gets a ref to `MyInput`, it will be able to call the `focus` and `scrollIntoView` methods on it. However, it will not have full access to the underlying `<input>` DOM node.
+Now, if the parent component gets a ref to `MyInput`, it will receive the custom handle object and be able to call `focus` and `scrollIntoView`. However, it will not have full access to the underlying `<input>` DOM node.
 
 <Sandpack>
 

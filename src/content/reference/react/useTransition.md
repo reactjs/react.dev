@@ -320,7 +320,7 @@ These solutions handle request ordering for you. When using Transitions to build
 
 In this example, the `updateQuantity` function also simulates a request to the server to update the item's quantity in the cart. This function is *artificially slowed down* so that it takes at least a second to complete the request.
 
-Update the quantity multiple times quickly. Notice that the pending "Total" state is shown while any requests is in progress, but the "Total" updates multiple times for each time the "quantity" was clicked:
+Update the quantity multiple times quickly. Notice that the pending "Total" state is shown until the first request completes, but the "Total" updates multiple times for each time the "quantity" was clicked:
 
 <Sandpack>
 

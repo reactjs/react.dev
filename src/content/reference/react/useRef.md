@@ -592,3 +592,36 @@ export default MyInput;
 Then the parent component can get a ref to it.
 
 Read more about [accessing another component's DOM nodes.](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes)
+
+### How can I attach more than one ref to a single element? {/*how-can-i-attach-more-than-one-ref-to-a-single-element*/}
+
+Sometimes you need one element to update multiple refs. For example, you might keep a local ref and also receive a ref from a parent.
+
+Use a ref callback that assigns the same DOM node to each ref:
+
+```js
+import { useRef } from 'react';
+
+function assignRef(ref, value) {
+  if (typeof ref === 'function') {
+    ref(value);
+  } else if (ref != null) {
+    ref.current = value;
+  }
+}
+
+function MyInput({ ref: forwardedRef }) {
+  const localRef = useRef(null);
+
+  return (
+    <input
+      ref={node => {
+        assignRef(localRef, node);
+        assignRef(forwardedRef, node);
+      }}
+    />
+  );
+}
+```
+
+This pattern avoids reading `ref.current` during render and works with both object refs and callback refs.

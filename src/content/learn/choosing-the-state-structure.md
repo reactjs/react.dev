@@ -1156,7 +1156,6 @@ export default function TravelPlan() {
       const grandParent = findParent(parentId);
       handleComplete(grandParent, parentId);
     }
-    
     // Find the parent of a place.
     function findParent(Id){
       for(const parentId in plan){

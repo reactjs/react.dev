@@ -216,7 +216,6 @@ html.dark .sp-wrapper {
 
 .sandpack--playground .sp-code-editor .cm-line {
   padding: 0 var(--sp-space-3);
-  width: max-content;
 }
 
 .sandpack--playground .sp-code-editor .cm-lineNumbers {

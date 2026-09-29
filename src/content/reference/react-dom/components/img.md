@@ -125,22 +125,23 @@ To create an explicit preload hint, call [`preload`](/reference/react-dom/preloa
 
 ### Waiting for an image during a View Transition {/*waiting-for-an-image-during-a-view-transition*/}
 
-During a client-rendered [`<ViewTransition>`](/reference/react/ViewTransition) update, React may wait for an image to load and decode before starting the animation. This applies when a new `<img>` with a non-empty `src` is rendered, or when an existing image's `src` or `srcSet` changes. The image must be inside the `<ViewTransition>` subtree and must not have `loading="lazy"` or an `onLoad` handler. React does not wait for images during synchronous updates.
+During a Suspense reveal inside a [`<ViewTransition>`](/reference/react/ViewTransition), React waits up to 500 ms for visible images to load and decode before starting the animation. This includes newly rendered `<img>` elements with a non-empty `src` and existing images whose `src` or `srcSet` changes. React does not wait for images with `loading="lazy"` or an `onLoad` handler.
 
-When a Suspense boundary reveals streamed content inside a `<ViewTransition>`, React may also wait for visible images with a non-empty `src` that do not have `loading="lazy"`. React stops waiting after a timeout so that a slow image does not block the update indefinitely.
-
-In this example, the Suspense boundary is wrapped in a `<ViewTransition>` and shows a profile skeleton until the portrait has loaded.
-
-For comparison, the second button inserts the same card directly into the DOM. The card appears immediately, and the browser displays the image after it loads:
+Compare how the same image appears when a Suspense boundary reveals its content inside and outside a `<ViewTransition>`:
 
 <Sandpack>
 
 ```js
-import { ViewTransition, Suspense, useState, startTransition } from 'react';
-import { freshImageUrl } from './image.js';
-import VanillaProfile from './VanillaProfile.js';
+import {
+  ViewTransition,
+  Suspense,
+  use,
+  useState,
+} from 'react';
+import { fetchImageSrc } from './image.js';
 
-function Profile({ src }) {
+function Profile({ cacheKey }) {
+  const src = use(fetchImageSrc(cacheKey));
   return (
     <div className="card">
       <img src={src} alt="Jack Pope" width={80} height={80} />
@@ -159,56 +160,51 @@ function ProfilePlaceholder() {
 }
 
 export default function App() {
-  const [src, setSrc] = useState(null);
+  const [showWithTransition, setShowWithTransition] =
+    useState(false);
+  const [showWithoutTransition, setShowWithoutTransition] =
+    useState(false);
   return (
     <>
-      <button
-        onClick={() => {
-          startTransition(() => {
-            setSrc(freshImageUrl());
-          });
-        }}>
-        Show profile
+      <button onClick={() => setShowWithTransition(true)}>
+        Show profile with View Transition
       </button>
-      {src && (
+      {showWithTransition && (
         <ViewTransition>
           <Suspense fallback={<ProfilePlaceholder />}>
-            <Profile src={src} />
+            <Profile cacheKey="with-transition" />
           </Suspense>
         </ViewTransition>
       )}
       <hr />
-      <VanillaProfile />
-    </>
-  );
-}
-```
-
-```js src/VanillaProfile.js
-import { useRef } from 'react';
-import { freshImageUrl } from './image.js';
-
-export default function VanillaProfile() {
-  const ref = useRef(null);
-  function show() {
-    ref.current.innerHTML = `<div class="card">
-      <img src="${freshImageUrl()}" alt="Jack Pope" width="80" height="80" />
-      <p>Jack Pope</p>
-    </div>`;
-  }
-  return (
-    <>
-      <button onClick={show}>Show profile (direct DOM update)</button>
-      <div ref={ref} />
+      <button onClick={() => setShowWithoutTransition(true)}>
+        Show profile without View Transition
+      </button>
+      {showWithoutTransition && (
+        <Suspense fallback={<ProfilePlaceholder />}>
+          <Profile cacheKey="without-transition" />
+        </Suspense>
+      )}
     </>
   );
 }
 ```
 
 ```js src/image.js hidden
-// Add a unique parameter so the image isn't cached,
-// and every run shows the loading state.
-export function freshImageUrl() {
+// Normally, the caching logic would be inside a framework.
+const cache = new Map();
+
+export function fetchImageSrc(cacheKey) {
+  if (!cache.has(cacheKey)) {
+    cache.set(cacheKey, loadImageSrc());
+  }
+  return cache.get(cacheKey);
+}
+
+async function loadImageSrc() {
+  // Delay the response so the Suspense fallback is visible.
+  await new Promise(resolve => setTimeout(resolve, 1000));
+  // Add a unique parameter so the image isn't cached.
   return 'https://react.dev/images/team/jack-pope.jpg?t=' + Date.now();
 }
 ```
@@ -255,3 +251,5 @@ hr {
 ```
 
 </Sandpack>
+
+With `<ViewTransition>`, React keeps the skeleton visible for up to 500 ms while the image loads, so the card can be revealed with its image already in place. Without `<ViewTransition>`, Suspense stops showing the skeleton as soon as the Promise resolves. If the image is still loading, the card appears first and the image pops in afterward.

@@ -1571,4 +1571,4 @@ function Album() {
 }
 ```
 
-This does not affect `use` when called in the browser.
+This behavior only affects `use` calls during server rendering, not in the browser.

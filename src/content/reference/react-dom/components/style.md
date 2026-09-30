@@ -1,5 +1,5 @@
 ---
-style: "<style>"
+title: "<style>"
 ---
 
 <Intro>

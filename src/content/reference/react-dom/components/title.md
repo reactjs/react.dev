@@ -36,11 +36,17 @@ To specify the title of the document, render the [built-in browser `<title>` com
 
 #### Special rendering behavior {/*special-rendering-behavior*/}
 
-React will always place the DOM element corresponding to the `<title>` component within the document’s `<head>`, regardless of where in the React tree it is rendered. The `<head>` is the only valid place for `<title>` to exist within the DOM, yet it’s convenient and keeps things composable if a component representing a specific page can render its `<title>` itself.
+React will always place the DOM element corresponding to the `<title>` component within the document's `<head>`, regardless of where in the React tree it is rendered. The `<head>` is the only valid place for `<title>` to exist within the DOM, yet it's convenient and keeps things composable if a component representing a specific page can render its `<title>` itself.
 
 There are two exception to this:
 * If `<title>` is within an `<svg>` component, then there is no special behavior, because in this context it doesn’t represent the document’s title but rather is an [accessibility annotation for that SVG graphic](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/title).
 * If the `<title>` has an [`itemProp`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemprop) prop, there is no special behavior, because in this case it doesn’t represent the document’s title but rather metadata about a specific part of the page.
+
+<Note>
+
+When rendering only part of a document on the server, React cannot insert `<title>` into a `<head>` supplied by a separate HTML template. It emits `<title>` with the rendered output instead, and hydration does not move it into that `<head>`. To include `<title>` in the initial document `<head>`, render the entire document with React or add it to the server template.
+
+</Note>
 
 <Pitfall>
 

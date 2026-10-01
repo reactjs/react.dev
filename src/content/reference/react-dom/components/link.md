@@ -80,6 +80,12 @@ There are a few exceptions to this:
 * If the `<link>` has an [`itemProp`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemprop) prop, there is no special behavior, because in this case it doesn’t apply to the document but instead represents metadata about a specific part of the page.
 * If the `<link>` has an `onLoad` or `onError` prop, because in that case you are managing the loading of the linked resource manually within your React component.
 
+<Note>
+
+When rendering only part of a document on the server, React cannot insert `<link>` into a `<head>` supplied by a separate HTML template. It emits `<link>` with the rendered output instead, and hydration does not move it into that `<head>`. To include `<link>` in the initial document `<head>`, render the entire document with React or add it to the server template.
+
+</Note>
+
 #### Special behavior for stylesheets {/*special-behavior-for-stylesheets*/}
 
 In addition, if the `<link>` is to a stylesheet (namely, it has `rel="stylesheet"` in its props), React treats it specially in the following ways:

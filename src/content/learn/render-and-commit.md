@@ -194,6 +194,48 @@ export default function App() {
 </Sandpack>
 
 This works because during this last step, React only updates the content of `<h1>` with the new `time`. It sees that the `<input>` appears in the JSX in the same place as last time, so React doesn't touch the `<input>`—or its `value`!
+## Debugging Hydration Mismatches {/*debugging-hydration-mismatches*/}
+
+Hydration mismatches can occur when the HTML rendered on the server differs from what React renders on the client.
+
+### Common causes {/*common-causes*/}
+
+- Non-deterministic values such as:
+  - `Math.random()`
+  - `Date.now()`
+- Using browser-only APIs like `window` or `document` during render
+- Differences between server and client environments
+- Asynchronous or inconsistent data
+
+### Example {/*example*/}
+
+```jsx {expectedErrors: {'react-compiler': [2]}}
+function App() {
+  return <div>{Math.random()}</div>;
+}
+```
+
+### How to fix {/*how-to-fix*/}
+- Move non-deterministic logic into `useEffect`
+- Ensure consistent data between server and client
+- Guard browser-specific code:
+```jsx
+if (typeof window !== "undefined") {
+  // client-only logic
+}
+```
+
+### Debugging checklist {/*debugging-checklist*/}
+- Is the output deterministic?
+- Is any browser-only API used during render?
+- Is server data identical to client data?
+- Are there time-based values?
+
+### Best practices {/*best-practices*/}
+- Keep rendering logic pure
+- Avoid side effects during render
+- Use client-only rendering when necessary
+
 ## Epilogue: Browser paint {/*epilogue-browser-paint*/}
 
 After rendering is done and React updated the DOM, the browser will repaint the screen. Although this process is known as "browser rendering", we'll refer to it as "painting" to avoid confusion throughout the docs.

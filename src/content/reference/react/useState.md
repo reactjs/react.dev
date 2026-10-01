@@ -420,7 +420,7 @@ h1 { display: block; margin: 10px; }
 
 ### Updating objects and arrays in state {/*updating-objects-and-arrays-in-state*/}
 
-You can put objects and arrays into state. In React, state is considered read-only, so **you should *replace* it rather than *mutate* your existing objects**. For example, if you have a `form` object in state, don't mutate it:
+You can put objects and arrays into state. In React, State is considered read-only, so **you should *replace* it rather than *mutate* your existing objects**. For example, if you have a `form` object in state, don't mutate it:
 
 ```js
 // 🚩 Don't mutate an object in state like this:
@@ -1165,7 +1165,7 @@ function handleClick() {
 }
 ```
 
-This is because [states behaves like a snapshot.](/learn/state-as-a-snapshot) Updating state requests another render with the new state value, but does not affect the `count` JavaScript variable in your already-running event handler.
+This is because [State behaves like a snapshot.](/learn/state-as-a-snapshot) Updating state requests another render with the new state value, but does not affect the `count` JavaScript variable in your already-running event handler.
 
 If you need to use the next state, you can save it in a variable before passing it to the `set` function:
 

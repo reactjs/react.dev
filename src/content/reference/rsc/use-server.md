@@ -44,7 +44,7 @@ Instead of individually marking functions with `'use server'`, you can add the d
 * Because the underlying network calls are always asynchronous, `'use server'` can only be used on async functions.
 * Always treat arguments to Server Functions as untrusted input and authorize any mutations. See [security considerations](#security).
 * Server Functions should be called in a [Transition](/reference/react/useTransition). Server Functions passed to [`<form action>`](/reference/react-dom/components/form#props) or [`formAction`](/reference/react-dom/components/input#props) will automatically be called in a transition.
-* Server Functions are designed for mutations that update server-side state; they are not recommended for data fetching. Accordingly, frameworks implementing Server Functions typically process one action at a time and do not have a way to cache the return value.
+* Server Functions are designed for mutations that update server-side state; they are not recommended for data fetching. Accordingly, frameworks implementing Server Functions typically process one Action at a time and do not have a way to cache the return value.
 
 ### Security considerations {/*security*/}
 

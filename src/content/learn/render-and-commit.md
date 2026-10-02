@@ -80,7 +80,7 @@ Once the component has been initially rendered, you can trigger further renders 
 After you trigger a render, React calls your components to figure out what to display on screen. **"Rendering" is React calling your components.**
 
 * **On initial render,** React will call the root component.
-* **For subsequent renders,** React will call the function component whose state update triggered the render.
+* **For subsequent renders,** React will call the Function Component whose state update triggered the render.
 
 This process is recursive: if the updated component returns some other component, React will render _that_ component next, and if that component also returns something, it will render _that_ component next, and so on. The process will continue until there are no more nested components and React knows exactly what should be displayed on screen.
 

@@ -257,7 +257,7 @@ Read **[Render and Commit](/learn/render-and-commit)** to learn the lifecycle of
 
 ## State as a snapshot {/*state-as-a-snapshot*/}
 
-Unlike regular JavaScript variables, React state behaves more like a snapshot. Setting it does not change the state variable you already have, but instead triggers a re-render. This can be surprising at first!
+Unlike regular JavaScript variables, React State behaves more like a snapshot. Setting it does not change the state variable you already have, but instead triggers a re-render. This can be surprising at first!
 
 ```js
 console.log(count);  // 0
@@ -408,7 +408,7 @@ Read **[Queueing a Series of State Updates](/learn/queueing-a-series-of-state-up
 
 ## Updating objects in state {/*updating-objects-in-state*/}
 
-State can hold any kind of JavaScript value, including objects. But you shouldn't change objects and arrays that you hold in the React state directly. Instead, when you want to update an object and array, you need to create a new one (or make a copy of an existing one), and then update the state to use that copy.
+State can hold any kind of JavaScript value, including objects. But you shouldn't change objects and arrays that you hold in the React State directly. Instead, when you want to update an object and array, you need to create a new one (or make a copy of an existing one), and then update the state to use that copy.
 
 Usually, you will use the `...` spread syntax to copy objects and arrays that you want to change. For example, updating a nested object could look like this:
 

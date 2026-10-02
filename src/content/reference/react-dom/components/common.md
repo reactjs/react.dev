@@ -90,6 +90,8 @@ These standard DOM props are also supported for all built-in components:
 * `onDragEndCapture`: A version of `onDragEnd` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
 * [`onDragEnter`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragenter_event): A [`DragEvent` handler](#dragevent-handler) function. Fires when the dragged content enters a valid drop target.
 * `onDragEnterCapture`: A version of `onDragEnter` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onDragLeave`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragleave_event): A [`DragEvent` handler](#dragevent-handler) function. Fires when the dragged content leaves a valid drop target.
+* `onDragLeaveCapture`: A version of `onDragLeave` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
 * [`onDragOver`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragover_event): A [`DragEvent` handler](#dragevent-handler) function. Fires on a valid drop target while the dragged content is dragged over it. You must call `e.preventDefault()` here to allow dropping.
 * `onDragOverCapture`: A version of `onDragOver` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
 * [`onDragStart`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragstart_event): A [`DragEvent` handler](#dragevent-handler) function. Fires when the user starts dragging an element.
@@ -98,6 +100,10 @@ These standard DOM props are also supported for all built-in components:
 * `onDropCapture`: A version of `onDrop` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
 * `onFocus`: A [`FocusEvent` handler](#focusevent-handler) function. Fires when an element receives focus. Unlike the built-in browser [`focus`](https://developer.mozilla.org/en-US/docs/Web/API/Element/focus_event) event, in React the `onFocus` event bubbles.
 * `onFocusCapture`: A version of `onFocus` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onFullscreenChange`](https://developer.mozilla.org/en-US/docs/Web/API/Element/fullscreenchange_event): An [`Event` handler](#event-handler) function. Fires when an element enters or exits fullscreen mode.
+* `onFullscreenChangeCapture`: A version of `onFullscreenChange` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onFullscreenError`](https://developer.mozilla.org/en-US/docs/Web/API/Element/fullscreenerror_event): An [`Event` handler](#event-handler) function. Fires when the browser cannot switch an element to fullscreen mode.
+* `onFullscreenErrorCapture`: A version of `onFullscreenError` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
 * [`onGotPointerCapture`](https://developer.mozilla.org/en-US/docs/Web/API/Element/gotpointercapture_event): A [`PointerEvent` handler](#pointerevent-handler) function. Fires when an element programmatically captures a pointer.
 * `onGotPointerCaptureCapture`: A version of `onGotPointerCapture` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
 * [`onKeyDown`](https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event): A [`KeyboardEvent` handler](#keyboardevent-handler) function. Fires when a key is pressed.
@@ -116,6 +122,8 @@ These standard DOM props are also supported for all built-in components:
 * `onMouseMoveCapture`: A version of `onMouseMove` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
 * [`onMouseOut`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseout_event): A [`MouseEvent` handler](#mouseevent-handler) function. Fires when the pointer moves outside an element, or if it moves into a child element.
 * `onMouseOutCapture`: A version of `onMouseOut` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onMouseOver`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseover_event): A [`MouseEvent` handler](#mouseevent-handler) function. Fires when the pointer moves onto an element, or onto one of its child elements.
+* `onMouseOverCapture`: A version of `onMouseOver` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
 * [`onMouseUp`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseup_event): A [`MouseEvent` handler](#mouseevent-handler) function. Fires when the pointer is released.
 * `onMouseUpCapture`: A version of `onMouseUp` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
 * [`onPointerCancel`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointercancel_event): A [`PointerEvent` handler](#pointerevent-handler) function. Fires when the browser cancels a pointer interaction.
@@ -128,12 +136,16 @@ These standard DOM props are also supported for all built-in components:
 * `onPointerMoveCapture`: A version of `onPointerMove` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
 * [`onPointerOut`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerout_event): A [`PointerEvent` handler](#pointerevent-handler) function. Fires when a pointer moves outside an element, if the pointer interaction is cancelled, and [a few other reasons.](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerout_event)
 * `onPointerOutCapture`: A version of `onPointerOut` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onPointerOver`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerover_event): A [`PointerEvent` handler](#pointerevent-handler) function. Fires when a pointer moves onto an element, or onto one of its child elements.
+* `onPointerOverCapture`: A version of `onPointerOver` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
 * [`onPointerUp`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerup_event): A [`PointerEvent` handler](#pointerevent-handler) function. Fires when a pointer is no longer active.
 * `onPointerUpCapture`: A version of `onPointerUp` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
 * [`onPaste`](https://developer.mozilla.org/en-US/docs/Web/API/Element/paste_event): A [`ClipboardEvent` handler](#clipboardevent-handler) function. Fires when the user tries to paste something from the clipboard.
 * `onPasteCapture`: A version of `onPaste` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
 * [`onScroll`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scroll_event): An [`Event` handler](#event-handler) function. Fires when an element has been scrolled. This event does not bubble.
 * `onScrollCapture`: A version of `onScroll` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onScrollEnd`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollend_event): An [`Event` handler](#event-handler) function. Fires when an element has finished scrolling. This event does not bubble.
+* `onScrollEndCapture`: A version of `onScrollEnd` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
 * [`onSelect`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/select_event): An [`Event` handler](#event-handler) function. Fires after the selection inside an editable element like an input changes. React extends the `onSelect` event to work for `contentEditable={true}` elements as well. In addition, React extends it to fire for empty selection and on edits (which may affect the selection).
 * `onSelectCapture`: A version of `onSelect` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
 * [`onTouchCancel`](https://developer.mozilla.org/en-US/docs/Web/API/Element/touchcancel_event): A [`TouchEvent` handler](#touchevent-handler) function. Fires when the browser cancels a touch interaction.
@@ -171,9 +183,11 @@ These events fire only for the [`<dialog>`](https://developer.mozilla.org/en-US/
 * [`onClose`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/close_event): An [`Event` handler](#event-handler) function. Fires when a dialog has been closed.
 * `onCloseCapture`: A version of `onClose` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
 
-These events fire only for the [`<details>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details) elements. Unlike browser events, they bubble in React:
+These events fire for [`<details>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details) and [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) elements, and for elements with the [`popover`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/popover) attribute. Unlike browser events, they bubble in React:
 
-* [`onToggle`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDetailsElement/toggle_event): An [`Event` handler](#event-handler) function. Fires when the user toggles the details.
+* [`onBeforeToggle`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/beforetoggle_event): An [`Event` handler](#event-handler) function. Fires just before a popover or a dialog is shown or hidden.
+* `onBeforeToggleCapture`: A version of `onBeforeToggle` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onToggle`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/toggle_event): An [`Event` handler](#event-handler) function. Fires when the user toggles the details, or just after a popover or a dialog is shown or hidden.
 * `onToggleCapture`: A version of `onToggle` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
 
 These events fire for [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img), [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe), [`<object>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/object), [`<embed>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/embed), [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link), and [SVG `<image>`](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/SVG_Image_Tag) elements. Unlike browser events, they bubble in React:

@@ -297,9 +297,9 @@ export function HomeContent() {
                     <div className="absolute inset-0 bg-gradient-right" />
                     <div className="bg-wash relative h-14 w-full" />
                     <div className="relative flex items-start justify-center flex-col flex-1 pb-16 pt-5 gap-3 px-5 lg:px-10 lg:pt-8">
-                      <h4 className="leading-tight text-primary font-semibold text-3xl lg:text-4xl">
+                      <h3 className="leading-tight text-primary font-semibold text-3xl lg:text-4xl">
                         Stay true to the web
-                      </h4>
+                      </h3>
                       <p className="lg:text-xl leading-normal text-secondary">
                         People expect web app pages to load fast. On the server,
                         React lets you start streaming HTML while you’re still
@@ -383,9 +383,9 @@ export function HomeContent() {
                         </div>
                       </div>
                       <div className="flex flex-col items-start justify-center pt-0 gap-3 px-2.5 lg:pt-8 lg:px-8">
-                        <h4 className="leading-tight text-primary dark:text-primary-dark font-semibold text-3xl lg:text-4xl">
+                        <h3 className="leading-tight text-primary dark:text-primary-dark font-semibold text-3xl lg:text-4xl">
                           Go truly native
-                        </h4>
+                        </h3>
                         <p className="h-full lg:text-xl text-secondary dark:text-secondary-dark leading-normal">
                           People expect native apps to look and feel like their
                           platform.{' '}
@@ -1620,8 +1620,6 @@ function Thumbnail({video}) {
       href={video.url}
       target="_blank"
       rel="noreferrer"
-      aria-hidden="true"
-      tabIndex={-1}
       className={cn(
         'outline-link dark:outline-link outline-offset-2 aspect-video w-32 xs:w-36 select-none flex-col shadow-inner-border rounded-lg flex items-center overflow-hidden justify-center align-middle text-white/50 bg-cover bg-white bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))]',
         image === 'blue' && 'from-yellow-50 via-blue-50 to-purple-60',
@@ -1637,6 +1635,7 @@ function Thumbnail({video}) {
             ? 'url(' + image + ')'
             : null,
       }}>
+      <span className="sr-only">{video.title}</span>
       {typeof image !== 'string' ? (
         <>
           <div className="transition-opacity mt-2.5 -space-x-2 flex flex-row w-full justify-center">

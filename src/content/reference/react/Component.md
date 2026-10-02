@@ -1019,6 +1019,12 @@ Implementing `static getDerivedStateFromProps` in a class component is equivalen
 
 </Note>
 
+<Note>
+
+**Note:** The `static getDerivedStateFromProps` method can also be used with components created via the `createClass` API (using the [`create-react-class`](https://www.npmjs.com/package/create-react-class) package). This allows legacy codebases to adopt the newer lifecycle pattern.
+
+</Note>
+
 ---
 
 ## Usage {/*usage*/}

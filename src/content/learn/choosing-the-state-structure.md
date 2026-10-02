@@ -1151,6 +1151,20 @@ export default function TravelPlan() {
       // ...so that it has the updated parent.
       [parentId]: nextParent
     });
+    // If the parent has no children, remove it from its parent.
+    if(nextParent.childIds.length === 0 && parentId !== 0){
+      const grandParent = findParent(parentId);
+      handleComplete(grandParent, parentId);
+    }
+    // Find the parent of a place.
+    function findParent(Id){
+      for(const parentId in plan){
+        if(plan[parentId].childIds.includes(Id)){
+          return Number(parentId);
+        }
+      }
+      return null;
+    }
   }
 
   const root = plan[0];

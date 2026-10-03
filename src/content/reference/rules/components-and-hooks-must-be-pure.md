@@ -187,16 +187,16 @@ This is fine because the mutation is local and doesn't affect other components.
 
 Problematic case:
 ```js
-function SubscriptionExample(){
+function SubscriptionExample() {
   let subscriptionRef = useRef(null);
   // 🔴 Don't do this during render
-  if(subscriptionRef.current == null){
+  if(subscriptionRef.current === null) {
     subscriptionRef.current = store.subscribe(() => {
       console.log("Store Changed")
     });
   }
-  useEffect(() =>{
-    return () =>{
+  useEffect(() => {
+    return () => {
       subscriptionRef.current?.unsubscribe();
     }
   },[]);
@@ -206,13 +206,13 @@ This is a problematic use of lazy initialization because it perfroms an external
 
 Correct approach:
 ```js
-function SubscriptonExample(){
+function SubscriptonExample() {
   const subscriptionRef = useRef(null);
-  useEffect(() =>{
-    subscriptionRef.current = store.subscribe(() =>{
+  useEffect(() => {
+    subscriptionRef.current = store.subscribe(() => {
       // ..
     })
-    return () =>{
+    return () => {
       subscriptionRef.current?.unsubscribe();
     }
 },[]);

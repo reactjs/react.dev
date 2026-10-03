@@ -16,6 +16,7 @@ These APIs can be imported from your components. They are rarely used:
 
 * [`createPortal`](/reference/react-dom/createPortal) lets you render child components in a different part of the DOM tree.
 * [`flushSync`](/reference/react-dom/flushSync) lets you force React to flush a state update and update the DOM synchronously.
+* [`requestFormReset`](/reference/react-dom/requestFormReset) lets you request a form reset when handling submissions with custom Actions or Transitions.
 
 ## Resource Preloading APIs {/*resource-preloading-apis*/}
 

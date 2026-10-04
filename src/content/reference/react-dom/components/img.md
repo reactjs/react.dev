@@ -125,7 +125,7 @@ To create an explicit preload hint, call [`preload`](/reference/react-dom/preloa
 
 ### Waiting for an image during a View Transition {/*waiting-for-an-image-during-a-view-transition*/}
 
-During a client-rendered [`<ViewTransition>`](/reference/react/ViewTransition) update, React may wait up to 500 ms for visible images to load before starting the animation. This includes newly rendered `<img>` elements with a non-empty `src` and existing images whose `src` or `srcSet` changes. The image must be inside the `<ViewTransition>` subtree and must not have `loading="lazy"` or an `onLoad` handler. React does not wait for images during synchronous updates.
+During a [`<ViewTransition>`](/reference/react/ViewTransition) update, React waits up to 500 ms for visible images to load before starting the animation. This includes newly rendered `<img>` elements and existing images whose `src` or `srcSet` changes. Setting `loading="lazy"` or adding an `onLoad` handler opts an image out.
 
 Compare how the same image appears when a Suspense boundary reveals its content inside and outside a `<ViewTransition>`:
 

@@ -3085,7 +3085,7 @@ function Profile({ cacheKey }) {
   const src = use(fetchImageSrc(cacheKey));
   return (
     <div className="card">
-      <img src={src} alt="Jack Pope" width={80} height={80} />
+      <img src={src} alt="" width={80} height={80} />
       <p>Jack Pope</p>
     </div>
   );
@@ -3215,7 +3215,7 @@ function ProfileCard({ resources }) {
     <>
       <link rel="stylesheet" href={resources.stylesheet} precedence="default" />
       <div className="profile-card">
-        <img src={resources.image} alt="Jack Pope" width={80} height={80} />
+        <img src={resources.image} alt="" width={80} height={80} />
         <div>
           <p className="name">Jack Pope</p>
           <p className="bio">{quote}</p>
@@ -3302,7 +3302,7 @@ export default function VanillaProfileCard() {
     const quote = await fetchQuote();
     doc.body.innerHTML = `
       <div class="profile-card">
-        <img src="${freshImageUrl()}" alt="Jack Pope" width="80" height="80" />
+        <img src="${freshImageUrl()}" alt="" width="80" height="80" />
         <div>
           <p class="name">Jack Pope</p>
           <p class="bio">${quote}</p>

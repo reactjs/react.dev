@@ -51,7 +51,7 @@ To display an image, render the [built-in browser `<img>` component](https://dev
 
 * Do not pass an empty string to `src`. It may cause the browser to request the current page again. React warns in development and omits the attribute. To render no image, omit the `<img>` or pass `null` to `src`.
 * `<img>` cannot have children or use `dangerouslySetInnerHTML`. React throws an error if you pass either.
-* `fetchPriority="low"` does not stop React from waiting for the image to load and decode during a client-rendered View Transition update. Use `loading="lazy"` or an `onLoad` handler to opt out of that behavior.
+* `fetchPriority="low"` does not stop React from waiting for the image to load during a client-rendered View Transition update. Use `loading="lazy"` or an `onLoad` handler to opt out of that behavior.
 
 ---
 
@@ -125,7 +125,7 @@ To create an explicit preload hint, call [`preload`](/reference/react-dom/preloa
 
 ### Waiting for an image during a View Transition {/*waiting-for-an-image-during-a-view-transition*/}
 
-During a Suspense reveal inside a [`<ViewTransition>`](/reference/react/ViewTransition), React waits up to 500 ms for visible images to load and decode before starting the animation. This includes newly rendered `<img>` elements with a non-empty `src` and existing images whose `src` or `srcSet` changes. React does not wait for images with `loading="lazy"` or an `onLoad` handler.
+During a Suspense reveal inside a [`<ViewTransition>`](/reference/react/ViewTransition), React waits up to 500 ms for visible images to load before starting the animation. This includes newly rendered `<img>` elements with a non-empty `src` and existing images whose `src` or `srcSet` changes. React does not wait for images with `loading="lazy"` or an `onLoad` handler.
 
 Compare how the same image appears when a Suspense boundary reveals its content inside and outside a `<ViewTransition>`:
 

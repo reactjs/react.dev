@@ -538,6 +538,257 @@ Here, the `playerRef` itself is nullable. However, you should be able to convinc
 
 ---
 
+### Detect DOM changes with a ref {/*detect-dom-changes-with-a-ref*/}
+
+In some situations, you might need to detect changes in the DOM, such as when a 3rd party library draws visualizations directly to the DOM. To do so, first create a ref callback: a function passed to the ref attribute of the DOM node you want to observe. The ref callback takes a single argument: the DOM node you'd like to observe. Wrap your ref callback in `useCallback` to [prevent unnecessary reconnections](#how-to-avoid-callback-reconnections-with-usecallback).
+
+```js {5,10}
+import { useRef, useCallback } from "react";
+
+function Logo() {
+  const logoRef = useRef(null);
+  const setLogoRef = useCallback((node) => {
+    logoRef.current = node;
+    //...
+  }, []);
+  //...
+  return <div ref={setLogoRef}></div>
+}
+```
+
+Next, set up a [MutationObserver](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver) to monitor changes and handle those changes accordingly in your ref callback. In this example, the MutationObserver is monitoring for changes to the children of a `<div>`. Don't forget to disconnect your observer when you no longer need to monitor for changes.
+
+```js {7-13}
+import { useRef, useCallback } from "react";
+
+function Logo() {
+  const logoRef = useRef(null);
+  const setLogoRef = useCallback((node) => {
+    logoRef.current = node;
+    const observer = new MutationObserver(() => {
+      if (node && node.children.length > 0) {
+        // TODO: handle when children are added to this DOM node
+        observer.disconnect();
+      }
+    });
+    observer.observe(node, { childList: true });
+  }, []);
+  //...
+  return <div ref={setLogoRef}></div>
+}
+```
+
+Lastly, you'll need to return a function from your ref callback to cleanup the observer and ref. Explicitly setting the ref to null during cleanup prevents [refs to unmounted DOM nodes](#how-to-avoid-a-ref-to-a-unmounted-node).
+
+```js {10-13}
+import { useRef, useCallback } from "react";
+
+function Logo() {
+  const logoRef = useRef(null);
+  const setLogoRef = useCallback((node) => {
+    logoRef.current = node;
+    const observer = new MutationObserver(() => { /*...*/ });
+    observer.observe(node, { /*...*/ });
+
+    return () => {
+      logoRef.current = null;
+      observer.disconnect();
+    };
+  }, []);
+  //...
+  return <div ref={setLogoRef}></div>
+}
+```
+
+In this example, the `Logo` component utilizes a `MutationObserver` to detect when child elements are added to a `<div>` allowing it to update the component's state and stop displaying a loading indicator once the logo is fully drawn. Tap the "Reset" button in the upper right corner of the CodeSandbox example below to see how the loading indicator is replaced by the logo.
+
+<Sandpack>
+
+```js src/App.js active
+import { useState, useRef, useCallback } from "react";
+import { useDrawLogo } from "./draw-logo";
+
+export default function Logo() {
+  const [loading, setLoading] = useState(true);
+  const logoRef = useRef(null);
+  // useCallback prevents reconnections on each render
+  const setLogoRef = useCallback((node) => {
+    logoRef.current = node;
+    const observer = new MutationObserver(() => {
+      if (node && node.children.length > 0) {
+        setLoading(false);
+        observer.disconnect();
+      }
+    });
+    observer.observe(node, { childList: true });
+
+    return () => {
+      // Explicitly setting the ref to null in cleanup
+      // prevents refs to unmounted DOM nodes
+      logoRef.current = null;
+      observer.disconnect();
+    };
+  }, []);
+  useDrawLogo(logoRef);
+
+  return (
+    <div>
+      {loading ? <div className="spinner">Loading...</div> : null}
+      <div ref={setLogoRef}></div>
+    </div>
+  );
+}
+```
+
+```js src/draw-logo.js hidden
+import { useRef, useEffect } from "react";
+
+export function useDrawLogo(ref) {
+  // Use a ref to store the status of if drawing
+  // has started or not outside of render
+  const drawnRef = useRef(false);
+  useEffect(() => {
+    if (!drawnRef.current) {
+      delayedDrawLogo(ref.current);
+      drawnRef.current = true;
+    }
+  }, [ref]);
+}
+
+function delayedDrawLogo(node) {
+  // add 500ms delay to simulate
+  // a long drawing time
+  setTimeout(() => drawLogo(node), 500);
+}
+
+function drawLogo(node) {
+  const svgNamespace = "http://www.w3.org/2000/svg";
+  const createSvgElement = (type, attributes) => {
+    const element = document.createElementNS(svgNamespace, type);
+    Object.entries(attributes).forEach(([key, value]) => {
+      element.setAttribute(key, value);
+    });
+    return element;
+  };
+  const svg = createSvgElement("svg", {
+    width: "120",
+    height: "120",
+    viewBox: "0 0 100 100",
+  });
+  const ellipses = [{ rotate: 0 }, { rotate: 60 }, { rotate: 120 }];
+  ellipses.forEach(({ rotate }) => {
+    const ellipse = createSvgElement("ellipse", {
+      cx: "50",
+      cy: "50",
+      rx: "35",
+      ry: "13.75",
+      transform: `rotate(${rotate}, 50, 50)`,
+      fill: "none",
+      stroke: "#58C4DC",
+      "stroke-width": "3",
+    });
+    svg.appendChild(ellipse);
+  });
+  const circle = createSvgElement("circle", {
+    cx: "50",
+    cy: "50",
+    r: "6.25",
+    fill: "#58C4DC",
+  });
+  svg.appendChild(circle);
+  node.appendChild(svg);
+}
+```
+
+</Sandpack>
+
+<DeepDive>
+
+#### How to avoid callback reconnections with useCallback {/*how-to-avoid-callback-reconnections-with-usecallback*/}
+
+When React re-renders a component, all the functions defined in the component are recreated. This includes ref callback functions defined in components. When a ref callback function is changed or recreated, React will disconnect and reconnect your ref callback function. React does this because new prop values may need to be passed to the ref callback function.  This is similar to a function dependency in an effect.
+
+```js {4}
+export default function ReactLogo() {
+  // 🚩 without useCallback, the callback changes every
+  // render, which causes the listener to reconnect
+  const setLogoRef = (node) => {
+    //...
+  };
+  //...
+  return <div ref={setLogoRef}></div>
+}
+```
+
+To disconnect, React will call your ref callback function with `null` as an argument. To reconnect, React calls your ref callback function with the DOM node as an argument.
+
+To avoid unnecessary disconnections and reconnections wrap your ref callback function in [useCallback](/reference/react/useCallback). Make sure to add any dependencies to the `useCallback` dependency array. This will ensure the ref callback is called with updated props when necessary.
+
+```js {4,6}
+export default function ReactLogo() {
+  // ✅ with useCallback, the callback is stable
+  // so the listener doesn't reconnect each render
+  const setLogoRef = useCallback((node) => {
+    //....
+  }, []);
+  //...
+  return <div ref={setLogoRef}></div>
+}
+```
+
+</DeepDive>
+
+<DeepDive>
+
+#### How to avoid a ref to a unmounted node {/*how-to-avoid-a-ref-to-a-unmounted-node*/}
+
+A `ref` callback function with a cleanup function that does not set `ref.current` to `null` can result in a `ref` to a unmounted node.
+
+```js
+export default function Logo() {
+  const logoRef = useRef(null);
+  const setLogoRef = useCallback((node) => {
+    logoRef.current = node;
+    //...
+
+    // 🚩 if your ref cleanup function does not explicitly
+    // set the ref to null the ref may point to a
+    // unmounted DOM node
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+  //...
+  return <div ref={setLogoRef}></div>
+}
+```
+
+To fix the hanging ref to the DOM node that is no longer rendered, set `ref.current` to `null` in the `ref` callback cleanup function.
+
+```js {11}
+export default function Logo() {
+  const logoRef = useRef(null);
+  const setLogoRef = useCallback((node) => {
+    logoRef.current = node;
+    //...
+
+    return () => {
+      // ✅ Explicitly setting the ref to null in the
+      // cleanup function prevents references to
+      // unmounted DOM nodes
+      logoRef.current = null;
+      observer.disconnect();
+    };
+  }, []);
+  //...
+  return <div ref={setLogoRef}></div>
+}
+```
+
+</DeepDive>
+
+---
+
 ## Troubleshooting {/*troubleshooting*/}
 
 ### I can't get a ref to a custom component {/*i-cant-get-a-ref-to-a-custom-component*/}

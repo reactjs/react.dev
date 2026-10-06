@@ -16,7 +16,7 @@ const stream = await resume(reactNode, postponedState, options?)
 
 <Note>
 
-This API depends on [Web Streams.](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) For Node.js, use [`resumeToNodeStream`](/reference/react-dom/server/renderToPipeableStream) instead.
+This API depends on [Web Streams.](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) For Node.js, use [`resumeToPipeableStream`](/reference/react-dom/server/resumeToPipeableStream) instead.
 
 </Note>
 

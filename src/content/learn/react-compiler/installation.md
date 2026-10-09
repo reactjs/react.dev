@@ -62,6 +62,10 @@ module.exports = {
 };
 ```
 
+<Note>
+The compiler plugin does not turn on JSX parsing by itself. If you run Babel directly (for example with `@babel/cli`) on files that contain JSX, also add `@babel/preset-react` or `@babel/plugin-syntax-jsx`. Without one of them, Babel stops with "Support for the experimental syntax 'jsx' isn't currently enabled" before the compiler runs. Presets run after plugins, so the compiler still runs first.
+</Note>
+
 ### Vite {/*vite*/}
 
 If you use Vite with version 6.0.0 or later of `@vitejs/plugin-react`, you can use the `reactCompilerPreset`:

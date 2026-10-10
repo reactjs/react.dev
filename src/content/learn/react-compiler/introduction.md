@@ -161,7 +161,7 @@ React Compiler can be installed across [several build tools](/learn/react-compil
 
 React Compiler is primarily a light Babel plugin wrapper around the core compiler, which was designed to be decoupled from Babel itself. While the initial stable version of the compiler will remain primarily a Babel plugin, we are working with the swc and [oxc](https://github.com/oxc-project/oxc/issues/10048) teams to build first class support for React Compiler so you won't have to add Babel back to your build pipelines in the future.
 
-Next.js users can enable the swc-invoked React Compiler by using [v15.3.1](https://github.com/vercel/next.js/releases/tag/v15.3.1) and up.
+Next.js users can install babel-plugin-react-compiler, then enable the React Compiler in the next.config.js file by using [v16.2x](https://nextjs.org/docs/app/api-reference/config/next-config-js/reactCompiler) and up.
 
 ## What should I do about useMemo, useCallback, and React.memo? {/*what-should-i-do-about-usememo-usecallback-and-reactmemo*/}
 

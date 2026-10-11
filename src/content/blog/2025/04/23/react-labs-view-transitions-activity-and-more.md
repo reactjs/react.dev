@@ -1577,7 +1577,7 @@ export default function Page({ heading, children }) {
         </div>
       </div>
       {/* Opt-out of ViewTransition for the content. */}
-      {/* Content can define it's own ViewTransition. */}
+      {/* Content can define its own ViewTransition. */}
       <ViewTransition default="none">
         <div className="bottom">
           <div className="content">{children}</div>
@@ -2791,7 +2791,7 @@ export default function Page({ heading, children }) {
         </div>
       </div>
       {/* Opt-out of ViewTransition for the content. */}
-      {/* Content can define it's own ViewTransition. */}
+      {/* Content can define its own ViewTransition. */}
       <ViewTransition default="none">
         <div className="bottom">
           <div className="content">{children}</div>
@@ -3985,7 +3985,7 @@ export default function Page({ heading, children }) {
         </div>
       </div>
       {/* Opt-out of ViewTransition for the content. */}
-      {/* Content can define it's own ViewTransition. */}
+      {/* Content can define its own ViewTransition. */}
       <ViewTransition default="none">
         <div className="bottom">
           <div className="content">{children}</div>
@@ -5247,7 +5247,7 @@ export default function Page({ heading, children }) {
         </div>
       </div>
       {/* Opt-out of ViewTransition for the content. */}
-      {/* Content can define it's own ViewTransition. */}
+      {/* Content can define its own ViewTransition. */}
       <ViewTransition default="none">
         <div className="bottom">
           <div className="content">{children}</div>
@@ -6519,7 +6519,7 @@ export default function Page({ heading, children }) {
         </div>
       </div>
       {/* Opt-out of ViewTransition for the content. */}
-      {/* Content can define it's own ViewTransition. */}
+      {/* Content can define its own ViewTransition. */}
       <ViewTransition default="none">
         <div className="bottom">
           <div className="content">{children}</div>
@@ -7840,7 +7840,7 @@ export default function Page({ heading, children }) {
         </div>
       </div>
       {/* Opt-out of ViewTransition for the content. */}
-      {/* Content can define it's own ViewTransition. */}
+      {/* Content can define its own ViewTransition. */}
       <ViewTransition default="none">
         <div className="bottom">
           <div className="content">{children}</div>
@@ -9167,7 +9167,7 @@ export default function Page({ heading, children }) {
         </div>
       </div>
       {/* Opt-out of ViewTransition for the content. */}
-      {/* Content can define it's own ViewTransition. */}
+      {/* Content can define its own ViewTransition. */}
       <ViewTransition default="none">
         <div className="bottom">
           <div className="content">{children}</div>
@@ -10482,7 +10482,7 @@ export default function Page({ heading, children }) {
         </div>
       </div>
       {/* Opt-out of ViewTransition for the content. */}
-      {/* Content can define it's own ViewTransition. */}
+      {/* Content can define its own ViewTransition. */}
       <ViewTransition default="none">
         <div className="bottom">
           <div className="content">{children}</div>
@@ -11853,7 +11853,7 @@ export default function Page({ heading, children }) {
         </div>
       </div>
       {/* Opt-out of ViewTransition for the content. */}
-      {/* Content can define it's own ViewTransition. */}
+      {/* Content can define its own ViewTransition. */}
       <ViewTransition default="none">
         <div className="bottom">
           <div className="content">{children}</div>
@@ -13191,7 +13191,7 @@ export default function Page({ heading, children }) {
         </div>
       </div>
       {/* Opt-out of ViewTransition for the content. */}
-      {/* Content can define it's own ViewTransition. */}
+      {/* Content can define its own ViewTransition. */}
       <ViewTransition default="none">
         <div className="bottom">
           <div className="content">{children}</div>

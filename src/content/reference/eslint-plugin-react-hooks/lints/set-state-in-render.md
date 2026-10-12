@@ -88,7 +88,7 @@ function Counter({max}) {
 }
 ```
 
-As soon as `count` exceeds `max`, an infinite loop is triggered.
+When `count` exceeds `max`, this schedules a state update during render. This is still an anti-pattern because rendering should stay pure, and state updates should happen in an event handler or effect instead.
 
 Instead, it's often better to move this logic to the event (the place where the state is first set). For example, you can enforce the maximum at the moment you update state:
 

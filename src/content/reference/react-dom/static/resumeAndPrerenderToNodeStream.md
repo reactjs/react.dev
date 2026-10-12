@@ -4,7 +4,7 @@ title: resumeAndPrerenderToNodeStream
 
 <Intro>
 
-`resumeAndPrerenderToNodeStream` continues a prerendered React tree to a static HTML string using a a [Node.js Stream.](https://nodejs.org/api/stream.html).
+`resumeAndPrerenderToNodeStream` continues a prerendered React tree to a static HTML string using a [Node.js Stream.](https://nodejs.org/api/stream.html).
 
 ```js
 const {prelude, postponed} = await resumeAndPrerenderToNodeStream(reactNode, postponedState, options?)

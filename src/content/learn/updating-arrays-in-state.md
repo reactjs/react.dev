@@ -10,7 +10,7 @@ Arrays are mutable in JavaScript, but you should treat them as immutable when yo
 
 <YouWillLearn>
 
-- How to add, remove, or change items in an array in React state
+- How to add, remove, or change items in an array in React State
 - How to update an object inside of an array
 - How to make array copying less repetitive with Immer
 
@@ -18,11 +18,11 @@ Arrays are mutable in JavaScript, but you should treat them as immutable when yo
 
 ## Updating arrays without mutation {/*updating-arrays-without-mutation*/}
 
-In JavaScript, arrays are just another kind of object. [Like with objects](/learn/updating-objects-in-state), **you should treat arrays in React state as read-only.** This means that you shouldn't reassign items inside an array like `arr[0] = 'bird'`, and you also shouldn't use methods that mutate the array, such as `push()` and `pop()`.
+In JavaScript, arrays are just another kind of object. [Like with objects](/learn/updating-objects-in-state), **you should treat arrays in React State as read-only.** This means that you shouldn't reassign items inside an array like `arr[0] = 'bird'`, and you also shouldn't use methods that mutate the array, such as `push()` and `pop()`.
 
 Instead, every time you want to update an array, you'll want to pass a *new* array to your state setting function. To do that, you can create a new array from the original array in your state by calling its non-mutating methods like `filter()` and `map()`. Then you can set your state to the resulting new array.
 
-Here is a reference table of common array operations. When dealing with arrays inside React state, you will need to avoid the methods in the left column, and instead prefer the methods in the right column:
+Here is a reference table of common array operations. When dealing with arrays inside React State, you will need to avoid the methods in the left column, and instead prefer the methods in the right column:
 
 |           | avoid (mutates the array)           | prefer (returns a new array)                                        |
 | --------- | ----------------------------------- | ------------------------------------------------------------------- |

@@ -573,7 +573,13 @@ You should write the `render` method as a pure function, meaning that it should 
 
 #### Returns {/*render-returns*/}
 
-`render` can return any valid React node. This includes React elements such as `<div />`, strings, numbers, [portals](/reference/react-dom/createPortal), empty nodes (`null`, `undefined`, `true`, and `false`), and arrays of React nodes.
+`render` can return any valid React node. This includes React elements such as `<div />`, strings, numbers, [portals](/reference/react-dom/createPortal), empty nodes (`null`, `undefined`, `true`, and `false`), and arrays of React nodes. You can also return [iterables](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#the_iterable_protocol), such as those produced by generators.
+
+<Pitfall>
+
+If you return an iterable from `render`, make sure it is an iterable and not an iterator. Iterators are single-use and will only work in production builds. In development, React calls `render` twice, which would exhaust the iterator on the second call. To avoid this, return an iterable object (for example, an object with a `[Symbol.iterator]()` method that creates a fresh iterator each time), or use [`Fragment`](/reference/react/Fragment) instead.
+
+</Pitfall>
 
 #### Caveats {/*render-caveats*/}
 

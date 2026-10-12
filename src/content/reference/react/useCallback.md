@@ -48,6 +48,14 @@ export default function ProductPage({ productId, referrer, theme }) {
 
 * `dependencies`: The list of all reactive values referenced inside of the `fn` code. Reactive values include props, state, and all the variables and functions declared directly inside your component body. If your linter is [configured for React](/learn/editor-setup#linting), it will verify that every reactive value is correctly specified as a dependency. The list of dependencies must have a constant number of items and be written inline like `[dep1, dep2, dep3]`. React will compare each dependency with its previous value using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison algorithm.
 
+<Pitfall>
+
+**If you omit a dependency from the array, your cached function will capture the "stale" value from the render when it was created.** This creates a "stale closure" bug where your callback operates on outdated state or props.
+
+Because the `eslint-plugin-react-hooks` relies on static analysis, it cannot catch every missing dependency or warn you at runtime when a stale value is read. Always ensure every reactive value used in the callback is listed to avoid subtle, hard-to-debug issues!
+
+</Pitfall>
+
 #### Returns {/*returns*/}
 
 On the initial render, `useCallback` returns the `fn` function you have passed.

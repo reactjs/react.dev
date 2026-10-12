@@ -68,7 +68,7 @@ function GroupBadges({group}: {group: string}) {
   );
 }
 
-// TODO: good alt text for images/links
+// TODO: good alt text for images
 export function TeamMember({
   name,
   title,
@@ -113,7 +113,7 @@ export function TeamMember({
                   aria-label={`${name} on Twitter`}
                   href={`https://twitter.com/${twitter}`}
                   className="hover:text-primary hover:underline dark:text-primary-dark flex flex-row items-center">
-                  <IconTwitter className="pe-1" />
+                  <IconTwitter className="pe-1" aria-hidden="true" />
                   {twitter}
                 </ExternalLink>
               </div>
@@ -124,7 +124,7 @@ export function TeamMember({
                   aria-label={`${name} on Threads`}
                   href={`https://threads.net/${threads}`}
                   className="hover:text-primary hover:underline dark:text-primary-dark flex flex-row items-center">
-                  <IconThreads className="pe-1" />
+                  <IconThreads className="pe-1" aria-hidden="true" />
                   {threads}
                 </ExternalLink>
               </div>
@@ -135,7 +135,7 @@ export function TeamMember({
                   aria-label={`${name} on Bluesky`}
                   href={`https://bsky.app/profile/${bsky}`}
                   className="hover:text-primary hover:underline dark:text-primary-dark flex flex-row items-center">
-                  <IconBsky className="pe-1" />
+                  <IconBsky className="pe-1" aria-hidden="true" />
                   {bsky}
                 </ExternalLink>
               </div>
@@ -143,19 +143,19 @@ export function TeamMember({
             {github && (
               <div className="me-4">
                 <ExternalLink
-                  aria-label="GitHub Profile"
+                  aria-label={`${name} on GitHub`}
                   href={`https://github.com/${github}`}
                   className="hover:text-primary hover:underline dark:text-primary-dark flex flex-row items-center">
-                  <IconGitHub className="pe-1" /> {github}
+                  <IconGitHub className="pe-1" aria-hidden="true" /> {github}
                 </ExternalLink>
               </div>
             )}
             {personal && (
               <ExternalLink
-                aria-label="Personal Site"
+                aria-label={`${name}'s personal website`}
                 href={`https://${personal}`}
                 className="hover:text-primary hover:underline dark:text-primary-dark flex flex-row items-center">
-                <IconLink className="pe-1" /> {personal}
+                <IconLink className="pe-1" aria-hidden="true" /> {personal}
               </ExternalLink>
             )}
           </div>

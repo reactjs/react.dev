@@ -18,6 +18,7 @@ To add state to a component, use one of these Hooks:
 
 * [`useState`](/reference/react/useState) declares a state variable that you can update directly.
 * [`useReducer`](/reference/react/useReducer) declares a state variable with the update logic inside a [reducer function.](/learn/extracting-state-logic-into-a-reducer)
+* [`useOptimistic`](/reference/react/useOptimistic) lets you show a different state while an async action is pending.
 
 ```js
 function ImageGallery() {

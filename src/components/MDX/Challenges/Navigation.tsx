@@ -115,7 +115,7 @@ export function Navigation({
           onClick={handleScrollLeft}
           aria-label="Scroll left"
           className={cn(
-            'bg-secondary-button dark:bg-secondary-button-dark h-8 px-2 rounded-l rtl:rounded-r rtl:rounded-l-none border-gray-20 border-r rtl:border-l rtl:border-r-0',
+            'bg-secondary-button dark:bg-secondary-button-dark h-8 px-2 rounded-l rtl:rounded-r rtl:rounded-l-none border-gray-20 border-r dark:border-border-dark rtl:border-l rtl:border-r-0',
             {
               'text-primary dark:text-primary-dark': canScrollLeft,
               'text-gray-30': !canScrollLeft,

@@ -2,6 +2,12 @@
 title: component-hook-factories
 ---
 
+<Deprecated>
+
+This rule was removed in `eslint-plugin-react-hooks@7.1.0` and is no longer part of the `recommended` preset. Configuring it has no effect.
+
+</Deprecated>
+
 <Intro>
 
 Validates against higher order functions defining nested components or hooks. Components and hooks should be defined at the module level.

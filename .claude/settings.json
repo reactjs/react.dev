@@ -16,6 +16,7 @@
       "Skill(docs-voice)",
       "Skill(docs-components)",
       "Skill(docs-sandpack)",
+      "Skill(docs-rsc-sandpack)",
       "Skill(docs-writer-learn)",
       "Skill(docs-writer-reference)",
       "Bash(yarn lint:*)",

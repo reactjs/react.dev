@@ -1,0 +1,247 @@
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+// Generates a static OG image for every content page, so social
+// cards show the page title without any runtime image generation.
+// Run after `next build` (see the `build` script in package.json).
+
+import fs from 'fs';
+import path from 'path';
+import satori from 'satori';
+import {Resvg} from '@resvg/resvg-js';
+import matter from 'gray-matter';
+import opentype from '@shuding/opentype.js';
+
+const ROOT = process.cwd();
+const CONTENT_DIR = path.join(ROOT, 'src', 'content');
+const OUT_DIR = path.join(ROOT, 'public', 'images', 'og');
+const CONCURRENCY = 8;
+
+const SECTION_LABELS = {
+  learn: 'Learn React',
+  reference: 'API Reference',
+  community: 'Community',
+  blog: 'Blog',
+};
+
+const bold = fs.readFileSync(
+  path.join(ROOT, 'public', 'fonts', 'Optimistic_Display_W_Bd.ttf')
+);
+const medium = fs.readFileSync(
+  path.join(ROOT, 'public', 'fonts', 'Optimistic_Display_W_Md.ttf')
+);
+
+// Title area width: card width minus the horizontal padding (80px per side).
+const TITLE_MAX_WIDTH = 1200 - 80 * 2;
+const TITLE_MAX_FONT = 96;
+const TITLE_MIN_FONT = 56;
+// Small margin so borderline titles don't wrap and orphan a single trailing
+// character (e.g. the "p" in "renderToStaticMarkup", which is 1px too wide
+// to fit on one line at 96px).
+const TITLE_SAFETY = 8;
+
+const boldFont = opentype.parse(
+  bold.buffer.slice(bold.byteOffset, bold.byteOffset + bold.byteLength)
+);
+
+// Multi-word titles wrap cleanly at spaces, so a length bucket is fine for
+// them. Single-word titles (most API names) can only break mid-word, which
+// leaves an orphaned letter on its own line, so instead shrink them just
+// enough to fit on a single line.
+function titleFontSize(title) {
+  const trimmed = title.trim();
+  if (/\s/.test(trimmed)) {
+    return trimmed.length > 24 ? 72 : 96;
+  }
+  const widthPerPx = boldFont.getAdvanceWidth(trimmed, 1);
+  const fit = Math.floor((TITLE_MAX_WIDTH - TITLE_SAFETY) / widthPerPx);
+  return Math.max(TITLE_MIN_FONT, Math.min(TITLE_MAX_FONT, fit));
+}
+
+function el(type, style, children) {
+  return {type, props: {style, children}};
+}
+
+function card(title, pagePath) {
+  const section = pagePath.split('/')[1] ?? '';
+  const label = SECTION_LABELS[section] ?? 'React';
+  const logo = {
+    type: 'svg',
+    props: {
+      width: 80,
+      height: 72,
+      viewBox: '-10.5 -9.45 21 18.9',
+      fill: 'none',
+      children: [
+        {type: 'circle', props: {cx: 0, cy: 0, r: 2, fill: '#58c4dc'}},
+        {
+          type: 'g',
+          props: {
+            stroke: '#58c4dc',
+            strokeWidth: 1,
+            fill: 'none',
+            children: [
+              {type: 'ellipse', props: {rx: 10, ry: 4.5}},
+              {
+                type: 'ellipse',
+                props: {rx: 10, ry: 4.5, transform: 'rotate(60)'},
+              },
+              {
+                type: 'ellipse',
+                props: {rx: 10, ry: 4.5, transform: 'rotate(120)'},
+              },
+            ],
+          },
+        },
+      ],
+    },
+  };
+  return el(
+    'div',
+    {
+      width: '100%',
+      height: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+      padding: '72px 80px',
+      backgroundColor: '#23272f',
+      backgroundImage:
+        'radial-gradient(circle at 25% 30%, #343a46 0%, #23272f 55%)',
+    },
+    [
+      el('div', {display: 'flex', alignItems: 'center', gap: '20px'}, [
+        logo,
+        el(
+          'div',
+          {
+            fontSize: 48,
+            fontFamily: 'Optimistic Display Bold',
+            color: '#f6f7f9',
+          },
+          'React'
+        ),
+      ]),
+      el(
+        'div',
+        {
+          flexGrow: 1,
+          display: 'flex',
+          alignItems: 'center',
+          fontSize: titleFontSize(title),
+          fontFamily: 'Optimistic Display Bold',
+          color: '#f6f7f9',
+          lineHeight: 1.1,
+          wordBreak: 'break-word',
+        },
+        title
+      ),
+      el(
+        'div',
+        {
+          fontSize: 40,
+          fontFamily: 'Optimistic Display Medium',
+          color: '#99a1b3',
+        },
+        label
+      ),
+    ]
+  );
+}
+
+async function renderCard(title, pagePath) {
+  const svg = await satori(card(title, pagePath), {
+    width: 1200,
+    height: 630,
+    fonts: [
+      {
+        name: 'Optimistic Display Bold',
+        data: bold,
+        weight: 700,
+        style: 'normal',
+      },
+      {
+        name: 'Optimistic Display Medium',
+        data: medium,
+        weight: 500,
+        style: 'normal',
+      },
+    ],
+  });
+  return new Resvg(svg, {fitTo: {mode: 'width', value: 1200}}).render().asPng();
+}
+
+function collectSidebarTitles() {
+  const titles = new Map();
+  for (const name of fs.readdirSync(path.join(ROOT, 'src'))) {
+    if (!/^sidebar.*\.json$/.test(name)) continue;
+    const walk = (node) => {
+      if (node.path && node.title) {
+        titles.set(node.path, node.title);
+      }
+      for (const child of node.routes ?? []) walk(child);
+    };
+    walk(JSON.parse(fs.readFileSync(path.join(ROOT, 'src', name), 'utf8')));
+  }
+  return titles;
+}
+
+const sidebarTitles = collectSidebarTitles();
+
+function collectPages(dir, out) {
+  for (const entry of fs.readdirSync(dir, {withFileTypes: true})) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      collectPages(full, out);
+    } else if (entry.name.endsWith('.md')) {
+      const rel = path.relative(CONTENT_DIR, full).replace(/\.md$/, '');
+      const segments = rel.split(path.sep);
+      if (segments[segments.length - 1] === 'index') {
+        segments.pop();
+      }
+      const pagePath = '/' + segments.join('/');
+      if (pagePath === '/' || pagePath.startsWith('/errors')) {
+        continue;
+      }
+      const {data} = matter(fs.readFileSync(full, 'utf8'));
+      const title = data.title ?? sidebarTitles.get(pagePath);
+      if (title) {
+        out.push({title: String(title), pagePath});
+      }
+    }
+  }
+  return out;
+}
+
+export function ogImageFileName(pagePath) {
+  return pagePath.replace(/^\//, '').replace(/\//g, '-') + '.png';
+}
+
+async function main() {
+  const pages = collectPages(CONTENT_DIR, []);
+  fs.mkdirSync(OUT_DIR, {recursive: true});
+  let done = 0;
+  const queue = [...pages];
+  async function worker() {
+    for (;;) {
+      const page = queue.shift();
+      if (!page) return;
+      const png = await renderCard(page.title, page.pagePath);
+      fs.writeFileSync(path.join(OUT_DIR, ogImageFileName(page.pagePath)), png);
+      done++;
+      if (done % 100 === 0) {
+        console.log(`og-images: ${done}/${pages.length}`);
+      }
+    }
+  }
+  await Promise.all(Array.from({length: CONCURRENCY}, worker));
+  console.log(`og-images: generated ${done} images in public/images/og`);
+}
+
+main().catch((error) => {
+  console.error(error);
+  process.exit(1);
+});

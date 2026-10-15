@@ -22,10 +22,15 @@ const nextConfig = {
   async rewrites() {
     return {
       beforeFiles: [
+        // Explicit .md extension also serves markdown
+        {
+          source: '/:path*.md',
+          destination: '/api/md/:path*',
+        },
         // Serve markdown when Accept header prefers text/markdown
         // Useful for LLM agents - https://www.skeptrune.com/posts/use-the-accept-header-to-serve-markdown-instead-of-html-to-llms/
         {
-          source: '/:path((?!llms.txt).*)',
+          source: '/:path((?!llms\\.txt|api/md).*)',
           has: [
             {
               type: 'header',
@@ -33,11 +38,6 @@ const nextConfig = {
               value: '(.*text/markdown.*)',
             },
           ],
-          destination: '/api/md/:path*',
-        },
-        // Explicit .md extension also serves markdown
-        {
-          source: '/:path*.md',
           destination: '/api/md/:path*',
         },
       ],

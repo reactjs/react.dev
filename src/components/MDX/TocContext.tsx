@@ -20,3 +20,6 @@ export type TocItem = {
 export type Toc = Array<TocItem>;
 
 export const TocContext = createContext<Toc>([]);
+
+// Lets badge components render compactly when inside the table of contents.
+export const IsInTocContext = createContext(false);

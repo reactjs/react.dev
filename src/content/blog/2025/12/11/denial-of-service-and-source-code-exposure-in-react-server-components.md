@@ -98,7 +98,7 @@ If you are using React Native in a monorepo, you should update _only_ the impact
 
 This is required to mitigate the security advisories, but you do not need to update `react` and `react-dom` so this will not cause the version mismatch error in React Native.
 
-See [this issue](https://github.com/facebook/react-native/issues/54772#issuecomment-3617929832) for more information.
+See [this issue](https://github.com/react/react-native/issues/54772#issuecomment-3617929832) for more information.
 
 ---
 
@@ -106,7 +106,7 @@ See [this issue](https://github.com/facebook/react-native/issues/54772#issuecomm
 
 **CVEs:** [CVE-2026-23864](https://www.cve.org/CVERecord?id=CVE-2026-23864)
 **Base Score:** 7.5 (High)
-**Date**: January 26, 2025
+**Date**: January 26, 2026
 
 Security researchers discovered additional DoS vulnerabilities still exist in React Server Components.
 
@@ -176,7 +176,7 @@ The patches published today prevent stringifying the Server Function source code
 
 Secrets hardcoded in source code may be exposed, but runtime secrets such as `process.env.SECRET` are not affected.
 
-The scope of the exposed code is limited to the code inside the Server Function, which may include other functions depending on the amount of inlining your bundler provides. 
+The scope of the exposed code is limited to the code inside the Server Function, which may include other functions depending on the amount of inlining your bundler provides.
 
 Always verify against production bundles.
 

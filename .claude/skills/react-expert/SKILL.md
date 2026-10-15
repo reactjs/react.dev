@@ -32,7 +32,7 @@ This skill produces exhaustive documentation research on any React API or concep
 2. **React Source Code** - Warnings, errors, implementation details
 3. **Git History** - Commit messages with context
 4. **GitHub PRs & Comments** - Design rationale (via `gh` CLI)
-5. **GitHub Issues** - Confusion/questions (facebook/react + reactjs/react.dev)
+5. **GitHub Issues** - Confusion/questions (react/react + reactjs/react.dev)
 6. **React Working Group** - Design discussions for newer APIs
 7. **Flow Types** - Source of truth for type signatures
 8. **TypeScript Types** - Note discrepancies with Flow
@@ -51,7 +51,7 @@ First, ensure the React repo is available locally:
 if [ -d ".claude/react" ]; then
   cd .claude/react && git pull origin main
 else
-  git clone --depth=100 https://github.com/facebook/react.git .claude/react
+  git clone --depth=100 https://github.com/react/react.git .claude/react
 fi
 ```
 
@@ -71,8 +71,8 @@ Spawn these agents IN PARALLEL using the Task tool. Each agent receives the skep
 | test-explorer | Explore | Test files for usage patterns | Search `.claude/react/packages/*/src/__tests__/` for test files mentioning the topic. Extract actual usage examples WITH file paths and line numbers. |
 | source-explorer | Explore | Warnings/errors in source | Search `.claude/react/packages/*/src/` for console.error, console.warn, and error messages mentioning the topic. Document trigger conditions. |
 | git-historian | Explore | Commit messages | Run `git log --all --grep="<topic>" --oneline -50` in `.claude/react`. Read full commit messages for context. |
-| pr-researcher | Explore | PRs introducing/modifying API | Run `gh pr list -R facebook/react --search "<topic>" --state all --limit 20`. Read key PR descriptions and comments. |
-| issue-hunter | Explore | Issues showing confusion | Search issues in both `facebook/react` and `reactjs/react.dev` repos. Look for common questions and misunderstandings. |
+| pr-researcher | Explore | PRs introducing/modifying API | Run `gh pr list -R react/react --search "<topic>" --state all --limit 20`. Read key PR descriptions and comments. |
+| issue-hunter | Explore | Issues showing confusion | Search issues in both `react/react` and `reactjs/react.dev` repos. Look for common questions and misunderstandings. |
 | types-inspector | Explore | Flow + TypeScript signatures | Find Flow types in `.claude/react/packages/*/src/*.js` (look for `@flow` annotations). Find TS types in `.claude/react/packages/*/index.d.ts`. Note discrepancies. |
 
 ### Step 3: Agent Prompts
@@ -164,8 +164,8 @@ CRITICAL: Do NOT rely on your prior knowledge. Only report what you find in PRs.
 
 Your task: Find PRs that introduced or modified <TOPIC>.
 
-1. Run: gh pr list -R facebook/react --search "<topic>" --state all --limit 20 --json number,title,url
-2. For promising PRs, read details: gh pr view <number> -R facebook/react
+1. Run: gh pr list -R react/react --search "<topic>" --state all --limit 20 --json number,title,url
+2. For promising PRs, read details: gh pr view <number> -R react/react
 3. Look for:
    - The original RFC/motivation
    - Design discussions in comments
@@ -189,7 +189,7 @@ CRITICAL: Do NOT rely on your prior knowledge. Only report what you find in issu
 
 Your task: Find issues that reveal common confusion about <TOPIC>.
 
-1. Search facebook/react: gh issue list -R facebook/react --search "<topic>" --state all --limit 20 --json number,title,url
+1. Search react/react: gh issue list -R react/react --search "<topic>" --state all --limit 20 --json number,title,url
 2. Search reactjs/react.dev: gh issue list -R reactjs/react.dev --search "<topic>" --state all --limit 20 --json number,title,url
 3. For each issue, identify:
    - What the user was confused about
@@ -199,7 +199,7 @@ Your task: Find issues that reveal common confusion about <TOPIC>.
 Format your output as:
 ## Common Confusion
 ### Issue #<number>: <title>
-**Repo:** <facebook/react or reactjs/react.dev>
+**Repo:** <react/react or reactjs/react.dev>
 **Confusion:** <what they misunderstood>
 **Resolution:** <correct understanding>
 **Gotcha:** <if applicable>

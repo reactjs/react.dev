@@ -83,7 +83,7 @@ function handleClick() {
 
 #### How optimistic state works {/*how-optimistic-state-works*/}
 
-`useOptimistic` lets you show a temporary value while a Action is in progress:
+`useOptimistic` lets you show a temporary value while an Action is in progress:
 
 ```js
 const [value, setValue] = useState('a');
@@ -279,7 +279,7 @@ function MyComponent({age, name, todos}) {
 2. The <CodeStep step={3}>set function</CodeStep> that lets you temporarily change the state during an [Action](reference/react/useTransition#functions-called-in-starttransition-are-called-actions).
    * If a <CodeStep step={4}>reducer</CodeStep> is provided, it will run before returning the optimistic state.
 
-To use the <CodeStep step={2}>optimistic state</CodeStep>, call the `set` function inside an Action. 
+To use the <CodeStep step={2}>optimistic state</CodeStep>, call the `set` function inside an Action.
 
 Actions are functions called inside `startTransition`:
 
@@ -330,7 +330,7 @@ import EditName from './EditName';
 
 export default function App() {
   const [name, setName] = useState('Alice');
-  
+
   return <EditName name={name} action={setName} />;
 }
 ```
@@ -345,7 +345,7 @@ export default function EditName({ name, action }) {
   async function submitAction(formData) {
     const newName = formData.get('name');
     setOptimisticName(newName);
-    
+
     const updatedName = await updateName(newName);
     startTransition(() => {
       action(updatedName);
@@ -410,7 +410,7 @@ export default function App() {
   const [count, setCount] = useState(0);
   return (
     <div>
-      <Button action={async () => {         
+      <Button action={async () => {
         await submitForm();
         startTransition(() => {
           setCount(c => c + 1);
@@ -478,7 +478,7 @@ The pending state will be shown until everything in the `action` prop is finishe
 
 <Note>
 
-You can also use [`useTransition`](/reference/react/useTransition) to get pending state via `isPending`. 
+You can also use [`useTransition`](/reference/react/useTransition) to get pending state via `isPending`.
 
 The difference is that `useTransition` gives you the `startTransition` function, while `useOptimistic` works with any Transition. Use whichever fits your component's needs.
 
@@ -506,10 +506,10 @@ export default function App() {
     startTransition(async () => {
       const newValue = !optimisticIsLiked
       console.log('⏳ setting optimistic state: ' + newValue);
-      
+
       setOptimisticIsLiked(newValue);
       const updatedValue = await toggleLike(newValue);
-      
+
       startTransition(() => {
         console.log('⏳ setting real state: ' + updatedValue );
         setIsLiked(updatedValue);
@@ -518,11 +518,11 @@ export default function App() {
   }
 
   if (optimisticIsLiked !== isLiked) {
-    console.log('✅ rendering optimistic state: ' + optimisticIsLiked);  
+    console.log('✅ rendering optimistic state: ' + optimisticIsLiked);
   } else {
     console.log('✅ rendering real value: ' + optimisticIsLiked);
   }
-  
+
 
   return (
     <button onClick={handleClick}>
@@ -567,7 +567,7 @@ See [Updating state based on the current state](#updating-state-based-on-current
 
 ### Updating multiple values together {/*updating-multiple-values-together*/}
 
-When an optimistic update affects multiple related values, use a reducer to update them together. This ensures the UI stays consistent. 
+When an optimistic update affects multiple related values, use a reducer to update them together. This ensures the UI stays consistent.
 
 Here's a follow button that updates both the follow state and follower count:
 
@@ -771,7 +771,7 @@ Each optimistic item includes a `pending: true` flag so you can show loading sta
 
 ### Handling multiple `action` types {/*handling-multiple-action-types*/}
 
-When you need to handle multiple types of optimistic updates (like adding and removing items), use a reducer pattern with `action` objects. 
+When you need to handle multiple types of optimistic updates (like adding and removing items), use a reducer pattern with `action` objects.
 
 This shopping cart example shows how to handle add and remove with a single reducer:
 
@@ -1045,7 +1045,7 @@ export async function deleteItem(id) {
 
 </Sandpack>
 
-Try deleting 'Deploy to production'. When the delete fails, the item automatically reappears in the list. 
+Try deleting 'Deploy to production'. When the delete fails, the item automatically reappears in the list.
 
 ---
 
@@ -1065,7 +1065,7 @@ An optimistic state update occurred outside a Transition or Action. To fix, move
 
 </ConsoleBlockMulti>
 
-The optimistic setter function must be called inside `startTransition`: 
+The optimistic setter function must be called inside `startTransition`:
 
 ```js
 // 🚩 Incorrect: outside a Transition
@@ -1114,7 +1114,7 @@ function MyComponent({ items }) {
 
   // This runs during render - not allowed!
   setPending(true);
-  
+
   // ...
 }
 

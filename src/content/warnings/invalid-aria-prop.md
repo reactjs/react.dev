@@ -8,4 +8,4 @@ This warning will fire if you attempt to render a DOM element with an `aria-*` p
 
 2. If you wrote `aria-role`, you may have meant `role`.
 
-3. Otherwise, if you're on the latest version of React DOM and verified that you're using a valid property name listed in the ARIA specification, please [report a bug](https://github.com/facebook/react/issues/new/choose).
+3. Otherwise, if you're on the latest version of React DOM and verified that you're using a valid property name listed in the ARIA specification, please [report a bug](https://github.com/react/react/issues/new/choose).

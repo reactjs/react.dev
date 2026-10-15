@@ -43,3 +43,9 @@ public/rss.xml
 # claude local settings
 .claude/*.local.*
 .claude/react/
+
+# worktrees
+.worktrees/
+
+# Generated OG images (scripts/generateOgImages.mjs)
+public/images/og/

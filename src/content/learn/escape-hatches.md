@@ -227,7 +227,7 @@ function Form() {
 }
 ```
 
-However, you *do* need Effects to synchronize with external systems. 
+However, you *do* need Effects to synchronize with external systems.
 
 <LearnMore path="/learn/you-might-not-need-an-effect">
 
@@ -382,7 +382,7 @@ export default function App() {
       <hr />
       <ChatRoom
         roomId={roomId}
-        theme={isDark ? 'dark' : 'light'} 
+        theme={isDark ? 'dark' : 'light'}
       />
     </>
   );
@@ -515,7 +515,7 @@ export default function App() {
       <hr />
       <ChatRoom
         roomId={roomId}
-        theme={isDark ? 'dark' : 'light'} 
+        theme={isDark ? 'dark' : 'light'}
       />
     </>
   );

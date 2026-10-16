@@ -48,7 +48,7 @@ To create interactive controls for submitting information, render the [built-in 
 #### Caveats {/*caveats*/}
 
 * If you pass a function to `action` or `formAction`, the HTTP method will be `POST` regardless of the value of the `method` prop.
-* If you pass a function to `action` or `formAction`, React resets all [uncontrolled](/reference/react-dom/components/input#reading-the-input-values-when-submitting-a-form) field elements after the Action succeeds. See [Preserving form values after submission](#preserve-form-values-after-submission).
+* If you pass a function to `action` or `formAction`, React resets all [uncontrolled](/reference/react-dom/components/input#reading-the-input-values-when-submitting-a-form) field elements after the Action succeeds. See [Preserving form values after an Action](#preserve-form-values-after-an-action).
 
 ---
 
@@ -101,7 +101,7 @@ When you pass a function to `action`, React:
 * Runs the function in a [Transition](/reference/react/useTransition), keeping the page responsive.
 * Makes the pending state available to child components via [`useFormStatus`](/reference/react-dom/hooks/useFormStatus).
 * Propagates any errors to the nearest Error Boundary.
-* Resets the form's uncontrolled fields when the function succeeds. To keep their values, see [Preserving form values after submission](#preserve-form-values-after-submission).
+* Resets the form's uncontrolled fields when the function succeeds. To keep their values, see [Preserving form values after an Action](#preserve-form-values-after-an-action).
 
 Because the Action runs in a Transition, you can also use [`useActionState`](/reference/react/useActionState) to manage form state and [`useOptimistic`](/reference/react/useOptimistic) for optimistic UI. For [Server Functions](/reference/rsc/server-functions) and progressive enhancement, see [Handling form submission with a Server Function](#handle-form-submission-with-a-server-function).
 
@@ -385,27 +385,39 @@ If the form is submitted before JavaScript loads, React includes the Server Func
 
 ---
 
-### Preserving form values after submission {/*preserve-form-values-after-submission*/}
+### Preserving form values after an Action {/*preserve-form-values-after-an-action*/}
 
-Submitting a form with a URL `action` clears its input state. React mirrors this behavior when `action` is a function by resetting the form's [uncontrolled fields](/reference/react-dom/components/input#reading-the-input-values-when-submitting-a-form) after the Action succeeds. When a Server Function progressively enhances a form, this keeps its behavior consistent before and after JavaScript loads. [Inputs controlled with state](/reference/react-dom/components/input#controlling-an-input-with-a-state-variable) are not cleared.
+When you pass a function to `action` or `formAction`, React resets the form's [uncontrolled fields](/reference/react-dom/components/input#reading-the-input-values-when-submitting-a-form) after the Action succeeds. To keep the submitted values, store each value in state and pass it to that field's `defaultValue`. The reset then restores each field to its `defaultValue` instead of clearing it.
 
-#### Restore fields with `useActionState` {/*with-useactionstate*/}
+To keep those values when users submit the form before JavaScript loads, render the `<form>` from a [Client Component](/reference/rsc/use-client) and pass a [Server Function](/reference/rsc/server-functions) to [`useActionState`](/reference/react/useActionState). Pass the Action it returns to the form's `action` prop. The Server Function receives the previous state, followed by the submitted `FormData`, as shown in [Displaying a form submission error without JavaScript](#display-a-form-submission-error-without-javascript). Return an object with the values to keep, and pass each value, such as `state.title`, to the matching field's `defaultValue`:
 
-Pass the Action returned by [`useActionState`](/reference/react/useActionState) to the `action` prop. Return the values you want to keep from your Action, and pass them to each field's `defaultValue`. The automatic form reset restores those default values instead of clearing the fields.
+```js
+// actions.js
+'use server';
 
-<Sandpack>
+import { saveTitle } from './api.js';
 
-```js src/App.js
+export async function updateTitle(previousState, formData) {
+  const title = formData.get('title');
+  await saveTitle(title);
+  return { title };
+}
+```
+
+```js
+// EditForm.js
+'use client';
+
 import { useActionState } from 'react';
-import { submitForm } from './api.js';
+import { updateTitle } from './actions.js';
 
 export default function EditForm() {
-  const [state, dispatchAction, isPending] = useActionState(submitForm, {
+  const [state, updateTitleAction, isPending] = useActionState(updateTitle, {
     title: 'My draft',
   });
 
   return (
-    <form action={dispatchAction}>
+    <form action={updateTitleAction}>
       <input name="title" defaultValue={state.title} />
       <button type="submit" disabled={isPending}>
         {isPending ? 'Saving...' : 'Save'}
@@ -415,30 +427,86 @@ export default function EditForm() {
 }
 ```
 
-```js src/api.js hidden
-export async function submitForm(previousState, formData) {
-  await new Promise((res) => setTimeout(res, 1000));
-  return {
-    title: formData.get('title'),
-  };
+Users can submit the form before JavaScript loads. After the Action succeeds, `defaultValue={state.title}` restores the title from the returned object.
+
+For a form that submits only after JavaScript loads, store the values with [`useState`](/reference/react/useState). Update that state when the Action finishes. React applies the new `defaultValue`, then resets the form, so each field shows the submitted value:
+
+<Sandpack>
+
+```js src/App.js
+import { useState } from 'react';
+
+export default function EditForm() {
+  const [title, setTitle] = useState('My draft');
+
+  async function saveAction(formData) {
+    await new Promise((res) => setTimeout(res, 1000));
+    setTitle(formData.get('title'));
+  }
+
+  return (
+    <form action={saveAction}>
+      <input name="title" defaultValue={title} />
+      <button type="submit">Save</button>
+    </form>
+  );
 }
 ```
 
 </Sandpack>
 
+Call a Server Function from `saveAction`, then store the string it returns. Because `saveAction` is defined in the Client Component, users can submit this form only after JavaScript loads:
+
+```js
+// actions.js
+'use server';
+
+import { saveTitle } from './api.js';
+
+export async function submitTitle(formData) {
+  const title = formData.get('title');
+  await saveTitle(title);
+  return title;
+}
+```
+
+```js
+// EditForm.js
+'use client';
+
+import { useState } from 'react';
+import { submitTitle } from './actions.js';
+
+export default function EditForm() {
+  const [title, setTitle] = useState('My draft');
+
+  async function saveAction(formData) {
+    const savedTitle = await submitTitle(formData);
+    setTitle(savedTitle);
+  }
+
+  return (
+    <form action={saveAction}>
+      <input name="title" defaultValue={title} />
+      <button type="submit">Save</button>
+    </form>
+  );
+}
+```
+
 <DeepDive>
 
-#### Choosing how to manage form values {/*choosing-how-to-manage-form-values*/}
+#### Other ways to control form resets {/*other-ways-to-control-form-resets*/}
 
-Choose an approach based on what should happen after submission:
+The examples above keep every submitted value by storing it before the reset. You can also choose which values survive, or when the reset runs:
 
-* **Preserve selected values with `useActionState`.** The example above returns the submitted title after every submission. To preserve values only when validation fails, return the submitted `FormData` in the error state and use it to set each field's `defaultValue`. With a Server Function, React can include those values in the server response before JavaScript loads.
+* **Keep values only when validation fails.** Return the same state shape from every submission. When validation fails, include the submitted `FormData` and read each field with `state.submitted?.get('title') ?? ''`. When validation succeeds, set that `FormData` to `null` so the reset clears those fields. [`useActionState`](/reference/react/useActionState#displaying-validation-errors-and-preserving-form-values) shows this pattern.
 
-* **Keep every value with `onSubmit`.** Call `e.preventDefault()`, then run the Action inside [`startTransition`](/reference/react/useTransition). Calling `preventDefault()` prevents the function passed to the form's `action` prop from running for that submission, so React does not automatically reset the form.
+* **Skip the reset with `onSubmit`.** Handle the submission in `onSubmit`, call `e.preventDefault()`, and run the Action inside [`startTransition`](/reference/react/useTransition). Because the form's `action` does not run, React does not reset the form. Users can submit this form only after JavaScript loads.
 
-* **Reset fields at a specific point.** Call the form element's [`reset()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/reset) method to immediately reset uncontrolled fields to their default values. To schedule the same reset inside an Action or Transition, call [`requestFormReset`](/blog/2024/12/05/react-19#form-actions) from `react-dom`.
+* **Reset at a specific moment.** Call the form element's [`reset()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/reset) method to immediately reset uncontrolled fields to their default values. To schedule a reset as part of an Action or Transition, call [`requestFormReset`](/blog/2024/12/05/react-19#form-actions) from `react-dom` instead.
 
-* **Reset the fields and component state.** Change the [`key`](/learn/preserving-and-resetting-state#resetting-a-form-with-a-key) on the component that renders the form. React recreates the component and its DOM, so its fields and local state both start over.
+* **Reset the form and the component state together.** Change the [`key`](/learn/preserving-and-resetting-state#resetting-a-form-with-a-key) of the component that renders the form. React recreates the component and its DOM, which resets the fields and any local state.
 
 </DeepDive>
 

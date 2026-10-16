@@ -37,6 +37,32 @@ Common scenarios where this occurs:
 - **Dependency arrays that need stable references** - When unstable dependencies cause effects to fire too often or create infinite loops
 - **Conditional logic based on reference checks** - When code uses referential equality checks for caching or optimization
 
+## Unsupported Syntax {/*unsupported-syntax*/}
+
+A few syntax patterns are not supported inside `try/catch` statements yet. When React Compiler encounters one of them, it skips the whole component instead of compiling it:
+
+- **Conditional expressions** - ternaries (`condition ? a : b`) and the logical operators `&&`, `||`, and `??`
+- **Optional chaining** - `object?.property`
+- **`throw` statements**
+- **Loops** - `for`, `for...of`, and `while` loops
+
+These patterns are fully supported outside of `try/catch`, so moving them out of the `try/catch` (or extracting the fallible code into a separate function) restores compilation:
+
+```js
+function WeatherReport({report}) {
+  // ✅ Good: computed outside of try/catch
+  const description = report.temperature > 30 ? "Warm" : "Mild";
+
+  try {
+    return <div>{description}: {report.summary}</div>;
+  } catch (error) {
+    return <div>Report unavailable</div>;
+  }
+}
+```
+
+Skipped components still build and run normally, so the only difference is that they are not optimized. To notice them, check that the component shows the ✨ badge in React DevTools, or log skipped components with the [`logger`](/reference/react-compiler/logger) option.
+
 ## Debugging Workflow {/*debugging-workflow*/}
 
 Follow these steps when you encounter issues:

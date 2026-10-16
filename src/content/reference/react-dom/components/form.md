@@ -128,20 +128,57 @@ export default function Search() {
 
 ### Handling form submission with a Server Function {/*handle-form-submission-with-a-server-function*/}
 
-Render a `<form>` with an input and submit button. Pass a Server Function (a function marked with [`'use server'`](/reference/rsc/use-server)) to the form's `action` prop to run the function when the form is submitted.
+A `<form>`'s `action` prop can run a Server Function (a function marked with [`'use server'`](/reference/rsc/use-server)) when the user submits the form. Users can submit that form before JavaScript loads, and when JavaScript is disabled. This matches how forms behave when you pass a URL to `action`.
 
-Passing a Server Function to a form's `action` prop allows users to submit the form before JavaScript loads or when JavaScript is disabled. This matches how forms behave when you pass a URL to `action`.
-
-You can use hidden form fields to pass data to the Server Function. React includes the hidden field values in the [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) passed to the function.
+React calls the Server Function with the form's [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) and includes every input with a `name` attribute. To pass additional data, such as an ID from props, see [Passing extra data to an Action](#passing-extra-data-to-an-action).
 
 ```jsx
+import { addComment } from './actions.js';
+
+function CommentForm() {
+  return (
+    <form action={addComment}>
+      <textarea name="comment" />
+      <button type="submit">Comment</button>
+    </form>
+  );
+}
+```
+
+```js
+// actions.js
+'use server';
+
+export async function addComment(formData) {
+  const comment = formData.get('comment');
+  // ...
+}
+```
+
+<DeepDive>
+
+#### Passing extra data to an Action {/*passing-extra-data-to-an-action*/}
+
+An Action receives the submitted [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData). To include data the user did not enter, such as an ID from props, use one of these approaches:
+
+* **Hidden fields** add the value to `FormData`. The value appears in the HTML, and `formData.get` returns a string. Users can submit the form before JavaScript loads.
+* **Binding with `bind`** passes the value as an argument to a Server Function, before `formData`. The argument keeps its type, so a number stays a number. It must be [serializable](/reference/rsc/use-server#serializable-parameters-and-return-values). Users can submit the form before JavaScript loads.
+* **A function in the component** reads props and state directly. It runs after JavaScript loads, then calls a Server Function with those values.
+
+The client sends hidden field values and bound arguments. Check on the server that the logged-in user is allowed to perform the Action. See [Security considerations](/reference/rsc/use-server#security).
+
+#### Hidden fields {/*passing-extra-data-hidden-fields*/}
+
+In a Server Component, render an `<input type="hidden">` with a `name` and `value`. React includes that value in the `FormData` passed to the Action.
+
+```jsx
+// Server Component
 import { updateCart } from './lib.js';
 
-function AddToCart({productId}) {
+function AddToCart({ productId }) {
   async function addToCart(formData) {
     'use server';
-    const productId = formData.get('productId');
-    await updateCart(productId);
+    await updateCart(formData.get('productId'));
   }
   return (
     <form action={addToCart}>
@@ -152,12 +189,17 @@ function AddToCart({productId}) {
 }
 ```
 
-Instead of using a hidden form field, call the <CodeStep step={1}>`bind`</CodeStep> method to pass an extra argument to the Server Function. This binds <CodeStep step={2}>`productId`</CodeStep> as an argument before the <CodeStep step={3}>`formData`</CodeStep> that React passes to the function.
+React includes a submit button's `name` and `value` in `FormData` when that button submits the form.
 
-```jsx [[1, 8, "bind"], [2,8, "productId"], [2,4, "productId"], [3,4, "formData"]]
+#### Binding with `bind` {/*passing-extra-data-bind*/}
+
+In a Server Component, call [`bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind) on the Server Function and pass the bound function to `action`. Pass `null` as the first argument to `bind`. Each argument after `null` comes before the `formData` argument React passes when the form is submitted.
+
+```jsx
+// Server Component
 import { updateCart } from './lib.js';
 
-function AddToCart({productId}) {
+function AddToCart({ productId }) {
   async function addToCart(productId, formData) {
     'use server';
     await updateCart(productId);
@@ -170,6 +212,45 @@ function AddToCart({productId}) {
   );
 }
 ```
+
+`addToCart.bind(null, productId)` calls `addToCart(productId, formData)`.
+
+[`useActionState`](/reference/react/useActionState) passes the previous state before `FormData`. Bound arguments come first, so the Server Function receives the bound values, the previous state, and then `formData`. Define that function in a separate file and bind it from the Client Component.
+
+#### A function in the component {/*passing-extra-data-function*/}
+
+Define the function you pass to `action` in the Client Component that has the props or state. That function reads those values and passes them to a Server Function.
+
+```jsx
+// AddToCart.js
+'use client';
+
+import { updateCart } from './actions.js';
+
+function AddToCart({ productId }) {
+  async function addToCart(formData) {
+    await updateCart(productId, formData);
+  }
+  return (
+    <form action={addToCart}>
+      <button type="submit">Add to Cart</button>
+    </form>
+  );
+}
+```
+
+```js
+// actions.js
+'use server';
+
+export async function updateCart(productId, formData) {
+  // ...
+}
+```
+
+Users can submit this form only after JavaScript loads.
+
+</DeepDive>
 
 ---
 

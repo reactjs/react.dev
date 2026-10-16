@@ -86,7 +86,7 @@ export default function Search() {
 
 <Note>
 
-Reading form data with `onSubmit` works in every version of React and gives you direct access to the [submit event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit_event). Prefer the [`action` prop](#handle-form-submission-with-an-action-prop) when you want Transitions, pending state, Error Boundaries, or [Server Functions](/reference/rsc/server-functions).
+`onSubmit` works in every version of React and gives you direct access to the [submit event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit_event). Starting in React 19, the [`action` prop](#handle-form-submission-with-an-action-prop) is the preferred API for form submissions, because React handles the submission in a [Transition](/reference/react/useTransition), with pending state, optimistic updates, handles concurrency across multiple submissions, Error Boundaries, and [Server Functions](/reference/rsc/server-functions).
 
 </Note>
 

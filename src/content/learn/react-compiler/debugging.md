@@ -53,11 +53,14 @@ function WeatherReport({report}) {
   // ✅ Good: computed outside of try/catch
   const description = report.temperature > 30 ? "Warm" : "Mild";
 
+  let summary = null;
   try {
-    return <div>{description}: {report.summary}</div>;
+    summary = parseSummary(report.data);
   } catch (error) {
-    return <div>Report unavailable</div>;
+    summary = "Report unavailable";
   }
+
+  return <div>{description}: {summary}</div>;
 }
 ```
 

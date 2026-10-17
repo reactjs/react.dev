@@ -36,7 +36,7 @@ Next.js is maintained by [Vercel](https://vercel.com/). You can [deploy a Next.j
 
 ### TanStack Start {/*tanstack-start*/}
 
-TanStack Start is a full-stack React framework powered by TanStack Router. It provides a full-document SSR, streaming, server functions, client/server builds, and more.
+[TanStack Start](https://tanstack.com/start/) is a full-stack React framework powered by TanStack Router. It provides a full-document SSR, streaming, server functions, client/server builds, and more.
 
 <TerminalBlock>
 npx @tanstack/cli@latest create

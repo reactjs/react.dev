@@ -34,6 +34,14 @@ npx create-next-app@latest
 
 Next.js is maintained by [Vercel](https://vercel.com/). You can [deploy a Next.js app](https://nextjs.org/docs/app/building-your-application/deploying) to any hosting provider that supports Node.js or Docker containers, or to your own server. Next.js also supports [static export](https://nextjs.org/docs/app/building-your-application/deploying/static-exports) which doesn't require a server.
 
+### TanStack Start {/*tanstack-start*/}
+
+[TanStack Start](https://tanstack.com/start/) is a full-stack React framework powered by TanStack Router. It provides a full-document SSR, streaming, server functions, client/server builds, and more.
+
+<TerminalBlock>
+npx @tanstack/cli@latest create
+</TerminalBlock>
+
 ### React Router (v7) {/*react-router-v7*/}
 
 **[React Router](https://reactrouter.com/start/framework/installation) is the most popular routing library for React and can be paired with Vite to create a full-stack React framework**. It emphasizes standard Web APIs and has several [ready to deploy templates](https://github.com/remix-run/react-router-templates) for various JavaScript runtimes and platforms.
@@ -63,7 +71,6 @@ Expo is maintained by [Expo (the company)](https://expo.dev/about). Building app
 
 There are other up-and-coming frameworks that are working towards our full stack React vision:
 
-- [TanStack Start (Beta)](https://tanstack.com/start/): TanStack Start is a full-stack React framework powered by TanStack Router. It provides a full-document SSR, streaming, server functions, bundling, and more using tools like Nitro and Vite.
 - [RedwoodSDK](https://rwsdk.com/): Redwood is a full stack React framework with lots of pre-installed packages and configuration that makes it easy to build full-stack web applications.
 
 <DeepDive>

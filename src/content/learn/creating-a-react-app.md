@@ -46,6 +46,10 @@ npx create-react-router@latest
 
 React Router is maintained by [Shopify](https://www.shopify.com).
 
+### TanStack Start {/*tanstack-start*/}
+
+**[TanStack Start](https://tanstack.com/start/) is a full-stack React framework powered by TanStack Router.** It provides a full-document SSR, streaming, server functions, bundling, and more using tools like Nitro and Vite.
+
 ### Expo (for native apps) {/*expo*/}
 
 **[Expo](https://expo.dev/) is a React framework that lets you create universal Android, iOS, and web apps with truly native UIs.** It provides an SDK for [React Native](https://reactnative.dev/) that makes the native parts easier to use. To create a new Expo project, run:
@@ -63,7 +67,6 @@ Expo is maintained by [Expo (the company)](https://expo.dev/about). Building app
 
 There are other up-and-coming frameworks that are working towards our full stack React vision:
 
-- [TanStack Start](https://tanstack.com/start/): TanStack Start is a full-stack React framework powered by TanStack Router. It provides a full-document SSR, streaming, server functions, bundling, and more using tools like Nitro and Vite.
 - [RedwoodSDK](https://rwsdk.com/): Redwood is a full stack React framework with lots of pre-installed packages and configuration that makes it easy to build full-stack web applications.
 
 <DeepDive>

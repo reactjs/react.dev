@@ -48,7 +48,11 @@ React Router is maintained by [Shopify](https://www.shopify.com).
 
 ### TanStack Start {/*tanstack-start*/}
 
-**[TanStack Start](https://tanstack.com/start/) is a full-stack React framework powered by TanStack Router.** It provides a full-document SSR, streaming, server functions, bundling, and more using tools like Nitro and Vite.
+TanStack Start is a full-stack React framework powered by TanStack Router. It provides a full-document SSR, streaming, server functions, client/server builds, and more.
+
+<TerminalBlock>
+npx @tanstack/cli@latest create
+</TerminalBlock>
 
 ### Expo (for native apps) {/*expo*/}
 

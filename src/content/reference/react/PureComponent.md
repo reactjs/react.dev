@@ -10,7 +10,7 @@ We recommend defining components as functions instead of classes. [See how to mi
 
 <Intro>
 
-`PureComponent` is similar to [`Component`](/reference/react/Component) but it skips re-renders for same props and state. Class components are still supported by React, but we don't recommend using them in new code.
+`PureComponent` is similar to [`Component`](/reference/react/Component) but it skips re-renders for same props and state. Class Components are still supported by React, but we don't recommend using them in new code.
 
 ```js
 class Greeting extends PureComponent {

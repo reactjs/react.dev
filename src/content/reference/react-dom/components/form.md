@@ -43,7 +43,7 @@ To create interactive controls for submitting information, render the [built-in 
   * The function may be async. React calls it with a single argument containing the [form data](https://developer.mozilla.org/en-US/docs/Web/API/FormData) of the submitted form.
   * A `formAction` prop on a `<button>`, `<input type="submit">`, or `<input type="image">` overrides this `action`.
 * [`method`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#method): A string that specifies the HTTP method to use when `action` is a URL. Defaults to `get`.
-* `onSubmit`: An [`Event` handler](/reference/react-dom/components/common#event-handler) function. Fires when the form is submitted. See [Handling form submission with an event handler](#handle-form-submission-with-an-event-handler).
+* `onSubmit`: An [`Event` handler](/reference/react-dom/components/common#react-event-object) function. Fires when the form is submitted. See [Handling form submission with an event handler](#handle-form-submission-with-an-event-handler).
 
 #### Caveats {/*caveats*/}
 
@@ -313,7 +313,7 @@ import { useOptimistic, useState, useRef } from 'react';
 import { deliverMessage } from './actions.js';
 
 function Thread({ messages, sendMessage }) {
-  const formRef = useRef();
+  const formRef = useRef(null);
   async function formAction(formData) {
     addOptimisticMessage(formData.get('message'));
     formRef.current.reset();
@@ -400,9 +400,9 @@ export default function Search() {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.0.0-rc-3edc000d-20240926",
-    "react-dom": "19.0.0-rc-3edc000d-20240926",
-    "react-scripts": "^5.0.0",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-scripts": "latest",
     "react-error-boundary": "4.0.3"
   },
   "main": "/index.js"

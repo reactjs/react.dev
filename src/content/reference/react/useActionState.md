@@ -103,7 +103,7 @@ Each time you call `dispatchAction`, React calls the `reducerAction` with the `a
 * `reducerAction` can be sync or async. It can perform sync actions like showing a notification, or async actions like posting updates to a server.
 * `reducerAction` is not invoked twice in `<StrictMode>` since `reducerAction` is designed to allow side effects.
 * The return type of `reducerAction` must match the type of `initialState`. If TypeScript infers a mismatch, you may need to explicitly annotate your state type.
-* If you set state after `await` in the `reducerAction` you currently need to wrap the state update in an additional `startTransition`. See the [startTransition](/reference/react/useTransition#react-doesnt-treat-my-state-update-after-await-as-a-transition) docs for more info.
+* If you call `reducerAction` outside of a Transition (for example, directly in an event handler), wrap it in [`startTransition`](/reference/react/startTransition). See [Troubleshooting](/reference/react/useActionState#async-function-outside-transition) for more info.
 * When using Server Functions, `actionPayload` needs to be [serializable](/reference/rsc/use-server#serializable-parameters-and-return-values) (values like plain objects, arrays, strings, and numbers).
 
 <DeepDive>

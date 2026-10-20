@@ -309,11 +309,9 @@ export function Footer() {
             }}>
             uwu?
           </div>
-          <div className="uwu-visible text-xs">
+          <div className="uwu-visible flex-wrap gap-x-1 text-xs">
             Logo by
-            <ExternalLink
-              className="ms-1"
-              href="https://twitter.com/sawaratsuki1004">
+            <ExternalLink href="https://twitter.com/sawaratsuki1004">
               @sawaratsuki1004
             </ExternalLink>
           </div>

@@ -83,7 +83,7 @@ The current snapshot of the store which you can use in your rendering logic.
 
 ### Subscribing to an external store {/*subscribing-to-an-external-store*/}
 
-Most of your React components will only read data from their [props,](/learn/passing-props-to-a-component) [state,](/reference/react/useState) and [context.](/reference/react/useContext) However, sometimes a component needs to read some data from some store outside of React that changes over time. This includes:
+Most of your React components will only read data from their [props,](/learn/passing-props-to-a-component) [state,](/reference/react/useState) and [Context.](/reference/react/useContext) However, sometimes a component needs to read some data from some store outside of React that changes over time. This includes:
 
 * Third-party state management libraries that hold state outside of React.
 * Browser APIs that expose a mutable value and events to subscribe to its changes.

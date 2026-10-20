@@ -729,7 +729,7 @@ function handleFormSubmit(e) {
 function handleFirstNameChange() {
   firstNameText.textContent = firstNameInput.value;
   helloText.textContent = (
-    'Hello ' +
+    'Hello, ' +
     firstNameInput.value + ' ' +
     lastNameInput.value + '!'
   );
@@ -738,7 +738,7 @@ function handleFirstNameChange() {
 function handleLastNameChange() {
   lastNameText.textContent = lastNameInput.value;
   helloText.textContent = (
-    'Hello ' +
+    'Hello, ' +
     firstNameInput.value + ' ' +
     lastNameInput.value + '!'
   );
@@ -931,7 +931,7 @@ function handleFormSubmit(e) {
 function handleFirstNameChange() {
   firstNameText.textContent = firstNameInput.value;
   helloText.textContent = (
-    'Hello ' +
+    'Hello, ' +
     firstNameInput.value + ' ' +
     lastNameInput.value + '!'
   );
@@ -940,7 +940,7 @@ function handleFirstNameChange() {
 function handleLastNameChange() {
   lastNameText.textContent = lastNameInput.value;
   helloText.textContent = (
-    'Hello ' +
+    'Hello, ' +
     firstNameInput.value + ' ' +
     lastNameInput.value + '!'
   );
@@ -1166,7 +1166,7 @@ function updateDOM() {
   firstNameText.textContent = firstName;
   lastNameText.textContent = lastName;
   helloText.textContent = (
-    'Hello ' +
+    'Hello, ' +
     firstName + ' ' +
     lastName + '!'
   );

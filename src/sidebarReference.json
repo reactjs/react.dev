@@ -411,6 +411,11 @@
       "path": "/reference/dev-tools/react-performance-tracks"
     },
     {
+      "title": "React DevTools for agents",
+      "path": "/reference/dev-tools/react-devtools-cdt-mcp",
+      "version": "experimental"
+    },
+    {
       "hasSectionHeader": true,
       "sectionHeader": "eslint-plugin-react-hooks"
     },

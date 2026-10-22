@@ -173,7 +173,7 @@ React Native uses Babel via Metro, so refer to the [Usage with Babel](#babel) se
 
 ### Rspack {/*usage-with-rspack*/}
 
-Please refer to [Rspack's docs](https://rspack.rs/guide/integrations/react) to enable and use the React Compiler in Rspack apps.
+Please refer to [Rspack's docs](https://rspack.rs/guide/integrations/react#react-compiler) to enable and use the React Compiler in Rspack apps.
 
 ### Rsbuild {/*usage-with-rsbuild*/}
 

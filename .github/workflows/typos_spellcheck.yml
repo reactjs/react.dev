@@ -1,0 +1,33 @@
+# Reference: https://github.com/crate-ci/typos/blob/master/docs/github-action.md
+
+name: 🔡 Spell Check
+
+on:
+  push:
+    branches:
+      - main
+      # TODO: (decide) Update this to run on all branches
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  run:
+    name: 🔍 Spell Check with Typos
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Actions Repository
+        uses: actions/checkout@v3
+
+      - name: Use typos config file
+        uses: crate-ci/typos@master
+        continue-on-error: false # TODO: decide how and when to comment under the PR
+        with:
+          # scan all files in the repository
+          config: ${{ github.workspace }}/.github/workflows_resources/typos.toml
+          files: ${{ github.workspace }}/
+          write_changes: false # don't write changes locally at least for now
+          # TODO: set write_changes to true
+          # and save the output as a Comment body
+
+      # TODO: Create Comment with the changes (from the Comment body) under the PR
+      # TODO: Update the Comment when the PR is updated

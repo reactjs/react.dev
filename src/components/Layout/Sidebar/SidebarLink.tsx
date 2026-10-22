@@ -28,6 +28,7 @@ interface SidebarLinkProps {
   icon?: React.ReactNode;
   isExpanded?: boolean;
   hideArrow?: boolean;
+  onToggle?: () => void;
   isPending: boolean;
 }
 
@@ -39,6 +40,7 @@ export function SidebarLink({
   level,
   isExpanded,
   hideArrow,
+  onToggle,
   isPending,
 }: SidebarLinkProps) {
   const ref = useRef<HTMLAnchorElement>(null);
@@ -58,67 +60,72 @@ export function SidebarLink({
     target = '_blank';
   }
   return (
-    <Link
-      href={href}
-      ref={ref}
-      title={title}
-      target={target}
-      passHref
-      aria-current={selected ? 'page' : undefined}
-      className={cn(
-        'p-2 pe-2 w-full rounded-none lg:rounded-e-2xl text-start hover:bg-gray-5 dark:hover:bg-gray-80 relative flex items-center justify-between',
-        {
-          'text-sm ps-6': level > 0,
-          'ps-5': level < 2,
-          'text-base font-bold': level === 0,
-          'text-primary dark:text-primary-dark': level === 0 && !selected,
-          'text-base text-secondary dark:text-secondary-dark':
-            level > 0 && !selected,
-          'text-base text-link dark:text-link-dark bg-highlight dark:bg-highlight-dark border-blue-40 hover:bg-highlight hover:text-link dark:hover:bg-highlight-dark dark:hover:text-link-dark':
-            selected,
-          'dark:bg-gray-70 bg-gray-3 dark:hover:bg-gray-70 hover:bg-gray-3':
-            isPending,
-        }
-      )}>
-      {/* This here needs to be refactored ofc */}
-      <div>
-        {title}{' '}
-        {version === 'major' && (
-          <span
-            title="- This feature is available in React 19 beta and the React canary channel"
-            className={`text-xs px-1 ms-1 rounded bg-gray-10 dark:bg-gray-40 dark:bg-opacity-20 text-gray-40 dark:text-gray-40`}>
-            React 19
-          </span>
-        )}
-        {version === 'canary' && (
-          <IconCanary
-            title=" - This feature is available in the latest Canary version of React"
-            className="ms-1 text-gray-30 dark:text-gray-60 inline-block w-3.5 h-3.5 align-[-3px]"
-          />
-        )}
-        {version === 'experimental' && (
-          <IconExperimental
-            title=" - This feature is available in the latest Experimental version of React"
-            className="ms-1 text-gray-30 dark:text-gray-60 inline-block w-3.5 h-3.5 align-[-3px]"
-          />
-        )}
-        {version === 'rc' && (
-          <IconCanary
-            title=" - This feature is available in the latest RC version"
-            className="ms-1 text-gray-30 dark:text-gray-60 inline-block w-3.5 h-3.5 align-[-3px]"
-          />
-        )}
-      </div>
-
-      {isExpanded != null && !hideArrow && (
-        <span
-          className={cn('pe-1', {
+    <div className="relative">
+      <Link
+        href={href}
+        ref={ref}
+        title={title}
+        target={target}
+        passHref
+        aria-current={selected ? 'page' : undefined}
+        className={cn(
+          'p-2 pe-2 w-full rounded-none lg:rounded-e-2xl text-start hover:bg-gray-5 dark:hover:bg-gray-80 relative flex items-center justify-between',
+          isExpanded != null && !hideArrow && 'pe-10',
+          {
+            'text-sm ps-6': level > 0,
+            'ps-5': level < 2,
+            'text-base font-bold': level === 0,
+            'text-primary dark:text-primary-dark': level === 0 && !selected,
+            'text-base text-secondary dark:text-secondary-dark':
+              level > 0 && !selected,
+            'text-base text-link dark:text-link-dark bg-highlight dark:bg-highlight-dark border-blue-40 hover:bg-highlight hover:text-link dark:hover:bg-highlight-dark dark:hover:text-link-dark':
+              selected,
+            'dark:bg-gray-70 bg-gray-3 dark:hover:bg-gray-70 hover:bg-gray-3':
+              isPending,
+          }
+        )}>
+        <div>
+          {title}{' '}
+          {version === 'major' && (
+            <span
+              title="- This feature is available in React 19 beta and the React canary channel"
+              className={`text-xs px-1 ms-1 rounded bg-gray-10 dark:bg-gray-40 dark:bg-opacity-20 text-gray-40 dark:text-gray-40`}>
+              React 19
+            </span>
+          )}
+          {version === 'canary' && (
+            <IconCanary
+              title=" - This feature is available in the latest Canary version of React"
+              className="ms-1 text-gray-30 dark:text-gray-60 inline-block w-3.5 h-3.5 align-[-3px]"
+            />
+          )}
+          {version === 'experimental' && (
+            <IconExperimental
+              title=" - This feature is available in the latest Experimental version of React"
+              className="ms-1 text-gray-30 dark:text-gray-60 inline-block w-3.5 h-3.5 align-[-3px]"
+            />
+          )}
+          {version === 'rc' && (
+            <IconCanary
+              title=" - This feature is available in the latest RC version"
+              className="ms-1 text-gray-30 dark:text-gray-60 inline-block w-3.5 h-3.5 align-[-3px]"
+            />
+          )}
+        </div>
+      </Link>
+      {isExpanded != null && !hideArrow && onToggle != null && (
+        <button
+          type="button"
+          aria-label={`${isExpanded ? 'Collapse' : 'Expand'} ${title}`}
+          aria-expanded={isExpanded}
+          onClick={onToggle}
+          className={cn('absolute inset-y-0 end-0 flex items-center px-3', {
             'text-link dark:text-link-dark': isExpanded,
             'text-tertiary dark:text-tertiary-dark': !isExpanded,
           })}>
           <IconNavArrow displayDirection={isExpanded ? 'down' : 'end'} />
-        </span>
+        </button>
       )}
-    </Link>
+    </div>
   );
 }

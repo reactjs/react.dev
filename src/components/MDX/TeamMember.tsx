@@ -68,7 +68,6 @@ function GroupBadges({group}: {group: string}) {
   );
 }
 
-// TODO: good alt text for images/links
 export function TeamMember({
   name,
   title,
@@ -143,7 +142,7 @@ export function TeamMember({
             {github && (
               <div className="me-4">
                 <ExternalLink
-                  aria-label="GitHub Profile"
+                  aria-label={`${name} on GitHub`}
                   href={`https://github.com/${github}`}
                   className="hover:text-primary hover:underline dark:text-primary-dark flex flex-row items-center">
                   <IconGitHub className="pe-1" /> {github}
@@ -152,7 +151,7 @@ export function TeamMember({
             )}
             {personal && (
               <ExternalLink
-                aria-label="Personal Site"
+                aria-label={`${name}'s Personal Site`}
                 href={`https://${personal}`}
                 className="hover:text-primary hover:underline dark:text-primary-dark flex flex-row items-center">
                 <IconLink className="pe-1" /> {personal}

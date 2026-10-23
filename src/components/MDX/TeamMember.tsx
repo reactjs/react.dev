@@ -68,7 +68,6 @@ function GroupBadges({group}: {group: string}) {
   );
 }
 
-
 export function TeamMember({
   name,
   title,

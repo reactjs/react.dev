@@ -10,11 +10,6 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences {/*upcoming-conferences*/}
 
-### CityJS Athens 2026 {/*cityjs-athens-2026*/}
-October 21-23,  2026. In-person in Athens
-
-[Website](https://athens.cityjsconf.org/) - [Twitter](https://x.com/cityjsconf) - [Bluesky](https://bsky.app/profile/cityjsconf.bsky.social)
-
 ### React Advanced London 2026 {/*react-advanced-london-2026*/}
 October 23 & 26, 2026. In-person in London, UK + online (hybrid event)
 
@@ -47,6 +42,11 @@ May 21 & 25, 2027. In-person in Amsterdam, Netherlands + online (hybrid event)
 
 
 ## Past Conferences {/*past-conferences*/}
+
+### CityJS Athens 2026 {/*cityjs-athens-2026*/}
+October 21-23,  2026. In-person in Athens
+
+[Website](https://athens.cityjsconf.org/) - [Twitter](https://x.com/cityjsconf) - [Bluesky](https://bsky.app/profile/cityjsconf.bsky.social)
 
 ### React Alicante 2026 {/*react-alicante-2026*/}
 Sep 24 - 26,  2026. In-person in Alicante

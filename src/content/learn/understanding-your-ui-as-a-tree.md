@@ -137,7 +137,7 @@ When a component creates a child element directly in its own JSX , it creates a 
 
 In the above example , `App` creates the `Copyright` and passes it to `InspirationGenerator` through `children`. If `InspirationGenerator` updates its own state without `App` rendering again , React can reuse the same `Copyright` element without rendering the `Copyright` again.
 
-By contrast , if `App` creates <FancyText/> directly in its JSX , rendering `App` again creates a new element , React may render `FancyText` again as part of the render.
+By contrast , when a parent componenet creates a child element directly in its JSX , rendering the parent again creates a new element , and React may render that child again as part of the render.
 
 Passing children through props doesn't prevent all re-renders. A child can still render when its own state or context changes , or when its parent renders and creates a new element.
 

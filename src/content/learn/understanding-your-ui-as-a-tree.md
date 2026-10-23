@@ -131,6 +131,16 @@ The tree is composed of nodes, each of which represents a component. `App`, `Fan
 
 The root node in a React render tree is the [root component](/learn/importing-and-exporting-components#the-root-component-file) of the app. In this case, the root component is `App` and it is the first component React renders. Each arrow in the tree points from a parent component to a child component.
 
+### How passing children affects component rendering {/*how-passing-children-affects-component-rendering*/}
+
+When a component creates a child element directly in its own JSX , it creates a new React element each time it renders. When a component receives a child element through its `children` prop , React can reuse that element when the component updates its own state without its parent rendering again.
+
+In the above example , `App` creates the `Copyright` and passes it to `InspirationGenerator` through `children`. If `InspirationGenerator` updates its own state without `App` rendering again , React can reuse the same `Copyright` element without rendering the `Copyright` again.
+
+By contrast , if `App` creates <FancyText/> directly in its JSX , rendering `App` again creates a new element , React may render `FancyText` again as part of the render.
+
+Passing children through props doesn't prevent all re-renders. A child can still render when its own state or context changes , or when its parent renders and creates a new element.
+
 <DeepDive>
 
 #### Where are the HTML tags in the render tree? {/*where-are-the-html-elements-in-the-render-tree*/}

@@ -54,7 +54,7 @@ In the above example, `Submit` uses this information to disable `<button>` press
 
 A `status` object with the following properties:
 
-* `pending`: A boolean. If `true`, this means the parent `<form>` is pending submission. Otherwise, `false`.
+* `pending`: A boolean. If `true`, this means the parent `<form>` is pending submission. Otherwise, `false`. `pending` is also `true` while a Transition started from a `submit` event handler is pending, as long as the handler calls `event.preventDefault()` and starts the Transition in the same event.
 
 * `data`: An object implementing the [`FormData interface`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) that contains the data the parent `<form>` is submitting. If there is no active submission or no parent `<form>`, it will be `null`.
 
@@ -111,6 +111,63 @@ export async function submitForm(query) {
 }
 ```
 </Sandpack>
+
+### Display a pending state with a custom form action {/*display-a-pending-state-with-a-custom-form-action*/}
+
+If you need to handle form submission in an `onSubmit` event handler instead of passing a function to the `<form action>` prop, call `event.preventDefault()` and start a Transition in the same event handler. A component inside the form can then use `useFormStatus` to read the pending state while the action is running.
+
+<Sandpack>
+
+```js src/App.js
+import { startTransition } from 'react';
+import { useFormStatus } from 'react-dom';
+import { submitForm } from './submitForm.js';
+
+function SubmitButton() {
+  const { pending } = useFormStatus();
+  return (
+    <button type="submit" disabled={pending}>
+      {pending ? 'Submitting...' : 'Submit'}
+    </button>
+  );
+}
+
+function Form({ submitAction }) {
+  function handleSubmit(event) {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    startTransition(async () => {
+      await submitAction(formData);
+    });
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input name="query" />
+      <SubmitButton />
+    </form>
+  );
+}
+
+export default function App() {
+  async function submitAction(formData) {
+    await submitForm(formData);
+  }
+
+  return <Form submitAction={submitAction} />;
+}
+```
+
+```js src/submitForm.js hidden
+export async function submitForm(formData) {
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+}
+```
+
+</Sandpack>
+
+Unlike a function passed to the `<form action>` prop, handling submission this way does not automatically reset the form.
+
 
 <Pitfall>
 

@@ -1684,7 +1684,7 @@ startTransition(() => {
 });
 ```
 
-The function you pass to `startTransition` must be synchronous. You can't mark an update as a Transition like this:
+The Action you pass to `startTransition` can be asynchronous. However, state updates scheduled in a `setTimeout` callback are not marked as Transitions, because the callback runs after the `startTransition` call has finished:
 
 ```js
 startTransition(() => {

@@ -50,7 +50,7 @@ The `preloadModule` function provides the browser with a hint that it should sta
   *  `crossOrigin`: a string. The [CORS policy](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) to use. Its possible values are `anonymous` and `use-credentials`.
   *  `integrity`: a string. A cryptographic hash of the module, to [verify its authenticity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity).
   *  `nonce`: a string. A cryptographic [nonce to allow the module](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) when using a strict Content Security Policy.
-  *  `fetchPriority`: a string. Suggests a relative priority for fetching the resource. The possible values are `auto` (the default), `high`, and `low`.
+  *  `fetchPriority`: a string. Suggests a [relative priority](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/fetchpriority) for fetching the resource; possible values are `auto` (default), `high`, and `low`.
 
 
 #### Returns {/*returns*/}

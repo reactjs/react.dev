@@ -653,12 +653,9 @@ export default function TabContainer() {
 import { useTransition } from 'react';
 
 export default function TabButton({ action, children, isActive }) {
-  const [isPending, startTransition] = useTransition();
+  const [, startTransition] = useTransition();
   if (isActive) {
     return <b>{children}</b>
-  }
-  if (isPending) {
-    return <b className="pending">{children}</b>;
   }
   return (
     <button onClick={async () => {
@@ -814,12 +811,9 @@ export default function TabContainer() {
 import { useTransition } from 'react';
 
 export default function TabButton({ action, children, isActive }) {
-  const [isPending, startTransition] = useTransition();
+  const [, startTransition] = useTransition();
   if (isActive) {
     return <b>{children}</b>
-  }
-  if (isPending) {
-    return <b className="pending">{children}</b>;
   }
   return (
     <button onClick={() => {
@@ -949,20 +943,29 @@ export default function TabContainer() {
 }
 ```
 
-```js src/TabButton.js
+import { useTransition } from 'react';
+
 export default function TabButton({ action, children, isActive }) {
-  if (isActive) {
-    return <b>{children}</b>
-  }
-  return (
-    <button onClick={() => {
-      action();
-    }}>
-      {children}
-    </button>
-  );
+const [isPending, startTransition] = useTransition();
+
+if (isActive) {
+return <b>{children}</b>;
 }
-```
+
+if (isPending) {
+return <b className="pending">{children}</b>;
+}
+
+return (
+<button onClick={() => {
+startTransition(async () => {
+await action();
+});
+}}>
+{children} </button>
+);
+}
+
 
 ```js src/AboutTab.js hidden
 export default function AboutTab() {

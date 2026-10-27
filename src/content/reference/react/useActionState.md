@@ -1200,7 +1200,7 @@ There are two ways to handle errors with `useActionState`.
 
 For known errors, such as "quantity not available" validation errors from your backend, you can return it as part of your `reducerAction` state and display it in the UI.
 
-For unknown errors, such as `undefined is not a function`, you can throw an error. React will cancel all queued Actions and shows the nearest [Error Boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary) by rethrowing the error from the `useActionState` hook.
+For unknown errors, such as `undefined is not a function`, you can throw an error. React will cancel all queued Actions and show the nearest [Error Boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary) by rethrowing the error from the `useActionState` hook.
 
 <Sandpack>
 
@@ -1216,7 +1216,7 @@ function Checkout() {
       const result = await addToCart(prevState.count, quantity);
       if (result.error) {
         // Return the error from the API as state
-        return {...prevState, error: `Could not add quanitiy ${quantity}: ${result.error}`};
+        return {...prevState, error: `Could not add quantity ${quantity}: ${result.error}`};
       }
 
       if (!isPending) {

@@ -5,27 +5,43 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-const INLINE_HIGHLIGHT_REGEX = /(\[\[.*\]\])/;
+const INLINE_HIGHLIGHT_REGEX = /\[\[(.*?)\]\]/g;
 
 function validateInlineHighlights(meta, code) {
-  const match = INLINE_HIGHLIGHT_REGEX.exec(meta);
-  if (!match) {
+  const matches = [...meta.matchAll(INLINE_HIGHLIGHT_REGEX)];
+  if (matches.length === 0) {
     return [];
   }
 
-  let highlights;
-  try {
-    highlights = JSON.parse(match[1]);
-  } catch (error) {
-    return ['Code highlight metadata must be valid JSON'];
-  }
-
-  if (!Array.isArray(highlights)) {
-    return ['Code highlight metadata must be an array'];
+  const errors = [];
+  let highlights = [];
+  for (const match of matches) {
+    let parsed;
+    try {
+      // The fence marker [[...]] is not itself valid JSON, so wrap the
+      // captured content in brackets to parse it as an array. This makes
+      // both [1, 1, "text"] and [ [1, 1, "text"] ] (nested form) parse
+      // into a three-element highlight tuple.
+      parsed = JSON.parse(`[${match[1]}]`);
+    } catch (error) {
+      errors.push('Code highlight metadata must be valid JSON');
+      continue;
+    }
+    if (!Array.isArray(parsed)) {
+      errors.push('Code highlight metadata must be an array');
+      continue;
+    }
+    // A single group may either wrap the list of highlights
+    // ([[ [1, 1, "a"], [2, 3, "b"] ]] style) or be one bare
+    // three-element tuple ([1, 1, "a"] style).
+    if (parsed.length > 0 && parsed.every(entry => Array.isArray(entry))) {
+      highlights = highlights.concat(parsed);
+    } else {
+      highlights.push(parsed);
+    }
   }
 
   const lines = code.split('\n');
-  const errors = [];
 
   for (const highlight of highlights) {
     if (!Array.isArray(highlight) || highlight.length < 3) {

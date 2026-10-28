@@ -1,0 +1,59 @@
+{
+	"name": "type-fest",
+	"version": "3.13.1",
+	"description": "A collection of essential TypeScript types",
+	"license": "(MIT OR CC0-1.0)",
+	"repository": "sindresorhus/type-fest",
+	"funding": "https://github.com/sponsors/sindresorhus",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "https://sindresorhus.com"
+	},
+	"types": "./index.d.ts",
+	"engines": {
+		"node": ">=14.16"
+	},
+	"scripts": {
+		"test": "xo && tsd && tsc && node script/test/source-files-extension.js"
+	},
+	"files": [
+		"index.d.ts",
+		"source"
+	],
+	"keywords": [
+		"typescript",
+		"ts",
+		"types",
+		"utility",
+		"util",
+		"utilities",
+		"omit",
+		"merge",
+		"json",
+		"generics"
+	],
+	"devDependencies": {
+		"@sindresorhus/tsconfig": "~0.7.0",
+		"expect-type": "^0.15.0",
+		"tsd": "^0.28.1",
+		"typescript": "^5.0.4",
+		"xo": "^0.54.2"
+	},
+	"xo": {
+		"rules": {
+			"@typescript-eslint/ban-ts-comment": "off",
+			"@typescript-eslint/ban-types": "off",
+			"@typescript-eslint/naming-convention": "off",
+			"import/extensions": "off",
+			"@typescript-eslint/no-redeclare": "off",
+			"@typescript-eslint/no-confusing-void-expression": "off",
+			"@typescript-eslint/no-unsafe-argument": "off"
+		}
+	},
+	"tsd": {
+		"compilerOptions": {
+			"noUnusedLocals": false
+		}
+	}
+}

@@ -5,41 +5,61 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-const INLINE_HIGHLIGHT_REGEX = /\[\[(.*?)\]\]/g;
+const INLINE_HIGHLIGHT_REGEX = /\[\[.*\]\]/;
 
-function validateInlineHighlights(meta, code) {
-  const matches = [...meta.matchAll(INLINE_HIGHLIGHT_REGEX)];
-  if (matches.length === 0) {
+function isHighlightTuple(entry) {
+  return (
+    Array.isArray(entry) &&
+    entry.length >= 3 &&
+    Number.isInteger(entry[0]) &&
+    Number.isInteger(entry[1]) &&
+    typeof entry[2] === 'string'
+  );
+}
+
+function parseHighlightGroups(meta) {
+  const match = meta.match(INLINE_HIGHLIGHT_REGEX);
+  if (match === null) {
+    // No [[...]] inline highlight marker present (e.g. metadata-only fences
+    // like ```js {expectedErrors: ...}) — nothing to validate here.
     return [];
   }
-
-  const errors = [];
-  let highlights = [];
-  for (const match of matches) {
-    let parsed;
-    try {
-      // The fence marker [[...]] is not itself valid JSON, so wrap the
-      // captured content in brackets to parse it as an array. This makes
-      // both [1, 1, "text"] and [ [1, 1, "text"] ] (nested form) parse
-      // into a three-element highlight tuple.
-      parsed = JSON.parse(`[${match[1]}]`);
-    } catch (error) {
-      errors.push('Code highlight metadata must be valid JSON');
-      continue;
-    }
-    if (!Array.isArray(parsed)) {
-      errors.push('Code highlight metadata must be an array');
-      continue;
-    }
-    // A single group may either wrap the list of highlights
-    // ([[ [1, 1, "a"], [2, 3, "b"] ]] style) or be one bare
-    // three-element tuple ([1, 1, "a"] style).
-    if (parsed.length > 0 && parsed.every(entry => Array.isArray(entry))) {
-      highlights = highlights.concat(parsed);
-    } else {
-      highlights.push(parsed);
+  let parsed;
+  try {
+    parsed = JSON.parse(match[0]);
+  } catch (error) {
+    return null;
+  }
+  if (!Array.isArray(parsed)) {
+    return null;
+  }
+  // Normalize accepted shapes:
+  //   - list of highlight tuples: [[step, line, text], ...]
+  //   - nested single tuple:      [[[step, line, text]]]
+  //   - single bare tuple:        [step, line, text]
+  if (parsed.length === 1 && Array.isArray(parsed[0])) {
+    const inner = parsed[0];
+    if (isHighlightTuple(inner)) {
+      // Nested form wrapping exactly one tuple.
+      return [inner];
     }
   }
+  if (parsed.length > 0 && parsed.every(isHighlightTuple)) {
+    return parsed;
+  }
+  return [parsed];
+}
+
+function validateInlineHighlights(meta, code) {
+  const groups = parseHighlightGroups(meta);
+  if (groups === null) {
+    return ['Code highlight metadata must be valid JSON'];
+  }
+  if (groups.length === 0) {
+    return [];
+  }
+  const errors = [];
+  const highlights = groups;
 
   const lines = code.split('\n');
 

@@ -1,0 +1,98 @@
+{
+  "author": "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)",
+  "bugs": "https://github.com/syntax-tree/unist-util-visit/issues",
+  "contributors": [
+    "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)",
+    "Eugene Sharygin <eush77@gmail.com>",
+    "Richard Gibson <richard.gibson@gmail.com>"
+  ],
+  "dependencies": {
+    "@types/unist": "^3.0.0",
+    "unist-util-is": "^6.0.0",
+    "unist-util-visit-parents": "^6.1.0"
+  },
+  "description": "unist utility to visit nodes",
+  "devDependencies": {
+    "@types/mdast": "^4.0.0",
+    "@types/node": "^26.0.0",
+    "c8": "^12.0.0",
+    "mdast-util-from-markdown": "^2.0.0",
+    "mdast-util-gfm": "^3.0.0",
+    "micromark-extension-gfm": "^3.0.0",
+    "prettier": "^3.0.0",
+    "remark-cli": "^12.0.0",
+    "remark-preset-wooorm": "^11.0.0",
+    "tsd": "^0.33.0",
+    "type-coverage": "^2.0.0",
+    "typescript": "^6.0.0",
+    "xo": "^5.0.0"
+  },
+  "exports": "./index.js",
+  "files": [
+    "lib/",
+    "index.d.ts",
+    "index.js"
+  ],
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/unified"
+  },
+  "keywords": [
+    "ast",
+    "hast",
+    "html",
+    "language",
+    "markdown",
+    "mdast",
+    "natural",
+    "nlcst",
+    "node",
+    "rehype",
+    "remark",
+    "retext",
+    "tree",
+    "unist-util",
+    "unist",
+    "utility",
+    "util",
+    "visit",
+    "walk",
+    "xast",
+    "xml"
+  ],
+  "license": "MIT",
+  "name": "unist-util-visit",
+  "prettier": {
+    "bracketSpacing": false,
+    "semi": false,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "none",
+    "useTabs": false
+  },
+  "remarkConfig": {
+    "plugins": [
+      "remark-preset-wooorm"
+    ]
+  },
+  "repository": "syntax-tree/unist-util-visit",
+  "scripts": {
+    "build": "tsc --build --clean && tsc --build && tsd && type-coverage",
+    "format": "remark --frail --output --quiet -- . && prettier --log-level warn --write -- . && xo --fix",
+    "prepack": "npm run build && npm run format",
+    "test-api": "node --conditions development test.js",
+    "test-coverage": "c8 --100 --reporter lcov npm run test-api",
+    "test": "npm run build && npm run format && npm run test-coverage"
+  },
+  "sideEffects": false,
+  "typeCoverage": {
+    "atLeast": 100,
+    "#": "needed `any`s",
+    "ignoreFiles": [
+      "lib/index.d.ts"
+    ],
+    "strict": true
+  },
+  "type": "module",
+  "version": "5.2.0"
+}

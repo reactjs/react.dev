@@ -286,7 +286,7 @@ export default function UserCard({ userPromise, serverTime }) {
 
 ## Flight Data Types in Server Actions {/*flight-data-types-actions*/}
 
-This demo sends Map, Set, Date, and BigInt from a client component *to* a server action via `encodeReply`/`decodeReply`, then verifies the types survived the round trip.
+This demo sends Map, Set, Date, and BigInt from a client component *to* a Server Action via `encodeReply`/`decodeReply`, then verifies the types survived the round trip.
 
 <SandpackRSC>
 
@@ -390,7 +390,7 @@ export default function TestButton({ testTypes }) {
 
 ## Server Action Mutation + Re-render {/*action-mutation-rerender*/}
 
-The server action mutates server-side data and returns a confirmation string. The updated list is only visible because the framework automatically re-renders the entire server component tree after the action completes — the server component re-reads the data and streams the new UI to the client.
+The Server Action mutates server-side data and returns a confirmation string. The updated list is only visible because the framework automatically re-renders the entire server component tree after the Action completes — the server component re-reads the data and streams the new UI to the client.
 
 <SandpackRSC>
 
@@ -487,7 +487,7 @@ export default function AddTodo({ createTodo }) {
 
 ## Inline Server Actions {/*inline-server-actions*/}
 
-Server actions defined inline inside a server component with `'use server'` on the function body. The action closes over module-level state and is passed as a prop — no separate `actions.js` file needed.
+Server Actions defined inline inside a server component with `'use server'` on the function body. The Action closes over module-level state and is passed as a prop — no separate `actions.js` file needed.
 
 <SandpackRSC>
 

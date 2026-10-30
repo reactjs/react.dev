@@ -24,6 +24,7 @@ This includes React-specific props like `ref` and `dangerouslySetInnerHTML`.
 
 These built-in browser components accept user input:
 
+* [`<form>`](/reference/react-dom/components/form)
 * [`<input>`](/reference/react-dom/components/input)
 * [`<select>`](/reference/react-dom/components/select)
 * [`<textarea>`](/reference/react-dom/components/textarea)
@@ -83,7 +84,7 @@ React supports all built-in browser HTML components. This includes:
 * [`<figcaption>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figcaption)
 * [`<figure>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figure)
 * [`<footer>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/footer)
-* [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form)
+* [`<form>`](/reference/react-dom/components/form)
 * [`<h1>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/h1)
 * [`<head>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/head)
 * [`<header>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/header)

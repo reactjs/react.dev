@@ -43,6 +43,16 @@ import {render} from '@testing-library/react';
 
 render(<Component />);
 ```
+`render` returns an `unmount` function and the rendered container:
+
+```js
+const {unmount, container} = render(<Component />);
+
+unmount();
+expect(container.innerHTML).toBe('');
+```
+
+
 
 ### ReactDOMTestUtils.Simulate {/*reactdomtestutilssimulate*/}
 

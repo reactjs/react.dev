@@ -573,7 +573,7 @@ You should write the `render` method as a pure function, meaning that it should 
 
 #### Returns {/*render-returns*/}
 
-`render` can return any valid React node. This includes React elements such as `<div />`, strings, numbers, [portals](/reference/react-dom/createPortal), empty nodes (`null`, `undefined`, `true`, and `false`), arrays of React nodes, and iterables of React nodes.
+`render` can return any valid React node. This includes React elements such as `<div />`, strings, numbers, [portals](/reference/react-dom/createPortal), empty nodes (`null`, `undefined`, `true`, and `false`), and iterables of React nodes, such as arrays and `Set`s.
 
 #### Caveats {/*render-caveats*/}
 

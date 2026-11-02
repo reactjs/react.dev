@@ -527,6 +527,8 @@ button { display: block; margin: 10px; }
 
 A variable like `timeoutID` is shared between all components. This is why clicking on the second button resets the first button's pending timeout. To fix this, you can keep timeout in a ref. Each button will get its own ref, so they won't conflict with each other. Notice how clicking two buttons fast will show both messages.
 
+Moving `let timeoutID` inside `DebouncedButton` would also keep the buttons independent in this example, because they don't re-render. However, if a button re-rendered (for example, because its parent re-rendered), the component would create a new local variable, so the next click couldn't clear the previous timeout. Using `useRef` preserves the timeout ID between renders.
+
 <Sandpack>
 
 ```js

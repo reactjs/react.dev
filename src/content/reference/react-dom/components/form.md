@@ -86,7 +86,7 @@ export default function Search() {
 
 <Note>
 
-`onSubmit` works in every version of React and gives you direct access to the [submit event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit_event). Starting in React 19, the [`action` prop](#handle-form-submission-with-an-action-prop) is the preferred API for form submissions, because React handles the submission in a [Transition](/reference/react/useTransition), with pending state, optimistic updates, handles concurrency across multiple submissions, Error Boundaries, and [Server Functions](/reference/rsc/server-functions).
+`onSubmit` works in every version of React and gives you direct access to the [submit event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit_event). Starting in React 19, the [`action` prop](#handle-form-submission-with-an-action-prop) is the preferred API for form submissions. With `action`, React manages pending state and concurrency across multiple submissions. You can also use optimistic updates, Error Boundaries, and [Server Functions](/reference/rsc/server-functions).
 
 </Note>
 
@@ -98,7 +98,7 @@ Pass a function to the `action` prop to run it when the form is submitted. React
 
 When you pass a function to `action`, React:
 
-* Runs the function in a [Transition](/reference/react/useTransition), keeping the page responsive.
+* Runs the function in a [Transition](/reference/react/useTransition).
 * Makes the pending state available to child components via [`useFormStatus`](/reference/react-dom/hooks/useFormStatus).
 * Propagates any errors to the nearest Error Boundary.
 * Resets the form's uncontrolled fields when the function succeeds. To keep their values, see [Preserving form values after an Action](#preserve-form-values-after-an-action).
@@ -128,7 +128,7 @@ export default function Search() {
 
 ### Handling form submission with a Server Function {/*handle-form-submission-with-a-server-function*/}
 
-A `<form>`'s `action` prop can run a Server Function (a function marked with [`'use server'`](/reference/rsc/use-server)) when the user submits the form. Users can submit that form before JavaScript loads, and when JavaScript is disabled. This matches how forms behave when you pass a URL to `action`.
+A `<form>`'s `action` prop can run a Server Function (a function marked with [`'use server'`](/reference/rsc/use-server)) when the user submits the form. Users can submit that form before JavaScript loads or when JavaScript is disabled. This matches how forms behave when you pass a URL to `action`.
 
 React calls the Server Function with the form's [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) and includes every input with a `name` attribute. To pass additional data, such as an ID from props, see [Passing extra data to an Action](#passing-extra-data-to-an-action).
 
@@ -219,7 +219,7 @@ function AddToCart({ productId }) {
 
 #### A function in the component {/*passing-extra-data-function*/}
 
-Define the function you pass to `action` in the Client Component that has the props or state. That function reads those values and passes them to a Server Function.
+Define the function passed to `action` in the Client Component so it can read the component's props or state. That function passes those values to a Server Function.
 
 ```jsx
 // AddToCart.js
@@ -360,7 +360,7 @@ export default function App() {
 
 ```js src/actions.js
 export async function deliverMessage(message) {
-  // mocking a delay to simulate message delivery
+  // Simulate a message delivery delay
   await new Promise((res) => setTimeout(res, 1000));
   return message;
 }
@@ -537,7 +537,7 @@ export default function EditForm() {
 
 </Sandpack>
 
-Call a Server Function from `saveAction`, then store the string it returns. Because `saveAction` is defined in the Client Component, users can submit this form only after JavaScript loads:
+Call a Server Function from `saveAction`, then store its return value in state. Because `saveAction` is defined in the Client Component, users can submit this form only after JavaScript loads:
 
 ```js
 // actions.js
@@ -604,17 +604,15 @@ A form can have more than one submit button, each running a different Action. A 
 import { useActionState } from 'react';
 
 export default function ArticleForm() {
-  // Hold the saved draft in state so the textarea keeps its content after saving
+  // Preserve the saved draft after submission
   const [formState, dispatchFormState] = useActionState((state, payload) => {
     const content = payload.data.get('content');
     switch (payload.type) {
       case 'save':
         alert(`Your draft of '${content}' was saved!`);
-        // Keep the submitted content as the current draft
         return payload.data;
       case 'publish':
         alert(`'${content}' was published!`);
-        // Reset the form
         return new FormData();
       default:
         return state;

@@ -358,8 +358,9 @@ export default function App() {
 }
 ```
 
-```js src/actions.js hidden
+```js src/actions.js
 export async function deliverMessage(message) {
+  // mocking a delay to simulate message delivery
   await new Promise((res) => setTimeout(res, 1000));
   return message;
 }

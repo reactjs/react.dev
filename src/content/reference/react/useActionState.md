@@ -1222,7 +1222,7 @@ export default function UpdateName() {
 }
 ```
 
-```js src/api.js hidden
+```js src/api.js
 export async function updateName(previousState, formData) {
   await new Promise(resolve => setTimeout(resolve, 1000));
   const name = formData.get('name');

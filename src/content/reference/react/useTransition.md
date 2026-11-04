@@ -589,7 +589,7 @@ For example, this `TabButton` component wraps its `onClick` logic in an `action`
 
 ```js {8-12}
 export default function TabButton({ action, children, isActive }) {
-  const [isPending, startTransition] = useTransition();
+  const [, startTransition] = useTransition();
   if (isActive) {
     return <b>{children}</b>
   }
@@ -653,12 +653,9 @@ export default function TabContainer() {
 import { useTransition } from 'react';
 
 export default function TabButton({ action, children, isActive }) {
-  const [isPending, startTransition] = useTransition();
+  const [, startTransition] = useTransition();
   if (isActive) {
     return <b>{children}</b>
-  }
-  if (isPending) {
-    return <b className="pending">{children}</b>;
   }
   return (
     <button onClick={async () => {
@@ -735,7 +732,6 @@ export default function ContactTab() {
 ```css
 button { margin-right: 10px }
 b { display: inline-block; margin-right: 10px; }
-.pending { color: #777; }
 .items {
   max-height: 300px;
   overflow: auto;

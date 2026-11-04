@@ -856,7 +856,7 @@ There is no direct equivalent to `UNSAFE_componentWillUpdate` in function compon
 
 ### `static contextType` {/*static-contexttype*/}
 
-If you want to read [`this.context`](#context-instance-field) from your class component, you must specify which context it needs to read. The context you specify as the `static contextType` must be a value previously created by [`createContext`.](/reference/react/createContext)
+If you want to read [`this.context`](#context) from your class component, you must specify which context it needs to read. The context you specify as the `static contextType` must be a value previously created by [`createContext`.](/reference/react/createContext)
 
 ```js {2}
 class Button extends Component {

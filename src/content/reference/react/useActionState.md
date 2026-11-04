@@ -1245,7 +1245,7 @@ When validation fails, `updateName` returns an error and the submitted `FormData
 
 <RSC>
 
-When the `reducerAction` passed to `useActionState` is a [Server Function](/reference/rsc/server-functions), pass the returned `submitAction` to the form's `action` prop. React can then display the Server Function's returned value before hydration completes. Return the submitted `FormData` and use it to set each field's `defaultValue` to preserve those values before JavaScript loads. On pages with dynamic content, you can also use the optional `permalink` parameter for progressive enhancement.
+The example above runs `updateName` in the browser. To display the error and preserve the submitted name before JavaScript loads, make `updateName` a [Server Function](/reference/rsc/server-functions). Keep passing `submitAction` to the form's `action` prop. React can then display the Server Function's returned value before hydration completes. See [preserving form values before JavaScript loads](/reference/react-dom/components/form#preserving-form-values-before-javascript-loads) for the setup. On pages with dynamic content, you can also use the optional [`permalink`](#parameters) parameter for progressive enhancement.
 
 </RSC>
 

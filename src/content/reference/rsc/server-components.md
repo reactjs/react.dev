@@ -179,6 +179,39 @@ The bundler then combines the data, rendered Server Components and dynamic Clien
 
 Server Components can be made dynamic by re-fetching them from a server, where they can access the data and render again. This new application architecture combines the simple “request/response” mental model of server-centric Multi-Page Apps with the seamless interactivity of client-centric Single-Page Apps, giving you the best of both worlds.
 
+### Rendering a context provider in a Server Component {/*rendering-a-context-provider-in-a-server-component*/}
+
+Server Components cannot create context, but they can render a context provider imported from a Client Component module.
+
+Create and export the context from a file with the [`'use client'`](/reference/rsc/use-client) directive:
+
+```js
+// user-context.js
+'use client';
+import { createContext } from 'react';
+
+export const UserContext = createContext(null);
+```
+
+Then import and render the context directly from a Server Component:
+
+```js
+// server-component.js
+import { UserContext } from './user-context';
+
+export async function Layout({ children }) {
+  const currentUser = await getCurrentUser();
+
+  return (
+    <UserContext value={currentUser}>
+      {children}
+    </UserContext>
+  );
+}
+```
+
+Client Components rendered inside this provider can read its value with [`use`](/reference/react/use) or [`useContext`](/reference/react/useContext).
+
 ### Adding interactivity to Server Components {/*adding-interactivity-to-server-components*/}
 
 Server Components are not sent to the browser, so they cannot use interactive APIs like `useState`. To add interactivity to Server Components, you can compose them with Client Component using the `"use client"` directive.

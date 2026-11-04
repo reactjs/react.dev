@@ -24,7 +24,7 @@ To help make the upgrade to React 19 easier, we've published a `react@18.3` rele
 
 We recommend upgrading to React 18.3 first to help identify any issues before upgrading to React 19.
 
-For a list of changes in 18.3 see the [Release Notes](https://github.com/facebook/react/blob/main/CHANGELOG.md#1830-april-25-2024).
+For a list of changes in 18.3 see the [Release Notes](https://github.com/react/react/blob/main/CHANGELOG.md#1830-april-25-2024).
 
 </Note>
 
@@ -38,7 +38,7 @@ In this post, we will guide you through the steps for upgrading to React 19:
 - [TypeScript changes](#typescript-changes)
 - [Changelog](#changelog)
 
-If you'd like to help us test React 19, follow the steps in this upgrade guide and [report any issues](https://github.com/facebook/react/issues/new?assignees=&labels=React+19&projects=&template=19.md&title=%5BReact+19%5D) you encounter. For a list of new features added to React 19, see the [React 19 release post](/blog/2024/12/05/react-19).
+If you'd like to help us test React 19, follow the steps in this upgrade guide and [report any issues](https://github.com/react/react/issues/new?assignees=&labels=React+19&projects=&template=19.md&title=%5BReact+19%5D) you encounter. For a list of new features added to React 19, see the [React 19 release post](/blog/2024/12/05/react-19).
 
 ---
 ## Installing {/*installing*/}
@@ -256,7 +256,7 @@ class Child extends React.Component {
 #### Removed: string refs {/*removed-string-refs*/}
 String refs were deprecated in [March, 2018 (v16.3.0)](https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html).
 
-Class components supported string refs before being replaced by ref callbacks due to [multiple downsides](https://github.com/facebook/react/issues/1373). In React 19, we're removing string refs to make React simpler and easier to understand.
+Class components supported string refs before being replaced by ref callbacks due to [multiple downsides](https://github.com/react/react/issues/1373). In React 19, we're removing string refs to make React simpler and easier to understand.
 
 If you're still using string refs in class components, you'll need to migrate to ref callbacks:
 
@@ -730,24 +730,24 @@ const reducer = (state: State, action: Action) => state;
 
 ### Other breaking changes {/*other-breaking-changes*/}
 
-- **react-dom**: Error for javascript URLs in `src` and `href` [#26507](https://github.com/facebook/react/pull/26507)
-- **react-dom**: Remove `errorInfo.digest` from `onRecoverableError` [#28222](https://github.com/facebook/react/pull/28222)
-- **react-dom**: Remove `unstable_flushControlled` [#26397](https://github.com/facebook/react/pull/26397)
-- **react-dom**: Remove `unstable_createEventHandle` [#28271](https://github.com/facebook/react/pull/28271)
-- **react-dom**: Remove `unstable_renderSubtreeIntoContainer` [#28271](https://github.com/facebook/react/pull/28271)
-- **react-dom**: Remove `unstable_runWithPriority` [#28271](https://github.com/facebook/react/pull/28271)
-- **react-is**: Remove deprecated methods from `react-is` [28224](https://github.com/facebook/react/pull/28224)
+- **react-dom**: Error for javascript URLs in `src` and `href` [#26507](https://github.com/react/react/pull/26507)
+- **react-dom**: Remove `errorInfo.digest` from `onRecoverableError` [#28222](https://github.com/react/react/pull/28222)
+- **react-dom**: Remove `unstable_flushControlled` [#26397](https://github.com/react/react/pull/26397)
+- **react-dom**: Remove `unstable_createEventHandle` [#28271](https://github.com/react/react/pull/28271)
+- **react-dom**: Remove `unstable_renderSubtreeIntoContainer` [#28271](https://github.com/react/react/pull/28271)
+- **react-dom**: Remove `unstable_runWithPriority` [#28271](https://github.com/react/react/pull/28271)
+- **react-is**: Remove deprecated methods from `react-is` [28224](https://github.com/react/react/pull/28224)
 
 ### Other notable changes {/*other-notable-changes*/}
 
-- **react**: Batch sync, default and continuous lanes [#25700](https://github.com/facebook/react/pull/25700)
-- **react**: Don't prerender siblings of suspended component [#26380](https://github.com/facebook/react/pull/26380)
-- **react**: Detect infinite update loops caused by render phase updates [#26625](https://github.com/facebook/react/pull/26625)
-- **react-dom**: Transitions in popstate are now synchronous [#26025](https://github.com/facebook/react/pull/26025)
-- **react-dom**: Remove layout effect warning during SSR [#26395](https://github.com/facebook/react/pull/26395)
-- **react-dom**: Warn and don’t set empty string for src/href (except anchor tags) [#28124](https://github.com/facebook/react/pull/28124)
+- **react**: Batch sync, default and continuous lanes [#25700](https://github.com/react/react/pull/25700)
+- **react**: Don't prerender siblings of suspended component [#26380](https://github.com/react/react/pull/26380)
+- **react**: Detect infinite update loops caused by render phase updates [#26625](https://github.com/react/react/pull/26625)
+- **react-dom**: Transitions in popstate are now synchronous [#26025](https://github.com/react/react/pull/26025)
+- **react-dom**: Remove layout effect warning during SSR [#26395](https://github.com/react/react/pull/26395)
+- **react-dom**: Warn and don’t set empty string for src/href (except anchor tags) [#28124](https://github.com/react/react/pull/28124)
 
-For a full list of changes, please see the [Changelog](https://github.com/facebook/react/blob/main/CHANGELOG.md#1900-december-5-2024).
+For a full list of changes, please see the [Changelog](https://github.com/react/react/blob/main/CHANGELOG.md#1900-december-5-2024).
 
 ---
 

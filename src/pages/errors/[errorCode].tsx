@@ -100,7 +100,7 @@ export const getStaticProps: GetStaticProps<ErrorDecoderProps> = async ({
 }) => {
   const errorCodes: {[key: string]: string} = (cachedErrorCodes ||= await (
     await fetch(
-      'https://raw.githubusercontent.com/facebook/react/main/scripts/error-codes/codes.json'
+      'https://raw.githubusercontent.com/react/react/main/scripts/error-codes/codes.json'
     )
   ).json());
 
@@ -143,7 +143,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
    */
   const errorCodes = (cachedErrorCodes ||= await (
     await fetch(
-      'https://raw.githubusercontent.com/facebook/react/main/scripts/error-codes/codes.json'
+      'https://raw.githubusercontent.com/react/react/main/scripts/error-codes/codes.json'
     )
   ).json());
 

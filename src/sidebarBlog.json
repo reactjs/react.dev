@@ -12,6 +12,13 @@
       "skipBreadcrumb": true,
       "routes": [
         {
+          "title": "React 19.3",
+          "titleForHomepage": "React 19.3",
+          "icon": "blog",
+          "date": "September 9, 2026",
+          "path": "/blog/2026/09/09/react-19-3"
+        },
+        {
           "title": "The React Foundation: A New Home for React Hosted by the Linux Foundation",
           "titleForHomepage": "The React Foundation: A New Home for React Hosted by the Linux Foundation",
           "icon": "blog",

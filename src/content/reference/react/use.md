@@ -4,7 +4,7 @@ title: use
 
 <Intro>
 
-`use` is a React API that lets you read the value of a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](/learn/passing-data-deeply-with-context).
+`use` is a React API that lets you read a resource during rendering, such as a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](/learn/passing-data-deeply-with-context).
 
 ```js
 const value = use(resource);
@@ -77,6 +77,39 @@ The resolved value of the Promise.
 * `use` cannot be called inside a try-catch block. Instead, wrap your component in an [Error Boundary](#displaying-an-error-with-an-error-boundary) to catch the error and display a fallback.
 * Promises passed to `use` must be cached so the same Promise instance is reused across re-renders. [See caching Promises below.](#caching-promises-for-client-components)
 * When passing a Promise from a Server Component to a Client Component, its resolved value must be [serializable](/reference/rsc/use-client#serializable-types).
+
+---
+
+### `use(browser())` {/*use-browser*/}
+
+Call `use` with the value returned by [`browser`](/reference/react-dom/browser) in a component that should only render in the browser:
+
+```js
+import { use } from 'react';
+import { browser } from 'react-dom';
+
+function BrowserOnly() {
+  use(browser('This component requires browser APIs.'));
+  return <BrowserContent />;
+}
+```
+
+During server rendering, the component calling `use(browser())` suspends and React includes the closest [`<Suspense>`](/reference/react/Suspense) boundary's fallback in the HTML. In the browser, `use(browser())` returns `undefined`, so the component renders normally.
+
+[See an example below.](#rendering-a-component-only-in-the-browser)
+
+#### Parameters {/*browser-parameters*/}
+
+* `browserValue`: The value returned by [`browser`](/reference/react-dom/browser).
+
+#### Returns {/*browser-returns*/}
+
+`use(browser())` returns `undefined` in the browser.
+
+#### Caveats {/*browser-caveats*/}
+
+* The component calling `use(browser())` must be inside a `<Suspense>` boundary during server rendering. Without one, server rendering fails.
+* In a React Server Components app, `use(browser())` must be called from a [Client Component](/reference/rsc/use-client), not a [Server Component](/reference/rsc/server-components).
 
 ---
 
@@ -472,7 +505,7 @@ function Albums() {
 }
 ```
 
-Instead, pass a Promise from a cache, a Suspense-enabled framework, or a Server Component:
+Instead, pass a Promise from a cache, a [Suspense-enabled framework](/reference/react/Suspense#suspense-enabled-frameworks), or a Server Component:
 
 ```js
 // ✅ fetchData reads the Promise from a cache.
@@ -538,7 +571,7 @@ The `fetchData` function returns the same Promise each time it's called with the
 
 <Note>
 
-The way you cache Promises depends on the framework you use with Suspense. Frameworks typically provide built-in caching mechanisms. If you don't use a framework, you can use a simple module-level cache like the one above, or a [Suspense-enabled data source](/reference/react/Suspense#displaying-a-fallback-while-content-is-loading).
+The way you cache Promises depends on the framework you use with Suspense. Frameworks typically provide built-in caching mechanisms. If you don't use a framework, you can use a simple module-level cache like the one above, or a [Suspense-enabled data source](/reference/react/Suspense#what-activates-a-suspense-boundary).
 
 </Note>
 
@@ -662,7 +695,7 @@ This cache pattern is the foundation for [re-fetching data](#re-fetching-data-in
 
 <Pitfall>
 
-Don't skip calling `use` based on whether a Promise is already settled.
+##### Don't skip calling `use` based on whether a Promise is already settled. {/*conditional-use*/}
 
 Unlike other hooks, `use` can be called inside conditions and loops — but it must always be called for the Promise itself. Never read `promise.status` or `promise.value` directly to bypass `use`; always pass the Promise to `use` and let React handle it.
 
@@ -1113,47 +1146,59 @@ root.render(
 
 #### Should I resolve a Promise in a Server or Client Component? {/*resolve-promise-in-server-or-client-component*/}
 
-A Promise can be resolved with `await` in a Server Component, or passed as a prop to a Client Component and resolved there with `use`.
+If you have a Promise, at some point you need to unwrap it to read its value. You unwrap it with `await` in a Server Component, and with `use` in a Client Component.
 
-Using `await` in a Server Component suspends the Server Component itself, and the Client Component receives the resolved value as a prop:
+Usually, the simplest option is to `await` the Promise where you create it. The Server Component suspends until the data is ready, and everything below it waits too:
 
 ```js
 // Server Component
 export default async function App() {
-  // Will suspend the Server Component.
   const messageContent = await fetchMessage();
   return <Message messageContent={messageContent} />;
 }
 ```
 
-A Server Component can also start a Promise without awaiting it and pass the Promise to a Client Component. The Server Component returns immediately, and the Client Component suspends when it calls `use`:
+However, you don't have to unwrap it right away. You can pass the Promise down as a prop, and unwrap it deeper in the tree. The component that reads the Promise still suspends, but only that part of the tree waits for the data. Wrap that component in a [`<Suspense>`](/reference/react/Suspense) boundary to show a fallback while the rest of the page renders immediately.
+
+For example, a deeper Server Component can `await` the Promise it receives:
 
 ```js
+import { Suspense } from 'react';
+
 // Server Component
 export default function App() {
-  // Not awaited: starts here, resolves on the client.
   const messagePromise = fetchMessage();
-  return <Message messagePromise={messagePromise} />;
+  return (
+    <Suspense fallback={<p>⌛Downloading message...</p>}>
+      <Message messagePromise={messagePromise} />
+    </Suspense>
+  );
+}
+
+// Server Component
+async function Message({ messagePromise }) {
+  const messageContent = await messagePromise;
+  return <p>{messageContent}</p>;
 }
 ```
+
+Or, in a separate file, a Client Component can unwrap the same Promise with `use`:
 
 ```js
 // Client Component
 'use client';
+
 import { use } from 'react';
 
 export function Message({ messagePromise }) {
-  // Will suspend until the data is available.
   const messageContent = use(messagePromise);
   return <p>{messageContent}</p>;
 }
 ```
 
-Prefer `await` in a Server Component when possible, since it keeps the data fetching on the server. If a Server Component above already awaits the data, pass the resolved value down as a prop instead of creating a new Promise to call `use`.
+Passing the Promise down works the same way in both cases. Both suspend where the Promise is read, and both unblock the UI above. The only difference is that Client Components can't `await` during render, so they unwrap the Promise with `use` instead. A common case is interactive content like popovers and tooltips, where the data is only needed after a hover or click.
 
-You can also pass promise as a prop to a Client Component without awaiting it, and then read it with `use(promise)` to suspend deeper in the tree. This allows more of the surrounding UI to complete while the Promise is pending. A common case is interactive content like popovers and tooltips, where the data is needed only after a hover or click. Client Components can't `await`, so they rely on `use` to suspend on a Promise.
-
-In either case, wrap the component that reads the Promise in a Suspense boundary so React can show a fallback while the Promise is pending. See [Revealing content together at once](/reference/react/Suspense#revealing-content-together-at-once) for guidance on boundary placement.
+See [Revealing content together at once](/reference/react/Suspense#revealing-content-together-at-once) for guidance on where to place Suspense boundaries.
 
 </DeepDive>
 
@@ -1278,6 +1323,160 @@ async function getData(url) {
 }
 ```
 </Sandpack>
+
+---
+
+## Usage (Browser) {/*usage-browser*/}
+
+### Rendering a component only in the browser {/*rendering-a-component-only-in-the-browser*/}
+
+Pass the value returned by [`browser`](/reference/react-dom/browser) to `use` inside a component that should only render in the browser.
+
+Click **Reload** to see the loading fallback in the initial HTML. After hydration, React displays the draft loaded from `localStorage`.
+
+<Sandpack>
+
+```js src/App.js active
+import { Suspense, use, useState } from 'react';
+import { browser } from 'react-dom';
+
+function SavedDraft() {
+  use(browser('The draft is stored in localStorage.'));
+  const [draft, setDraft] = useState(
+    () => localStorage.getItem('draft') ?? ''
+  );
+
+  function handleChange(event) {
+    const nextDraft = event.target.value;
+    setDraft(nextDraft);
+    localStorage.setItem('draft', nextDraft);
+  }
+
+  return (
+    <label>
+      Draft:
+      <textarea
+        value={draft}
+        onChange={handleChange}
+        rows={4}
+        cols={30}
+      />
+    </label>
+  );
+}
+
+export default function App() {
+  return (
+    <>
+      <h1>Saved draft</h1>
+      <Suspense fallback={<p>Loading draft...</p>}>
+        <SavedDraft />
+      </Suspense>
+    </>
+  );
+}
+```
+
+```js src/Document.js hidden
+import App from './App.js';
+
+export default function Document() {
+  return (
+    <html lang="en">
+      <head>
+        <title>Saved draft</title>
+        <style>{`
+          h1 { font-size: 24px; margin-top: 0; }
+          label, textarea { display: block; }
+          textarea { margin-top: 5px; }
+        `}</style>
+      </head>
+      <body>
+        <App />
+      </body>
+    </html>
+  );
+}
+```
+
+```js src/index.js hidden
+import { hydrateRoot } from 'react-dom/client';
+import { renderToReadableStream } from 'react-dom/server';
+import Document from './Document.js';
+import { flushReadableStreamToFrame } from './demo-helpers.js';
+import './styles.css';
+
+async function main(frame) {
+  const stream = await renderToReadableStream(<Document />);
+  await flushReadableStreamToFrame(stream, frame);
+
+  // Wait so both the fallback and hydrated content are visible.
+  await new Promise(resolve => setTimeout(resolve, 1200));
+  hydrateRoot(frame.contentDocument, <Document />);
+}
+
+main(document.getElementById('preview'));
+```
+
+```js src/demo-helpers.js hidden
+export async function flushReadableStreamToFrame(readable, frame) {
+  const doc = frame.contentWindow.document;
+  const decoder = new TextDecoder();
+  const reader = readable.getReader();
+
+  while (true) {
+    const {done, value} = await reader.read();
+    if (done) {
+      break;
+    }
+    doc.write(decoder.decode(value, {stream: true}));
+  }
+
+  doc.write(decoder.decode());
+  doc.close();
+}
+```
+
+```html public/index.html hidden
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Browser-only rendering</title>
+</head>
+<body>
+  <iframe id="preview" title="Rendered page"></iframe>
+</body>
+</html>
+```
+
+```css src/styles.css hidden
+iframe {
+  width: 100%;
+  height: 160px;
+  border: 0;
+}
+```
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-scripts": "latest"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
+```
+
+</Sandpack>
+
+During server rendering, `use(browser())` suspends the component and React includes the closest Suspense boundary's fallback in the HTML. In the browser, `use(browser())` returns `undefined` and the saved draft renders normally.
 
 ---
 

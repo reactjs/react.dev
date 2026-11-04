@@ -19,7 +19,7 @@ let supportsImportMap = false;
 
 function subscribe(cb: () => void) {
   // This shouldn't actually need to update, but this works around
-  // https://github.com/facebook/react/issues/26095
+  // https://github.com/react/react/issues/26095
   let timeout = setTimeout(() => {
     supportsImportMap =
       (HTMLScriptElement as any).supports &&

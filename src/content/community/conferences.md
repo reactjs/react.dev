@@ -10,43 +10,105 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences {/*upcoming-conferences*/}
 
-### CityJS Singapore 2026 {/*cityjs-singapore-2026*/}
-February 4-6,  2026. In-person in Singapore
+### React Summit US 2026 {/*react-summit-us-2026*/}
+November 17 & 20, 2026. In-person in New York, USA + online (hybrid event)
 
-[Website](https://singapore.cityjsconf.org/) - [Twitter](https://x.com/cityjsconf) - [Bluesky](https://bsky.app/profile/cityjsconf.bsky.social)
+[Website](https://reactsummit.us/) - [Twitter](https://x.com/reactsummit) - [LinkedIn](https://www.linkedin.com/showcase/reactsummit)
 
-### CityJS New Delhi 2026 {/*cityjs-newdelhi-2026*/}
-February 12-13,  2026. In-person in New Delhi, India
+### React Day Berlin 2026 {/*react-day-berlin-2026*/}
+December 4 & 7, 2026. In-person in Berlin, Germany + online (hybrid event)
 
-[Website](https://india.cityjsconf.org/) - [Twitter](https://x.com/cityjsconf) - [Bluesky](https://bsky.app/profile/cityjsconf.bsky.social)
+[Website](https://reactday.berlin/) - [Twitter](https://x.com/reactdayberlin) - [LinkedIn](https://www.linkedin.com/showcase/react-day-berlin/)
 
-### React Paris 2026 {/*react-paris-2026*/}
-March 26 - 27, 2026. In-person in Paris, France (hybrid event)
+### React Summit Asia 2027 {/*react-summit-asia-2027*/}
+April 15 & 19, 2027. In-person in Singapore + online (hybrid event)
 
-[Website](https://react.paris/) - [Twitter](https://x.com/BeJS_)
+[Website](https://reactsummit.asia/) - [Twitter](https://x.com/reactsummit) - [LinkedIn](https://www.linkedin.com/showcase/reactsummit)
+
+### React Conf Japan 2027 {/*react-conf-japan-2027*/}
+April 24,  2027. In-person in Tokyo, Japan
+
+[Website](https://reactconf.jp/) - [Twitter](https://x.com/reactconfjp)
+
+### React Summit 2027 {/*react-summit-2027*/}
+May 21 & 25, 2027. In-person in Amsterdam, Netherlands + online (hybrid event)
+
+[Website](https://reactsummit.com/) - [Twitter](https://x.com/reactsummit) - [LinkedIn](https://www.linkedin.com/showcase/reactsummit)
+
+
+## Past Conferences {/*past-conferences*/}
+
+### React India 2026 {/*react-india-2026*/}
+October 29-31, 2026. In-person in Goa, India
+
+[Website](https://www.reactindia.io/) - [Twitter](https://x.com/react_india)
+
+### React Advanced London 2026 {/*react-advanced-london-2026*/}
+October 23 & 26, 2026. In-person in London, UK + online (hybrid event)
+
+[Website](https://reactadvanced.com/) - [Twitter](https://x.com/reactadvanced) - [LinkedIn](https://www.linkedin.com/showcase/react-advanced-london/)
+
+### CityJS Athens 2026 {/*cityjs-athens-2026*/}
+October 21-23,  2026. In-person in Athens
+
+[Website](https://athens.cityjsconf.org/) - [Twitter](https://x.com/cityjsconf) - [Bluesky](https://bsky.app/profile/cityjsconf.bsky.social)
+
+### React Alicante 2026 {/*react-alicante-2026*/}
+Sep 24 - 26,  2026. In-person in Alicante
+
+[Website](https://reactalicante.es//) - [Twitter](https://x.com/ReactAlicante)
+
+### React Native Connection 2026 {/*react-native-connection-2026*/}
+September 24, 2026. In-person in Paris, France
+
+[Website](https://reactnativeconnection.io/) - [Twitter](https://x.com/ReactNativeConn) - [Bluesky](https://bsky.app/profile/reactnativeconnect.bsky.social)
+
+### ZurichJS Conf 2026 {/*zurichjs-conf-2026*/}
+September 10-11,  2026. In-person in Zurich, Switzerland
+
+[Website](https://conf.zurichjs.com?utm_campaign=ZurichJS_Conf&utm_source=referral&utm_content=reactjs_community_conferences) - [Twitter](https://x.com/zurichjs) - [LinkedIn](https://www.linkedin.com/company/zurichjs/)
+
+### Render(ATL) 2026 🍑 {/*renderatl-2026-*/}
+August 12-13, 2026. In-person in Atlanta, GA, USA
+
+[Website](https://renderatl.com/) - [Twitter](https://x.com/renderATL) - [LinkedIn](https://www.linkedin.com/company/renderatl)
+
+### React Summit 2026 {/*react-summit-2026*/}
+June 12 & 16, 2026. In-person in Amsterdam, Netherlands + online (hybrid event)
+
+[Website](https://reactsummit.com/) - [Twitter](https://x.com/reactsummit) - [LinkedIn](https://www.linkedin.com/showcase/reactsummit)
+
+### React Norway 2026 {/*react-norway-2026*/}
+June 5, 2026. In-person in Oslo, Norway
+
+[Website](https://reactnorway.com/) - [Twitter](https://x.com/ReactNorway)
+
+### React Miami 2026 {/*react-miami-2026*/}
+April 23-24, 2026. In-person in Miami, FL, USA
+
+[Website](https://reactmiami.com/) - [Twitter](https://x.com/ReactMiamiConf)
 
 ### CityJS London 2026 {/*cityjs-london-2026*/}
 April 14-17,  2026. In-person in London
 
 [Website](https://london.cityjsconf.org/) - [Twitter](https://x.com/cityjsconf) - [Bluesky](https://bsky.app/profile/cityjsconf.bsky.social)
 
-### React Miami 2026 {/*react-miami-2026*/}
-April 23 - 24, 2026. In-person in Miami, FL, USA
 
-[Website](https://reactmiami.com/) - [Twitter](https://twitter.com/ReactMiamiConf)
+### React Paris 2026 {/*react-paris-2026*/}
+March 26 - 27, 2026. In-person in Paris, France (hybrid event)
 
-### React Summit 2026 {/*react-summit-2026*/}
-June 12 - 16, 2026. In-person in Amsterdam, Netherlands + remote (hybrid event)
-
-[Website](https://reactsummit.com/) - [Twitter](https://x.com/reactsummit)
-
-### React India 2026 {/*react-india-2026*/}
-October 29-31, 2026. In-person in Goa, India (hybrid event) + Oct 15 2026 - remote day
-
-[Website](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia) - [Youtube](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w)
+[Website](https://react.paris/) - [Twitter](https://x.com/BeJS_)
 
 
-## Past Conferences {/*past-conferences*/}
+### CityJS New Delhi 2026 {/*cityjs-newdelhi-2026*/}
+February 12-13,  2026. In-person in New Delhi, India
+
+[Website](https://india.cityjsconf.org/) - [Twitter](https://x.com/cityjsconf) - [Bluesky](https://bsky.app/profile/cityjsconf.bsky.social)
+
+### CityJS Singapore 2026 {/*cityjs-singapore-2026*/}
+February 4-6,  2026. In-person in Singapore
+
+[Website](https://singapore.cityjsconf.org/) - [Twitter](https://x.com/cityjsconf) - [Bluesky](https://bsky.app/profile/cityjsconf.bsky.social)
 
 ### React Advanced London 2025 {/*react-advanced-london-2025*/}
 November 28 & December 1, 2025. In-person in London, UK + online (hybrid event)
@@ -77,6 +139,11 @@ October 04, 2025. Nairobi, Kenya
 October 2-4, 2025. Alicante, Spain.
 
 [Website](https://reactalicante.es/) - [Twitter](https://x.com/ReactAlicante) - [Bluesky](https://bsky.app/profile/reactalicante.es) - [YouTube](https://www.youtube.com/channel/UCaSdUaITU1Cz6PvC97A7e0w)
+
+### React Universe Conf 2025 {/*react-universe-conf-2025*/}
+September 2-4, 2025. Wrocław, Poland.
+
+[Website](https://www.reactuniverseconf.com/) - [Twitter](https://twitter.com/react_native_eu) - [LinkedIn](https://www.linkedin.com/events/reactuniverseconf7163919537074118657/)
 
 ### React Nexus 2025 {/*react-nexus-2025*/}
 July 03 - 05, 2025. In-person in Bangalore, India
@@ -225,7 +292,7 @@ May 15 - 16, 2024. In-person in Henderson, NV, USA + remote
 [Website](https://conf.react.dev) - [Twitter](https://twitter.com/reactjs)
 
 ### React Native Connection 2024 {/*react-native-connection-2024*/}
-April 23, 2024. In-person in Paris, France 
+April 23, 2024. In-person in Paris, France
 
 [Website](https://reactnativeconnection.io/) - [Twitter](https://twitter.com/ReactNativeConn)
 
@@ -267,7 +334,7 @@ October 20 & 23, 2023. In-person in London, UK + remote first interactivity (hyb
 ### React Brussels 2023 {/*react-brussels-2023*/}
 October 13th 2023. In-person in Brussels, Belgium + Remote (hybrid)
 
-[Website](https://www.react.brussels/) - [Twitter](https://twitter.com/BrusselsReact) - [Videos](https://www.youtube.com/playlist?list=PL53Z0yyYnpWh85KeMomUoVz8_brrmh_aC) 
+[Website](https://www.react.brussels/) - [Twitter](https://twitter.com/BrusselsReact) - [Videos](https://www.youtube.com/playlist?list=PL53Z0yyYnpWh85KeMomUoVz8_brrmh_aC)
 
 ### React India 2023 {/*react-india-2023*/}
 October 5 - 7, 2023. In-person in Goa, India (hybrid event) + Oct 3 2023 - remote day
@@ -290,7 +357,7 @@ September 28 - 30, 2023. Alicante, Spain
 [Website](https://reactalicante.es/) - [Twitter](https://twitter.com/reactalicante)
 
 ### RedwoodJS Conference 2023 {/*redwoodjs-conference-2023*/}
-September 26 - 29, 2023. Grants Pass, Oregon + remote (hybrid event) 
+September 26 - 29, 2023. Grants Pass, Oregon + remote (hybrid event)
 
 [Website](https://www.redwoodjsconf.com/) - [Twitter](https://twitter.com/redwoodjs)
 

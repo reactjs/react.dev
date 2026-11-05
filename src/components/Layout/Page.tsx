@@ -129,7 +129,18 @@ export function Page({
         title={title}
         titleForTitleTag={meta.titleForTitleTag}
         isHomePage={isHomePage}
-        image={`/images/og-` + section + '.png'}
+        image={
+          // OG images are generated per page at build time by
+          // scripts/generateOgImages.mjs. Pages without a generated
+          // card (home, errors, 404, 500) use the static section image.
+          isHomePage ||
+          !title ||
+          cleanedPath.startsWith('/errors') ||
+          cleanedPath === '/404' ||
+          cleanedPath === '/500'
+            ? `/images/og-${section ?? 'unknown'}.png`
+            : `/images/og/${cleanedPath.slice(1).replace(/\//g, '-')}.png`
+        }
         searchOrder={searchOrder}
       />
       {(isHomePage || isBlogIndex) && (

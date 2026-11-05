@@ -12,7 +12,6 @@
 import {Suspense} from 'react';
 import * as React from 'react';
 import cn from 'classnames';
-import {Feedback} from '../Feedback';
 import {SidebarRouteTree} from '../Sidebar/SidebarRouteTree';
 import type {RouteItem} from '../getRouteMeta';
 
@@ -63,9 +62,6 @@ export default function SidebarNav({
             </Suspense>
             <div className="h-20" />
           </nav>
-          <div className="fixed bottom-0 hidden lg:block">
-            <Feedback />
-          </div>
         </aside>
       </div>
     </div>

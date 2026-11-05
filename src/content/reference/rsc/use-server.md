@@ -5,7 +5,7 @@ titleForTitleTag: "'use server' directive"
 
 <RSC>
 
-`'use server'` is for use with [using React Server Components](/reference/rsc/server-components).
+`'use server'` is for use with [React Server Components](/reference/rsc/server-components).
 
 </RSC>
 
@@ -139,7 +139,7 @@ To update the UI based on the result of a Server Function while supporting progr
 // requestUsername.js
 'use server';
 
-export default async function requestUsername(formData) {
+export default async function requestUsername(prevState, formData) {
   const username = formData.get('username');
   if (canRequest(username)) {
     // ...
@@ -179,7 +179,7 @@ Server Functions are exposed server endpoints and can be called anywhere in clie
 
 When using a Server Function outside a [form](/reference/react-dom/components/form), call the Server Function in a [Transition](/reference/react/useTransition), which allows you to display a loading indicator, show [optimistic state updates](/reference/react/useOptimistic), and handle unexpected errors. Forms will automatically wrap Server Functions in transitions.
 
-```js {9-12}
+```js {9-14}
 import incrementLike from './actions';
 import { useState, useTransition } from 'react';
 
@@ -190,14 +190,16 @@ function LikeButton() {
   const onClick = () => {
     startTransition(async () => {
       const currentCount = await incrementLike();
-      setLikeCount(currentCount);
+      startTransition(() => {
+        setLikeCount(currentCount);
+      });
     });
   };
 
   return (
     <>
       <p>Total Likes: {likeCount}</p>
-      <button onClick={onClick} disabled={isPending}>Like</button>;
+      <button onClick={onClick} disabled={isPending}>Like</button>
     </>
   );
 }

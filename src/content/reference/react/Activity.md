@@ -43,12 +43,12 @@ In this way, Activity can be thought of as a mechanism for rendering "background
 #### Props {/*props*/}
 
 * `children`: The UI you intend to show and hide.
-* `mode`: A string value of either `'visible'` or `'hidden'`. If omitted, defaults to `'visible'`. 
+* `mode`: A string value of either `'visible'` or `'hidden'`. If omitted, defaults to `'visible'`.
 
 #### Caveats {/*caveats*/}
 
 - If an Activity is rendered inside of a [ViewTransition](/reference/react/ViewTransition), and it becomes visible as a result of an update caused by [startTransition](/reference/react/startTransition), it will activate the ViewTransition's `enter` animation. If it becomes hidden, it will activate its `exit` animation.
-- An Activity that just renders text will not render anything rather than rendering hidden text, because there’s no corresponding DOM element to apply visibility changes to. For example, `<Activity mode="hidden"><ComponentThatJustReturnsText /></Activity>` will not produce any output in the DOM for `const ComponentThatJustReturnsText = () => "Hello, World!"`.
+- A *hidden* Activity that just renders text will not render anything rather than rendering hidden text, because there’s no corresponding DOM element to apply visibility changes to. For example, `<Activity mode="hidden"><ComponentThatJustReturnsText /></Activity>` will not produce any output in the DOM for `const ComponentThatJustReturnsText = () => "Hello, World!"`. `<Activity mode="visible"><ComponentThatJustReturnsText /></Activity>` will render visible text.
 
 ---
 
@@ -111,7 +111,7 @@ import { useState } from 'react';
 
 export default function Sidebar() {
   const [isExpanded, setIsExpanded] = useState(false)
-  
+
   return (
     <nav>
       <button onClick={() => setIsExpanded(!isExpanded)}>
@@ -219,7 +219,7 @@ import { useState } from 'react';
 
 export default function Sidebar() {
   const [isExpanded, setIsExpanded] = useState(false)
-  
+
   return (
     <nav>
       <button onClick={() => setIsExpanded(!isExpanded)}>
@@ -287,7 +287,7 @@ In this example, the Contact tab has a `<textarea>` where the user can enter a m
 
 <Sandpack>
 
-```js src/App.js 
+```js src/App.js
 import { useState } from 'react';
 import TabButton from './TabButton.js';
 import Home from './Home.js';
@@ -434,7 +434,7 @@ export default function Home() {
 }
 ```
 
-```js src/Contact.js 
+```js src/Contact.js
 export default function Contact() {
   return (
     <div>
@@ -755,17 +755,7 @@ Pre-rendering components with hidden Activity boundaries is a powerful way to re
 
 <Note>
 
-**Only Suspense-enabled data sources will be fetched during pre-rendering.** They include:
-
-- Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming#streaming-with-suspense)
-- Lazy-loading component code with [`lazy`](/reference/react/lazy)
-- Reading the value of a cached Promise with [`use`](/reference/react/use)
-
-Activity **does not** detect data that is fetched inside an Effect.
-
-The exact way you would load data in the `Posts` component above depends on your framework. If you use a Suspense-enabled framework, you'll find the details in its data fetching documentation.
-
-Suspense-enabled data fetching without the use of an opinionated framework is not yet supported. The requirements for implementing a Suspense-enabled data source are unstable and undocumented. An official API for integrating data sources with Suspense will be released in a future version of React. 
+Only data read from a source that [activates a Suspense boundary](/reference/react/Suspense#what-activates-a-suspense-boundary), such as a Promise read with [`use`](/reference/react/use), is fetched during pre-rendering. Activity does not detect data fetched inside an Effect.
 
 </Note>
 
@@ -903,7 +893,7 @@ function Page() {
       </Activity>
     </>
   );
-} 
+}
 ```
 
 ---
@@ -975,7 +965,7 @@ export default function Home() {
 }
 ```
 
-```js src/Video.js 
+```js src/Video.js
 export default function Video() {
   return (
     <video
@@ -1068,7 +1058,7 @@ export default function Home() {
 }
 ```
 
-```js src/Video.js 
+```js src/Video.js
 export default function Video() {
   return (
     <video
@@ -1185,7 +1175,7 @@ export default function Home() {
 }
 ```
 
-```js src/Video.js 
+```js src/Video.js
 import { useRef, useLayoutEffect } from 'react';
 
 export default function Video() {
@@ -1238,7 +1228,7 @@ The most common cases of this will be from the following tags:
 
 Typically, though, most of your React components should already be robust to being hidden by an Activity boundary. And conceptually, you should think of "hidden" Activities as being unmounted.
 
-To eagerly discover other Effects that don't have proper cleanup, which is important not only for Activity boundaries but for many other behaviors in React, we recommend using [`<StrictMode>`](/reference/react/StrictMode). 
+To eagerly discover other Effects that don't have proper cleanup, which is important not only for Activity boundaries but for many other behaviors in React, we recommend using [`<StrictMode>`](/reference/react/StrictMode).
 
 ---
 
@@ -1249,4 +1239,4 @@ When an `<Activity>` is "hidden", all its children's Effects are cleaned up. Con
 
 If you're relying on an Effect mounting to clean up a component's side effects, refactor the Effect to do the work in the returned cleanup function instead.
 
-To eagerly find problematic Effects, we recommend adding [`<StrictMode>`](/reference/react/StrictMode) which will eagerly perform Activity unmounts and mounts to catch any unexpected side-effects. 
+To eagerly find problematic Effects, we recommend adding [`<StrictMode>`](/reference/react/StrictMode) which will eagerly perform Activity unmounts and mounts to catch any unexpected side-effects.

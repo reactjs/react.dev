@@ -119,7 +119,7 @@ export const SandpackConsole = ({visible}: {visible: boolean}) => {
         setLogs((prev) => {
           const newLogs = message.log
             .filter((consoleData) => {
-              if (!consoleData.method) {
+              if (!consoleData.method || !consoleData.data) {
                 return false;
               }
               if (

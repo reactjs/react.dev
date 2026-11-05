@@ -51,7 +51,7 @@ Everyone can read the discussions in the [React 18 Working Group repo](https://g
 
 Because we expect an initial surge of interest in the Working Group, only invited members will be allowed to create or comment on threads. However, the threads are fully visible to the public, so everyone has access to the same information. We believe this is a good compromise between creating a productive environment for working group members, while maintaining transparency with the wider community.
 
-As always, you can submit bug reports, questions, and general feedback to our [issue tracker](https://github.com/facebook/react/issues).
+As always, you can submit bug reports, questions, and general feedback to our [issue tracker](https://github.com/react/react/issues).
 
 ## How to try React 18 Alpha today {/*how-to-try-react-18-alpha-today*/}
 

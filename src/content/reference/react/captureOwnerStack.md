@@ -257,7 +257,7 @@ pre.nowrap {
 }
 
 .hidden {
- display: none;  
+ display: none;
 }
 ```
 

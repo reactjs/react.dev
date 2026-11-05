@@ -44,6 +44,8 @@ function PasswordField() {
 
 * `useId` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
 
+* `useId` **should not be used to generate cache keys** for [use()](/reference/react/use). The ID is stable when a component is mounted but may change during rendering. Cache keys should be generated from your data.
+
 * `useId` **should not be used to generate keys** in a list. [Keys should be generated from your data.](/learn/rendering-lists#where-to-get-your-key)
 
 * `useId` currently cannot be used in [async Server Components](/reference/rsc/server-components#async-components-with-server-components).
@@ -191,7 +193,7 @@ Inside React, `useId` is generated from the "parent path" of the calling compone
 
 ### Generating IDs for several related elements {/*generating-ids-for-several-related-elements*/}
 
-If you need to give IDs to multiple related elements, you can call `useId` to generate a shared prefix for them: 
+If you need to give IDs to multiple related elements, you can call `useId` to generate a shared prefix for them:
 
 <Sandpack>
 

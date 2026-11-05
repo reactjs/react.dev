@@ -24,6 +24,7 @@ This includes React-specific props like `ref` and `dangerouslySetInnerHTML`.
 
 These built-in browser components accept user input:
 
+* [`<form>`](/reference/react-dom/components/form)
 * [`<input>`](/reference/react-dom/components/input)
 * [`<select>`](/reference/react-dom/components/select)
 * [`<textarea>`](/reference/react-dom/components/textarea)
@@ -36,6 +37,7 @@ They are special in React because passing the `value` prop to them makes them *[
 
 These built-in browser components let you load external resources or annotate the document with metadata:
 
+* [`<img>`](/reference/react-dom/components/img)
 * [`<link>`](/reference/react-dom/components/link)
 * [`<meta>`](/reference/react-dom/components/meta)
 * [`<script>`](/reference/react-dom/components/script)
@@ -82,7 +84,7 @@ React supports all built-in browser HTML components. This includes:
 * [`<figcaption>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figcaption)
 * [`<figure>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figure)
 * [`<footer>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/footer)
-* [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form)
+* [`<form>`](/reference/react-dom/components/form)
 * [`<h1>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/h1)
 * [`<head>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/head)
 * [`<header>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/header)
@@ -91,19 +93,19 @@ React supports all built-in browser HTML components. This includes:
 * [`<html>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/html)
 * [`<i>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/i)
 * [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe)
-* [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img)
+* [`<img>`](/reference/react-dom/components/img)
 * [`<input>`](/reference/react-dom/components/input)
 * [`<ins>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ins)
 * [`<kbd>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/kbd)
 * [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label)
 * [`<legend>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/legend)
 * [`<li>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/li)
-* [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link)
+* [`<link>`](/reference/react-dom/components/link)
 * [`<main>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/main)
 * [`<map>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/map)
 * [`<mark>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/mark)
 * [`<menu>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/menu)
-* [`<meta>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta)
+* [`<meta>`](/reference/react-dom/components/meta)
 * [`<meter>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meter)
 * [`<nav>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/nav)
 * [`<noscript>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/noscript)
@@ -122,7 +124,7 @@ React supports all built-in browser HTML components. This includes:
 * [`<ruby>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ruby)
 * [`<s>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/s)
 * [`<samp>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/samp)
-* [`<script>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script)
+* [`<script>`](/reference/react-dom/components/script)
 * [`<section>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/section)
 * [`<select>`](/reference/react-dom/components/select)
 * [`<slot>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot)
@@ -130,7 +132,7 @@ React supports all built-in browser HTML components. This includes:
 * [`<source>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/source)
 * [`<span>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/span)
 * [`<strong>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/strong)
-* [`<style>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style)
+* [`<style>`](/reference/react-dom/components/style)
 * [`<sub>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/sub)
 * [`<summary>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/summary)
 * [`<sup>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/sup)
@@ -143,7 +145,7 @@ React supports all built-in browser HTML components. This includes:
 * [`<th>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/th)
 * [`<thead>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/thead)
 * [`<time>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time)
-* [`<title>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title)
+* [`<title>`](/reference/react-dom/components/title)
 * [`<tr>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tr)
 * [`<track>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/track)
 * [`<u>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/u)
@@ -205,7 +207,7 @@ root.render(<App />);
 export class MyElement extends HTMLElement {
   constructor() {
     super();
-    // The value here will be overwritten by React 
+    // The value here will be overwritten by React
     // when initialized as an element
     this.value = undefined;
   }

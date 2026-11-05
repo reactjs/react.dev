@@ -18,6 +18,7 @@ To add state to a component, use one of these Hooks:
 
 * [`useState`](/reference/react/useState) declares a state variable that you can update directly.
 * [`useReducer`](/reference/react/useReducer) declares a state variable with the update logic inside a [reducer function.](/learn/extracting-state-logic-into-a-reducer)
+* [`useOptimistic`](/reference/react/useOptimistic) lets you show a different state while an async action is pending.
 
 ```js
 function ImageGallery() {
@@ -79,6 +80,9 @@ There are two rarely used variations of `useEffect` with differences in timing:
 * [`useLayoutEffect`](/reference/react/useLayoutEffect) fires before the browser repaints the screen. You can measure layout here.
 * [`useInsertionEffect`](/reference/react/useInsertionEffect) fires before React makes changes to the DOM. Libraries can insert dynamic CSS here.
 
+You can also separate events from Effects:
+
+- [`useEffectEvent`](/reference/react/useEffectEvent) creates a non-reactive event to fire from any Effect hook.
 ---
 
 ## Performance Hooks {/*performance-hooks*/}

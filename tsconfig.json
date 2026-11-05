@@ -33,6 +33,7 @@
     "next-env.d.ts",
     "src/**/*.ts",
     "src/**/*.tsx",
+    "src/**/*.source.js",
     ".next/types/**/*.ts"
   ],
   "exclude": [

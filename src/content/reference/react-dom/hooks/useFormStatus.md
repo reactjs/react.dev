@@ -112,9 +112,11 @@ export async function submitForm(query) {
 ```
 </Sandpack>
 
-### Display a pending state with a custom form action {/*display-a-pending-state-with-a-custom-form-action*/}
+---
 
-If you need to handle form submission in an `onSubmit` event handler instead of passing a function to the `<form action>` prop, call `event.preventDefault()` and start a Transition in the same event handler. A component inside the form can then use `useFormStatus` to read the pending state while the action is running.
+### Display a pending state with an `onSubmit` handler {/*display-a-pending-state-with-an-onsubmit-handler*/}
+
+If you need to handle form submission in an `onSubmit` event handler instead of passing a function to the `<form action>` prop, call `event.preventDefault()` and start a Transition in the same event handler. A component inside the form can then use `useFormStatus` to read the pending state while the Action is running.
 
 <Sandpack>
 
@@ -126,16 +128,16 @@ import { submitForm } from './submitForm.js';
 function SubmitButton() {
   const { pending } = useFormStatus();
   return (
-    <button type="submit" disabled={pending}>
+    <button type='submit' disabled={pending}>
       {pending ? 'Submitting...' : 'Submit'}
     </button>
   );
 }
 
 function Form({ submitAction }) {
-  function handleSubmit(event) {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
+  function handleSubmit(e) {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
     startTransition(async () => {
       await submitAction(formData);
     });
@@ -143,7 +145,7 @@ function Form({ submitAction }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input name="query" />
+      <input name='query' />
       <SubmitButton />
     </form>
   );

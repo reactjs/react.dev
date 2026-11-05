@@ -47,29 +47,41 @@ function getMarkdownFiles() {
     path.posix.join(baseDir, '**/*.md'),
     path.posix.join(baseDir, '**/*.mdx'),
   ];
-  return globby.sync(patterns);
+  return globby.sync(patterns).map((file) => path.normalize(file));
 }
 
 function extractAnchorsFromContent(content) {
   const anchors = new Set();
 
   // MDX-style heading IDs: {/*anchor-id*/}
-  const mdxPattern = /\{\/\*([a-zA-Z0-9-_]+)\*\/\}/g;
+  const mdxPattern = /\{\/\*([^\*]+)\*\/\}/g;
   let match;
   while ((match = mdxPattern.exec(content)) !== null) {
-    anchors.add(match[1].toLowerCase());
+    anchors.add(match[1].trim().toLowerCase());
   }
 
-  // HTML id attributes
-  const htmlIdPattern = /\sid=["']([a-zA-Z0-9-_]+)["']/g;
+  // HTML or JSX id attributes
+  const htmlIdPattern = /\sid=["']([^"']+)["']/g;
   while ((match = htmlIdPattern.exec(content)) !== null) {
-    anchors.add(match[1].toLowerCase());
+    anchors.add(match[1].trim().toLowerCase());
+  }
+
+  // Component titleId attributes (e.g. <Recipes titleId="examples-connecting" />)
+  const titleIdPattern = /\stitleId=["']([^"']+)["']/g;
+  while ((match = titleIdPattern.exec(content)) !== null) {
+    anchors.add(match[1].trim().toLowerCase());
+  }
+
+  // TeamMember permalink attributes (e.g. <TeamMember permalink="dan-abramov" />)
+  const permalinkPattern = /\spermalink=["']([^"']+)["']/g;
+  while ((match = permalinkPattern.exec(content)) !== null) {
+    anchors.add(match[1].trim().toLowerCase());
   }
 
   // Markdown heading with explicit ID: ## Heading {#anchor-id}
-  const markdownHeadingPattern = /^#+\s+.*\{#([a-zA-Z0-9-_]+)\}/gm;
+  const markdownHeadingPattern = /^#+\s+.*\{#([^}]+)\}/gm;
   while ((match = markdownHeadingPattern.exec(content)) !== null) {
-    anchors.add(match[1].toLowerCase());
+    anchors.add(match[1].trim().toLowerCase());
   }
 
   return anchors;
@@ -92,7 +104,11 @@ function extractLinksFromContent(content) {
 
   while ((match = linkPattern.exec(content)) !== null) {
     const [, linkText, linkUrl] = match;
-    if (linkUrl.startsWith('/') && !linkUrl.startsWith('//')) {
+    const isInternalLink =
+      (linkUrl.startsWith('/') && !linkUrl.startsWith('//')) ||
+      linkUrl.startsWith('#');
+
+    if (isInternalLink) {
       const lines = content.substring(0, match.index).split('\n');
       const line = lines.length;
       const lastLineStart =
@@ -160,7 +176,39 @@ async function findTargetFile(urlPath) {
   return null;
 }
 
-async function validateLink(link) {
+async function validateLink(link, currentFilePath) {
+  if (link.url.startsWith('#')) {
+    if (link.url === '#' || link.url.length === 1) {
+      return {valid: false, reason: 'Empty anchor link'};
+    }
+    const rawAnchor = link.url.substring(1);
+    let anchorId;
+    try {
+      anchorId = decodeURIComponent(rawAnchor).toLowerCase();
+    } catch {
+      anchorId = rawAnchor.toLowerCase();
+    }
+
+    switch (anchorId) {
+      case 'challenges':
+      case 'recap': {
+        return {valid: true};
+      }
+    }
+
+    const fileAnchors = anchorMap.get(path.normalize(currentFilePath));
+    if (!fileAnchors || !fileAnchors.has(anchorId)) {
+      return {
+        valid: false,
+        reason: `Anchor #${rawAnchor} not found in ${path.relative(
+          CONTENT_DIR,
+          currentFilePath
+        )}`,
+      };
+    }
+    return {valid: true};
+  }
+
   const urlAnchorPattern = /#([a-zA-Z0-9-_]+)$/;
   const anchorMatch = link.url.match(urlAnchorPattern);
   const urlWithoutAnchor = link.url.replace(urlAnchorPattern, '');
@@ -182,7 +230,7 @@ async function validateLink(link) {
       ...link,
       url: redirectDestination + (anchorMatch ? anchorMatch[0] : ''),
     };
-    return validateLink(redirectedLink);
+    return validateLink(redirectedLink, currentFilePath);
   }
 
   // Check if it's an error code link
@@ -244,7 +292,7 @@ async function validateLink(link) {
       }
     }
 
-    const fileAnchors = anchorMap.get(targetFile);
+    const fileAnchors = anchorMap.get(path.normalize(targetFile));
 
     if (!fileAnchors || !fileAnchors.has(anchorId)) {
       return {
@@ -266,7 +314,7 @@ async function processFile(filePath) {
   const deadLinks = [];
 
   for (const link of links) {
-    const result = await validateLink(link);
+    const result = await validateLink(link, filePath);
     if (!result.valid) {
       deadLinks.push({
         file: path.relative(process.cwd(), filePath),

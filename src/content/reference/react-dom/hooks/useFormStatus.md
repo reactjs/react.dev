@@ -54,7 +54,7 @@ In the above example, `Submit` uses this information to disable `<button>` press
 
 A `status` object with the following properties:
 
-* `pending`: A boolean. If `true`, the parent `<form>` is pending submission, either through its `action` prop or through an `onSubmit` handler that calls `event.preventDefault()` and starts a Transition in the same event. Otherwise, `false`.
+* `pending`: A boolean. `true` while the parent `<form>` is submitting an Action or [running a Transition from `onSubmit`](#display-a-pending-state-with-an-onsubmit-handler). Otherwise, `false`.
 
 * `data`: An object implementing the [`FormData interface`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) that contains the data the parent `<form>` is submitting. If there is no active submission or no parent `<form>`, it will be `null`.
 

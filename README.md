@@ -15,7 +15,7 @@ This repo contains the source code and documentation powering [react.dev](https:
 ### Installation
 
 1. `cd react.dev` to go into the project root
-2. `git remote add my-fork-name https://github.com/YOUR_USERNAME/react.dev.git` to add your fork as a remote (replace `YOUR_USERNAME` with your GitHub username; only needed once)
+2. `git remote add my-fork-name https://github.com/YOUR_USERNAME/react.dev.git` to add your fork as a remote. Replace `YOUR_USERNAME` with your GitHub username. You only need to do this once.
 3. `yarn` to install the website's npm dependencies
 
 ### Running locally

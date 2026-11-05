@@ -46,6 +46,33 @@ In particular, you should prefer named `function` declarations over `const myFun
 
 #### Don't use features that aren't standardized yet.
 
+For example, **don't** write this:
+
+```js
+function Greeting({isLoggedIn}) {
+  return do {
+    if (isLoggedIn) {
+      <h1>Welcome back!</h1>;
+    } else {
+      <h1>Please sign in.</h1>;
+    }
+  };
+}
+```
+
+The [`do` expression syntax](https://github.com/tc39/proposal-do-expressions) is still experimental.
+
+Instead, **do** write this:
+
+```js
+function Greeting({isLoggedIn}) {
+  if (isLoggedIn) {
+    return <h1>Welcome back!</h1>;
+  }
+  return <h1>Please sign in.</h1>;
+}
+```
+
 Ignore this rule if you're specifically describing an experimental proposal. Make sure to mention its experimental nature in the code and in the surrounding text.
 
 ### Style

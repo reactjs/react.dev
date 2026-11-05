@@ -2779,6 +2779,8 @@ If a `startTransition` is started from the legacy popstate event, such as during
 
 React starts a browser View Transition when a `<ViewTransition>` activates, but this does not guarantee that the browser's root snapshot will be available. React may cancel the root snapshot when it determines that the transition does not affect the root layout. For example, a small keyed `<ViewTransition enter="auto" exit="auto">` can start a transition, but does not by itself guarantee that the root snapshot is kept. A boundary that changes size and affects its parent layout may cause React to keep the root snapshot; changes in a portal may also affect it.
 
+Because activating a boundary and keeping the root snapshot are separate, CSS for `::view-transition-old(root)` and `::view-transition-new(root)` may not run for every navigation. React does not currently document a supported pattern that guarantees a root-only snapshot for route transitions. Do not rely on a small keyed boundary as that guarantee; test the behavior with your router and target browsers.
+
 
 
 ---

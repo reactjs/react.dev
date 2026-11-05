@@ -12,6 +12,12 @@ const value = useContext(SomeContext)
 
 </Intro>
 
+<Note>
+
+Starting in React 19, you can use [`use(Context)`](/reference/react/use) instead of `useContext(Context)`, which allows you to read context in conditionals and loops.
+
+</Note>
+
 <InlineToc />
 
 ---

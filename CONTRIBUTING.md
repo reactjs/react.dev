@@ -38,41 +38,15 @@ Ignore this if you're specifically describing `createElement`.
 
 Ignore this if you're specifically writing about ES5.
 
-#### Don't use ES6 features when equivalent ES5 features have no downsides.
+#### Prefer readable JavaScript.
 
-Remember that ES6 is still new to a lot of people. While we use it in many places (`const` / `let`, classes, arrow functions), if the equivalent ES5 code is just as straightforward and readable, consider using it.
-
-In particular, you should prefer named `function` declarations over `const myFunction = () => ...` arrows for top-level functions. However, you *should* use arrow functions where they provide a tangible improvement (such as preserving `this` context inside a component). Consider both sides of the tradeoff when deciding whether to use a new feature.
+Use modern JavaScript when it makes an example clearer. Prefer named `function` declarations for components and top-level functions. Use arrow functions for inline callbacks where they improve readability.
 
 #### Don't use features that aren't standardized yet.
 
-For example, **don't** write this:
+Use standardized JavaScript features in examples. Class fields are standardized and may be used when documenting class components. Prefer function components and Hooks for new examples, unless the page documents a class-specific API.
 
-```js
-class MyComponent extends React.Component {
-  state = {value: ''};
-  handleChange = (e) => {
-    this.setState({value: e.target.value});
-  };
-}
-```
-
-Instead, **do** write this:
-
-```js
-class MyComponent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.state = {value: ''};
-  }
-  handleChange(e) {
-    this.setState({value: e.target.value});
-  }
-}
-```
-
-Ignore this rule if you're specifically describing an experimental proposal. Make sure to mention its experimental nature in the code and in the surrounding text.
+If you're specifically describing an experimental proposal, mention its experimental nature in the code and surrounding text.
 
 ### Style
 

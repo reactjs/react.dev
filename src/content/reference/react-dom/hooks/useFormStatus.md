@@ -116,7 +116,7 @@ export async function submitForm(query) {
 
 ### Display a pending state with an `onSubmit` handler {/*display-a-pending-state-with-an-onsubmit-handler*/}
 
-If you need to handle form submission in an `onSubmit` event handler instead of passing a function to the `<form action>` prop, call `event.preventDefault()` and start a Transition in the same event handler. A component inside the form can then use `useFormStatus` to read the pending state while the Action is running.
+If you need to handle form submission in an `onSubmit` event handler instead of passing a function to the [`<form action>` prop](/reference/react-dom/components/form#handle-form-submission-with-an-action-prop), call [`event.preventDefault()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault) and [start a Transition](/reference/react/startTransition) in the same event handler. A component inside the form can then use `useFormStatus` to read the pending state while the Action is running.
 
 <Sandpack>
 

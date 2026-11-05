@@ -462,7 +462,7 @@ In the [API Reference](/reference/react), every React API now has a dedicated pa
 - Built-in Hooks like [`useState`](/reference/react/useState).
 - Built-in components like [`<Suspense>`](/reference/react/Suspense).
 - Built-in browser components like [`<input>`](/reference/react-dom/components/input).
-- Framework-oriented APIs like [`renderToPipeableStream`](/reference/react-dom/server/renderToReadableStream).
+- Framework-oriented APIs like [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream).
 - Other React APIs like [`memo`](/reference/react/memo).
 
 You'll notice that every API page is split into at least two segments: *Reference* and *Usage*.

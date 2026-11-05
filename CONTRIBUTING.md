@@ -38,15 +38,15 @@ Ignore this if you're specifically describing `createElement`.
 
 Ignore this if you're specifically writing about ES5.
 
-#### Prefer readable JavaScript.
+#### Don't use ES6 features when equivalent ES5 features have no downsides.
 
-Use modern JavaScript when it makes an example clearer. Prefer named `function` declarations for components and top-level functions. Use arrow functions for inline callbacks where they improve readability.
+While we use ES6 in many places (`const` / `let`, classes, arrow functions), if the equivalent ES5 code is just as straightforward and readable, consider using it.
+
+In particular, you should prefer named `function` declarations over `const myFunction = () => ...` arrows for top-level functions. However, you *should* use arrow functions where they provide a tangible improvement (such as preserving `this` context inside a component). Consider both sides of the tradeoff when deciding whether to use a new feature.
 
 #### Don't use features that aren't standardized yet.
 
-Use standardized JavaScript features in examples. Class fields are standardized and may be used when documenting class components. Prefer function components and Hooks for new examples, unless the page documents a class-specific API.
-
-If you're specifically describing an experimental proposal, mention its experimental nature in the code and surrounding text.
+Ignore this rule if you're specifically describing an experimental proposal. Make sure to mention its experimental nature in the code and in the surrounding text.
 
 ### Style
 

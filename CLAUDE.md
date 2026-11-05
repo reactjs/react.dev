@@ -4,7 +4,7 @@ This file provides guidance to Claude Code when working with this repository.
 
 ## Project Overview
 
-This is the React documentation website (react.dev), built with Next.js and React. See `package.json` for dependency versions and `.nvmrc` for the Node.js version used in development and CI. Documentation is written in MDX format.
+This is the React documentation website (react.dev), built with Next.js 15.1.12 and React 19. Documentation is written in MDX format.
 
 ## Development Commands
 
@@ -13,7 +13,6 @@ yarn build         # Production build
 yarn lint          # Run ESLint
 yarn lint:fix      # Auto-fix lint issues
 yarn tsc           # TypeScript type checking
-yarn ci-check      # Run the same validation checks as CI
 yarn check-all     # Run prettier, lint:fix, tsc, and rss together
 ```
 
@@ -48,6 +47,6 @@ When editing files in `src/content/`, the appropriate skill will be auto-suggest
 For MDX components (DeepDive, Pitfall, Note, etc.), invoke `/docs-components`.
 For Sandpack code examples, invoke `/docs-sandpack`.
 
-See `.claude/skills/docs-voice/SKILL.md` for shared writing conventions, and the `docs-writer-learn`, `docs-writer-reference`, and `docs-writer-blog` skills for page-specific guidance.
+See `.claude/skills/` for comprehensive style guidelines.
 
 Prettier is used for formatting (config in `.prettierrc`).

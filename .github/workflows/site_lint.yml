@@ -13,14 +13,14 @@ jobs:
   lint:
     runs-on: ubuntu-latest
 
-    name: Lint on Node.js 24.x and ubuntu-latest
+    name: Lint on node 20.x and ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
-      - name: Use Node.js from .nvmrc
+      - name: Use Node.js 20.x
         uses: actions/setup-node@v4
         with:
-          node-version-file: .nvmrc
+          node-version: 20.x
           cache: yarn
           cache-dependency-path: yarn.lock
 
@@ -28,7 +28,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: '**/node_modules'
-          key: node_modules-${{ runner.arch }}-${{ runner.os }}-${{ hashFiles('.nvmrc', 'yarn.lock') }}
+          key: node_modules-${{ runner.arch }}-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
       - name: Install deps
         run: yarn install --frozen-lockfile

@@ -257,9 +257,9 @@ Instead of a ref object (like the one returned by [`useRef`](/reference/react/us
 
 [See an example of using the `ref` callback.](/learn/manipulating-the-dom-with-refs#how-to-manage-a-list-of-refs-using-a-ref-callback)
 
-When the `<div>` DOM node is added to the screen, React will call your `ref` callback with the DOM `node` as the argument. When that `<div>` DOM node is removed, React will call your the cleanup function returned from the callback.
+When the `<div>` DOM node is added to the screen, React will call your `ref` callback with the DOM `node` as the argument. When that `<div>` DOM node is removed, React will call the cleanup function returned from your callback.
 
-React will also call your `ref` callback whenever you pass a *different* `ref` callback. In the above example, `(node) => { ... }` is a different function on every render. When your component re-renders, the *previous* function will be called with `null` as the argument, and the *next* function will be called with the DOM node.
+React will also call your `ref` callback whenever you pass a *different* `ref` callback. In the above example, `(node) => { ... }` is a different function on every render. When your component re-renders, React calls the previous callback's cleanup function (if provided). If no cleanup function is returned, React calls the previous callback with `null`. Then React calls the next callback with the DOM node.
 
 #### Parameters {/*ref-callback-parameters*/}
 

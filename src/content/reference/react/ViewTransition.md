@@ -2781,7 +2781,7 @@ React starts a browser View Transition when a `<ViewTransition>` activates, but 
 
 Because activating a boundary and keeping the root snapshot are separate, CSS for `::view-transition-old(root)` and `::view-transition-new(root)` may not run for every navigation. React does not currently document a supported pattern that guarantees a root-only snapshot for route transitions. Do not rely on a small keyed boundary as that guarantee; test the behavior with your router and target browsers.
 
-
+Wrapping a whole page in `<ViewTransition>` does not create a viewport-only snapshot. The browser captures the element's painted overflow, including content outside the viewport. A tall or scrolling page can therefore produce a large snapshot and use substantial memory, especially on mobile devices. Avoid wrapping a page-sized element when you only intend to animate the viewport.
 
 ---
 

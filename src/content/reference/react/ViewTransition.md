@@ -2775,6 +2775,14 @@ React waits for any pending Navigation to finish to ensure that scroll restorati
 
 If a `startTransition` is started from the legacy popstate event, such as during a "back"-navigation then it must finish synchronously to ensure scroll and form restoration works correctly. This is in conflict with running a View Transition animation. Therefore, React will skip animations from popstate and animations won't run for the back button. You can fix this by upgrading your router to use the Navigation API.
 
+#### Animating only the root snapshot {/*animating-only-the-root-snapshot*/}
+
+React starts a browser View Transition when a `<ViewTransition>` activates, but this does not guarantee that the browser's root snapshot will be available. React may cancel the root snapshot when it determines that the transition does not affect the root layout. For example, a small keyed `<ViewTransition enter="auto" exit="auto">` can start a transition, but does not by itself guarantee that the root snapshot is kept. A boundary that changes size and affects its parent layout may cause React to keep the root snapshot; changes in a portal may also affect it.
+
+Because activating a boundary and keeping the root snapshot are separate, CSS for `::view-transition-old(root)` and `::view-transition-new(root)` may not run for every navigation. React does not currently document a supported pattern that guarantees a root-only snapshot for route transitions. Do not rely on a small keyed boundary as that guarantee; test the behavior with your router and target browsers.
+
+Wrapping a whole page in `<ViewTransition>` does not create a viewport-only snapshot. The browser captures the element's painted overflow, including content outside the viewport. A tall or scrolling page can therefore produce a large snapshot and use substantial memory, especially on mobile devices. Avoid wrapping a page-sized element when you only intend to animate the viewport.
+
 ---
 
 ## Troubleshooting {/*troubleshooting*/}

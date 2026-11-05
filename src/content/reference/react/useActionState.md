@@ -811,20 +811,20 @@ export default function Checkout() {
   const abortRef = useRef(null);
   const [count, dispatchAction, isPending] = useActionState(updateCartAction, 0);
 
-  async function addAction() {
+  function addAction() {
     if (abortRef.current) {
       abortRef.current.abort();
     }
     abortRef.current = new AbortController();
-    await dispatchAction({ type: 'ADD', signal: abortRef.current.signal });
+    dispatchAction({ type: 'ADD', signal: abortRef.current.signal });
   }
 
-  async function removeAction() {
+  function removeAction() {
     if (abortRef.current) {
       abortRef.current.abort();
     }
     abortRef.current = new AbortController();
-    await dispatchAction({ type: 'REMOVE', signal: abortRef.current.signal });
+    dispatchAction({ type: 'REMOVE', signal: abortRef.current.signal });
   }
 
   return (

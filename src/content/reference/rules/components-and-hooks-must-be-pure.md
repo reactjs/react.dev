@@ -183,6 +183,42 @@ function ExpenseForm() {
   // Continue rendering...
 }
 ```
+This is fine because the mutation is local and doesn't affect other components.
+
+Problematic case:
+```js
+function SubscriptionExample() {
+  let subscriptionRef = useRef(null);
+  // 🔴 Don't do this during render
+  if(subscriptionRef.current === null) {
+    subscriptionRef.current = store.subscribe(() => {
+      console.log("Store Changed")
+    });
+  }
+  useEffect(() => {
+    return () => {
+      subscriptionRef.current?.unsubscribe();
+    }
+  },[]);
+}
+```
+This is a problematic use of lazy initialization because it perfroms an external side effect during render. If React abandons the render, the subscription may remain active without its cleanup .
+
+Correct approach:
+```js
+function SubscriptonExample() {
+  const subscriptionRef = useRef(null);
+  useEffect(() => {
+    subscriptionRef.current = store.subscribe(() => {
+      // ..
+    })
+    return () => {
+      subscriptionRef.current?.unsubscribe();
+    }
+},[]);
+}
+```
+For resources that require setup and cleanup, initialize them inside an Effect.
 
 #### Changing the DOM {/*changing-the-dom*/}
 

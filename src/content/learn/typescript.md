@@ -389,7 +389,16 @@ There is quite an expansive set of types which come from the `@types/react` pack
 
 ### DOM Events {/*typing-dom-events*/}
 
-When working with DOM events in React, the type of the event can often be inferred from the event handler. However, when you want to extract a function to be passed to an event handler, you will need to explicitly set the type of the event.
+When working with DOM events in React, TypeScript can infer the event type when you write the event handler inline. For example, the `event` parameter below is inferred as `React.ChangeEvent<HTMLInputElement>`:
+
+```tsx
+<input
+  value={value}
+  onChange={event => setValue(event.currentTarget.value)}
+/>
+```
+
+However, when you want to extract a function to be passed to an event handler, you will need to explicitly set the type of the event:
 
 <Sandpack>
 

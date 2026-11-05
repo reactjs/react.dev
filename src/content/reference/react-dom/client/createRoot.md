@@ -287,7 +287,7 @@ export function Comments() {
 
 function Comment({ text, author }) {
   return (
-    <p>{text} — <i>{author}</i></p>
+    <p>{text}—<i>{author}</i></p>
   );
 }
 ```

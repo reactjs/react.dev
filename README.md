@@ -10,11 +10,12 @@ This repo contains the source code and documentation powering [react.dev](https:
 1. Node: v18.18.0 or greater (see supported versions in [`package.json`](./package.json))
 1. Yarn Classic 1.22.22: See [Yarn website for installation instructions](https://classic.yarnpkg.com/en/docs/install/)
 1. A fork of the repo (for any contributions)
-1. A clone of your fork of the [react.dev repo](https://github.com/reactjs/react.dev) on your local machine
+1. A clone of the [react.dev repo](https://github.com/reactjs/react.dev) on your local machine
 
 ### Installation
 
 1. `cd react.dev` to go into the project root
+2. `git remote add my-fork-name https://github.com/YOUR_USERNAME/react.dev.git` to add your fork as a remote (replace `YOUR_USERNAME` with your GitHub username; only needed once)
 3. `yarn` to install the website's npm dependencies
 
 ### Running locally
@@ -30,9 +31,8 @@ The documentation is divided into several sections with a different tone and pur
 
 ### Create a branch
 
-1. `git remote add upstream https://github.com/reactjs/react.dev.git` to add the source repo as a remote (only needed once)
 1. `git checkout main` from any folder in your local `react.dev` repository
-1. `git pull --ff-only upstream main` to ensure you have the latest main code
+1. `git pull origin main` to ensure you have the latest main code
 1. `git checkout -b the-name-of-my-branch` (replacing `the-name-of-my-branch` with a suitable name) to create a branch
 
 ### Make the change
@@ -52,7 +52,7 @@ The documentation is divided into several sections with a different tone and pur
 ### Push it
 
 1. `git add -A && git commit -m "My message"` (replacing `My message` with a commit message, such as `Fix header logo on Android`) to stage and commit your changes
-1. `git push origin the-name-of-my-branch`
+1. `git push my-fork-name the-name-of-my-branch`
 1. Go to the [react.dev repo](https://github.com/reactjs/react.dev) and you should see recently pushed branches.
 1. Follow GitHub's instructions.
 1. If possible, include screenshots of visual changes. A preview build is triggered after your changes are pushed to GitHub.

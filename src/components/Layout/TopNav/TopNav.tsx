@@ -247,7 +247,7 @@ export default function TopNav({
       <div
         className={cn(
           isMenuOpen
-            ? 'h-screen sticky top-0 lg:bottom-0 lg:h-screen flex flex-col shadow-nav dark:shadow-nav-dark z-20'
+            ? 'h-[100dvh] fixed inset-x-0 top-0 lg:bottom-0 lg:h-[100dvh] flex flex-col shadow-nav dark:shadow-nav-dark z-20'
             : 'z-40 sticky top-0'
         )}>
         <nav
@@ -402,7 +402,7 @@ export default function TopNav({
         {isMenuOpen && (
           <div
             ref={scrollParentRef}
-            className="overflow-y-scroll isolate no-bg-scrollbar lg:w-[342px] grow bg-wash dark:bg-wash-dark">
+            className="overflow-y-scroll overscroll-contain isolate no-bg-scrollbar lg:w-[342px] grow bg-wash dark:bg-wash-dark">
             <aside
               className={cn(
                 `lg:grow lg:flex flex-col w-full pb-8 lg:pb-0 lg:max-w-custom-xs z-40`,

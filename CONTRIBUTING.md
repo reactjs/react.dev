@@ -4,9 +4,7 @@ Thank you for your interest in contributing to the React Docs!
 
 ## Code of Conduct
 
-Facebook has adopted a Code of Conduct that we expect project
-participants to adhere to. Please [read the full text](https://code.facebook.com/codeofconduct)
-so that you can understand what actions will and will not be tolerated.
+We expect all project participants to follow our [Code of Conduct](./CODE_OF_CONDUCT.md).
 
 ## Technical Writing Tips
 

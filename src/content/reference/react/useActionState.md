@@ -1184,13 +1184,70 @@ hr {
 
 In this example, when the user clicks the stepper arrows, the button submits the form and `useActionState` calls `updateCartAction` with the form data. The example uses `useOptimistic` to immediately show the new quantity while the server confirms the update.
 
+#### Displaying validation errors and preserving form values {/*displaying-validation-errors-and-preserving-form-values*/}
+
+Return validation errors and submitted values from the Action to display an error without clearing the affected fields. Try submitting a name with fewer than three characters:
+
+<Sandpack>
+
+```js src/App.js active
+import { useActionState } from 'react';
+import { updateName } from './api.js';
+
+const initialState = {
+  error: null,
+  submitted: null,
+};
+
+export default function UpdateName() {
+  const [state, submitAction, isPending] = useActionState(
+    updateName,
+    initialState
+  );
+
+  return (
+    <form action={submitAction}>
+      <label>
+        Name:{' '}
+        <input
+          name="name"
+          defaultValue={state.submitted?.get('name') ?? ''}
+          disabled={isPending}
+        />
+      </label>
+      <button type="submit" disabled={isPending}>Save</button>
+      {state.error && <p>{state.error}</p>}
+    </form>
+  );
+}
+```
+
+```js src/api.js
+export async function updateName(previousState, formData) {
+  await new Promise(resolve => setTimeout(resolve, 1000));
+  const name = formData.get('name');
+  if (typeof name !== 'string' || name.trim().length < 3) {
+    return {
+      error: 'Name must be at least three characters long',
+      submitted: formData,
+    };
+  }
+  return {
+    error: null,
+    submitted: null,
+  };
+}
+```
+
+</Sandpack>
+
+When validation fails, `updateName` returns an error and the submitted `FormData`. The component uses the submitted name as the input's new `defaultValue`, so React's automatic form reset preserves it. When validation succeeds, `submitted` is `null`, so the automatic reset clears the field.
+
 <RSC>
 
-When used with a [Server Function](/reference/rsc/server-functions), `useActionState` allows the server's response to be shown before hydration (when React attaches to server-rendered HTML) completes. You can also use the optional `permalink` parameter for progressive enhancement (allowing the form to work before JavaScript loads) on pages with dynamic content. This is typically handled by your framework for you.
+The example above runs `updateName` in the browser. To display the error and preserve the submitted name before JavaScript loads, make `updateName` a [Server Function](/reference/rsc/server-functions). Keep passing `submitAction` to the form's `action` prop. React can then display the Server Function's returned value before hydration completes. See [preserving form values before JavaScript loads](/reference/react-dom/components/form#preserving-form-values-before-javascript-loads) for the setup. On pages with dynamic content, you can also use the optional [`permalink`](#parameters) parameter for progressive enhancement.
 
 </RSC>
-
-See the [`<form>`](/reference/react-dom/components/form#handle-form-submission-with-a-server-function) docs for more information on using Actions with forms.
 
 ---
 

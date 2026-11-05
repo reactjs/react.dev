@@ -240,6 +240,8 @@ When the function passed to `useActionState` is a Server Function, users can sub
 
 For more, see the docs for [`useActionState`](/reference/react/useActionState).
 
+To keep submitted values or control when the form resets, see [Preserving form values after an Action](/reference/react-dom/components/form#preserve-form-values-after-an-action).
+
 ### Supporting progressive enhancement with `useActionState` {/*progressive-enhancement-with-useactionstate*/}
 
 Server Functions also support progressive enhancement with the third argument of `useActionState`.

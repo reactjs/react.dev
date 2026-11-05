@@ -72,7 +72,7 @@ A `status` object with the following properties:
 
 ## Usage {/*usage*/}
 
-### Display a pending state during form submission {/*display-a-pending-state-during-form-submission*/}
+### Display a pending state with an `action` prop {/*display-a-pending-state-during-form-submission*/}
 To display a pending state while a form is submitting, you can call the `useFormStatus` Hook in a component rendered in a `<form>` and read the `pending` property returned.
 
 Here, we use the `pending` property to indicate the form is submitting.

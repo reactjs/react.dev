@@ -54,7 +54,7 @@ In the above example, `Submit` uses this information to disable `<button>` press
 
 A `status` object with the following properties:
 
-* `pending`: A boolean. If `true`, this means the parent `<form>` is pending submission. Otherwise, `false`. `pending` is also `true` while a Transition started from a `submit` event handler is pending, as long as the handler calls `event.preventDefault()` and starts the Transition in the same event.
+* `pending`: A boolean. If `true`, the parent `<form>` is pending submission, either through its `action` prop or through an `onSubmit` handler that calls `event.preventDefault()` and starts a Transition in the same event. Otherwise, `false`.
 
 * `data`: An object implementing the [`FormData interface`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) that contains the data the parent `<form>` is submitting. If there is no active submission or no parent `<form>`, it will be `null`.
 
@@ -168,7 +168,7 @@ export async function submitForm(formData) {
 
 </Sandpack>
 
-Unlike a function passed to the `<form action>` prop, handling submission this way does not automatically reset the form.
+Unlike a function passed to the `<form action>` prop, handling submission this way [does not automatically reset the form](/reference/react-dom/components/form#other-ways-to-control-form-resets).
 
 
 <Pitfall>

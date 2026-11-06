@@ -12,6 +12,7 @@
 import {Children, useContext, useMemo} from 'react';
 import * as React from 'react';
 import cn from 'classnames';
+import {useRouter} from 'next/router';
 import type {HTMLAttributes} from 'react';
 
 import CodeBlock from './CodeBlock';
@@ -469,6 +470,9 @@ function InlineTocItem({items}: {items: Array<NestedTocNode>}) {
 type TranslationProgress = 'complete' | 'in-progress';
 
 function LanguageList({progress}: {progress: TranslationProgress}) {
+  const from = useRouter().query.from;
+  const pathname =
+    typeof from === 'string' && /^\/(?!\/)[^\\?#]*$/.test(from) ? from : '';
   const allLanguages = React.useContext(LanguagesContext) ?? [];
   const languages = allLanguages
     .filter(
@@ -484,7 +488,10 @@ function LanguageList({progress}: {progress: TranslationProgress}) {
       {languages.map(({code, name, enName}) => {
         return (
           <LI key={code}>
-            <Link href={`https://${code}.react.dev/`}>
+            <Link
+              href={`https://${code}.react.dev${
+                progress === 'complete' ? pathname || '/' : '/'
+              }`}>
               {enName} ({name})
             </Link>{' '}
             &mdash;{' '}

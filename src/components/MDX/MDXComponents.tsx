@@ -12,6 +12,7 @@
 import {Children, useContext, useMemo} from 'react';
 import * as React from 'react';
 import cn from 'classnames';
+import {useRouter} from 'next/router';
 import type {HTMLAttributes} from 'react';
 
 import CodeBlock from './CodeBlock';
@@ -41,6 +42,7 @@ import type {Toc, TocItem} from './TocContext';
 import {TeamMember} from './TeamMember';
 import {LanguagesContext} from './LanguagesContext';
 import {finishedTranslations} from 'utils/finishedTranslations';
+import {ExternalLink} from 'components/ExternalLink';
 
 import ErrorDecoder from './ErrorDecoder';
 import {IconCanary} from '../Icon/IconCanary';
@@ -469,6 +471,9 @@ function InlineTocItem({items}: {items: Array<NestedTocNode>}) {
 type TranslationProgress = 'complete' | 'in-progress';
 
 function LanguageList({progress}: {progress: TranslationProgress}) {
+  const from = useRouter().query.from;
+  const pathname =
+    typeof from === 'string' && /^\/(?!\/)[^\\?#]*$/.test(from) ? from : '';
   const allLanguages = React.useContext(LanguagesContext) ?? [];
   const languages = allLanguages
     .filter(
@@ -482,11 +487,19 @@ function LanguageList({progress}: {progress: TranslationProgress}) {
   return (
     <UL>
       {languages.map(({code, name, enName}) => {
+        const href =
+          progress === 'complete' && pathname
+            ? `/api/translation?language=${encodeURIComponent(
+                code
+              )}&from=${encodeURIComponent(pathname)}`
+            : `https://${code}.react.dev/`;
         return (
           <LI key={code}>
-            <Link href={`https://${code}.react.dev/`}>
+            <ExternalLink
+              href={href}
+              className="inline text-link dark:text-link-dark border-b border-link border-opacity-0 hover:border-opacity-100 duration-100 ease-in transition leading-normal">
               {enName} ({name})
-            </Link>{' '}
+            </ExternalLink>{' '}
             &mdash;{' '}
             <Link href={`https://github.com/reactjs/${code}.react.dev`}>
               Contribute

@@ -13,7 +13,8 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method !== 'GET') {
-    return res.status(405).end();
+    res.status(405).end();
+    return;
   }
 
   const {language, from} = req.query;
@@ -22,7 +23,8 @@ export default async function handler(
     language === 'en' ||
     !finishedTranslations.includes(language)
   ) {
-    return res.status(404).end();
+    res.status(404).end();
+    return;
   }
 
   const homepage = `https://${language}.react.dev/`;
@@ -30,7 +32,8 @@ export default async function handler(
     typeof from !== 'string' ||
     !/^\/(?!\/)(?:learn|reference)(?:\/|$)[^\\?#]*$/.test(from)
   ) {
-    return res.redirect(302, homepage);
+    res.redirect(302, homepage);
+    return;
   }
 
   const translatedPage = new URL(from, homepage).toString();
@@ -43,7 +46,8 @@ export default async function handler(
       signal: controller.signal,
     });
     if (response.ok) {
-      return res.redirect(302, translatedPage);
+      res.redirect(302, translatedPage);
+      return;
     }
   } catch {
     // Keep the original homepage behavior when the translation site is unavailable.
@@ -51,5 +55,5 @@ export default async function handler(
     clearTimeout(timeout);
   }
 
-  return res.redirect(302, homepage);
+  res.redirect(302, homepage);
 }

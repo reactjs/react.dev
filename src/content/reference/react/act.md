@@ -117,7 +117,7 @@ Using `act` ensures that all updates have been applied before we make assertions
 
 To test events, wrap the event dispatch inside `act()`:
 
-```js {16,17}
+```js {17-19}
 import {act} from 'react';
 import ReactDOMClient from 'react-dom/client';
 import Counter from './Counter';

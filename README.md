@@ -7,8 +7,8 @@ This repo contains the source code and documentation powering [react.dev](https:
 ### Prerequisites
 
 1. Git
-1. Node: v18.18.0 or greater (see supported versions in [`package.json`](./package.json))
-1. Yarn Classic 1.22.22: See [Yarn website for installation instructions](https://classic.yarnpkg.com/en/docs/install/)
+1. Node: v18.18.0 or greater
+1. Yarn Classic: See [Yarn website for installation instructions](https://classic.yarnpkg.com/en/docs/install/)
 1. A fork of the repo (for any contributions)
 1. A clone of the [react.dev repo](https://github.com/reactjs/react.dev) on your local machine
 
@@ -46,8 +46,7 @@ The documentation is divided into several sections with a different tone and pur
 ### Test the change
 
 1. If possible, test any visual changes in all latest versions of common browsers, on both desktop and mobile.
-2. Run `yarn check-all`. (This will apply Prettier and ESLint fixes, validate types, and generate RSS.)
-3. Run `yarn ci-check` to run the same checks as CI.
+2. Run `yarn check-all`. (This will run Prettier, ESLint and validate types.)
 
 ### Push it
 

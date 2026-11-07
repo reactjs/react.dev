@@ -15,6 +15,7 @@
     "prettier": "yarn format:source",
     "prettier:diff": "yarn nit:source",
     "lint-heading-ids": "node scripts/headingIdLinter.js",
+    "lint-heading-order": "node scripts/headingOrderLinter.js",
     "fix-headings": "node scripts/headingIdLinter.js --fix",
     "ci-check": "npm-run-all prettier:diff --parallel lint test:eslint-local-rules tsc lint-heading-ids rss deadlinks",
     "tsc": "tsc --noEmit",

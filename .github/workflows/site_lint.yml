@@ -1,4 +1,4 @@
-name: Site Lint / Heading ID check
+name: Site Lint / Heading checks
 
 on:
   push:
@@ -17,6 +17,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Use Node.js 20.x
         uses: actions/setup-node@v4
         with:
@@ -35,3 +37,8 @@ jobs:
 
       - name: Lint codebase
         run: yarn ci-check
+
+      - name: Check heading order
+        env:
+          HEADING_ORDER_BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: yarn lint-heading-order "$HEADING_ORDER_BASE_SHA"

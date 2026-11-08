@@ -40,7 +40,7 @@ Ignore this if you're specifically writing about ES5.
 
 #### Prefer readable syntax.
 
-Prefer named `function` declarations over `const myFunction = () => ...` arrow functions for top-level functions. Use arrow functions when they make the code clearer or preserve the surrounding `this` value, such as in class components.
+Choose syntax that makes each example easier to follow. Prefer named `function` declarations over `const myFunction = () => ...` arrows for top-level functions. Use arrow functions when they make callbacks easier to read. In class components, arrow functions can also preserve the component's `this` value.
 
 #### Don't use features that aren't standardized yet.
 

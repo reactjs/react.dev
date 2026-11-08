@@ -139,7 +139,7 @@ To enable React Compiler rules, we recommend using the `recommended` preset. You
 - Preventing unsafe ref access during render with [`refs`](/reference/eslint-plugin-react-hooks/lints/refs).
 
 ## What should I do about useMemo, useCallback, and React.memo? {/*what-should-i-do-about-usememo-usecallback-and-reactmemo*/}
-By default, React Compiler will memoize your code based on its analysis and heuristics. In most cases, this memoization will be as precise, or moreso, than what you may have written — and as noted above, the compiler can memoize even in cases where `useMemo`/`useCallback` cannot be used, such as after an early return.
+By default, React Compiler will memoize your code based on its analysis and heuristics. In most cases, this memoization will be as precise, or more so, than what you may have written — and as noted above, the compiler can memoize even in cases where `useMemo`/`useCallback` cannot be used, such as after an early return.
 
 However, in some cases developers may need more control over memoization. The `useMemo` and `useCallback` hooks can continue to be used with React Compiler as an escape hatch to provide control over which values are memoized. A common use-case for this is if a memoized value is used as an effect dependency, in order to ensure that an effect does not fire repeatedly even when its dependencies do not meaningfully change.
 

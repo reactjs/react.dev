@@ -38,37 +38,36 @@ Ignore this if you're specifically describing `createElement`.
 
 Ignore this if you're specifically writing about ES5.
 
-#### Don't use ES6 features when equivalent ES5 features have no downsides.
+#### Prefer readable syntax.
 
-Remember that ES6 is still new to a lot of people. While we use it in many places (`const` / `let`, classes, arrow functions), if the equivalent ES5 code is just as straightforward and readable, consider using it.
-
-In particular, you should prefer named `function` declarations over `const myFunction = () => ...` arrows for top-level functions. However, you *should* use arrow functions where they provide a tangible improvement (such as preserving `this` context inside a component). Consider both sides of the tradeoff when deciding whether to use a new feature.
+Prefer named `function` declarations for components and top-level functions. Use arrow functions for inline callbacks when they make the example easier to follow.
 
 #### Don't use features that aren't standardized yet.
 
 For example, **don't** write this:
 
 ```js
-class MyComponent extends React.Component {
-  state = {value: ''};
-  handleChange = (e) => {
-    this.setState({value: e.target.value});
+function Greeting({isLoggedIn}) {
+  return do {
+    if (isLoggedIn) {
+      <h1>Welcome back!</h1>;
+    } else {
+      <h1>Please sign in.</h1>;
+    }
   };
 }
 ```
 
+The [`do` expression syntax](https://github.com/tc39/proposal-do-expressions) is still experimental.
+
 Instead, **do** write this:
 
 ```js
-class MyComponent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.state = {value: ''};
+function Greeting({isLoggedIn}) {
+  if (isLoggedIn) {
+    return <h1>Welcome back!</h1>;
   }
-  handleChange(e) {
-    this.setState({value: e.target.value});
-  }
+  return <h1>Please sign in.</h1>;
 }
 ```
 

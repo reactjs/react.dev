@@ -88,7 +88,7 @@ During updates, the <CodeStep step={2}>deferred value</CodeStep> will "lag behin
 
 This example assumes you use a data source that [activates a Suspense boundary](/reference/react/Suspense#what-activates-a-suspense-boundary), such as a Promise you read with [`use`](/reference/react/use).
 
-[Learn more about Suspense and its limitations.](/reference/react/Suspense)
+[Learn more about Suspense.](/reference/react/Suspense)
 
 </Note>
 

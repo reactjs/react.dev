@@ -11,12 +11,7 @@ const path = require('path');
 const {ESLint} = require('eslint');
 const plugin = require('..');
 
-const FIXTURES_DIR = path.join(
-  __dirname,
-  'fixtures',
-  'src',
-  'content'
-);
+const FIXTURES_DIR = path.join(__dirname, 'fixtures', 'src', 'content');
 const PARSER_PATH = path.join(__dirname, '..', 'parser.js');
 
 function createESLint({fix = false} = {}) {
@@ -53,11 +48,7 @@ async function lintFixture(name, {fix = false} = {}) {
 
 async function run() {
   const basicResult = await lintFixture('basic-error.md');
-  assert.strictEqual(
-    basicResult.messages.length,
-    1,
-    'expected one diagnostic'
-  );
+  assert.strictEqual(basicResult.messages.length, 1, 'expected one diagnostic');
   assert(
     basicResult.messages[0].message.includes('Calling setState during render'),
     'expected message to mention setState during render'
@@ -91,9 +82,7 @@ async function run() {
     fix: true,
   });
   assert(
-    duplicateFixed.output.includes(
-      "{expectedErrors: {'react-compiler': [4]}}"
-    ),
+    duplicateFixed.output.includes("{expectedErrors: {'react-compiler': [4]}}"),
     'expected duplicates to be rewritten to a single canonical block'
   );
   assert(
@@ -118,14 +107,43 @@ async function run() {
     fix: true,
   });
   assert(
-    malformedFixed.output.includes(
-      "{expectedErrors: {'react-compiler': [4]}}"
-    ),
+    malformedFixed.output.includes("{expectedErrors: {'react-compiler': [4]}}"),
     'expected malformed metadata to be replaced with canonical form'
+  );
+
+  const validHighlightResult = await lintFixture('valid-highlight.md');
+  assert.strictEqual(
+    validHighlightResult.messages.length,
+    0,
+    'expected a valid inline highlight to pass'
+  );
+
+  const missingHighlightResult = await lintFixture('missing-highlight.md');
+  assert.strictEqual(
+    missingHighlightResult.messages.length,
+    1,
+    'expected a highlight with text missing from its line to fail'
+  );
+  assert.strictEqual(
+    missingHighlightResult.messages[0].message,
+    "Could not find 'submitAction' on highlighted line 1"
+  );
+
+  const outOfBoundsHighlightResult = await lintFixture(
+    'out-of-bounds-highlight.md'
+  );
+  assert.strictEqual(
+    outOfBoundsHighlightResult.messages.length,
+    1,
+    'expected an out-of-bounds highlight line to fail'
+  );
+  assert.strictEqual(
+    outOfBoundsHighlightResult.messages[0].message,
+    'Code highlight line 3 is outside this code block'
   );
 }
 
-run().catch(error => {
+run().catch((error) => {
   console.error(error);
   process.exitCode = 1;
 });

@@ -12,7 +12,7 @@ We aim to keep the docs updated within major versions, and do not publish versio
 
 You can find an archive of previous major versions below.
 
-## Latest version: 19.2 {/*latest-version*/}
+## Latest version: 19.3 {/*latest-version*/}
 
 - [react.dev](https://react.dev) {/*docs-19*/}
 
@@ -43,6 +43,7 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 - [React Compiler Beta Release](/blog/2024/10/21/react-compiler-beta-release)
 - [React Compiler v1.0](/blog/2025/10/07/react-compiler-1)
 - [React 19.2](/blog/2025/10/01/react-19-2)
+- [React 19.3](/blog/2026/09/09/react-19-3)
 
 **Talks**
 - [React 19 Keynote](https://www.youtube.com/watch?v=lyEKhv8-3n0)
@@ -54,6 +55,7 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 - [React 19 Deep Dive: Coordinating HTML](https://www.youtube.com/watch?v=IBBN-s77YSI)
 
 **Releases**
+- [v19.3.0 (September 9, 2026)](https://github.com/react/react/blob/main/CHANGELOG.md#1930-september-9-2026)
 - [v19.2.7 (June, 2026)](https://github.com/react/react/blob/main/CHANGELOG.md#1927-june-1-2026)
 - [v19.2.6 (May, 2026)](https://github.com/react/react/blob/main/CHANGELOG.md#1926-may-6-2026)
 - [v19.2.5 (March, 2026)](https://github.com/react/react/blob/main/CHANGELOG.md#1925-march-18-2026)
@@ -278,7 +280,7 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 - [The Road to 1.0](https://legacy.reactjs.org/blog/2014/03/28/the-road-to-1.0.html)
 - [React v0.11.1](https://legacy.reactjs.org/blog/2014/07/25/react-v0.11.1.html)
 - [React v0.11.2](https://legacy.reactjs.org/blog/2014/09/16/react-v0.11.2.html)
-- [Introducing the JSX Specificaion](https://legacy.reactjs.org/blog/2014/09/03/introducing-the-jsx-specification.html)
+- [Introducing the JSX Specification](https://legacy.reactjs.org/blog/2014/09/03/introducing-the-jsx-specification.html)
 
 **Releases**
 - [v0.11.2 (September 2014)](https://github.com/react/react/blob/main/CHANGELOG.md#0112-september-16-2014)
@@ -325,4 +327,7 @@ See the first blog post: [Why did we build React?](https://legacy.reactjs.org/bl
 
 React was open sourced at Facebook Seattle in 2013:
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/XxVg_s8xAms?si=466vSJrnXTn05j9A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<YouTubeIframe
+  title="React was open sourced at Facebook Seattle in 2013"
+  src="https://www.youtube.com/embed/XxVg_s8xAms?si=466vSJrnXTn05j9A"
+/>

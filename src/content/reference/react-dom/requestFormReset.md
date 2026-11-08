@@ -58,7 +58,7 @@ function handleSubmit(form) {
 
 ### Requesting a reset in a custom form Action {/*requesting-a-reset-in-a-custom-form-action*/}
 
-React automatically resets uncontrolled fields after a successful `<form action={...}>` submission. When you implement submission manually, you can opt into the same behavior by calling `requestFormReset`.
+React [automatically resets uncontrolled fields after a successful `<form action={...}>` submission](/reference/react-dom/components/form#handle-form-submission-with-an-action-prop). When you implement submission manually, you can opt into the same behavior by calling `requestFormReset`.
 
 ```js
 import { startTransition } from 'react';

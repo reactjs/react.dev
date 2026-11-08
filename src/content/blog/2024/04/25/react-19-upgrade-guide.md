@@ -579,7 +579,7 @@ In the future we will more aggressively block accessing internals from React to 
 
 ### Removed deprecated TypeScript types {/*removed-deprecated-typescript-types*/}
 
-We've cleaned up the TypeScript types based on the removed APIs in React 19. Some of the removed have types been moved to more relevant packages, and others are no longer needed to describe React's behavior.
+We've cleaned up the TypeScript types based on the removed APIs in React 19. Some of the removed types have been moved to more relevant packages, and others are no longer needed to describe React's behavior.
 
 <Note>
 We've published [`types-react-codemod`](https://github.com/eps1lon/types-react-codemod/) to migrate most type related breaking changes:

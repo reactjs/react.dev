@@ -7,7 +7,7 @@ This repo contains the source code and documentation powering [react.dev](https:
 ### Prerequisites
 
 1. Git
-1. Node: v18.18.0 or greater
+1. Node: v24 or greater
 1. Yarn Classic: See [Yarn website for installation instructions](https://classic.yarnpkg.com/en/docs/install/)
 1. A fork of the repo (for any contributions)
 1. A clone of the [react.dev repo](https://github.com/reactjs/react.dev) on your local machine

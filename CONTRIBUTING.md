@@ -42,37 +42,6 @@ Ignore this if you're specifically writing about ES5.
 
 Choose syntax that makes each example easier to follow. Prefer named `function` declarations over `const myFunction = () => ...` arrows for top-level functions. Use arrow functions when they make callbacks easier to read. In class components, arrow functions can also preserve the component's `this` value.
 
-#### Don't use features that aren't standardized yet.
-
-For example, **don't** write this:
-
-```js
-function Greeting({isLoggedIn}) {
-  return do {
-    if (isLoggedIn) {
-      <h1>Welcome back!</h1>;
-    } else {
-      <h1>Please sign in.</h1>;
-    }
-  };
-}
-```
-
-The [`do` expression syntax](https://github.com/tc39/proposal-do-expressions) is still experimental.
-
-Instead, **do** write this:
-
-```js
-function Greeting({isLoggedIn}) {
-  if (isLoggedIn) {
-    return <h1>Welcome back!</h1>;
-  }
-  return <h1>Please sign in.</h1>;
-}
-```
-
-Ignore this rule if you're specifically describing an experimental proposal. Make sure to mention its experimental nature in the code and in the surrounding text.
-
 ### Style
 
 - Use semicolons.

@@ -166,6 +166,7 @@ Server Component events include structured metadata in `entry.detail.react`. Ser
 | --- | --- |
 | `version` | The metadata format version. Currently `1`. |
 | `requestId` | The string passed as `unstable_requestId` when a framework creates the response, or `undefined` if omitted. |
+| `transitionId` | The ID of active transition when the response was created, or `undefined` if none was provided. |
 | `kind` | `'component'` for a Server Component render or `'await'` for a Promise it awaited. |
 | `outcome` | `'completed'`, `'errored'`, or `'aborted'`. |
 | `environment` | The environment name associated with the render or await, falling back to the response's environment name. |

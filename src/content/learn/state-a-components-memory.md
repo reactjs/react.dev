@@ -209,14 +209,18 @@ import { sculptureList } from './data.js';
 export default function Gallery() {
   const [index, setIndex] = useState(0);
 
-  function handleClick() {
-    setIndex(index + 1);
+  function handleNextClick() {
+    if (index + 1 >= sculptureList.length) {
+      setIndex(0);
+    } else {
+      setIndex(index + 1);
+    }
   }
 
   let sculpture = sculptureList[index];
   return (
     <>
-      <button onClick={handleClick}>
+      <button onClick={handleNextClick}>
         Next
       </button>
       <h2>
@@ -394,7 +398,11 @@ export default function Gallery() {
   const [showMore, setShowMore] = useState(false);
 
   function handleNextClick() {
-    setIndex(index + 1);
+    if (index + 1 >= sculptureList.length) {
+      setIndex(0);
+    } else {
+      setIndex(index + 1);
+    }
   }
 
   function handleMoreClick() {
@@ -575,7 +583,11 @@ function Gallery() {
   const [showMore, setShowMore] = useState(false);
 
   function handleNextClick() {
-    setIndex(index + 1);
+    if (index + 1 >= sculptureList.length) {
+      setIndex(0);
+    } else {
+      setIndex(index + 1);
+    }
   }
 
   function handleMoreClick() {
@@ -759,7 +771,11 @@ export default function Gallery() {
   const [showMore, setShowMore] = useState(false);
 
   function handleNextClick() {
-    setIndex(index + 1);
+    if (index + 1 >= sculptureList.length) {
+      setIndex(0);
+    } else {
+      setIndex(index + 1);
+    }
   }
 
   function handleMoreClick() {
@@ -930,7 +946,11 @@ export default function Gallery() {
   const [showMore, setShowMore] = useState(false);
 
   function handleNextClick() {
-    setIndex(index + 1);
+    if (index + 1 >= sculptureList.length) {
+      setIndex(0);
+    } else {
+      setIndex(index + 1);
+    }
   }
 
   function handleMoreClick() {

@@ -1,5 +1,8 @@
 ---
 title: React Blog
+author: React
+date: 16-6-2024
+description: "React official updates blog"
 ---
 
 <Intro>

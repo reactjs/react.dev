@@ -13,7 +13,7 @@ Using `flushSync` is uncommon and can hurt the performance of your app.
 `flushSync` lets you force React to flush any updates inside the provided callback synchronously. This ensures that the DOM is updated immediately.
 
 ```js
-flushSync(callback)
+flushSync(callback?)
 ```
 
 </Intro>
@@ -24,7 +24,7 @@ flushSync(callback)
 
 ## Reference {/*reference*/}
 
-### `flushSync(callback)` {/*flushsync*/}
+### `flushSync(callback?)` {/*flushsync*/}
 
 Call `flushSync` to force React to flush any pending work and update the DOM synchronously.
 
@@ -43,11 +43,11 @@ Most of the time, `flushSync` can be avoided. Use `flushSync` as last resort.
 #### Parameters {/*parameters*/}
 
 
-* `callback`: A function. React will immediately call this callback and flush any updates it contains synchronously. It may also flush any pending updates, or Effects, or updates inside of Effects. If an update suspends as a result of this `flushSync` call, the fallbacks may be re-shown.
+* **optional** `callback`: A function. React will immediately call this callback and flush any updates it contains synchronously. It may also flush any pending updates, or Effects, or updates inside of Effects. If an update suspends as a result of this `flushSync` call, the fallbacks may be re-shown.
 
 #### Returns {/*returns*/}
 
-`flushSync` returns `undefined`.
+If callback is not passed `flushSync` returns `undefined`, otherwise returns the return value of the `callback` function.
 
 #### Caveats {/*caveats*/}
 

@@ -520,7 +520,7 @@ button {
 
 </Sandpack>
 
-It is a good idea to have multiple state variables if their state is unrelated, like `index` and `showMore` in this example. But if you find that you often change two state variables together, it might be easier to combine them into one. For example, if you have a form with many fields, it's more convenient to have a single state variable that holds an object than state variable per field. Read [Choosing the State Structure](/learn/choosing-the-state-structure) for more tips.
+It is a good idea to have multiple state variables if their state is unrelated, like `index` and `showMore` in this example. But if you find that you often change two state variables together, it might be easier to combine them into one. For example, if you have a form with many fields, it's more convenient to have a single state variable that holds an object than a state variable per field. Read [Choosing the State Structure](/learn/choosing-the-state-structure) for more tips.
 
 <DeepDive>
 
@@ -915,7 +915,7 @@ What if you wanted both galleries to keep their states in sync? The right way to
 
 #### Complete the gallery {/*complete-the-gallery*/}
 
-When you press "Next" on the last sculpture, the code crashes. Fix the logic to prevent the crash. You may do this by adding extra logic to event handler or by disabling the button when the action is not possible.
+When you press "Next" on the last sculpture, the code crashes. Fix the logic to prevent the crash. You may do this by adding extra logic to the event handler or by disabling the button when the action is not possible.
 
 After fixing the crash, add a "Previous" button that shows the previous sculpture. It shouldn't crash on the first sculpture.
 

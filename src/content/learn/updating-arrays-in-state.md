@@ -1244,6 +1244,8 @@ ul, li { margin: 0; padding: 0; }
 
 In `handleAddTodo`, you can use the array spread syntax. In `handleChangeTodo`, you can create a new array with `map`. In `handleDeleteTodo`, you can create a new array with `filter`. Now the list works correctly:
 
+Here, `nextId++` mutates a module-level variable, but that's okay because `handleAddTodo` runs in response to a user event, not during rendering. The `todos` state itself is still updated immutably by passing a new array to `setTodos`.
+
 <Sandpack>
 
 ```js src/App.js

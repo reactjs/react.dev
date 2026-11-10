@@ -377,18 +377,19 @@ Make sure that `getServerSnapshot` returns the same exact data on the initial cl
 
 This error means your `getSnapshot` function returns a new object every time it's called, for example:
 
-```js {2-5}
+```js {3-5}
 function getSnapshot() {
-  // 🔴 Do not return always different objects from getSnapshot
+  // 🔴 This creates a new object every time getSnapshot is
+  // called, even when myStore.todos has not changed
   return {
     todos: myStore.todos
   };
 }
 ```
 
-React will re-render the component if `getSnapshot` return value is different from the last time. This is why, if you always return a different value, you will enter an infinite loop and get this error.
+React will re-render the component if `getSnapshot` returns a different object than the last time it was called. Therefore, if you return a new object on every call, React will enter an infinite loop and raise this error.
 
-Your `getSnapshot` object should only return a different object if something has actually changed. If your store contains immutable data, you can return that data directly:
+Your `getSnapshot` object should only return a different object if the data in the external store has actually changed. If your store contains immutable data, you can return that data directly:
 
 ```js {2-3}
 function getSnapshot() {
@@ -397,7 +398,33 @@ function getSnapshot() {
 }
 ```
 
-If your store data is mutable, your `getSnapshot` function should return an immutable snapshot of it. This means it *does* need to create new objects, but it shouldn't do this for every single call. Instead, it should store the last calculated snapshot, and return the same snapshot as the last time if the data in the store has not changed. How you determine whether mutable data has changed depends on your mutable store.
+If the data in your store is mutable, your `getSnapshot` function should return an immutable snapshot of it. This means it *does* need to create new objects, but not for every single call. Instead, it should cache the last calculated snapshot, and return a new object only if the data in the store has changed. How you determine whether the data in your store has changed is specific to the store you're using.
+
+<DeepDive>
+
+#### Why does React re-render even if the values of your object have not changed? {/*why-does-react-re-render-even-if-the-values-of-your-object-have-not-changed*/}
+
+JavaScript has a syntax called [object literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer), which are key-value pairs enclosed in curly braces (`{}`). This syntax creates a new object.
+
+When comparing objects, JavaScript only checks if the two objects are the same object, not if their *contents* are equal. Since the object literal syntax creates a new object, comparing two objects created with the object literal syntax always gives `false`, even when the values are the same. For example:
+
+```js
+object1 = {
+  name: "John",
+  favoriteNumber: 42
+};
+
+object2 = {
+  name: "John",
+  favoriteNumber: 42
+};
+
+console.log(object1 == object2); // false
+```
+
+This means that if your `getSnapshot` function returns a new object (like the first example above did), React will always think the object has changed, and will re-render the component.
+
+</DeepDive>
 
 ---
 

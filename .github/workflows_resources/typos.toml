@@ -1,0 +1,32 @@
+# Reference: https://github.com/crate-ci/typos/blob/master/docs/reference.md
+
+[default]
+locale = "en-us" # English dialect to correct to
+binary = false # Don't check binary files
+
+[default.extend-words] # Extend the default dictionary with these words
+seeked = "seeked" # key = value - correction pairs
+onSeeked = "onSeeked"
+prev = "prev" # (e.g. prevState)
+Prev = "Prev" # (e.g. setPrevCount)
+goes = "goes" # ¯\_(ツ)_/¯
+BARE = "BARE"
+prepend = "prepend"
+learnt = "learnt" # This and below all valid British spellings TODO: Decide locale with team 
+Learnt = "Learnt"
+Centre = "Centre"
+savoury = "savoury"
+queueing = "queueing"
+Queueing = "Queueing"
+fuelled = "fuelled"
+traveller = "traveller"
+ba = "ba"
+hel = "hel"
+Tae = "Tae" # surname
+
+# [default.extend-identifiers] # Extend the default dictionary with these identifiers
+
+
+[files]
+extend-exclude = ["*.patch"] # Exclude .patch files from spell check
+ignore-dot = true # Respect .ignore files (e.g. skip files specified in .gitignore)

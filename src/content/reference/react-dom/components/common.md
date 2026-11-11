@@ -356,7 +356,7 @@ An event handler type for the [CSS animation](https://developer.mozilla.org/en-U
 
 ---
 
-### `ClipboardEvent` handler function {/*clipboadevent-handler*/}
+### `ClipboardEvent` handler function {/*clipboardevent-handler*/}
 
 An event handler type for the [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API) events.
 
@@ -368,7 +368,7 @@ An event handler type for the [Clipboard API](https://developer.mozilla.org/en-U
 />
 ```
 
-#### Parameters {/*clipboadevent-handler-parameters*/}
+#### Parameters {/*clipboardevent-handler-parameters*/}
 
 * `e`: A [React event object](#react-event-object) with these extra [`ClipboardEvent`](https://developer.mozilla.org/en-US/docs/Web/API/ClipboardEvent) properties:
 

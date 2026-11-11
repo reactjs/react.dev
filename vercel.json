@@ -125,6 +125,11 @@
       "permanent": false
     },
     {
+      "source": "/blog/2018/06/07/you-probably-dont-need-derived-state",
+      "destination": "https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html",
+      "permanent": false
+    },
+    {
       "source": "/link/strict-mode-string-ref",
       "destination": "https://legacy.reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs",
       "permanent": false

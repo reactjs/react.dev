@@ -151,9 +151,13 @@ In the module dependency tree of this example app, the `'use client'` directive 
 `'use client'` segments the module dependency tree of the React Server Components app, marking `InspirationGenerator.js` and all of its dependencies as client-rendered.
 </Diagram>
 
-During render, the framework will server-render the root component and continue through the [render tree](/learn/understanding-your-ui-as-a-tree#the-render-tree), opting-out of evaluating any code imported from client-marked code.
+There are two separate concepts to understand: **component type** and **rendering**.
 
-The server-rendered portion of the render tree is then sent to the client. The client, with its client code downloaded, then completes rendering the rest of the tree.
+**Component type** is determined by the React tree and module boundaries. When the framework walks the [render tree](/learn/understanding-your-ui-as-a-tree#the-render-tree), each component usage is either a Client Component or a Server Component based on whether its module is marked with `'use client'` or is a transitive dependency of one.
+
+**Rendering** is where and when those component usages are evaluated and turned into output (such as HTML). This is determined by the framework and the render pass. Server Components are evaluated on the server. Client Components are sent to the client as executable code. Frameworks may also prerender Client Components to HTML ahead of time so the page can display before client code loads.
+
+On the client, the framework downloads the Client Component bundles and hydrates any prerendered Client Components, attaching event handlers and other client-only behavior.
 
 <Diagram name="use_client_render_tree" height={250} width={500} alt="A tree graph where each node represents a component and its children as child components. The top-level node is labelled 'App' and it has two child components 'InspirationGenerator' and 'FancyText'. 'InspirationGenerator' has two child components, 'FancyText' and 'Copyright'. Both 'InspirationGenerator' and its child component 'FancyText' are marked to be client-rendered.">
 The render tree for the React Server Components app. `InspirationGenerator` and its child component `FancyText` are components exported from client-marked code and considered Client Components.
@@ -161,10 +165,10 @@ The render tree for the React Server Components app. `InspirationGenerator` and 
 
 We introduce the following definitions:
 
-* **Client Components** are components in a render tree that are rendered on the client.
-* **Server Components** are components in a render tree that are rendered on the server.
+* **Client Components** are component usages whose module is marked with `'use client'` or is a transitive dependency of one. Their code is sent to the client. They may also be prerendered to HTML ahead of time.
+* **Server Components** are component usages that are not Client Components. They run only on the server and are never sent to the client as executable code.
 
-Working through the example app, `App`, `FancyText` and `Copyright` are all server-rendered and considered Server Components. As `InspirationGenerator.js` and its transitive dependencies are marked as client code, the component `InspirationGenerator` and its child component `FancyText` are Client Components.
+Working through the example app, `App`, `FancyText` and `Copyright` are considered Server Components. As `InspirationGenerator.js` and its transitive dependencies are marked as client code, the component usages `InspirationGenerator` and its child `FancyText` are Client Components.
 
 <DeepDive>
 #### How is `FancyText` both a Server and a Client Component? {/*how-is-fancytext-both-a-server-and-a-client-component*/}
@@ -206,7 +210,7 @@ Back to the question of `FancyText`, we see that the component definition does _
 
 The usage of `FancyText` as a child of `App`, marks that usage as a Server Component. When `FancyText` is imported and called under `InspirationGenerator`, that usage of `FancyText` is a Client Component as `InspirationGenerator` contains a `'use client'` directive.
 
-This means that the component definition for `FancyText` will both be evaluated on the server and also downloaded by the client to render its Client Component usage.
+This means that the component definition for `FancyText` is evaluated for its Server Component usage during the initial render, and its code is also sent to the client to render its Client Component usage.
 
 </DeepDive>
 

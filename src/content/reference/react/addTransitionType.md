@@ -45,10 +45,10 @@ startTransition(() => {
 
 Call `addTransitionType` inside of `startTransition` to indicate the cause of a transition:
 
-``` [[1, 6, "addTransitionType"], [2, 5, "startTransition", [3, 6, "'submit-click'"]]
+```js [[1, 6, "addTransitionType"], [2, 5, "startTransition"], [3, 6, "'submit-click'"]]
 import { startTransition, addTransitionType } from 'react';
 
-function Submit({action) {
+function Submit({action}) {
   function handleClick() {
     startTransition(() => {
       addTransitionType('submit-click');
@@ -78,7 +78,7 @@ When a [`ViewTransition`](/reference/react/ViewTransition) activates from a tran
 
 This allows you to customize different animations based on CSS scopes:
 
-```js [11]
+```js {10}
 function Component() {
   return (
     <ViewTransition>
@@ -127,7 +127,7 @@ startTransition(() => {
 
 If multiple types match, then they're joined together. If no types match then the special "default" entry is used instead. If any type has the value "none" then that wins and the ViewTransition is disabled (not assigned a name).
 
-These can be combined with enter/exit/update/layout/share props to match based on kind of trigger and Transition Type.
+These can be combined with enter/exit/update/share props to match based on kind of trigger and Transition Type.
 
 ```js
 <ViewTransition enter={{

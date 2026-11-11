@@ -10,7 +10,7 @@ We recommend defining components as functions instead of classes. [See how to mi
 
 <Intro>
 
-`Component` is the base class for the React components defined as [JavaScript classes.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) Class components are still supported by React, but we don't recommend using them in new code.
+`Component` is the base class for the React components defined as [JavaScript classes.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) Class Components are still supported by React, but we don't recommend using them in new code.
 
 ```js
 class Greeting extends Component {

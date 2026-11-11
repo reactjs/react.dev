@@ -169,6 +169,12 @@ export default function TopNav({
   const [isScrolled, setIsScrolled] = useState(false);
   const scrollParentRef = useRef<HTMLDivElement>(null);
   const {asPath} = useRouter();
+  const translationsHref =
+    section === 'learn' || section === 'reference'
+      ? `/community/translations?from=${encodeURIComponent(
+          asPath.split(/[?#]/)[0]
+        )}`
+      : '/community/translations';
 
   // HACK. Fix up the data structures instead.
   if ((routeTree as any).routes.length === 1) {
@@ -378,7 +384,7 @@ export default function TopNav({
                 </div>
                 <div className="flex">
                   <Link
-                    href="/community/translations"
+                    href={translationsHref}
                     aria-label="Translations"
                     className="active:scale-95 transition-transform flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
                     {languageIcon}

@@ -16,7 +16,7 @@ const {prelude, postponed} = await resumeAndPrerenderToNodeStream(reactNode, pos
 
 <Note>
 
-This API is specific to Node.js. Environments with [Web Streams,](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) like Deno and modern edge runtimes, should use [`prerender`](/reference/react-dom/static/prerender) instead.
+This API is specific to Node.js. Environments with [Web Streams,](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) like Deno and modern edge runtimes, should use [`resumeAndPrerender`](/reference/react-dom/static/resumeAndPrerender) instead.
 
 </Note>
 

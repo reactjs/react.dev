@@ -35,7 +35,8 @@ module.exports = {
   create(context) {
     return {
       Program(node) {
-        const filename = context.getFilename();
+        const rawFilename = context.getFilename();
+        const filename = rawFilename.replace(/\\/g, '/');
         if (!filename.endsWith('.md') || !filename.includes('src/content')) {
           return;
         }

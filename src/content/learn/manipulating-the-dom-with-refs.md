@@ -166,6 +166,8 @@ export default function CatFriends() {
 ```css
 div {
   width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
   overflow: hidden;
 }
 

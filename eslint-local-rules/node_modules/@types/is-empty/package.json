@@ -1,0 +1,25 @@
+{
+    "name": "@types/is-empty",
+    "version": "1.2.3",
+    "description": "TypeScript definitions for is-empty",
+    "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/is-empty",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Stanislav Termosa",
+            "githubUsername": "termosa",
+            "url": "https://github.com/termosa"
+        }
+    ],
+    "main": "",
+    "types": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+        "directory": "types/is-empty"
+    },
+    "scripts": {},
+    "dependencies": {},
+    "typesPublisherContentHash": "2e4588fddf307535a1ad55d5951d91ec02482801ffdd8b338135a261ac4b31d0",
+    "typeScriptVersion": "4.5"
+}

@@ -154,6 +154,15 @@ async function run() {
     outOfBoundsHighlightResult.messages[0].message,
     'Code highlight line 3 is outside this code block'
   );
+
+  // A nested array like [[1, 1, "text"]] parses as a single three-element
+  // highlight ([1, 1, "text"]), so it should validate against the code.
+  const nestedHighlightResult = await lintFixture('nested-highlight.md');
+  assert.strictEqual(
+    nestedHighlightResult.messages.length,
+    0,
+    'expected a nested inline highlight array to pass'
+  );
 }
 
 run().catch(error => {

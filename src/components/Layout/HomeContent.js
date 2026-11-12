@@ -1587,13 +1587,13 @@ function Video({video}) {
         data-hover="a">
         <h3
           className={cn(
-            'text-base leading-tight text-primary font-bold',
+            'text-base leading-tight text-primary font-bold w-fit',
             video.url && 'group-hover:underline'
           )}
           data-hover="h3">
           {video.title}
         </h3>
-        <p className="text-tertiary text-sm leading-snug" data-hover="p">
+        <p className="text-tertiary text-sm leading-snug w-fit" data-hover="p">
           {video.description}
         </p>
       </a>

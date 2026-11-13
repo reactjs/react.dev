@@ -28,16 +28,19 @@ const usePendingRoute = () => {
         }
       }, 100);
     };
-    const handleRouteChangeComplete = () => {
+    const handleRouteChangeEnd = () => {
+      currentRoute.current = null;
       setPendingRoute(null);
       clearTimeout(routeTransitionTimer);
     };
     events.on('routeChangeStart', handleRouteChangeStart);
-    events.on('routeChangeComplete', handleRouteChangeComplete);
+    events.on('routeChangeComplete', handleRouteChangeEnd);
+    events.on('routeChangeError', handleRouteChangeEnd);
 
     return () => {
       events.off('routeChangeStart', handleRouteChangeStart);
-      events.off('routeChangeComplete', handleRouteChangeComplete);
+      events.off('routeChangeComplete', handleRouteChangeEnd);
+      events.off('routeChangeError', handleRouteChangeEnd);
       clearTimeout(routeTransitionTimer);
     };
   }, [events]);

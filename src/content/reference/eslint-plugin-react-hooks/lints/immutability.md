@@ -17,16 +17,6 @@ A component’s props and state are immutable snapshots. Never mutate them direc
 ### Invalid {/*invalid*/}
 
 ```js
-// ❌ Array push mutation
-function Component() {
-  const [items, setItems] = useState([1, 2, 3]);
-
-  const addItem = () => {
-    items.push(4); // Mutating!
-    setItems(items); // Same reference, no re-render
-  };
-}
-
 // ❌ Object property assignment
 function Component() {
   const [user, setUser] = useState({name: 'Alice'});
@@ -36,16 +26,13 @@ function Component() {
     setUser(user); // Same reference
   };
 }
-
-// ❌ Sort without spreading
-function Component() {
-  const [items, setItems] = useState([3, 1, 2]);
-
-  const sortItems = () => {
-    setItems(items.sort()); // sort mutates!
-  };
-}
 ```
+
+<Note>
+
+The rule reports mutations it can prove, such as assigning to a property of a value from props or state. It does not infer the types of state values, so it cannot tell that a method call like `items.push(4)` or `items.sort()` mutates an array, and it does not report those calls yet. They still mutate state and are bugs, so create a new array instead, as shown below.
+
+</Note>
 
 ### Valid {/*valid*/}
 
@@ -56,6 +43,15 @@ function Component() {
 
   const addItem = () => {
     setItems([...items, 4]); // New array
+  };
+}
+
+// ✅ Sort a copy
+function Component() {
+  const [items, setItems] = useState([3, 1, 2]);
+
+  const sortItems = () => {
+    setItems([...items].sort()); // Sorts the copy, not the state
   };
 }
 
@@ -73,7 +69,7 @@ function Component() {
 
 ### I need to add items to an array {/*add-items-array*/}
 
-Mutating arrays with methods like `push()` won't trigger re-renders:
+Mutating arrays with methods like `push()` won't trigger re-renders. The linter doesn't currently report these method calls on state, so you need to catch them yourself:
 
 ```js
 // ❌ Wrong: Mutating the array

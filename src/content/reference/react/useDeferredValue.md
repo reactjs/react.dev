@@ -260,7 +260,7 @@ export default function App() {
 }
 ```
 
-The `query` will update immediately, so the input will display the new value. However, the `deferredQuery` will keep its previous value until the data has loaded, so `SearchResults` will show the stale results for a bit.
+The `query` updates immediately, so the input displays the new value. React first renders with the previous `deferredQuery`, then tries a background render with the new value. If that render suspends while the data loads, React keeps showing the previous results until the new results are ready.
 
 Enter `"a"` in the example below, wait for the results to load, and then edit the input to `"ab"`. Notice how instead of the Suspense fallback, you now see the stale result list until the new results have loaded:
 

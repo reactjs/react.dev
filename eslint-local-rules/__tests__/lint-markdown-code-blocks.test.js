@@ -123,6 +123,37 @@ async function run() {
     ),
     'expected malformed metadata to be replaced with canonical form'
   );
+
+  const validHighlightResult = await lintFixture('valid-highlight.md');
+  assert.strictEqual(
+    validHighlightResult.messages.length,
+    0,
+    'expected a valid inline highlight to pass'
+  );
+
+  const missingHighlightResult = await lintFixture('missing-highlight.md');
+  assert.strictEqual(
+    missingHighlightResult.messages.length,
+    1,
+    'expected a highlight with text missing from its line to fail'
+  );
+  assert.strictEqual(
+    missingHighlightResult.messages[0].message,
+    "Could not find 'submitAction' on highlighted line 1"
+  );
+
+  const outOfBoundsHighlightResult = await lintFixture(
+    'out-of-bounds-highlight.md'
+  );
+  assert.strictEqual(
+    outOfBoundsHighlightResult.messages.length,
+    1,
+    'expected an out-of-bounds highlight line to fail'
+  );
+  assert.strictEqual(
+    outOfBoundsHighlightResult.messages[0].message,
+    'Code highlight line 3 is outside this code block'
+  );
 }
 
 run().catch(error => {

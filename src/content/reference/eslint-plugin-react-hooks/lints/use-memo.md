@@ -79,7 +79,7 @@ function Component({user}) {
 }
 ```
 
-If the side effect sychronizes React state with some external state (or vice versa), use `useEffect`:
+If the side effect synchronizes React state with some external state (or vice versa), use `useEffect`:
 
 ```js
 // ✅ Good: Synchronization in useEffect

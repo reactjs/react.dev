@@ -114,8 +114,7 @@
         },
         {
           "title": "<ViewTransition>",
-          "path": "/reference/react/ViewTransition",
-          "version": "canary"
+          "path": "/reference/react/ViewTransition"
         }
       ]
     },
@@ -129,8 +128,7 @@
         },
         {
           "title": "addTransitionType",
-          "path": "/reference/react/addTransitionType",
-          "version": "canary"
+          "path": "/reference/react/addTransitionType"
         },
         {
           "title": "cache",
@@ -223,6 +221,10 @@
           "path": "/reference/react-dom/components/textarea"
         },
         {
+          "title": "<img>",
+          "path": "/reference/react-dom/components/img"
+        },
+        {
           "title": "<link>",
           "path": "/reference/react-dom/components/link"
         },
@@ -249,12 +251,20 @@
       "path": "/reference/react-dom",
       "routes": [
         {
+          "title": "browser",
+          "path": "/reference/react-dom/browser"
+        },
+        {
           "title": "createPortal",
           "path": "/reference/react-dom/createPortal"
         },
         {
           "title": "flushSync",
           "path": "/reference/react-dom/flushSync"
+        },
+        {
+          "title": "requestFormReset",
+          "path": "/reference/react-dom/requestFormReset"
         },
         {
           "title": "preconnect",
@@ -403,6 +413,11 @@
     {
       "title": "React Performance tracks",
       "path": "/reference/dev-tools/react-performance-tracks"
+    },
+    {
+      "title": "React DevTools for agents",
+      "path": "/reference/dev-tools/react-devtools-cdt-mcp",
+      "version": "experimental"
     },
     {
       "hasSectionHeader": true,

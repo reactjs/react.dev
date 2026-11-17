@@ -389,7 +389,7 @@ For more info, see the docs for [Directives](/reference/rsc/directives).
 
 Server Actions can be created in Server Components and passed as props to Client Components, or they can be imported and used in Client Components.
 
-For more, see the docs for [React Server Actions](/reference/rsc/server-actions).
+For more, see the docs for [React Server Actions](/reference/rsc/server-functions).
 
 ## Improvements in React 19 {/*improvements-in-react-19*/}
 

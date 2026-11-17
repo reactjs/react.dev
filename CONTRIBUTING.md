@@ -38,41 +38,9 @@ Ignore this if you're specifically describing `createElement`.
 
 Ignore this if you're specifically writing about ES5.
 
-#### Don't use ES6 features when equivalent ES5 features have no downsides.
+#### Prefer readable syntax.
 
-Remember that ES6 is still new to a lot of people. While we use it in many places (`const` / `let`, classes, arrow functions), if the equivalent ES5 code is just as straightforward and readable, consider using it.
-
-In particular, you should prefer named `function` declarations over `const myFunction = () => ...` arrows for top-level functions. However, you *should* use arrow functions where they provide a tangible improvement (such as preserving `this` context inside a component). Consider both sides of the tradeoff when deciding whether to use a new feature.
-
-#### Don't use features that aren't standardized yet.
-
-For example, **don't** write this:
-
-```js
-class MyComponent extends React.Component {
-  state = {value: ''};
-  handleChange = (e) => {
-    this.setState({value: e.target.value});
-  };
-}
-```
-
-Instead, **do** write this:
-
-```js
-class MyComponent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.state = {value: ''};
-  }
-  handleChange(e) {
-    this.setState({value: e.target.value});
-  }
-}
-```
-
-Ignore this rule if you're specifically describing an experimental proposal. Make sure to mention its experimental nature in the code and in the surrounding text.
+Choose syntax that makes each example easier to follow. Prefer named `function` declarations over `const myFunction = () => ...` arrows for top-level functions. Use arrow functions when they make callbacks easier to read. In class components, arrow functions can also preserve the component's `this` value.
 
 ### Style
 

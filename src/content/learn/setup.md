@@ -17,7 +17,7 @@ TypeScript is a popular way to add type definitions to JavaScript codebases. [Le
 
 ## React Developer Tools {/*react-developer-tools*/}
 
-React Developer Tools is a browser extension that can inspect React components, edit props and state, and identify performance problems. Learn how to install it [here](learn/react-developer-tools).
+React Developer Tools is a browser extension that can inspect React components, edit props and state, and identify performance problems. Learn how to install it [here](/learn/react-developer-tools).
 
 ## React Compiler {/*react-compiler*/}
 

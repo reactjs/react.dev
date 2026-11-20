@@ -657,9 +657,6 @@ export default function TabButton({ action, children, isActive }) {
   if (isActive) {
     return <b>{children}</b>
   }
-  if (isPending) {
-    return <b className="pending">{children}</b>;
-  }
   return (
     <button onClick={() => {
       startTransition(async () => {
@@ -735,7 +732,6 @@ export default function ContactTab() {
 ```css
 button { margin-right: 10px }
 b { display: inline-block; margin-right: 10px; }
-.pending { color: #777; }
 .items {
   max-height: 300px;
   overflow: auto;

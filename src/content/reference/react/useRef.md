@@ -300,6 +300,38 @@ export default function Form() {
 
 <Solution />
 
+#### Focusing an input using a callback ref {/*focusing-an-input-using-a-callback-ref*/}
+
+Instead of a ref object, you can pass a **callback function** to the `ref` attribute. React will call your callback with the DOM node when it mounts, and with `null` when it unmounts. This is useful when you need to focus the element immediately on mount without a button click.
+
+<Sandpack>
+
+```js
+import { useCallback } from 'react';
+
+export default function Form() {
+  const inputRef = useCallback((node) => {
+    if (node !== null) {
+      node.focus();
+    }
+  }, []);
+
+  return (
+    <>
+      <label>
+        Name:{' '}
+        <input ref={inputRef} />
+      </label>
+      <p>The input above is focused automatically on mount.</p>
+    </>
+  );
+}
+```
+
+</Sandpack>
+
+<Solution />
+
 #### Scrolling an image into view {/*scrolling-an-image-into-view*/}
 
 In this example, clicking the button will scroll an image into view. It uses a ref to the list DOM node, and then calls DOM [`querySelectorAll`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll) API to find the image we want to scroll to.

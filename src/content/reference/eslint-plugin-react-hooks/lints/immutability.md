@@ -17,16 +17,6 @@ A component’s props and state are immutable snapshots. Never mutate them direc
 ### Invalid {/*invalid*/}
 
 ```js
-// ❌ Array push mutation
-function Component() {
-  const [items, setItems] = useState([1, 2, 3]);
-
-  const addItem = () => {
-    items.push(4); // Mutating!
-    setItems(items); // Same reference, no re-render
-  };
-}
-
 // ❌ Object property assignment
 function Component() {
   const [user, setUser] = useState({name: 'Alice'});
@@ -36,16 +26,15 @@ function Component() {
     setUser(user); // Same reference
   };
 }
-
-// ❌ Sort without spreading
-function Component() {
-  const [items, setItems] = useState([3, 1, 2]);
-
-  const sortItems = () => {
-    setItems(items.sort()); // sort mutates!
-  };
-}
 ```
+
+<Note>
+
+#### Note on Array and Method Mutations {/*array-and-method-mutations*/}
+
+Direct property mutations (like `user.name = 'Bob'`) are caught and flagged by this rule. However, calling mutating methods like `items.push(4)` or `items.sort()` will not produce a linter diagnostic unless the compiler can fully infer the state type. Even if the linter does not flag them, you must avoid in-place mutations because passing the same object/array reference to a state setter prevents React from triggering re-renders.
+
+</Note>
 
 ### Valid {/*valid*/}
 

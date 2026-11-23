@@ -334,7 +334,7 @@ const button = <button />;
 
 #### Removed: `react-test-renderer/shallow` {/*removed-react-test-renderer-shallow*/}
 
-In React 18, we updated `react-test-renderer/shallow` to re-export [react-shallow-renderer](https://github.com/enzymejs/react-shallow-renderer). In React 19, we're removing `react-test-render/shallow` to prefer installing the package directly:
+In React 18, we updated `react-test-renderer/shallow` to re-export [react-shallow-renderer](https://github.com/enzymejs/react-shallow-renderer). In React 19, we're removing `react-test-renderer/shallow` to prefer installing the package directly:
 
 ```bash
 npm install react-shallow-renderer --save-dev
@@ -579,7 +579,7 @@ In the future we will more aggressively block accessing internals from React to 
 
 ### Removed deprecated TypeScript types {/*removed-deprecated-typescript-types*/}
 
-We've cleaned up the TypeScript types based on the removed APIs in React 19. Some of the removed have types been moved to more relevant packages, and others are no longer needed to describe React's behavior.
+We've cleaned up the TypeScript types based on the removed APIs in React 19. Some of the removed types have been moved to more relevant packages, and others are no longer needed to describe React's behavior.
 
 <Note>
 We've published [`types-react-codemod`](https://github.com/eps1lon/types-react-codemod/) to migrate most type related breaking changes:
@@ -720,7 +720,7 @@ If you define the reducer inline, we encourage to annotate the function paramete
 - useReducer<React.Reducer<State, Action>>((state, action) => state)
 + useReducer((state: State, action: Action) => state)
 ```
-This is also what you'd also have to do if you move the reducer outside of the `useReducer` call:
+This is also what you'd have to do if you move the reducer outside of the `useReducer` call:
 
 ```ts
 const reducer = (state: State, action: Action) => state;

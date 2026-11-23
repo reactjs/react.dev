@@ -46,7 +46,7 @@ Other supported props:
 * `integrity`: a string. A cryptographic hash of the script, to [verify its authenticity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity).
 * `noModule`: a boolean. Disables the script in browsers that support ES modules — allowing for a fallback script for browsers that do not.
 * `nonce`: a string. A cryptographic [nonce to allow the resource](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) when using a strict Content Security Policy.
-* `referrer`: a string. Says [what Referer header to send](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#referrerpolicy) when fetching the script and any resources that the script fetches in turn.
+* `referrerPolicy`: a string. Specifies the [referrer policy](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#referrerpolicy) for fetching the script and any modules it imports.
 * `type`: a string. Says whether the script is a [classic script, ES module, or import map](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type).
 
 Props that disable React's [special treatment of scripts](#special-rendering-behavior):
@@ -109,6 +109,8 @@ export default function Page() {
 
 <Note>
 When you want to use a script, it can be beneficial to call the [preinit](/reference/react-dom/preinit) function. Calling this function may allow the browser to start fetching the script earlier than if you just render a `<script>` component, for example by sending an [HTTP Early Hints response](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/103).
+
+If you need to set a `referrerPolicy`, skip `preinit` for that script. An earlier `preinit` call for the same URL can start fetching the script without the policy set on `<script>`.
 </Note>
 
 ### Rendering an inline script {/*rendering-an-inline-script*/}

@@ -192,7 +192,7 @@ export default function Stopwatch() {
 
 React expects that the body of your component [behaves like a pure function](/learn/keeping-components-pure):
 
-- If the inputs ([props](/learn/passing-props-to-a-component), [state](/learn/state-a-components-memory), and [context](/learn/passing-data-deeply-with-context)) are the same, it should return exactly the same JSX.
+- If the inputs ([props](/learn/passing-props-to-a-component), [state](/learn/state-a-components-memory), and [Context](/learn/passing-data-deeply-with-context)) are the same, it should return exactly the same JSX.
 - Calling it in a different order or with different arguments should not affect the results of other calls.
 
 Reading or writing a ref **during rendering** breaks these expectations.

@@ -37,6 +37,50 @@ Common scenarios where this occurs:
 - **Dependency arrays that need stable references** - When unstable dependencies cause effects to fire too often or create infinite loops
 - **Conditional logic based on reference checks** - When code uses referential equality checks for caching or optimization
 
+## Unsupported Syntax {/*unsupported-syntax*/}
+
+A few syntax patterns are not supported inside `try/catch` statements yet. When React Compiler encounters one of them, it skips the whole component or hook instead of compiling it:
+
+- **Conditional expressions** - ternaries (`condition ? a : b`) and the logical operators `&&`, `||`, and `??`
+- **Optional chaining** - `object?.property`
+- **`throw` statements**
+- **Loops** - `for`, `for...of`, and `while` loops
+
+These patterns are fully supported outside of `try/catch`. Even a single guard inside the `try` is enough to lose the optimization:
+
+```js
+function WeatherReport({report}) {
+  // ❌ Skipped: the guard is inside try/catch
+  let summary;
+  try {
+    summary = parseSummary(report?.data ?? "");
+  } catch (error) {
+    summary = "Report unavailable";
+  }
+
+  return <div>{summary}</div>;
+}
+```
+
+Evaluate the guard before the `try`, or extract the fallible code into a separate function, and the same component compiles:
+
+```js
+function WeatherReport({report}) {
+  // ✅ Compiles: the guard runs before the try
+  const source = report?.data ?? "";
+  let summary;
+  try {
+    summary = parseSummary(source);
+  } catch (error) {
+    summary = "Report unavailable";
+  }
+
+  return <div>{summary}</div>;
+}
+```
+
+Skipped components and hooks still build and run normally, so the only difference is that they are not optimized. To notice them, check that the component shows the ✨ badge in React DevTools, or log skipped components and hooks with the [`logger`](/reference/react-compiler/logger) option.
+
 ## Debugging Workflow {/*debugging-workflow*/}
 
 Follow these steps when you encounter issues:

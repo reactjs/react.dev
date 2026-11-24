@@ -11,6 +11,7 @@
 
 import * as React from 'react';
 import NextLink from 'next/link';
+import Image from 'next/image';
 import cn from 'classnames';
 import {ExternalLink} from 'components/ExternalLink';
 import {IconFacebookCircle} from 'components/Icon/IconFacebookCircle';
@@ -26,8 +27,22 @@ export function Footer() {
         <div className="col-span-2 md:col-span-1 justify-items-start mt-3.5">
           <ExternalLink
             href="https://react.foundation/"
-            className="font-display text-lg text-primary dark:text-primary-dark">
-            React Foundation
+            aria-label="React Foundation"
+            className="block w-fit">
+            <Image
+              src="/images/brand/react-foundation-light.svg"
+              alt=""
+              width={455}
+              height={137}
+              className="block h-auto w-40 max-w-full dark:hidden"
+            />
+            <Image
+              src="/images/brand/react-foundation-dark.svg"
+              alt=""
+              width={830}
+              height={249}
+              className="hidden h-auto w-40 max-w-full dark:block"
+            />
           </ExternalLink>
 
           <div

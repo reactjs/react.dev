@@ -110,15 +110,15 @@ export function NavigationBar({
   }, [isMultiFile, onContainerResize]);
 
   const handleClear = () => {
-    /**
-     * resetAllFiles must come first, otherwise
-     * the previous content will appear for a second
-     * when the iframe loads.
-     *
-     * Plus, it should only prompt if there's any file changes
-     */
+    // Only prompt when there are edits to clear.
     if (sandpack.editorState === 'dirty' && confirm('Clear all your edits?')) {
       sandpack.resetAllFiles();
+      // Don't refresh() here. The reset files are pushed to the bundler by
+      // the file watcher, which recompiles the preview with the original
+      // code. Refreshing synchronously would reboot the iframe while the
+      // client still holds the edited files: the reset compile is lost in
+      // the reboot, so the preview keeps running the edited code (#8657).
+      return;
     }
     refresh();
   };

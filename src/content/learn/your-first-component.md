@@ -88,7 +88,7 @@ With `function Profile() { }` you define a JavaScript function with the name `Pr
 
 <Pitfall>
 
-React components are regular JavaScript functions, but **their names must start with a capital letter** or they won't work!
+React Components are regular JavaScript functions, but **their names must start with a capital letter** or they won't work!
 
 </Pitfall>
 
@@ -227,7 +227,7 @@ You've just gotten your first taste of React! Let's recap some key points.
 
 * React lets you create components, **reusable UI elements for your app.**
 * In a React app, every piece of UI is a component.
-* React components are regular JavaScript functions except:
+* React Components are regular JavaScript functions except:
 
   1. Their names always begin with a capital letter.
   2. They return JSX markup.

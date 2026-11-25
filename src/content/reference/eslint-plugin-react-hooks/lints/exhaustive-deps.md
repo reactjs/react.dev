@@ -10,7 +10,19 @@ Validates that dependency arrays for React hooks contain all necessary dependenc
 
 ## Rule Details {/*rule-details*/}
 
-React hooks like `useEffect`, `useMemo`, and `useCallback` accept dependency arrays. When a value referenced inside these hooks isn't included in the dependency array, React won't re-run the effect or recalculate the value when that dependency changes. This causes stale closures where the hook uses outdated values.
+React hooks that accept dependency arrays (`useEffect`, `useCallback`, `useMemo`) rely on developers to manually list all reactive values that the hook's closure depends on. When a value is omitted from the dependencies array, the hook's closure continues to reference an outdated value from a previous render—a "stale closure". This leads to subtle, difficult‑to‑debug bugs such as:
+
+- Event handlers or effects reading old state/props.
+- Effects that should run on state changes never re‑executing.
+- Callbacks that always operate on stale data.
+
+Currently, the `eslint-plugin-react-hooks` provides a static analysis rule (`exhaustive-deps`) that warns about missing dependencies. However, this rule:
+
+- Cannot catch all cases (e.g., dynamic values, complex control flow, or custom hooks that obscure dependencies).
+- Only runs at lint time; developers may ignore or disable the warning.
+- Does not warn about actual runtime behavior—it cannot tell if a stale closure actually read an outdated value during a particular render.
+
+As a result, developers often spend hours chasing down stale‑closure bugs, especially in larger codebases or when integrating third‑party hooks.
 
 ## Common Violations {/*common-violations*/}
 

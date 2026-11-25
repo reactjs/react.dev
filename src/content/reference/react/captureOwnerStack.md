@@ -277,7 +277,7 @@ pre.nowrap {
   <p>
     <pre id="error-body"></pre>
   </p>
-  <h2 class="-mb-20">Owner Stack:</h4>
+  <h2 class="-mb-20">Owner Stack:</h2>
   <pre id="error-owner-stack" class="nowrap"></pre>
   <button
     id="error-close"

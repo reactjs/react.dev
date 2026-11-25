@@ -115,7 +115,7 @@ export function Footer() {
         </div>
         <div className="flex flex-col">
           <FooterLink isHeader={true}>More</FooterLink>
-          <FooterLink href="/blog">Blog</FooterLink>
+          <FooterLink href="/careers">Careers</FooterLink>
           <FooterLink href="https://reactnative.dev/">React Native</FooterLink>
           <FooterLink href="https://lfprojects.org/policies/privacy-policy/">
             Privacy

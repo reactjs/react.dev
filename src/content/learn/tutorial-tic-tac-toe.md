@@ -432,26 +432,20 @@ At this point your code should look something like this:
 <Sandpack>
 
 ```js
+import React from "react";
+
+function Square({ value }) {
+  return <button className="square">{value}</button>;
+}
+
 export default function Board() {
-  return (
-    <>
-      <div className="board-row">
-        <button className="square">1</button>
-        <button className="square">2</button>
-        <button className="square">3</button>
-      </div>
-      <div className="board-row">
-        <button className="square">4</button>
-        <button className="square">5</button>
-        <button className="square">6</button>
-      </div>
-      <div className="board-row">
-        <button className="square">7</button>
-        <button className="square">8</button>
-        <button className="square">9</button>
-      </div>
-    </>
-  );
+  const renderSquare = (i) => {
+    return <Square key={i} value={i} />;
+  };
+
+  const squares = Array.from({ length: 9 }, (_, index) => renderSquare(index + 1));
+
+  return <div className="board">{squares}</div>;
 }
 ```
 
@@ -469,27 +463,26 @@ body {
 .square {
   background: #fff;
   border: 1px solid #999;
-  float: left;
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
   height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
+  width: 34px;
   padding: 0;
   text-align: center;
-  width: 34px;
 }
 
-.board-row:after {
-  clear: both;
-  content: '';
-  display: table;
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 34px);
+  gap: 0;
+  justify-content: start;
 }
 
 .status {
   margin-bottom: 10px;
 }
+
 .game {
   display: flex;
   flex-direction: row;

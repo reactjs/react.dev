@@ -27,6 +27,7 @@ import {OpenInCodeSandboxButton} from './OpenInCodeSandboxButton';
 import {ReloadButton} from './ReloadButton';
 import {ClearButton} from './ClearButton';
 import {DownloadButton} from './DownloadButton';
+import {CopyButton} from './CopyButton';
 import {IconChevron} from '../../Icon/IconChevron';
 import {Listbox} from '@headlessui/react';
 import {OpenInTypeScriptPlaygroundButton} from './OpenInTypeScriptPlayground';
@@ -201,6 +202,7 @@ export function NavigationBar({
       <div
         className="px-3 flex items-center justify-end text-start"
         translate="yes">
+        <CopyButton />
         <DownloadButton providedFiles={providedFiles} />
         <ReloadButton onReload={handleReload} />
         <ClearButton onClear={handleClear} />

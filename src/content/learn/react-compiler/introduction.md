@@ -165,7 +165,7 @@ Next.js users can enable the swc-invoked React Compiler by using [v15.3.1](https
 
 ## What should I do about useMemo, useCallback, and React.memo? {/*what-should-i-do-about-usememo-usecallback-and-reactmemo*/}
 
-By default, React Compiler will memoize your code based on its analysis and heuristics. In most cases, this memoization will be as precise, or moreso, than what you may have written.
+By default, React Compiler will memoize your code based on its analysis and heuristics. In most cases, this memoization will be as precise, or more so, than what you may have written.
 
 However, in some cases developers may need more control over memoization. The `useMemo` and `useCallback` hooks can continue to be used with React Compiler as an escape hatch to provide control over which values are memoized. A common use-case for this is if a memoized value is used as an effect dependency, in order to ensure that an effect does not fire repeatedly even when its dependencies do not meaningfully change.
 

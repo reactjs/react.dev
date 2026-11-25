@@ -31,28 +31,65 @@ const ref = useRef(0);
 
 Like state, refs are retained by React between re-renders. However, setting state re-renders a component. Changing a ref does not! You can access the current value of that ref through the `ref.current` property.
 
+For example, this Effect depends on the `options` object which gets re-created every time you edit the input:
+
+> ⚠️ **Note (example intentionally shows a problematic pattern).**
+>
+> The code below purposely shows a case where an `options` object is recreated on every render to demonstrate why that would re-run an Effect. The sandbox linter will show an error for this example — that is expected. See the following section for a corrected version.
+
 <Sandpack>
 
 ```js
-import { useRef } from 'react';
+import { useState, useEffect } from 'react';
+import { createConnection } from './chat.js';
 
-export default function Counter() {
-  let ref = useRef(0);
+const serverUrl = 'https://localhost:1234';
 
-  function handleClick() {
-    ref.current = ref.current + 1;
-    alert('You clicked ' + ref.current + ' times!');
-  }
+function ChatRoom({ roomId }) {
+  const [message, setMessage] = useState('');
+
+  const options = {
+    serverUrl: serverUrl,
+    roomId: roomId
+  };
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    const connection = createConnection(options);
+    connection.connect();
+    return () => connection.disconnect();
+  }, [options]);
 
   return (
-    <button onClick={handleClick}>
-      Click me!
-    </button>
+    <>
+      <h1>Welcome to the {roomId} room!</h1>
+      <input value={message} onChange={e => setMessage(e.target.value)} />
+    </>
   );
 }
-```
-
 </Sandpack>
+
+export default function App() {
+  const [roomId, setRoomId] = useState('general');
+  return (
+    <>
+      <label>
+        Choose the chat room:{' '}
+        <select
+          value={roomId}
+          onChange={e => setRoomId(e.target.value)}
+        >
+          <option value="general">general</option>
+          <option value="travel">travel</option>
+          <option value="music">music</option>
+        </select>
+      </label>
+      <hr />
+      <ChatRoom roomId={roomId} />
+    </>
+  );
+}
+
 
 A ref is like a secret pocket of your component that React doesn't track. For example, you can use refs to store [timeout IDs](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout#return_value), [DOM elements](https://developer.mozilla.org/en-US/docs/Web/API/Element), and other objects that don't impact the component's rendering output.
 

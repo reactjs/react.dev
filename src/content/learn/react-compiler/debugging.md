@@ -18,6 +18,49 @@ This guide helps you identify and fix issues when using React Compiler. Learn ho
 
 React Compiler is designed to handle code that follows the [Rules of React](/reference/rules). When it encounters code that might break these rules, it safely skips optimization rather than risk changing your app's behavior.
 
+### Unsupported Syntax {/*unsupported-syntax*/}
+
+Code can follow the Rules of React and still use syntax that the compiler doesn't support yet. With the default [`panicThreshold: 'none'`](/reference/react-compiler/panicThreshold), the compiler skips the affected component or Hook and continues building. The code runs normally, but without compiler optimizations.
+
+For example, React Compiler 1.0 doesn't support these patterns:
+
+- Conditional expressions (`condition ? a : b`), logical expressions (`&&`, `||`, `??`), and optional chaining (`?.`) inside a `try` block
+- `throw` statements inside a `try` block
+- `try` statements with a `finally` clause
+
+These limitations can change between compiler versions. Some unsupported patterns aren't reported by ESLint. To see why a function was skipped in your version, configure the compiler's [`logger`](/reference/react-compiler/logger#detailed-error-logging) and inspect `CompileError` events.
+
+Not every `try/catch` causes a skip. For example, calling `JSON.parse` inside `try` is supported, but adding a conditional expression causes this component to be skipped:
+
+```js
+function Preview({text}) {
+  let data;
+  try {
+    data = text ? JSON.parse(text) : null;
+  } catch {
+    data = null;
+  }
+  return <div>{data?.name ?? 'No data'}</div>;
+}
+```
+
+If you need this syntax, move the parsing logic into a standalone utility function. The compiler can then optimize the component that calls it:
+
+```js
+function parseData(text) {
+  try {
+    return text ? JSON.parse(text) : null;
+  } catch {
+    return null;
+  }
+}
+
+function Preview({text}) {
+  const data = parseData(text);
+  return <div>{data?.name ?? 'No data'}</div>;
+}
+```
+
 ### Compiler Errors vs Runtime Issues {/*compiler-errors-vs-runtime-issues*/}
 
 **Compiler errors** occur at build time and prevent your code from compiling. These are rare because the compiler is designed to skip problematic code rather than fail.

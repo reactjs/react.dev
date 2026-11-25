@@ -64,7 +64,7 @@ See [experimental_taintUniqueValue](/reference/react/experimental_taintUniqueVal
 
 Since client code calls the Server Function over the network, any arguments passed will need to be serializable.
 
-Here are supported types for Server Function arguments:
+Here are the supported types for Server Function arguments:
 
 * Primitives
 	* [string](https://developer.mozilla.org/en-US/docs/Glossary/String)

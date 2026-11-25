@@ -91,6 +91,14 @@ const options = {
   indexName: siteConfig.algolia.indexName,
 };
 
+function getMissingResultsUrl({query}: {query: string}) {
+  const params = new URLSearchParams({
+    template: '0-bug.yml',
+    title: `[Bug]: Search returned no results for query: ${query}`,
+  });
+  return `https://github.com/reactjs/react.dev/issues/new?${params.toString()}`;
+}
+
 const DocSearchModal: any = lazy(() =>
   import('@docsearch/react/modal').then((mod) => ({
     default: mod.DocSearchModal as ComponentType<
@@ -132,6 +140,7 @@ export function Search({
             {...options}
             searchParameters={searchParameters}
             onClose={onClose}
+            getMissingResultsUrl={getMissingResultsUrl}
             navigator={{
               navigate({itemUrl}: any) {
                 Router.push(itemUrl);

@@ -444,7 +444,7 @@ When the button is clicked, `setOptimisticIsLiked` immediately updates the displ
 
 This example reads from `optimisticIsLiked` to calculate the next value. This works when the base state won't change, but if the base state might change while your Action is pending, you may want to use a state updater or the reducer.
 
-See [Updating state based on the current state](#updating-state-based-on-current-state) for an example.
+See [Updating props or state optimistically](#updating-props-or-state-optimistically) for an example.
 
 </Note>
 
@@ -1044,7 +1044,7 @@ const [optimistic, adjust] = useOptimistic(count, (current, delta) => current + 
 adjust(1);  // Always adds 1 to whatever the current count is
 ```
 
-See [Updating state based on the current state](#updating-state-based-on-current-state) for details.
+See [Updating props or state optimistically](#updating-props-or-state-optimistically) for details.
 
 ### I don't know if my optimistic update is pending {/*i-dont-know-if-my-optimistic-update-is-pending*/}
 

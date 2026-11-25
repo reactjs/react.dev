@@ -52,7 +52,7 @@ As dependencies of `RichTextEditor`, `formatDate` and `Button` will also be eval
 * When a component module contains a `'use client'` directive, any usage of that component is guaranteed to be a Client Component. However, a component can still be evaluated on the client even if it does not have a `'use client'` directive.
 	* A component usage is considered a Client Component if it is defined in module with `'use client'` directive or when it is a transitive dependency of a module that contains a `'use client'` directive. Otherwise, it is a Server Component.
 * Code that is marked for client evaluation is not limited to components. All code that is a part of the Client module sub-tree is sent to and run by the client.
-* When a server evaluated module imports values from a `'use client'` module, the values must either be a React component or [supported serializable prop values](#passing-props-from-server-to-client-components) to be passed to a Client Component. Any other use case will throw an exception.
+* When a server evaluated module imports values from a `'use client'` module, the values must either be a React component or [supported serializable prop values](#serializable-types) to be passed to a Client Component. Any other use case will throw an exception.
 
 ### How `'use client'` marks client code {/*how-use-client-marks-client-code*/}
 

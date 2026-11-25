@@ -46,6 +46,12 @@ React will always place the DOM element corresponding to the `<meta>` component 
 
 There is one exception to this: if `<meta>` has an [`itemProp`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemprop) prop, there is no special behavior, because in this case it doesn’t represent metadata about the document but rather metadata about a specific part of the page.
 
+<Note>
+
+When rendering only part of a document on the server, React cannot insert `<meta>` into a `<head>` supplied by a separate HTML template. It emits `<meta>` with the rendered output instead, and hydration does not move it into that `<head>`. To include `<meta>` in the initial document `<head>`, render the entire document with React or add it to the server template.
+
+</Note>
+
 ---
 
 ## Usage {/*usage*/}

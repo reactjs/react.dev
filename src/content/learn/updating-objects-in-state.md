@@ -73,6 +73,7 @@ export default function MovingDot() {
         position: 'relative',
         width: '100vw',
         height: '100vh',
+        overflow: 'hidden',
       }}>
       <div style={{
         position: 'absolute',
@@ -146,6 +147,7 @@ export default function MovingDot() {
         position: 'relative',
         width: '100vw',
         height: '100vh',
+        overflow: 'hidden',
       }}>
       <div style={{
         position: 'absolute',

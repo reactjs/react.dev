@@ -80,6 +80,20 @@ To implement this:
 3. In the `handleClick` function, read the input DOM node from `inputRef.current` and call [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) on it with `inputRef.current.focus()`.
 4. Pass the `handleClick` event handler to `<button>` with `onClick`.
 
+You can also pass a callback function as a `ref`. React calls it with the DOM node when the input is added to the screen, so you can focus the input as soon as it appears:
+
+```js
+function focusOnMount(node) {
+  node?.focus();
+}
+
+export default function Form() {
+  return <input ref={focusOnMount} />;
+}
+```
+
+For a plain input that should receive focus when the page loads, [`autoFocus`](https://developer.mozilla.org/docs/Web/HTML/Global_attributes/autofocus) is usually simpler. A callback ref is useful when you need to run other logic when React attaches the DOM node. Keep the callback stable (for example, by defining it outside your component) so it doesn't run again on every render.
+
 While DOM manipulation is the most common use case for refs, the `useRef` Hook can be used for storing other things outside React, like timer IDs. Similarly to state, refs remain between renders. Refs are like state variables that don't trigger re-renders when you set them. Read about refs in [Referencing Values with Refs.](/learn/referencing-values-with-refs)
 
 ### Example: Scrolling to an element {/*example-scrolling-to-an-element*/}

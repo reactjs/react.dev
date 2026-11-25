@@ -197,6 +197,8 @@ return (
 );
 ```
 
+JSX curly braces expect **expressions**, not statements. This is why `if` goes in regular JavaScript *before* the returned JSX, while the result of that `if` (like `content`) is placed inside `{ }`. When you need to branch inline, use an expression form such as the conditional (`? :`) operator.
+
 If you prefer more compact code, you can use the [conditional `?` operator.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) Unlike `if`, it works inside JSX:
 
 ```js

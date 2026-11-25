@@ -32,8 +32,16 @@ function MyButton() {
   );
 }
 ```
-
 Now that you've declared `MyButton`, you can nest it into another component:
+
+<Diagram
+  name="my-button-visual"
+  height={265}
+  width={650}
+  alt="Diagram showing how MyApp nests the MyButton component and how MyButton renders a button."
+>
+  How nesting works: MyApp includes MyButton, which renders the button the user sees.
+</Diagram>
 
 ```js {5}
 export default function MyApp() {
@@ -45,6 +53,14 @@ export default function MyApp() {
   );
 }
 ```
+<Diagram
+  name="my-app-visual"
+  height={250}
+  width={650}
+  alt="Diagram showing how MyButton returns a button and React displays the result on the screen."
+>
+  How MyButton works: you call MyButton, it returns a button, and React displays the result.
+</Diagram>
 
 Notice that `<MyButton />` starts with a capital letter. That's how you know it's a React component. React component names must always start with a capital letter, while HTML tags must be lowercase.
 
@@ -60,6 +76,7 @@ function MyButton() {
     </button>
   );
 }
+
 
 export default function MyApp() {
   return (

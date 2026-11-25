@@ -20,6 +20,7 @@ export const OpenInTypeScriptPlaygroundButton = (props: {content: string}) => {
         contentWithReactImport
       )}`}
       title="Open in TypeScript Playground"
+      aria-label="Open in TypeScript Playground"
       target="_blank"
       rel="noreferrer">
       <IconNewPage

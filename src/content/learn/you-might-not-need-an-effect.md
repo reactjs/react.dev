@@ -720,11 +720,13 @@ function SearchResults({ query }) {
 }
 ```
 
-You *don't* need to move this fetch to an event handler.
+In this example, the event handler updates `page`, and the Effect fetches results for the current `query` and `page`. This is useful when the results should stay synchronized with those values, even if they change for reasons other than this click (for example, when they are restored from the URL). The fact that a user event changed `page` does not by itself mean the fetch belongs in the event handler.
+
+If a request should happen *only* in response to a particular user action, and should not run when the same values are restored or changed some other way, start it in the event handler instead. Avoid triggering the same request both in an Effect and in an event handler.
 
 This might seem like a contradiction with the earlier examples where you needed to put the logic into the event handlers! However, consider that it's not *the typing event* that's the main reason to fetch. Search inputs are often prepopulated from the URL, and the user might navigate Back and Forward without touching the input.
 
-It doesn't matter where `page` and `query` come from. While this component is visible, you want to keep `results` [synchronized](/learn/synchronizing-with-effects) with data from the network for the current `page` and `query`. This is why it's an Effect.
+It doesn't matter where `page` and `query` come from. While this component is visible, you want to keep `results` [synchronized](/learn/synchronizing-with-effects) with data from the network for the current `page` and `query`. This is why it's an Effect. If these values come from the URL, use your router's state so URL navigation updates the values React sees; reading `window.location` inside an Effect by itself won't make that Effect re-run when the URL changes.
 
 However, the code above has a bug. Imagine you type `"hello"` fast. Then the `query` will change from `"h"`, to `"he"`, `"hel"`, `"hell"`, and `"hello"`. This will kick off separate fetches, but there is no guarantee about which order the responses will arrive in. For example, the `"hell"` response may arrive *after* the `"hello"` response. Since it will call `setResults()` last, you will be displaying the wrong search results. This is called a ["race condition"](https://en.wikipedia.org/wiki/Race_condition): two different requests "raced" against each other and came in a different order than you expected.
 

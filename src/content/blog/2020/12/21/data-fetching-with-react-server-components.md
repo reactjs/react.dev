@@ -27,7 +27,7 @@ If you want to check them out, we recommend going in the following order:
 
 1. **Watch the talk** to learn about React Server Components and see the demo.
 
-2. **[Clone the demo](http://github.com/reactjs/server-components-demo)** to play with React Server Components on your computer.
+2. **[Clone the demo](https://github.com/reactjs/server-components-demo)** to play with React Server Components on your computer.
 
 3. **[Read the RFC (with FAQ at the end)](https://github.com/reactjs/rfcs/pull/188)** for a deeper technical breakdown and to provide feedback.
 

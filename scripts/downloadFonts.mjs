@@ -3,7 +3,7 @@
  */
 
 import { exec } from 'child_process';
-import { mkdir, promises as fsPromises } from 'fs';
+import { promises as fsPromises } from 'fs';
 import { dirname } from 'path';
 import { promisify } from 'util';
 

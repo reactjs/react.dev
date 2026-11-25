@@ -154,6 +154,11 @@ export function Page({
         </Head>
       )}
       {/* <SocialBanner /> */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:start-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-brand focus:text-white dark:focus:bg-brand-dark dark:focus:text-gray-95 focus:shadow-md focus:rounded-lg focus:outline-none">
+        Skip to main content
+      </a>
       <TopNav
         section={section}
         routeTree={routeTree}
@@ -177,7 +182,7 @@ export function Page({
         )}
         {/* No fallback UI so need to be careful not to suspend directly inside. */}
         <Suspense fallback={null}>
-          <main className="min-w-0 isolate">
+          <main id="main-content" className="min-w-0 isolate">
             <article
               className="font-normal break-words text-primary dark:text-primary-dark"
               key={asPath}>

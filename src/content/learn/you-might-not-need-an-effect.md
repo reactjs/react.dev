@@ -720,11 +720,11 @@ function SearchResults({ query }) {
 }
 ```
 
-You *don't* need to move this fetch to an event handler.
+This is a case where an Effect *is* needed because you're [synchronizing](/learn/synchronizing-with-effects) with an external system (the network). However, this is different from the earlier examples where Effects weren't needed.
 
-This might seem like a contradiction with the earlier examples where you needed to put the logic into the event handlers! However, consider that it's not *the typing event* that's the main reason to fetch. Search inputs are often prepopulated from the URL, and the user might navigate Back and Forward without touching the input.
+The key difference: here, you need to fetch data whenever `query` or `page` changes, regardless of *how* they changed. The `query` might come from the URL (when the user navigates Back/Forward), or it might be typed by the user. The `page` might change from a button click or from restoring scroll position. It doesn't matter where `page` and `query` come from—while this component is visible, you want to keep `results` synchronized with data from the network for the current `page` and `query`. This is why it's an Effect.
 
-It doesn't matter where `page` and `query` come from. While this component is visible, you want to keep `results` [synchronized](/learn/synchronizing-with-effects) with data from the network for the current `page` and `query`. This is why it's an Effect.
+In contrast, if fetching was only needed in response to a specific user action (like clicking a "Search" button), you would put it in that event handler instead.
 
 However, the code above has a bug. Imagine you type `"hello"` fast. Then the `query` will change from `"h"`, to `"he"`, `"hel"`, `"hell"`, and `"hello"`. This will kick off separate fetches, but there is no guarantee about which order the responses will arrive in. For example, the `"hell"` response may arrive *after* the `"hello"` response. Since it will call `setResults()` last, you will be displaying the wrong search results. This is called a ["race condition"](https://en.wikipedia.org/wiki/Race_condition): two different requests "raced" against each other and came in a different order than you expected.
 

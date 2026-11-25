@@ -157,3 +157,16 @@ Different colors are used to indicate the duration of the component render. The 
 
 The Server Components track group will always contain a "Primary" track. If React is able to render Server Components concurrently, it will display additional "Parallel" tracks.
 If more than 8 Server Components are rendered concurrently, React will associate them with the last "Parallel" track instead of adding more tracks.
+
+##### Reading Server Component timing metadata {/*server-components-metadata*/}
+
+Server Component events include structured metadata in `entry.detail.react`. Server Requests and client-side tracks do not include these fields.
+
+| Field | Description |
+| --- | --- |
+| `version` | The metadata format version. Currently `1`. |
+| `requestId` | The string passed as `unstable_requestId` when a framework creates the response, or `undefined` if omitted. |
+| `transitionId` | The ID of active transition when the response was created, or `undefined` if none was provided. |
+| `kind` | `'component'` for a Server Component render or `'await'` for a Promise it awaited. |
+| `outcome` | `'completed'`, `'errored'`, or `'aborted'`. |
+| `environment` | The environment name associated with the render or await, falling back to the response's environment name. |

@@ -52,7 +52,6 @@ The `preloadModule` function provides the browser with a hint that it should sta
   *  `nonce`: a string. A cryptographic [nonce to allow the module](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) when using a strict Content Security Policy.
   *  `fetchPriority`: a string. Suggests a [relative priority](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/fetchpriority) for fetching the resource; possible values are `auto` (default), `high`, and `low`.
 
-
 #### Returns {/*returns*/}
 
 `preloadModule` returns nothing.

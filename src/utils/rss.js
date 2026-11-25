@@ -19,10 +19,11 @@ const getAllFiles = function (dirPath, arrayOfFiles) {
   arrayOfFiles = arrayOfFiles || [];
 
   files.forEach(function (file) {
-    if (fs.statSync(dirPath + '/' + file).isDirectory()) {
-      arrayOfFiles = getAllFiles(dirPath + '/' + file, arrayOfFiles);
+    const fullPath = path.join(dirPath, file);
+    if (fs.statSync(fullPath).isDirectory()) {
+      arrayOfFiles = getAllFiles(fullPath, arrayOfFiles);
     } else {
-      arrayOfFiles.push(path.join(dirPath, '/', file));
+      arrayOfFiles.push(fullPath);
     }
   });
 
@@ -51,7 +52,8 @@ exports.generateRssFeed = function () {
     if (id !== 'index.md') {
       const content = fs.readFileSync(filePath, 'utf-8');
       const {data} = matter(content);
-      const slug = filePath.split('/').slice(-4).join('/').replace('.md', '');
+      const relativePath = path.relative(dirPath, filePath).replace(/\\/g, '/');
+      const slug = relativePath.replace(/\.md$/, '');
 
       if (data.title == null || data.title.trim() === '') {
         throw new Error(

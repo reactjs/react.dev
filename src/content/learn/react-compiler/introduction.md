@@ -12,7 +12,6 @@ React Compiler is a new build-time tool that automatically optimizes your React 
 * Getting started with the compiler
 * Incremental adoption strategies
 * Debugging and troubleshooting when things go wrong
-* Using the compiler on your React library
 
 </YouWillLearn>
 

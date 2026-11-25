@@ -441,7 +441,7 @@ Notice that editing the form doesn't work yet. There is a console error in the s
 
 <ConsoleBlock level="error">
 
-You provided a \`value\` prop to a form field without an \`onChange\` handler. This will render a read-only field.
+Warning: You provided a \`value\` prop to a form field without an \`onChange\` handler. This will render a read-only field.
 
 </ConsoleBlock>
 

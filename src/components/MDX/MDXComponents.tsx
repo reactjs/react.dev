@@ -13,6 +13,7 @@ import {Children, useContext, useMemo} from 'react';
 import * as React from 'react';
 import cn from 'classnames';
 import type {HTMLAttributes} from 'react';
+import NextImage from 'next/image';
 
 import CodeBlock from './CodeBlock';
 import {CodeDiagram} from './CodeDiagram';
@@ -514,8 +515,16 @@ function YouTubeIframe(props: any) {
 }
 
 function Image(props: any) {
-  const {alt, ...rest} = props;
-  return <img alt={alt} className="max-w-[calc(min(700px,100%))]" {...rest} />;
+  const {alt, width, height, ...rest} = props;
+  return (
+    <NextImage
+      alt={alt}
+      width={width ? Number(width) : 700}
+      height={height ? Number(height) : 400}
+      className="max-w-[calc(min(700px,100%))] h-auto"
+      {...rest}
+    />
+  );
 }
 
 export const MDXComponents = {

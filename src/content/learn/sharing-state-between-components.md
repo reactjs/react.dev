@@ -4,7 +4,7 @@ title: Sharing State Between Components
 
 <Intro>
 
-Sometimes, you want the state of two components to always change together. To do it, remove state from both of them, move it to their closest common parent, and then pass it down to them via props. This is known as *lifting state up,* and it's one of the most common things you will do writing React code.
+Sometimes, you want the state of two components to always change together. To implement this, remove state from both of them, move it to their closest common parent, and then pass it down to them via props. This is known as *lifting state up,* and it's one of the most common practices you will do writing React code.
 
 </Intro>
 
@@ -99,11 +99,11 @@ To coordinate these two panels, you need to "lift their state up" to a parent co
 2. **Pass** hardcoded data from the common parent.
 3. **Add** state to the common parent and pass it down together with the event handlers.
 
-This will allow the `Accordion` component to coordinate both `Panel`s and only expand one at a time.
+This will allow the `Accordion` component to coordinate both `Panel`s can only expand one at a time.
 
 ### Step 1: Remove state from the child components {/*step-1-remove-state-from-the-child-components*/}
 
-You will give control of the `Panel`'s `isActive` to its parent component. This means that the parent component will pass `isActive` to `Panel` as a prop instead. Start by **removing this line** from the `Panel` component:
+You will give control of the `Panel`'s `isActive` to its parent component. This means that the parent component will pass `isActive` to the `Panel` component as a prop instead. Start by **removing this line** from the `Panel` component:
 
 ```js
 const [isActive, setIsActive] = useState(false);

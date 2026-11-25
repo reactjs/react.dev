@@ -26,6 +26,30 @@ Now, if you visit a website **built with React,** you will see the _Components_ 
 
 ![React Developer Tools extension](/images/docs/react-devtools-extension.png)
 
+### Troubleshooting the browser extension {/*troubleshooting-browser-extension*/}
+
+If the dev tools do not recognize your application, here are some steps you can try:
+
+- Make Sure You Have a React Project: Ensure that you indeed have a React application running on localhost. React DevTools only work on applications that use React.
+
+- Update React DevTools: Make sure you have updated React DevTools to the latest version. Go to the Chrome Web Store, search for `React Developer Tools`, and update the extension if necessary.
+
+- Update Chrome: Ensure that you are running the latest version of Google Chrome. Go to `chrome://settings/help` to check for updates and install them if available.
+
+- Disable Other Extensions: Some Chrome extensions can interfere with React DevTools and cause issues. Disable other extensions you have to see if the problem persists.
+
+- Try Incognito Mode: Try running your application in Chrome's incognito mode. Sometimes, unusual extensions or settings can cause issues.
+
+- Disable Cache: Open DevTools by right-clicking and selecting "Inspect" on your application in Chrome. Then, open the "Network" tab and check the "Disable cache" option. Refresh the page and see if React DevTools start working.
+
+- Check Console for Errors: Open Chrome DevTools (`Ctrl + Shift + J` or `Cmd + Option + J` on Mac), then check the "Console" tab to see if there are any errors related to React DevTools.
+
+- Check for Variable Name Conflicts: Ensure you are not using variables or names that clash with those used by React DevTools in your code, as this can cause conflicts.
+
+- Clear Cache and Cookies: Try clearing the cache and cookies for your localhost website and refresh the page.
+
+- Reinstall React DevTools: If none of the above steps work, you may need to try uninstalling and reinstalling React DevTools.
+
 ### Safari and other browsers {/*safari-and-other-browsers*/}
 For other browsers (for example, Safari), install the [`react-devtools`](https://www.npmjs.com/package/react-devtools) npm package:
 ```bash

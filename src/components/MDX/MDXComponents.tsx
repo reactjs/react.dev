@@ -486,8 +486,8 @@ function LanguageList({progress}: {progress: TranslationProgress}) {
           <LI key={code}>
             <Link href={`https://${code}.react.dev/`}>
               {enName} ({name})
-            </Link>{' '}
-            &mdash;{' '}
+            </Link>
+            &mdash;
             <Link href={`https://github.com/reactjs/${code}.react.dev`}>
               Contribute
             </Link>

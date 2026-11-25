@@ -1337,9 +1337,19 @@ function MyApp() {
 }
 ```
 
+In this section, the `currentUser` type is not certain. But, the user type is an object in general usages. So, when using `useMemo` with an object dependency, it relies on object reference changes rather than the equality of object values. If the object reference remains the same, even if the internal values are the same, `useMemo` may not provide the expected optimization.
+
+Even though the currentUser object has the same values, the reference remains the same, and `useMemo` will recalculate the memoized value because it's based on the change in reference.
+
 As a result of this change, even if `MyApp` needs to re-render, the components calling `useContext(AuthContext)` won't need to re-render unless `currentUser` has changed.
 
 Read more about [`useMemo`](/reference/react/useMemo#skipping-re-rendering-of-components) and [`useCallback`.](/reference/react/useCallback#skipping-re-rendering-of-components)
+
+<Note>Avoid using complex data types, especially objects, directly in the dependency array of useMemo.
+When using objects, JavaScript relies on object reference changes, not values.
+If the object reference remains the same, useMemo might not optimize as expected.
+To ensure proper memoization, consider using primitive values or ensuring object immutability.
+For example, prefer `setCurrentUser({ ...currentUser, updatedProperty: "newValue" })` over modifying the existing object directly using login function.</Note>
 
 ---
 

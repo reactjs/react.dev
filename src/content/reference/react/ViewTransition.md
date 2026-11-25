@@ -442,7 +442,7 @@ button:hover {
 
 If there's a `<div>` above `<ViewTransition>`, no exit/enter animations trigger:
 
-```js [3, 5]
+```js {3,7}
 function Item() {
   return (
     <div> {/* 🚩<div> above <ViewTransition> breaks exit/enter */}
@@ -473,7 +473,7 @@ If you want to animate a component in and out while preserving its state, or pre
 
 ```
 
-In this example, `Counter` has a counter with internal state. Try incrementing the counter, hiding it, then showing it again. The counter's value is preserved while the sidebar animates in and out:
+In this example, `Counter` has a counter with internal state. Try incrementing the counter, hiding it, then showing it again. The counter's value is preserved while `Counter` animates in and out:
 
 <Sandpack>
 
@@ -574,7 +574,7 @@ function Counter() {
 
 </Sandpack>
 
-Without `<Activity>`, the counter would reset to `0` every time the sidebar reappears.
+Without `<Activity>`, the counter would reset to `0` every time it reappears.
 
 ---
 
@@ -1235,8 +1235,8 @@ button:hover {
 
 This means you might want to avoid wrapper elements in lists where you want to allow the Component to control its own reorder animation:
 
-```
-items.map(item => <div><Component key={item.id} item={item} /></div>)
+```js
+items.map(item => <div key={item.id}><Component item={item} /></div>)
 ```
 
 The above rule also applies if one of the items updates to resize, which then causes the siblings to resize, it'll also animate its sibling `<ViewTransition>` but only if they're immediate siblings.
@@ -2630,7 +2630,7 @@ export default function Component() {
   return (
     <>
       <div>
-        Fast: <input type="checkbox" onChange={() => {setIsFast(f => !f)}} value={isFast}></input>
+        Fast: <input type="checkbox" onChange={() => {setIsFast(f => !f)}} checked={isFast}></input>
       </div><br />
       <button
         onClick={() => {
@@ -2783,7 +2783,7 @@ If a `startTransition` is started from the legacy popstate event, such as during
 
 `<ViewTransition>` only activates if it is placed before any DOM node:
 
-```js [3, 5]
+```js {3,5}
 function Component() {
   return (
     <div>
@@ -2795,7 +2795,7 @@ function Component() {
 
 To fix, ensure that the `<ViewTransition>` comes before any other DOM nodes:
 
-```js [3, 5]
+```js {3,5}
 function Component() {
   return (
     <ViewTransition>
@@ -2809,7 +2809,7 @@ function Component() {
 
 This error occurs when two `<ViewTransition>` components with the same `name` are mounted at the same time:
 
-```js [3]
+```js {3}
 function Item() {
   // 🚩 All items will get the same "name".
   return <ViewTransition name="item">...</ViewTransition>;
@@ -2848,7 +2848,7 @@ The existing `<ViewTransition name=%s>` duplicate has this stack trace.
 
 To fix, ensure that there's only one `<ViewTransition>` with the same name mounted at a time in the entire app by ensuring the `name` is unique, or adding an `id` to the name:
 
-```js [3]
+```js {3}
 function Item({id}) {
   // ✅ All items will get a unique name.
   return <ViewTransition name={`item-${id}`}>...</ViewTransition>;
@@ -2858,7 +2858,7 @@ function ItemList({items}) {
   return (
     <>
       {items.map((item) => (
-        <Item key={item.id} item={item} />
+        <Item key={item.id} id={item.id} />
       ))}
     </>
   );

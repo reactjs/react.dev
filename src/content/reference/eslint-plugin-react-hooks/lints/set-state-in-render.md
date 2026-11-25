@@ -88,7 +88,7 @@ function Counter({max}) {
 }
 ```
 
-As soon as `count` exceeds `max`, an infinite loop is triggered.
+Although this won't cause an infinite loop (since the condition eventually becomes false), it interrupts the current render and forces React to start over, making your component slower.
 
 Instead, it's often better to move this logic to the event (the place where the state is first set). For example, you can enforce the maximum at the moment you update state:
 

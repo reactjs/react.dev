@@ -26,10 +26,10 @@ Here is a reference table of common array operations. When dealing with arrays i
 
 |           | avoid (mutates the array)           | prefer (returns a new array)                                        |
 | --------- | ----------------------------------- | ------------------------------------------------------------------- |
-| adding    | `push`, `unshift`                   | `concat`, `[...arr]` spread syntax ([example](#adding-to-an-array)) |
-| removing  | `pop`, `shift`, `splice`            | `filter`, `slice` ([example](#removing-from-an-array))              |
-| replacing | `splice`, `arr[i] = ...` assignment | `map` ([example](#replacing-items-in-an-array))                     |
-| sorting   | `reverse`, `sort`                   | copy the array first ([example](#making-other-changes-to-an-array)) |
+| adding    | `push`, `unshift`                   | `toSpliced`, `concat`, `[...arr]` spread syntax ([example](#adding-to-an-array)) |
+| removing  | `pop`, `shift`, `splice`            | `toSpliced`, `filter`, `slice` ([example](#removing-from-an-array))              |
+| replacing | `splice`, `arr[i] = ...` assignment | `with`, `toSpliced`, `map` ([example](#replacing-items-in-an-array))                     |
+| sorting   | `reverse`, `sort`                   | `toReversed`, `toSorted` ([example](#making-other-changes-to-an-array)) |
 
 Alternatively, you can [use Immer](#write-concise-update-logic-with-immer) which lets you use methods from both columns.
 
@@ -40,7 +40,7 @@ Unfortunately, [`slice`](https://developer.mozilla.org/en-US/docs/Web/JavaScript
 * `slice` lets you copy an array or a part of it.
 * `splice` **mutates** the array (to insert or delete items).
 
-In React, you will be using `slice` (no `p`!) a lot more often because you don't want to mutate objects or arrays in state. [Updating Objects](/learn/updating-objects-in-state) explains what mutation is and why it's not recommended for state.
+In React, avoid using `splice` because you don't want to mutate objects or arrays in state. Instead you can use [`toSpliced`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toSpliced), which is a non-mutating version of `splice`. [Updating Objects](/learn/updating-objects-in-state) explains what mutation is and why it's not recommended for state.
 
 </Pitfall>
 
@@ -208,6 +208,52 @@ setArtists(
 
 Here, `artists.filter(a => a.id !== artist.id)` means "create an array that consists of those `artists` whose IDs are different from `artist.id`". In other words, each artist's "Delete" button will filter _that_ artist out of the array, and then request a re-render with the resulting array. Note that `filter` does not modify the original array.
 
+You might also want to delete an item at a particular index, for which you can use [`toSpliced`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toSpliced). The first parameter of `toSpliced` is an index. The second parameter is the number of items you want to delete.
+
+The following will delete the last item of the array (a negative index counts back from the end of the array):
+
+<Sandpack>
+
+```js
+import { useState } from 'react';
+
+let initialArtists = [
+  { id: 0, name: 'Marta Colvin Andrade' },
+  { id: 1, name: 'Lamidi Olonade Fakeye'},
+  { id: 2, name: 'Louise Nevelson'},
+];
+
+export default function List() {
+  const [artists, setArtists] = useState(
+    initialArtists
+  );
+
+  return (
+    <>
+      <h1>Inspiring sculptors:</h1>
+      <ul>
+        {artists.map(artist => (
+          <li key={artist.id}>
+            {artist.name}{' '}
+          </li>
+        ))}
+      </ul>
+      <button
+        onClick={() => {
+          setArtists(artists.toSpliced(-1, 1));
+        }}
+      >
+        Delete
+      </button>
+    </>
+  );
+}
+```
+
+</Sandpack>
+
+
+
 ### Transforming an array {/*transforming-an-array*/}
 
 If you want to change some or all items of the array, you can use `map()` to create a **new** array. The function you will pass to `map` can decide what to do with each item, based on its data or its index (or both).
@@ -332,9 +378,50 @@ button { margin: 5px; }
 
 </Sandpack>
 
+An alternative approach is to use `.with`. `with()` accepts an index and a value. The value replaces the array item at the given index.
+
+<Sandpack>
+
+```js
+import { useState } from 'react';
+
+let initialCounters = [
+  0, 0, 0
+];
+
+export default function CounterList() {
+  const [counters, setCounters] = useState(
+    initialCounters
+  );
+
+function handleIncrementClick(index) {
+  setCounters(counters.with(index, counters[index] + 1));
+}
+
+  return (
+    <ul>
+      {counters.map((counter, i) => (
+        <li key={i}>
+          {counter}
+          <button onClick={() => {
+            handleIncrementClick(i);
+          }}>+1</button>
+        </li>
+      ))}
+    </ul>
+  );
+}
+```
+
+```css
+button { margin: 5px; }
+```
+
+</Sandpack>
+
 ### Inserting into an array {/*inserting-into-an-array*/}
 
-Sometimes, you may want to insert an item at a particular position that's neither at the beginning nor at the end. To do this, you can use the `...` array spread syntax together with the `slice()` method. The `slice()` method lets you cut a "slice" of the array. To insert an item, you will create an array that spreads the slice _before_ the insertion point, then the new item, and then the rest of the original array.
+Sometimes, you may want to insert an item at a particular position that's neither at the beginning nor at the end. To do this, you can use `toSpliced()`.
 
 In this example, the Insert button always inserts at the index `1`:
 
@@ -358,15 +445,7 @@ export default function List() {
 
   function handleClick() {
     const insertAt = 1; // Could be any index
-    const nextArtists = [
-      // Items before the insertion point:
-      ...artists.slice(0, insertAt),
-      // New item:
-      { id: nextId++, name: name },
-      // Items after the insertion point:
-      ...artists.slice(insertAt)
-    ];
-    setArtists(nextArtists);
+    setArtists(artists.toSpliced(insertAt, 0, { id: nextId++, name: name }));
     setName('');
   }
 
@@ -398,9 +477,7 @@ button { margin-left: 5px; }
 
 ### Making other changes to an array {/*making-other-changes-to-an-array*/}
 
-There are some things you can't do with the spread syntax and non-mutating methods like `map()` and `filter()` alone. For example, you may want to reverse or sort an array. The JavaScript `reverse()` and `sort()` methods are mutating the original array, so you can't use them directly.
-
-**However, you can copy the array first, and then make changes to it.**
+You may want to reverse or sort an array. The JavaScript `reverse()` and `sort()` methods mutate the original array, so use [`toReversed()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toReversed) or [`toSorted()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toSorted) instead.
 
 For example:
 
@@ -419,9 +496,7 @@ export default function List() {
   const [list, setList] = useState(initialList);
 
   function handleClick() {
-    const nextList = [...list];
-    nextList.reverse();
-    setList(nextList);
+    setList(list.toReversed());
   }
 
   return (
@@ -441,9 +516,9 @@ export default function List() {
 
 </Sandpack>
 
-Here, you use the `[...list]` spread syntax to create a copy of the original array first. Now that you have a copy, you can use mutating methods like `nextList.reverse()` or `nextList.sort()`, or even assign individual items with `nextList[0] = "something"`.
+## Updating objects inside arrays {/*updating-objects-inside-arrays*/}
 
-However, **even if you copy an array, you can't mutate existing items _inside_ of it directly.** This is because copying is shallow--the new array will contain the same items as the original one. So if you modify an object inside the copied array, you are mutating the existing state. For example, code like this is a problem.
+**Even if you copy an array, you can't mutate existing items _inside_ of it directly.** This is because copying is shallow--the new array will contain the same items as the original one. So if you modify an object inside the copied array, you are mutating the existing state. For example, code like this is a problem.
 
 ```js
 const nextList = [...list];
@@ -452,8 +527,6 @@ setList(nextList);
 ```
 
 Although `nextList` and `list` are two different arrays, **`nextList[0]` and `list[0]` point to the same object.** So by changing `nextList[0].seen`, you are also changing `list[0].seen`. This is a state mutation, which you should avoid! You can solve this issue in a similar way to [updating nested JavaScript objects](/learn/updating-objects-in-state#updating-a-nested-object)--by copying individual items you want to change instead of mutating them. Here's how.
-
-## Updating objects inside arrays {/*updating-objects-inside-arrays*/}
 
 Objects are not _really_ located "inside" arrays. They might appear to be "inside" in code, but each object in an array is a separate value, to which the array "points". This is why you need to be careful when changing nested fields like `list[0]`. Another person's artwork list may point to the same element of the array!
 
@@ -781,8 +854,8 @@ Behind the scenes, Immer always constructs the next state from scratch according
 - Instead of mutating an array, create a *new* version of it, and update the state to it.
 - You can use the `[...arr, newItem]` array spread syntax to create arrays with new items.
 - You can use `filter()` and `map()` to create new arrays with filtered or transformed items.
+- Use `toReversed()` or `toSorted()` instead of `reverse()` and `sort()`
 - You can use Immer to keep your code concise.
-
 </Recap>
 
 

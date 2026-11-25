@@ -44,7 +44,19 @@ import {render} from '@testing-library/react';
 render(<Component />);
 ```
 
-### ReactDOMTestUtils.Simulate {/*reactdomtestutilssimulate*/}
+`render` returns an `unmount` function and the rendered container:
+
+```js
+const {unmount, container} = render(<Component />);
+
+unmount();
+expect(container.innerHTML).toBe('');
+```
+
+React Testing Library automatically cleans up rendered trees after each test when your test framework provides an `afterEach` hook. You can call `unmount` yourself when you need to verify cleanup during a test. Unmounting a tree also removes content rendered into a portal by that tree. If your test creates a separate React root, unmount that root separately.
+
+```
+ ### ReactDOMTestUtils.Simulate {/*reactdomtestutilssimulate*/}
 
 `Simulate` can be replaced with `fireEvent` from `@testing-library/react`.
 

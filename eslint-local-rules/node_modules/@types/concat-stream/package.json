@@ -1,0 +1,27 @@
+{
+    "name": "@types/concat-stream",
+    "version": "2.0.3",
+    "description": "TypeScript definitions for concat-stream",
+    "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/concat-stream",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Joey Marianer",
+            "githubUsername": "jmarianer",
+            "url": "https://github.com/jmarianer"
+        }
+    ],
+    "main": "",
+    "types": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+        "directory": "types/concat-stream"
+    },
+    "scripts": {},
+    "dependencies": {
+        "@types/node": "*"
+    },
+    "typesPublisherContentHash": "2008174f89c01421d584f115e6974796d5a54056c69104262a4f1ebedfbe422e",
+    "typeScriptVersion": "4.5"
+}

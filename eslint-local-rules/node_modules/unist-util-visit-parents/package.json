@@ -1,0 +1,96 @@
+{
+  "author": "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)",
+  "bugs": "https://github.com/syntax-tree/unist-util-visit-parents/issues",
+  "contributors": [
+    "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)"
+  ],
+  "dependencies": {
+    "@types/unist": "^3.0.0",
+    "unist-util-is": "^6.0.0"
+  },
+  "description": "unist utility to recursively walk over nodes, with ancestral information",
+  "devDependencies": {
+    "@types/hast": "^3.0.0",
+    "@types/mdast": "^4.0.0",
+    "@types/node": "^26.0.0",
+    "@types/xast": "^2.0.0",
+    "c8": "^12.0.0",
+    "mdast-util-from-markdown": "^2.0.0",
+    "mdast-util-gfm": "^3.0.0",
+    "micromark-extension-gfm": "^3.0.0",
+    "prettier": "^3.0.0",
+    "remark-cli": "^12.0.0",
+    "remark-preset-wooorm": "^11.0.0",
+    "strip-ansi": "^7.0.0",
+    "tsd": "^0.33.0",
+    "type-coverage": "^2.0.0",
+    "typescript": "^6.0.0",
+    "xo": "^5.0.0"
+  },
+  "exports": {
+    ".": "./index.js",
+    "./do-not-use-color": {
+      "node": "./lib/color.node.js",
+      "default": "./lib/color.js"
+    }
+  },
+  "files": [
+    "lib/",
+    "index.d.ts",
+    "index.js"
+  ],
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/unified"
+  },
+  "keywords": [
+    "ast",
+    "check",
+    "parents",
+    "parent",
+    "traverse",
+    "tree",
+    "unist-util",
+    "unist",
+    "utility",
+    "util",
+    "visit",
+    "walk"
+  ],
+  "license": "MIT",
+  "name": "unist-util-visit-parents",
+  "prettier": {
+    "bracketSpacing": false,
+    "semi": false,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "none",
+    "useTabs": false
+  },
+  "remarkConfig": {
+    "plugins": [
+      "remark-preset-wooorm"
+    ]
+  },
+  "repository": "syntax-tree/unist-util-visit-parents",
+  "scripts": {
+    "build": "tsc --build --clean && tsc --build && tsd && type-coverage",
+    "format": "remark --frail --output --quiet -- . && prettier --log-level warn --write -- . && xo --fix",
+    "prepack": "npm run build && npm run format",
+    "test-api": "node --conditions development test.js",
+    "test-coverage": "c8 --100 --reporter lcov -- npm run test-api",
+    "test": "npm run build && npm run format && npm run test-coverage"
+  },
+  "sideEffects": false,
+  "typeCoverage": {
+    "atLeast": 100,
+    "#": "needed `any`s",
+    "ignoreFiles": [
+      "lib/index.d.ts"
+    ],
+    "strict": true
+  },
+  "types": "./index.d.ts",
+  "type": "module",
+  "version": "6.1.0"
+}

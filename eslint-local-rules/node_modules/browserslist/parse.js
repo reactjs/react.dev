@@ -1,0 +1,173 @@
+var SPACE = /\s/
+
+function endsWithOperator(block) {
+  // Scan the suffix once rather than backtracking over long whitespace runs.
+  var end = block.length
+  while (end > 0 && SPACE.test(block[end - 1])) end--
+
+  if (block[end - 1] === ',') {
+    return block.slice(0, end - 1).trim().length > 0
+  }
+
+  var tail = block.slice(Math.max(0, end - 3), end).toLowerCase()
+  var size = 0
+  if (tail === 'and') {
+    size = 3
+  } else if (tail.slice(-2) === 'or') {
+    size = 2
+  }
+  if (size === 0 || end <= size || !SPACE.test(block[end - size - 1])) {
+    return false
+  }
+  return block.slice(0, end - size).trim().length > 0
+}
+
+function flatten(array) {
+  if (!Array.isArray(array)) return [array]
+  // Iterative flatten: `reduce`+`concat` copies the accumulator on every step,
+  // which is O(n²) once a query resolves to many nodes.
+  var result = []
+  var stack = [array]
+  while (stack.length) {
+    var item = stack.pop()
+    if (Array.isArray(item)) {
+      for (var i = item.length - 1; i >= 0; i--) {
+        stack.push(item[i])
+      }
+    } else {
+      result.push(item)
+    }
+  }
+  return result
+}
+
+function matchQuery(all, query) {
+  var node = { query: query }
+  var not = query.match(/^not\s+(?!\s)/i)
+  if (not) {
+    node.not = true
+    query = query.slice(not[0].length)
+  }
+
+  for (var name in all) {
+    var type = all[name]
+    var match = query.match(type.regexp)
+    if (match) {
+      node.type = name
+      for (var i = 0; i < type.matches.length; i++) {
+        node[type.matches[i]] = match[i + 1]
+      }
+      return node
+    }
+  }
+
+  node.type = 'unknown'
+  return node
+}
+
+function pushClause(all, qs, text, compose) {
+  var node = matchQuery(all, text.trim())
+  node.compose = compose
+  qs.push(node)
+}
+
+// Splits a query block into clauses on the `\s+and\s+`, `\s+or\s+` and `,\s*`
+// delimiters in a single left-to-right pass. The previous implementation grew
+// a suffix one character at a time and re-tested anchored `\s+…` regexps at
+// every length, which backtracks across whitespace runs and is O(n²) — a
+// small padded query could freeze the event loop for tens of seconds.
+function parseBlock(all, block, qs) {
+  if (block.length === 0) return
+
+  var len = block.length
+  var clauseStart = 0
+  // Compose for the clause currently being read; the leftmost clause is `or`.
+  var compose = 'or'
+  var i = 0
+
+  while (i < len) {
+    var ch = block[i]
+
+    if (ch === ',') {
+      // `,\s*` delimiter. A delimiter at the very start (i === 0) has no left
+      // clause — the original never emits one there.
+      if (i !== 0) pushClause(all, qs, block.slice(clauseStart, i), compose)
+      i++
+      while (i < len && SPACE.test(block[i])) i++
+      compose = 'or'
+      clauseStart = i
+      continue
+    }
+
+    if (SPACE.test(ch)) {
+      // Possible `\s+and\s+` or `\s+or\s+`. Scan the whitespace run once
+      // (linear, no backtracking), then check the following keyword.
+      var q = i
+      while (q < len && SPACE.test(block[q])) q++
+
+      if (
+        q + 3 < len &&
+        (block[q] === 'a' || block[q] === 'A') &&
+        (block[q + 1] === 'n' || block[q + 1] === 'N') &&
+        (block[q + 2] === 'd' || block[q + 2] === 'D') &&
+        SPACE.test(block[q + 3])
+      ) {
+        // The leading `\s+` of `\s+and\s+` absorbs whitespace at the block
+        // start, so a delimiter at i === 0 has no left clause.
+        if (i !== 0) pushClause(all, qs, block.slice(clauseStart, i), compose)
+        var afterAnd = q + 3
+        while (afterAnd < len && SPACE.test(block[afterAnd])) afterAnd++
+        compose = 'and'
+        i = afterAnd
+        clauseStart = afterAnd
+        continue
+      } else if (
+        q + 2 < len &&
+        (block[q] === 'o' || block[q] === 'O') &&
+        (block[q + 1] === 'r' || block[q + 1] === 'R') &&
+        SPACE.test(block[q + 2])
+      ) {
+        if (i !== 0) pushClause(all, qs, block.slice(clauseStart, i), compose)
+        var afterOr = q + 2
+        while (afterOr < len && SPACE.test(block[afterOr])) afterOr++
+        compose = 'or'
+        i = afterOr
+        clauseStart = afterOr
+        continue
+      } else {
+        // Whitespace inside a clause; skip the run and keep reading.
+        i = q
+        continue
+      }
+    }
+
+    i++
+  }
+
+  pushClause(all, qs, block.slice(clauseStart), compose)
+}
+
+module.exports = function parse(all, queries) {
+  if (!Array.isArray(queries)) queries = [queries]
+  // Only explicitly connected entries share a block; all other entries keep
+  // the parser's implicit OR. Joining each group once keeps this pass linear.
+  var blocks = []
+  var pending = []
+  queries.forEach(function (block) {
+    if (block.length === 0) return
+    pending.push(block)
+    if (endsWithOperator(block)) return
+    blocks.push(pending.join('\n'))
+    pending = []
+  })
+  // Parse an unfinished continuation too, so a dangling operator still errors.
+  if (pending.length > 0) blocks.push(pending.join('\n'))
+
+  return flatten(
+    blocks.map(function (block) {
+      var qs = []
+      parseBlock(all, block, qs)
+      return qs
+    })
+  )
+}

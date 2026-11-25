@@ -1,0 +1,48 @@
+{
+  "name": "micromark-util-edit-map",
+  "version": "1.0.0",
+  "description": "micromark utility to batch changes to lists of events",
+  "license": "MIT",
+  "keywords": [
+    "micromark",
+    "util",
+    "utility",
+    "edit",
+    "map",
+    "splice"
+  ],
+  "repository": "https://github.com/micromark/micromark/tree/main/packages/micromark-util-edit-map",
+  "bugs": "https://github.com/micromark/micromark/issues",
+  "funding": [
+    {
+      "type": "GitHub Sponsors",
+      "url": "https://github.com/sponsors/unifiedjs"
+    },
+    {
+      "type": "OpenCollective",
+      "url": "https://opencollective.com/unified"
+    }
+  ],
+  "author": "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)",
+  "contributors": [
+    "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)"
+  ],
+  "sideEffects": false,
+  "type": "module",
+  "files": [
+    "dev/",
+    "index.d.ts.map",
+    "index.d.ts",
+    "index.js"
+  ],
+  "exports": {
+    "development": "./dev/index.js",
+    "default": "./index.js"
+  },
+  "dependencies": {
+    "micromark-util-types": "^2.0.0"
+  },
+  "scripts": {
+    "build": "micromark-build"
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "name": "vfile-reporter",
+  "version": "8.1.1",
+  "description": "vfile utility to create a report for a file",
+  "license": "MIT",
+  "keywords": [
+    "vfile",
+    "vfile-util",
+    "vfile-reporter",
+    "util",
+    "utility",
+    "reporter",
+    "virtual",
+    "file",
+    "formatter",
+    "report",
+    "format",
+    "message",
+    "warning",
+    "error"
+  ],
+  "repository": "vfile/vfile-reporter",
+  "bugs": "https://github.com/vfile/vfile-reporter/issues",
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/unified"
+  },
+  "author": "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)",
+  "contributors": [
+    "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)"
+  ],
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    ".": "./index.js",
+    "./do-not-use-color": {
+      "node": "./lib/color.node.js",
+      "default": "./lib/color.js"
+    }
+  },
+  "files": [
+    "lib/",
+    "index.d.ts",
+    "index.js"
+  ],
+  "dependencies": {
+    "@types/supports-color": "^8.0.0",
+    "string-width": "^6.0.0",
+    "supports-color": "^9.0.0",
+    "unist-util-stringify-position": "^4.0.0",
+    "vfile": "^6.0.0",
+    "vfile-message": "^4.0.0",
+    "vfile-sort": "^4.0.0",
+    "vfile-statistics": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/hast": "^3.0.0",
+    "@types/node": "^20.0.0",
+    "c8": "^9.0.0",
+    "cross-env": "^7.0.0",
+    "mdast-util-mdx-jsx": "^3.0.0",
+    "prettier": "^3.0.0",
+    "remark-cli": "^11.0.0",
+    "remark-preset-wooorm": "^9.0.0",
+    "strip-ansi": "^7.0.0",
+    "type-coverage": "^2.0.0",
+    "typescript": "^5.0.0",
+    "xo": "^0.58.0"
+  },
+  "scripts": {
+    "prepack": "npm run build && npm run format",
+    "build": "tsc --build --clean && tsc --build && type-coverage",
+    "format": "remark . -qfo && prettier . -w --log-level warn && xo --fix",
+    "test-api": "cross-env FORCE_COLOR=\"true\" node --conditions development test.js",
+    "test-coverage": "c8 --100 --reporter lcov npm run test-api",
+    "test": "npm run build && npm run format && npm run test-coverage"
+  },
+  "prettier": {
+    "tabWidth": 2,
+    "useTabs": false,
+    "singleQuote": true,
+    "bracketSpacing": false,
+    "semi": false,
+    "trailingComma": "none"
+  },
+  "remarkConfig": {
+    "plugins": [
+      "remark-preset-wooorm"
+    ]
+  },
+  "typeCoverage": {
+    "atLeast": 100,
+    "detail": true,
+    "strict": true,
+    "ignoreCatch": true
+  },
+  "xo": {
+    "prettier": true,
+    "rules": {
+      "n/file-extension-in-import": "off",
+      "unicorn/prefer-string-replace-all": "off"
+    }
+  }
+}

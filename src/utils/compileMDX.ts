@@ -27,9 +27,16 @@ export default async function compileMDX(
 
   // See if we have a cached output first.
   const {FileStore, stableHash} = require('metro-cache');
-  const store = new FileStore({
-    root: process.cwd() + '/node_modules/.cache/react-docs-mdx/',
-  });
+  // The disk cache is only an optimization. When a page is rendered on demand
+  // after the build (e.g. `fallback: 'blocking'`), the deployment's filesystem
+  // may be read-only, and the store can't be created or written to. Don't fail
+  // the page in that case.
+  let store: any = null;
+  try {
+    store = new FileStore({
+      root: process.cwd() + '/node_modules/.cache/react-docs-mdx/',
+    });
+  } catch {}
   const hash = Buffer.from(
     stableHash({
       // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -43,7 +50,7 @@ export default async function compileMDX(
       lockfile: fs.readFileSync(process.cwd() + '/yarn.lock', 'utf8'),
     })
   );
-  const cached = await store.get(hash);
+  const cached = store && (await store.get(hash).catch(() => null));
   if (cached) {
     console.log(
       'Reading compiled MDX for /' + path + ' from ./node_modules/.cache/'
@@ -170,6 +177,10 @@ export default async function compileMDX(
   }
 
   // Cache it on the disk.
-  await store.set(hash, output);
+  if (store) {
+    try {
+      await store.set(hash, output);
+    } catch {}
+  }
   return output;
 }

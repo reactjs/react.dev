@@ -68,6 +68,12 @@ function handleClick() {
   // ...
 ```
 
+<Note>
+
+React guarantees that `setState` function identity is stable and won’t change on re-renders. This is why it’s safe to omit from the `useEffect` or `useCallback` dependency list.
+
+</Note>
+
 #### Parameters {/*setstate-parameters*/}
 
 * `nextState`: The value that you want the state to be. It can be a value of any type, but there is a special behavior for functions.

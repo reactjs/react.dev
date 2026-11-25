@@ -1,7 +1,9 @@
 ---
 name: docs-sandpack
-description: Use when adding interactive code examples to React docs.
+description:  Use when adding interactive Sandpack code examples, live React playgrounds, or multi-file code demos to React documentation.
 ---
+
+This skill provides patterns and conventions for creating Sandpack examples in React documentation, including multi-file demos, line highlights, hidden files, and dependency configuration.
 
 # Sandpack Patterns
 

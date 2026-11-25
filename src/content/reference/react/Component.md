@@ -1013,6 +1013,8 @@ Deriving state leads to verbose code and makes your components difficult to thin
 
 - This method doesn't have access to the component instance. If you'd like, you can reuse some code between `static getDerivedStateFromProps` and the other class methods by extracting pure functions of the component props and state outside the class definition.
 
+- If your legacy component is defined with [`createReactClass`](https://legacy.reactjs.org/docs/react-without-es6.html), define `getDerivedStateFromProps` in the `statics` object.
+
 <Note>
 
 Implementing `static getDerivedStateFromProps` in a class component is equivalent to [calling the `set` function from `useState` during rendering](/reference/react/useState#storing-information-from-previous-renders) in a function component.

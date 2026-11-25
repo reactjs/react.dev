@@ -1012,7 +1012,7 @@ input { margin-top: 10px; }
 
 In this example, filtering the todos was extracted into a separate function called `getVisibleTodos()`. This function contains a `console.log()` call inside of it which helps you notice when it's being called. Toggle "Show only active todos" and notice that it causes `getVisibleTodos()` to re-run. This is expected because visible todos change when you toggle which ones to display.
 
-Your task is to remove the Effect that recomputes the `visibleTodos` list in the `TodoList` component. However, you need to make sure that `getVisibleTodos()` does *not* re-run (and so does not print any logs) when you type into the input.
+Your task is to remove the Effect that recomputes the `visibleTodos` list in the `TodoList` component. The Effect currently runs after render and stores the result in state. Replace it with a way to compute the same result during render while preserving the current caching behavior: `getVisibleTodos()` should *not* re-run (and so should not print any logs) when you type into the input.
 
 <Hint>
 
@@ -1183,7 +1183,7 @@ input { margin-top: 10px; }
 
 </Sandpack>
 
-With this change, `getVisibleTodos()` will be called only if `todos` or `showActive` change. Typing into the input only changes the `text` state variable, so it does not trigger a call to `getVisibleTodos()`.
+This change keeps the same caching behavior as the Effect version: `getVisibleTodos()` is called only if `todos` or `showActive` change, and typing into the input does not trigger a call to it. The difference is that `visibleTodos` is now computed during render instead of after render in an Effect.
 
 There is also another solution which does not need `useMemo`. Since the `text` state variable can't possibly affect the list of todos, you can extract the `NewTodo` form into a separate component, and move the `text` state variable inside of it:
 
@@ -1272,7 +1272,7 @@ input { margin-top: 10px; }
 
 </Sandpack>
 
-This approach satisfies the requirements too. When you type into the input, only the `text` state variable updates. Since the `text` state variable is in the child `NewTodo` component, the parent `TodoList` component won't get re-rendered. This is why `getVisibleTodos()` doesn't get called when you type. (It would still be called if the `TodoList` re-renders for another reason.)
+This approach also keeps the caching behavior from the Effect version. When you type into the input, only the `text` state variable updates. Since the `text` state variable is in the child `NewTodo` component, the parent `TodoList` component won't get re-rendered. This is why `getVisibleTodos()` still doesn't get called when you type. (It would still be called if the `TodoList` re-renders for another reason.)
 
 </Solution>
 

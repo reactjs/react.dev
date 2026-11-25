@@ -305,7 +305,7 @@ label, textarea { margin-bottom: 10px; display: block; }
 
 </Sandpack>
 
-**React keeps the state values "fixed" within one render's event handlers.** You don't need to worry whether the state has changed while the code is running.
+**React keeps the state value “fixed” within one render, meaning it won’t update until the next render cycle.** You don't need to worry whether the state has changed while the code is running.
 
 But what if you wanted to read the latest state before a re-render? You'll want to use a [state updater function](/learn/queueing-a-series-of-state-updates), covered on the next page!
 

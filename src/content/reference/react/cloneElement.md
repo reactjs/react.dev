@@ -49,7 +49,7 @@ console.log(clonedElement); // <Row title="Cabbage" isHighlighted={true}>Goodbye
 
 * `element`: The `element` argument must be a valid React element. For example, it could be a JSX node like `<Something />`, the result of calling [`createElement`](/reference/react/createElement), or the result of another `cloneElement` call.
 
-* `props`: The `props` argument must either be an object or `null`. If you pass `null`, the cloned element will retain all of the original `element.props`. Otherwise, for every prop in the `props` object, the returned element will "prefer" the value from `props` over the value from `element.props`. The rest of the props will be filled from the original `element.props`. If you pass `props.key` or `props.ref`, they will replace the original ones.
+* `props`: The `props` argument must either be an object or `null`. If you pass `null`, the cloned element will retain all of the original `element.props`. Otherwise, for every prop in the `props` object, the returned element will "prefer" the value from `props` over the value from `element.props`. The rest of the props will be filled from the original `element.props`. A supplied key replaces the original key. If `props.ref` is omitted or `undefined`, the original ref is kept. Pass `ref: null` to clear it.
 
 * **optional** `...children`: Zero or more child nodes. They can be any React nodes, including React elements, strings, numbers, [portals](/reference/react-dom/createPortal), empty nodes (`null`, `undefined`, `true`, and `false`), and arrays of React nodes. If you don't pass any `...children` arguments, the original `element.props.children` will be preserved.
 
@@ -58,8 +58,7 @@ console.log(clonedElement); // <Row title="Cabbage" isHighlighted={true}>Goodbye
 `cloneElement` returns a React element object with a few properties:
 
 * `type`: Same as `element.type`.
-* `props`: The result of shallowly merging `element.props` with the overriding `props` you have passed.
-* `ref`: The original `element.ref`, unless it was overridden by `props.ref`.
+* `props`: The result of shallowly merging `element.props` with the overriding `props` you have passed. In React 19, read the resulting ref as `clonedElement.props.ref`.
 * `key`: The original `element.key`, unless it was overridden by `props.key`.
 
 Usually, you'll return the element from your component or make it a child of another element. Although you may read the element's properties, it's best to treat every element as opaque after it's created, and only render it.

@@ -2,6 +2,8 @@
 
 This repo contains the source code and documentation powering [react.dev](https://react.dev/).
 
+React is a project of the [React Foundation](https://react.foundation/), hosted by the [Linux Foundation](https://www.linuxfoundation.org/).
+
 ## Getting started
 
 ### Prerequisites
